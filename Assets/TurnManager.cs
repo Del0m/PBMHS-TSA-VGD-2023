@@ -9,10 +9,8 @@ public class TurnManager : MonoBehaviour
 {
     private GameObject playerManager;
     private PlayerManager manageScript;
+    public GameObject[] players;
 
-    public int playerCount;
-    //for determining turns
- 
     // Start is called before the first frame update
     void Start()
     {
@@ -25,34 +23,29 @@ public class TurnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TurnGeneration();
+        TurnLocker();
+        GrabPlayers();
     }
-    private void TurnGeneration()
+    private void GrabPlayers()
     {
-        playerCount = playerManager.GetComponent<PlayerManager>().playerCount;
-        int[] turnOrder = new int[4];
-
-        //turnOrder[0] = Random.Range(1, playerCount);
+        //grabs all players for script
+        for (int i = 0; i < GameObject.FindGameObjectsWithTag("Player").Length; i++)
+        {
+            players = GameObject.FindGameObjectsWithTag("Player");
+            print(players);
+        }
+    }
+    private void TurnLocker()
+    {
+        //locks other turns to only allow one person to move
         
-        //running loop to decide order; plan is to check all positions to see if they have same number, and if they do, they reroll
-        for (int count = 0; count <= playerCount; count++)
+        for (int i = 0; i < players.Length; i++)
         {
+            //disabling and enabling input of controllers
+            
+        }
 
-            int i = Random.Range(1, playerCount+1);
-            //VERY INEFFECTIVE STATEMENT, WILL FIX LATER
-            while (i == turnOrder[0] || i == turnOrder[1])
-            {
-                //reroll statement to get new number
-                i = Random.Range(1, playerCount + 1);
-                
-            }
-            turnOrder[count] = i;
-        }
-        //checker statement, will be removed.
-        for (int x = 0; x >= playerCount; x++)
-        {
-            print(x + " Turn is " + turnOrder[x]);
-        }
+
     }
 
 }

@@ -12,11 +12,21 @@ public class PlayerControls : MonoBehaviour
 
     public PlayerManager managerScript;
 
-    //tell manager script to put player in array
+    //turns and controls
+    public int turnOrder;
+    public PlayerInput gameplayInput;
+    private void Awake()
+    {
+        PlayerTurn();
+        gameplayInput = this.gameObject.GetComponent<PlayerInput>();
+
+    }
+
+    
     private void Start()
     {
-        managerScript.playerCount += 1; // increase player count
-        managerScript.Invoke("GetPlayers", 2); // run method at start
+       // managerScript.playerCount += 1; // increase player count
+       // managerScript.Invoke("GetPlayers", 2); // run method at start
     }
     void Update()
     {
@@ -29,5 +39,16 @@ public class PlayerControls : MonoBehaviour
     }
     public void OnPress(InputAction.CallbackContext ctx) => isPressed = ctx.ReadValueAsButton(); // returns true when button pressed
     
+    public void PlayerTurn()
+    {
+        //grab all players on map, give turn order based on amount of players
+        int player = GameObject.FindGameObjectsWithTag("Player").Length;
+        turnOrder = player;
 
+        if(turnOrder != 1)
+        {
+            gameplayInput.DeactivateInput(); // make it to where it changes control schemes, but otherwise we're keeping it :) 
+        }
+
+    }
 }
