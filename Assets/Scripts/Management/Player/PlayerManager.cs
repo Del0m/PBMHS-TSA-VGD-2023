@@ -9,24 +9,24 @@ public class PlayerManager : MonoBehaviour
     public int playerCount = 0;
     public GameObject[] players;
 
-    private void Update()
+    public TurnManager turnManager;
+
+    private void Start() // intializing scripts that will be used
     {
-        GetPlayers();
-    }
-    public void GetPlayers() // grab players, chuck in array
-    {
-        for (int i = 0; i > playerCount+200; i++)
-        {
-            players[i] = GameObject.FindGameObjectWithTag("Player"); //collects all players in scene
-            if (players[i] != null)
-            {
-                print("Player Found!");
-            }
-            playerCount = GameObject.FindGameObjectsWithTag("Player").Length; // update player count
-        }
+        turnManager = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>(); // turn manager script for updating purposes
+
     }
 
-  
+    public void GetPlayers() // grab players, chuck in array
+    {
+        players = GameObject.FindGameObjectsWithTag("Player"); //collects all players in scene
+        playerCount = GameObject.FindGameObjectsWithTag("Player").Length; // update player count
+
+        //update turn manager
+        turnManager.GetPlayers();
+    }
+
+
 
 
 }

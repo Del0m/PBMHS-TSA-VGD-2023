@@ -7,34 +7,25 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
-    private GameObject playerManager;
-    private PlayerManager manageScript;
+    private PlayerManager playerManager;
     public GameObject[] players;
 
     // Start is called before the first frame update
     void Start()
     {
-        //getting playerManager to call for functions l8r
-        playerManager = GameObject.Find("Player Manager");
+        playerManager = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>();
         print(playerManager);
+
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        TurnLocker();
-        GrabPlayers();
+        //TurnLocker(); // not needed
+        
     }
-    private void GrabPlayers()
-    {
-        //grabs all players for script
-        for (int i = 0; i < GameObject.FindGameObjectsWithTag("Player").Length; i++)
-        {
-            players = GameObject.FindGameObjectsWithTag("Player");
-            print(players);
-        }
-    }
+
     private void TurnLocker()
     {
         //locks other turns to only allow one person to move
@@ -46,6 +37,11 @@ public class TurnManager : MonoBehaviour
         }
 
 
+    }
+
+    public void GetPlayers() // grab players from PlayerManager and put into array
+    {
+        players = playerManager.players; // PlayerManager array
     }
 
 }

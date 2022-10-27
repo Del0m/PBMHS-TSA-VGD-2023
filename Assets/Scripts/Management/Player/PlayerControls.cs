@@ -26,9 +26,9 @@ public class PlayerControls : MonoBehaviour
     
     private void Start() // depreciated for the moment
     {
-        managerScript = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>(); //find manager script
-       managerScript.playerCount += 1; // increase player count
-       managerScript.Invoke("GetPlayers", 2); // run method at start
+       managerScript = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>(); //find manager script
+
+        managerScript.GetPlayers(); // update player array at start
     }
     void Update()
     {
@@ -44,8 +44,7 @@ public class PlayerControls : MonoBehaviour
     public void PlayerTurn()
     {
         //grab all players on map, give turn order based on amount of players
-        int player = GameObject.FindGameObjectsWithTag("Player").Length;
-        turnOrder = player;
+        turnOrder = GameObject.FindGameObjectsWithTag("Player").Length;
 
         if(turnOrder != 1)
         {
