@@ -46,10 +46,15 @@ public class PlayerControls : MonoBehaviour
         //grab all players on map, give turn order based on amount of players
         turnOrder = GameObject.FindGameObjectsWithTag("Player").Length;
 
-        if(turnOrder != 1)
+        if(turnOrder != managerScript.turnManager.currentTurn)
         {
             gameplayInput.DeactivateInput(); // make it to where it changes control schemes, but otherwise we're keeping it :) 
         }
 
+    }
+
+    private void OnDestroy() // updates player manager when player disappears
+    {
+        managerScript.GetPlayers();
     }
 }

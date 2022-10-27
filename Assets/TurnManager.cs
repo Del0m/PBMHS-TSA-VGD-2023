@@ -10,6 +10,8 @@ public class TurnManager : MonoBehaviour
     private PlayerManager playerManager;
     public GameObject[] players;
 
+    public int currentTurn;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,18 +27,13 @@ public class TurnManager : MonoBehaviour
         //TurnLocker(); // not needed
         
     }
-
-    private void TurnLocker()
+    public void ChangeTurn() // to be called from player controls to change to the next turn
     {
-        //locks other turns to only allow one person to move
-        
-        for (int i = 0; i < players.Length; i++)
+        currentTurn = currentTurn + 1; // update to next turn
+        if(currentTurn <= playerManager.playerCount) // set turn order to beginning
         {
-            //disabling and enabling input of controllers
-            
+            currentTurn = 1;
         }
-
-
     }
 
     public void GetPlayers() // grab players from PlayerManager and put into array
