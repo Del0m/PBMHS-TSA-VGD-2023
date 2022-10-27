@@ -8,18 +8,20 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerControls : MonoBehaviour
 {
+    //controls
     public bool isPressed;
 
+    //scripts to be called
     public PlayerManager managerScript;
 
     //turns and controls
     public int turnOrder;
     public PlayerInput gameplayInput;
+
     private void Awake() // for purpose of controls / turns
     {
         PlayerTurn(); // sets player's turn
-        gameplayInput = this.gameObject.GetComponent<PlayerInput>();
-
+        gameplayInput = this.gameObject.GetComponent<PlayerInput>(); // grabbing player controls to turn on/off and change inputmaps
     }
     
 

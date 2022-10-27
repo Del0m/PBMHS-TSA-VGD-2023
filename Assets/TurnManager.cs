@@ -15,17 +15,8 @@ public class TurnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerManager = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>();
-        print(playerManager);
-
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //TurnLocker(); // not needed
-        
+        playerManager = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>(); // call player manager for player array
+        print(playerManager); 
     }
     public void ChangeTurn() // to be called from player controls to change to the next turn
     {
