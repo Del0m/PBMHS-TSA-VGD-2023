@@ -6,20 +6,23 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public GameObject playerManager;
     public int playerCount = 0;
     public GameObject[] players;
 
-    private void Start()
+    private void Update()
     {
-        playerManager = this.gameObject;
+        GetPlayers();
     }
-    //grab all players, chuck into array
-    public void GetPlayers()
+    public void GetPlayers() // grab players, chuck in array
     {
-        for (int i = 0; i > playerCount; i++)
+        for (int i = 0; i > playerCount+200; i++)
         {
-            players[i] = this.transform.GetChild(i).gameObject;
+            players[i] = GameObject.FindGameObjectWithTag("Player"); //collects all players in scene
+            if (players[i] != null)
+            {
+                print("Player Found!");
+            }
+            playerCount = GameObject.FindGameObjectsWithTag("Player").Length; // update player count
         }
     }
 

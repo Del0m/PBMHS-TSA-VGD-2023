@@ -15,18 +15,20 @@ public class PlayerControls : MonoBehaviour
     //turns and controls
     public int turnOrder;
     public PlayerInput gameplayInput;
-    private void Awake()
+    private void Awake() // for purpose of controls / turns
     {
-        PlayerTurn();
+        PlayerTurn(); // sets player's turn
         gameplayInput = this.gameObject.GetComponent<PlayerInput>();
 
     }
+    
 
     
-    private void Start()
+    private void Start() // depreciated for the moment
     {
-       // managerScript.playerCount += 1; // increase player count
-       // managerScript.Invoke("GetPlayers", 2); // run method at start
+        managerScript = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>(); //find manager script
+       managerScript.playerCount += 1; // increase player count
+       managerScript.Invoke("GetPlayers", 2); // run method at start
     }
     void Update()
     {
