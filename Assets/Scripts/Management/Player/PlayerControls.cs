@@ -11,8 +11,9 @@ public class PlayerControls : MonoBehaviour
     //controls
     public bool isPressed;
 
-    //scripts to be called
-    public PlayerManager managerScript;
+    //scripts / objects to be called for player management
+    private GameObject managerObject;
+    private PlayerManager managerScript;
 
     //turns and controls
     public int turnOrder;
@@ -30,8 +31,9 @@ public class PlayerControls : MonoBehaviour
 
     private void Start() // depreciated for the moment
     {
-       managerScript = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>(); //find manager script
+        managerObject = GameObject.FindGameObjectWithTag("Player Manager"); //find manager script
 
+        managerScript = managerObject.GetComponent<PlayerManager>();
         managerScript.GetPlayers(); // update player array at start
     }
     void Update()
@@ -47,6 +49,8 @@ public class PlayerControls : MonoBehaviour
     
     public void PlayerTurn()
     {
+        var currentTurn = managerScript.turnManager.currentTurn;
+        print("The current turn is: " + currentTurn);
         //grab all players on map, give turn order based on amount of players
         turnOrder = GameObject.FindGameObjectsWithTag("Player").Length;
 
