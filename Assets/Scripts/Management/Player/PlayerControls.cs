@@ -18,14 +18,16 @@ public class PlayerControls : MonoBehaviour
     public int turnOrder;
     public PlayerInput gameplayInput;
 
+
     private void Awake() // for purpose of controls / turns
     {
         PlayerTurn(); // sets player's turn
         gameplayInput = this.gameObject.GetComponent<PlayerInput>(); // grabbing player controls to turn on/off and change inputmaps
-    }
-    
 
-    
+    }
+
+
+
     private void Start() // depreciated for the moment
     {
        managerScript = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>(); //find manager script
@@ -48,9 +50,10 @@ public class PlayerControls : MonoBehaviour
         //grab all players on map, give turn order based on amount of players
         turnOrder = GameObject.FindGameObjectsWithTag("Player").Length;
 
-        if(turnOrder != managerScript.turnManager.currentTurn)
+        if(turnOrder != 2)
         {
-            gameplayInput.DeactivateInput(); // make it to where it changes control schemes, but otherwise we're keeping it :) 
+            gameplayInput.actions.FindActionMap("Gameplay").Disable(); // disable gameplay controls
+            gameplayInput.actions.FindActionMap("Off").Enable(); // make it to where it changes control schemes, but otherwise we're keeping it :) 
         }
 
     }

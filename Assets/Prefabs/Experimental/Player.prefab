@@ -50,6 +50,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPressed: 0
   managerScript: {fileID: 0}
+  turnOrder: 0
+  gameplayInput: {fileID: 1152684079109578991}
 --- !u!114 &1152684079109578991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,6 +93,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 9e09bccc-59d4-4fac-9e2a-ca26d90eabdb
     m_ActionName: Gameplay/Dice Roll
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0b754ce7-50d6-4855-9cb6-10157e91ca68
+    m_ActionName: Off/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay

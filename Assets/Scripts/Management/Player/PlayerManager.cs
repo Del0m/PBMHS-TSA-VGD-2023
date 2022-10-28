@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
+    //player tracking variables
     public int playerCount = 0;
     public GameObject[] players;
 

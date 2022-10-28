@@ -72,6 +72,34 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Off"",
+            ""id"": ""28de0bad-381b-4411-8d48-689ea4f23849"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""0b754ce7-50d6-4855-9cb6-10157e91ca68"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""229eeb02-049a-4aba-8808-6af89ba52bb3"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -79,6 +107,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_DiceRoll = m_Gameplay.FindAction("Dice Roll", throwIfNotFound: true);
+        // Off
+        m_Off = asset.FindActionMap("Off", throwIfNotFound: true);
+        m_Off_Newaction = m_Off.FindAction("New action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -167,8 +198,45 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         }
     }
     public GameplayActions @Gameplay => new GameplayActions(this);
+
+    // Off
+    private readonly InputActionMap m_Off;
+    private IOffActions m_OffActionsCallbackInterface;
+    private readonly InputAction m_Off_Newaction;
+    public struct OffActions
+    {
+        private @Controls m_Wrapper;
+        public OffActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_Off_Newaction;
+        public InputActionMap Get() { return m_Wrapper.m_Off; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(OffActions set) { return set.Get(); }
+        public void SetCallbacks(IOffActions instance)
+        {
+            if (m_Wrapper.m_OffActionsCallbackInterface != null)
+            {
+                @Newaction.started -= m_Wrapper.m_OffActionsCallbackInterface.OnNewaction;
+                @Newaction.performed -= m_Wrapper.m_OffActionsCallbackInterface.OnNewaction;
+                @Newaction.canceled -= m_Wrapper.m_OffActionsCallbackInterface.OnNewaction;
+            }
+            m_Wrapper.m_OffActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Newaction.started += instance.OnNewaction;
+                @Newaction.performed += instance.OnNewaction;
+                @Newaction.canceled += instance.OnNewaction;
+            }
+        }
+    }
+    public OffActions @Off => new OffActions(this);
     public interface IGameplayActions
     {
         void OnDiceRoll(InputAction.CallbackContext context);
+    }
+    public interface IOffActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
     }
 }
