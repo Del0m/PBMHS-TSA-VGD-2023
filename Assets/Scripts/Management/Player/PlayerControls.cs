@@ -12,8 +12,8 @@ public class PlayerControls : MonoBehaviour
     public bool isPressed;
 
     //scripts / objects to be called for player management
-    private GameObject managerObject;
-    private PlayerManager managerScript;
+    public GameObject managerObject;
+    public PlayerManager managerScript;
 
     //turns and controls
     public int turnOrder;
@@ -22,16 +22,25 @@ public class PlayerControls : MonoBehaviour
 
     private void Awake() // for purpose of controls / turns
     {
+        Debug.Log("Testing");
         PlayerTurn(); // sets player's turn
         gameplayInput = this.gameObject.GetComponent<PlayerInput>(); // grabbing player controls to turn on/off and change inputmaps
 
+        if(managerObject == null)
+        {
+            Debug.Log("Grabbing object");
+            managerObject = GameObject.Find("Player Manager"); //find manager script
+           
+        }
+        
     }
 
 
 
     private void Start() // depreciated for the moment
     {
-        managerObject = GameObject.FindGameObjectWithTag("Player Manager"); //find manager script
+        
+        
 
         managerScript = managerObject.GetComponent<PlayerManager>();
         managerScript.GetPlayers(); // update player array at start

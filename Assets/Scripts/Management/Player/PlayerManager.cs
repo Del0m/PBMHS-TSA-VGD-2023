@@ -12,10 +12,12 @@ public class PlayerManager : MonoBehaviour
 
     public TurnManager turnManager;
 
+    public int currentTurn;
+
     private void Start() // intializing scripts that will be used
     {
         turnManager = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>(); // turn manager script for updating purposes
-
+        currentTurn = turnManager.currentTurn; // grab turn from mnanager script
     }
 
     public void GetPlayers() // grab players, chuck in array
@@ -26,6 +28,7 @@ public class PlayerManager : MonoBehaviour
         //update turn manager
         turnManager.GetPlayers();
     }
+
 
 
 

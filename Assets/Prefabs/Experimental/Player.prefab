@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPressed: 0
+  managerObject: {fileID: 0}
   managerScript: {fileID: 0}
   turnOrder: 0
   gameplayInput: {fileID: 1152684079109578991}
