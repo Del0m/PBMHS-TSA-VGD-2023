@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Randomizer : MonoBehaviour
 {
-    
+    public Text diceUI;
+
     public int DiceRoll(int low, int high)
     {
         //Random number gen giving result back to user
@@ -14,7 +16,8 @@ public class Randomizer : MonoBehaviour
   
     private void Start()
     {
-        
-        print(DiceRoll(1, 6));
+	int finalResult = DiceRoll(1, 6);
+        diceUI.text = finalResult.ToString();
+        print(finalResult);
     }
 }
