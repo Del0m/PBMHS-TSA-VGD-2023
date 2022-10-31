@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPressed: 0
-  managerObject: {fileID: 0}
+  managerObject: {fileID: 8197119641342339079, guid: 68bf2936e131abb4990f2e44dc3f3d07, type: 3}
   managerScript: {fileID: 0}
   turnOrder: 0
   gameplayInput: {fileID: 1152684079109578991}

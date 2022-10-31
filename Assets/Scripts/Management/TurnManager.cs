@@ -8,13 +8,15 @@ using UnityEngine;
 public class TurnManager : MonoBehaviour
 {
     private PlayerManager playerManager;
-    public GameObject[] players;
+    private GameObject[] players;
 
     public int currentTurn;
 
     // Start is called before the first frame update
     void Start()
     {
+        this.gameObject.tag = "Turn Manager";//change this object to have turn manager tag
+
         playerManager = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>(); // call player manager for player array
         print(playerManager); 
     }

@@ -11,8 +11,9 @@ public class PlayerControls : MonoBehaviour
     //controls
     public bool isPressed;
 
-    //scripts / objects to be called for player management
-    public GameObject managerObject;
+    //script to be called for player management
+    [SerializeField]
+    private GameObject managerObject;
     public PlayerManager managerScript;
 
     //turns and controls
@@ -20,30 +21,22 @@ public class PlayerControls : MonoBehaviour
     public PlayerInput gameplayInput;
 
 
-    private void Awake() // for purpose of controls / turns
+    private void Awake() // can only grab things on object already
     {
-        Debug.Log("Testing");
-        PlayerTurn(); // sets player's turn
+        managerScript = managerObject.GetComponent<PlayerManager>(); // grab player manager
         gameplayInput = this.gameObject.GetComponent<PlayerInput>(); // grabbing player controls to turn on/off and change inputmaps
 
-        if(managerObject == null)
-        {
-            Debug.Log("Grabbing object");
-            managerObject = GameObject.Find("Player Manager"); //find manager script
-           
-        }
-        
+        this.gameObject.tag = "Player"; //set player tag to "Player"
     }
 
 
 
-    private void Start() // depreciated for the moment
+    private void Start() // run methods on start
     {
-        
-        
+        PlayerTurn(); // sets player's turn
+        turnOrder = GameObject.FindGameObjectsWithTag("Player").Length; //giving player turn order
 
-        managerScript = managerObject.GetComponent<PlayerManager>();
-        managerScript.GetPlayers(); // update player array at start
+        managerScript.GetPlayers(); //updating player manager
     }
     void Update()
     {
@@ -56,23 +49,29 @@ public class PlayerControls : MonoBehaviour
     }
     public void OnPress(InputAction.CallbackContext ctx) => isPressed = ctx.ReadValueAsButton(); // returns true when button pressed
     
-    public void PlayerTurn()
+    public void PlayerTurn() // check if player turn is now
     {
-        var currentTurn = managerScript.turnManager.currentTurn;
+        var currentTurn = managerScript.currentTurn;
         print("The current turn is: " + currentTurn);
         //grab all players on map, give turn order based on amount of players
-        turnOrder = GameObject.FindGameObjectsWithTag("Player").Length;
 
-        if(turnOrder != 2)
+        if(turnOrder != currentTurn)
         {
             gameplayInput.actions.FindActionMap("Gameplay").Disable(); // disable gameplay controls
             gameplayInput.actions.FindActionMap("Off").Enable(); // make it to where it changes control schemes, but otherwise we're keeping it :) 
         }
 
     }
-
-    private void OnDestroy() // updates player manager when player disappears
+    private int StartUp() // due to prefab limitations, start and awake cannot work on players
     {
-        managerScript.GetPlayers();
+        int finish = 1;
+
+        if(finish != 1)
+        {
+            //find player manager, run essentials at startup
+            PlayerTurn();
+        }
+        //grabbing player manager
+        return finish;
     }
 }

@@ -22,7 +22,6 @@ public class MovementManager : MonoBehaviour
 
     private void MoveTile(GameObject player, Transform[] tiles, int position, int movement)
     {
-        Debug.Log("moving object to position " + position);
         //will change position, then change transform of player to tile.
         position = movement + position - 1;
         
