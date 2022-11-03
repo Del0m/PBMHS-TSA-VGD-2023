@@ -24,7 +24,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     ""name"": ""Controls"",
     ""maps"": [
         {
-            ""name"": ""Gameplay"",
+            ""name"": ""boardGamePlay"",
             ""id"": ""4987cee6-e058-4b9c-9992-b74aa97fe90c"",
             ""actions"": [
                 {
@@ -100,16 +100,47 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""miniGamePlay"",
+            ""id"": ""9e6889f1-7673-455f-8d70-879dc688d15d"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""eae981b5-83b0-4d92-a4b2-5c48a778c180"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""b19261c7-a801-460f-9ef3-14ec73157d24"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
 }");
-        // Gameplay
-        m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
-        m_Gameplay_DiceRoll = m_Gameplay.FindAction("Dice Roll", throwIfNotFound: true);
+        // boardGamePlay
+        m_boardGamePlay = asset.FindActionMap("boardGamePlay", throwIfNotFound: true);
+        m_boardGamePlay_DiceRoll = m_boardGamePlay.FindAction("Dice Roll", throwIfNotFound: true);
         // Off
         m_Off = asset.FindActionMap("Off", throwIfNotFound: true);
         m_Off_Newaction = m_Off.FindAction("New action", throwIfNotFound: true);
+        // miniGamePlay
+        m_miniGamePlay = asset.FindActionMap("miniGamePlay", throwIfNotFound: true);
+        m_miniGamePlay_Newaction = m_miniGamePlay.FindAction("New action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -166,29 +197,29 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Gameplay
-    private readonly InputActionMap m_Gameplay;
-    private IGameplayActions m_GameplayActionsCallbackInterface;
-    private readonly InputAction m_Gameplay_DiceRoll;
-    public struct GameplayActions
+    // boardGamePlay
+    private readonly InputActionMap m_boardGamePlay;
+    private IBoardGamePlayActions m_BoardGamePlayActionsCallbackInterface;
+    private readonly InputAction m_boardGamePlay_DiceRoll;
+    public struct BoardGamePlayActions
     {
         private @Controls m_Wrapper;
-        public GameplayActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @DiceRoll => m_Wrapper.m_Gameplay_DiceRoll;
-        public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
+        public BoardGamePlayActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @DiceRoll => m_Wrapper.m_boardGamePlay_DiceRoll;
+        public InputActionMap Get() { return m_Wrapper.m_boardGamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(GameplayActions set) { return set.Get(); }
-        public void SetCallbacks(IGameplayActions instance)
+        public static implicit operator InputActionMap(BoardGamePlayActions set) { return set.Get(); }
+        public void SetCallbacks(IBoardGamePlayActions instance)
         {
-            if (m_Wrapper.m_GameplayActionsCallbackInterface != null)
+            if (m_Wrapper.m_BoardGamePlayActionsCallbackInterface != null)
             {
-                @DiceRoll.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDiceRoll;
-                @DiceRoll.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDiceRoll;
-                @DiceRoll.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDiceRoll;
+                @DiceRoll.started -= m_Wrapper.m_BoardGamePlayActionsCallbackInterface.OnDiceRoll;
+                @DiceRoll.performed -= m_Wrapper.m_BoardGamePlayActionsCallbackInterface.OnDiceRoll;
+                @DiceRoll.canceled -= m_Wrapper.m_BoardGamePlayActionsCallbackInterface.OnDiceRoll;
             }
-            m_Wrapper.m_GameplayActionsCallbackInterface = instance;
+            m_Wrapper.m_BoardGamePlayActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @DiceRoll.started += instance.OnDiceRoll;
@@ -197,7 +228,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
             }
         }
     }
-    public GameplayActions @Gameplay => new GameplayActions(this);
+    public BoardGamePlayActions @boardGamePlay => new BoardGamePlayActions(this);
 
     // Off
     private readonly InputActionMap m_Off;
@@ -231,11 +262,48 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         }
     }
     public OffActions @Off => new OffActions(this);
-    public interface IGameplayActions
+
+    // miniGamePlay
+    private readonly InputActionMap m_miniGamePlay;
+    private IMiniGamePlayActions m_MiniGamePlayActionsCallbackInterface;
+    private readonly InputAction m_miniGamePlay_Newaction;
+    public struct MiniGamePlayActions
+    {
+        private @Controls m_Wrapper;
+        public MiniGamePlayActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_miniGamePlay_Newaction;
+        public InputActionMap Get() { return m_Wrapper.m_miniGamePlay; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MiniGamePlayActions set) { return set.Get(); }
+        public void SetCallbacks(IMiniGamePlayActions instance)
+        {
+            if (m_Wrapper.m_MiniGamePlayActionsCallbackInterface != null)
+            {
+                @Newaction.started -= m_Wrapper.m_MiniGamePlayActionsCallbackInterface.OnNewaction;
+                @Newaction.performed -= m_Wrapper.m_MiniGamePlayActionsCallbackInterface.OnNewaction;
+                @Newaction.canceled -= m_Wrapper.m_MiniGamePlayActionsCallbackInterface.OnNewaction;
+            }
+            m_Wrapper.m_MiniGamePlayActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Newaction.started += instance.OnNewaction;
+                @Newaction.performed += instance.OnNewaction;
+                @Newaction.canceled += instance.OnNewaction;
+            }
+        }
+    }
+    public MiniGamePlayActions @miniGamePlay => new MiniGamePlayActions(this);
+    public interface IBoardGamePlayActions
     {
         void OnDiceRoll(InputAction.CallbackContext context);
     }
     public interface IOffActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
+    }
+    public interface IMiniGamePlayActions
     {
         void OnNewaction(InputAction.CallbackContext context);
     }

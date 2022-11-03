@@ -8,8 +8,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerControls : MonoBehaviour
 {
-    //controls
-    public bool isPressed;
+
 
     //script to be called for player management
     [SerializeField]
@@ -19,7 +18,9 @@ public class PlayerControls : MonoBehaviour
     //turns and controls
     public int turnOrder;
     public PlayerInput gameplayInput;
+    public Controls controls;
 
+    public bool isPressed;
 
     private void Awake() // can only grab things on object already
     {
@@ -36,17 +37,16 @@ public class PlayerControls : MonoBehaviour
         PlayerTurn(); // sets player's turn
         turnOrder = GameObject.FindGameObjectsWithTag("Player").Length; //giving player turn order
 
+        //initalize controls class
+        controls = new Controls();
+
     }
     void Update()
     {
-        //detect if player has pressed key
-        if (isPressed != false)
-        {
-            Debug.Log("Button is Pressed on gamepad!");
-            this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 1, this.transform.position.z); // make new player
-        }
+        controls.boardGamePlay.DiceRoll.performed += DiceRoll;
+
+        PlayerTurn(); // sets player's turn
     }
-    public void OnPress(InputAction.CallbackContext ctx) => isPressed = ctx.ReadValueAsButton(); // returns true when button pressed
     
     public void PlayerTurn() // check if player turn is now
     {
@@ -54,23 +54,20 @@ public class PlayerControls : MonoBehaviour
         print("The current turn is: " + currentTurn);
         //grab all players on map, give turn order based on amount of players
 
-        if(turnOrder != currentTurn)
+        if(turnOrder != 1)
         {
-            gameplayInput.actions.FindActionMap("Gameplay").Disable(); // disable gameplay controls
+            gameplayInput.actions.FindActionMap("boardGamePlay").Disable(); // disable gameplay controls
             gameplayInput.actions.FindActionMap("Off").Enable(); // make it to where it changes control schemes, but otherwise we're keeping it :) 
+        }
+        else
+        {
+            gameplayInput.actions.FindActionMap("boardGamePlay").Enable(); // enable gameplay controls
+            gameplayInput.actions.FindActionMap("Off").Disable(); // make it to where it changes control schemes, but otherwise we're keeping it :) 
         }
 
     }
-    private int StartUp() // due to prefab limitations, start and awake cannot work on players
+    public void DiceRoll(InputAction.CallbackContext context) // run when diceroll performed
     {
-        int finish = 1;
-
-        if(finish != 1)
-        {
-            //find player manager, run essentials at startup
-            PlayerTurn();
-        }
-        //grabbing player manager
-        return finish;
+        print("Performing diceroll!");
     }
 }

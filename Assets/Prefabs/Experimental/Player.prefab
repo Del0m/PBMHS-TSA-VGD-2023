@@ -48,11 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8589ae05a73aef43b251b66a120e2ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isPressed: 0
   managerObject: {fileID: 8197119641342339079, guid: 68bf2936e131abb4990f2e44dc3f3d07, type: 3}
   managerScript: {fileID: 0}
   turnOrder: 0
   gameplayInput: {fileID: 1152684079109578991}
+  isPressed: 0
 --- !u!114 &1152684079109578991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,8 +81,8 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1152684079109578990}
-        m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
-        m_MethodName: OnPress
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: DiceRoll
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
