@@ -36,7 +36,6 @@ public class PlayerControls : MonoBehaviour
         PlayerTurn(); // sets player's turn
         turnOrder = GameObject.FindGameObjectsWithTag("Player").Length; //giving player turn order
 
-        managerScript.GetPlayers(); //updating player manager
     }
     void Update()
     {

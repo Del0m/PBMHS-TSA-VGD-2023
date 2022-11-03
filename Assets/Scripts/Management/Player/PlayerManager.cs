@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour
 {
     //player tracking variables
     public int playerCount = 0;
-    public GameObject[] players;
+    private GameObject[] players;
 
     public TurnManager turnManager;
 
@@ -20,15 +20,18 @@ public class PlayerManager : MonoBehaviour
 
         turnManager = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>(); // turn manager script for updating purposes
         currentTurn = turnManager.currentTurn; // grab turn from mnanager script
+    }
+
+    private void Update() // me giving up on an elegant solution, will constantly update numbers since NOTHING ELSE WORKS
+    {
         GetPlayers();
     }
 
-    public void GetPlayers() // grab players, chuck in array
+    public void GetPlayers() // grab players, chuck in array, I actually give up... it doesn't want to grab players unless its in update, RIP.
     {
-        Debug.Log("Running GetPlayers()");
-        players = GameObject.FindGameObjectsWithTag("Player"); //collects all players in scene
-        playerCount = players.Length; // update player count
+        players = GameObject.FindGameObjectsWithTag("Player"); // grab player, put in array
+        playerCount = players.Length; // update count with current players in array
 
-        //turnManager.GetPlayers(); //update turn manager
+        turnManager.GetPlayers(players); // update player array in turnManager
     }
 }

@@ -18,7 +18,7 @@ public class TurnManager : MonoBehaviour
         this.gameObject.tag = "Turn Manager";//change this object to have turn manager tag
 
         playerManager = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>(); // call player manager for player array
-        print(playerManager); 
+        print(playerManager);
     }
     public void ChangeTurn() // to be called from player controls to change to the next turn
     {
@@ -29,9 +29,9 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    public void GetPlayers() // grab players from PlayerManager and put into array
+    public void GetPlayers(GameObject[] playerArray) // grab players from PlayerManager and put into array
     {
-        players = playerManager.players; // PlayerManager array
+        players = playerArray; // grab array given from player Manager
     }
-
+    // on second thought, this is a very secure solution... Wont be used tho :-)
 }
