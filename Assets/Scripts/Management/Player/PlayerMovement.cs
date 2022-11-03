@@ -32,6 +32,13 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        userInput();
+        // Move player to point when there is a change on the target
+        moveToPoint(norm);
+    }
+
+    void userInput()
+    {
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
@@ -39,16 +46,16 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             //Check what the player hits
-            if(Physics.Raycast(ray, out hit, range) && hit.transform.tag == "pos")
+            if (Physics.Raycast(ray, out hit, range) && hit.transform.tag == "pos")
             {
                 //Debug.Log(hit.transform.name + " was hit");
                 PointCheck tar = hit.transform.GetComponent<PointCheck>();
-                if(tar != null && posM != null)
+                if (tar != null && posM != null)
                 {
                     //Set point target
                     Vector3 tg = new Vector3(tar.pos.x, 0f, tar.pos.z);
                     //Give info to position manager
-                    if (posM.checkForPos(tg))
+                    if (posM.checkForPos(tg) && checkForDiagnal(tg))
                     {
                         norm = tg;
                     }
@@ -59,8 +66,26 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-        // Call to move to point
-        moveToPoint(norm);
+    }
+
+    void checkPath()
+    {
+        // Use the player's gfx to raycast a direction to check for entities
+    }
+
+    bool checkForDiagnal(Vector3 pos)
+    {
+        if(pos.x == this.transform.position.x)
+        {
+            //Is diagonal on the x
+            return true;
+        }
+        else if(pos.z == this.transform.position.z)
+        {
+            //Is diagonal on the z
+            return true;
+        }
+        return false;
     }
 
     void moveToPoint(Vector3 target)
