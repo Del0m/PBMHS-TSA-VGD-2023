@@ -6,18 +6,12 @@ public class PointCheck : MonoBehaviour
 {
     public Vector3 pos { get; private set; }
 
-    private PositionManager posM;
-
-    public bool isOccupied = false;
+    public bool isOccupied { get; private set; } = false;
 
     // Start is called before the first frame update
     void Awake()
     {
         pos = this.transform.position;
-        
-        GameObject obj = GameObject.FindGameObjectWithTag("Manager");
-        posM = obj.GetComponent<PositionManager>();
-
     }
 
     private void OnTriggerEnter(Collider other)
