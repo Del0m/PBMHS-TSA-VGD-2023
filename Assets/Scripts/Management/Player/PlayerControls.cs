@@ -14,9 +14,12 @@ public class PlayerControls : MonoBehaviour
     [SerializeField]
     private GameObject managerObject;
     public PlayerManager managerScript;
+    public TurnManager turnScript;
 
     //turns and controls
     public int turnOrder;
+
+
     public PlayerInput gameplayInput;
     public Controls controls;
 
@@ -26,7 +29,7 @@ public class PlayerControls : MonoBehaviour
     {
         managerScript = managerObject.GetComponent<PlayerManager>(); // grab player manager
         gameplayInput = this.gameObject.GetComponent<PlayerInput>(); // grabbing player controls to turn on/off and change inputmaps
-
+        turnScript = GameObject.Find("Turn Manager").GetComponent<TurnManager>(); // grabs turnManager off of PlayerManager
         this.gameObject.tag = "Player"; //set player tag to "Player"
     }
 
@@ -50,11 +53,12 @@ public class PlayerControls : MonoBehaviour
     
     public void PlayerTurn() // check if player turn is now
     {
-        var currentTurn = managerScript.currentTurn;
+        //int currentTurn = managerScript.currentTurn;
+        int currentTurn = turnScript.currentTurn;
         print("The current turn is: " + currentTurn);
         //grab all players on map, give turn order based on amount of players
 
-        if(turnOrder != 1)
+        if(turnOrder != currentTurn)
         {
             gameplayInput.actions.FindActionMap("boardGamePlay").Disable(); // disable gameplay controls
             gameplayInput.actions.FindActionMap("Off").Enable(); // make it to where it changes control schemes, but otherwise we're keeping it :) 

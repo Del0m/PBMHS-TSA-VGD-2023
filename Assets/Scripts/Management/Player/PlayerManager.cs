@@ -11,15 +11,12 @@ public class PlayerManager : MonoBehaviour
 
     public TurnManager turnManager;
 
-    public int currentTurn;
-
 
     private void Start() // intializing scripts that will be used
     {
         this.gameObject.tag = "Player Manager";//change this object to have player manager tag
 
         turnManager = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>(); // turn manager script for updating purposes
-        currentTurn = turnManager.currentTurn; // grab turn from mnanager script
     }
 
     private void Update() // me giving up on an elegant solution, will constantly update numbers since NOTHING ELSE WORKS
