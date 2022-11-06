@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Player Manager
   - Turn Manager
+  - Mini Game Manager
   layers:
   - Default
   - TransparentFX

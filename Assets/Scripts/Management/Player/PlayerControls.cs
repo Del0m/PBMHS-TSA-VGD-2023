@@ -18,7 +18,7 @@ public class PlayerControls : MonoBehaviour
 
     //turns and controls
     public int turnOrder;
-
+    public bool hasGone;
 
     public PlayerInput gameplayInput;
     public Controls controls;
@@ -46,7 +46,7 @@ public class PlayerControls : MonoBehaviour
     }
     void Update()
     {
-        controls.boardGamePlay.DiceRoll.performed += DiceRoll;
+        controls.boardGamePlay.DiceRoll.started += DiceRoll;
 
         PlayerTurn(); // sets player's turn
     }
@@ -55,7 +55,6 @@ public class PlayerControls : MonoBehaviour
     {
         //int currentTurn = managerScript.currentTurn;
         int currentTurn = turnScript.currentTurn;
-        print("The current turn is: " + currentTurn);
         //grab all players on map, give turn order based on amount of players
 
         if(turnOrder != currentTurn)
@@ -72,6 +71,11 @@ public class PlayerControls : MonoBehaviour
     }
     public void DiceRoll(InputAction.CallbackContext context) // run when diceroll performed
     {
-        print("Performing diceroll!");
+        if(context.performed) // makes sure it is ONLY RAN ONCE!!!! courtesy of my boy GlenZPS
+        {
+            turnScript.ChangeTurn();
+            hasGone = true;
+        }
+
     }
 }

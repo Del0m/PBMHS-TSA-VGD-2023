@@ -29,7 +29,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Dice Roll"",
-                    ""type"": ""Button"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""9e09bccc-59d4-4fac-9e2a-ca26d90eabdb"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -53,7 +53,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""91e74819-e0ea-49a3-b85a-847dd91ed0f1"",
                     ""path"": ""<XInputController>/rightShoulder"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Dice Roll"",

@@ -22,13 +22,17 @@ public class TurnManager : MonoBehaviour
         this.gameObject.tag = "Turn Manager";//change this object to have turn manager tag
 
         playerManager = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>(); // call player manager for player array
-        print(playerManager);
+        miniGameManger = GameObject.FindGameObjectWithTag("Mini Game Manager").GetComponent<MiniGameManager>(); // call manager to start / end / bring players to games.
+
     }
     public void ChangeTurn() // to be called from player controls to change to the next turn
     {
+        Debug.Log(currentTurn);
         currentTurn = currentTurn + 1; // update to next turn
-        if(currentTurn <= playerManager.playerCount) // set turn order to beginning
+        Debug.Log("Changing turn! Turn is now: " + currentTurn);
+        if(currentTurn > players.Length)
         {
+            Debug.Log("Resetting turn!");
             currentTurn = 1;
         }
     }
