@@ -12,6 +12,10 @@ public class TurnManager : MonoBehaviour
 
     public int currentTurn;
 
+    //minigame Management elements
+
+    private MiniGameManager miniGameManger;
+
     // Start is called before the first frame update
     void Start()
     {
