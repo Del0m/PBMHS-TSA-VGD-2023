@@ -12,7 +12,11 @@ public class PlayerMovement : MonoBehaviour
 
     private Camera cam;
     private PositionManager posM;
-    Vector3 norm;
+    public Vector3 norm { private get; set; }
+
+    //Call randomizer script
+    public int playerTurn { get; private set; } = 0;
+    private Randomizer rand;
 
     // Start is called before the first frame update
     void Awake()
@@ -27,12 +31,50 @@ public class PlayerMovement : MonoBehaviour
         GameObject camObj = GameObject.FindGameObjectWithTag("MainCamera");
         //Sets the camera to the object with the 'MainCamera' tag
         cam = camObj.GetComponent<Camera>();
+        //Set the 'Randomizer' class 
+        rand = this.GetComponent<Randomizer>();
+        StartCoroutine(waitForInit());
+    }
+
+    IEnumerator waitForInit()
+    {
+        yield return new WaitForSeconds(2);
+        // Debug | on awake set a random number between 1 - 6
+        if (rand != null)
+            playerTurn = rand.DiceRoll(1, 6);
+        print(playerTurn);
+    }
+
+    // Function can be called from other scripts
+    public void deduceTurn(int amount, Vector3 newPos)
+    {
+        playerTurn -= amount;
+        //debug
+        print("Player has " + playerTurn + " turns");
+
+        //Makes the player stay on the point where his turn ended
+        if (playerTurn <= 0) 
+        {
+            print("Player got stuck in " + newPos);
+            norm = newPos;
+        }
+
+        //To make sure is called once
+        return;
     }
 
     // Update is called once per frame
     void Update()
     {
-        userInput();
+        //debug and can be removed
+        Debug.DrawLine(transform.position, transform.forward * range, Color.yellow);
+
+        // When player has turns, the player is able to give input
+        //[] Make a different type of input if on controller
+        if(playerTurn > 0)
+        {
+            userInput();
+        }
         // Move player to point when there is a change on the target
         moveToPoint(norm);
     }
@@ -46,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             //Check what the player hits
-            if (Physics.Raycast(ray, out hit, range) && hit.transform.tag == "pos")
+            if (Physics.Raycast(ray, out hit) && hit.transform.gameObject.layer == LayerMask.NameToLayer("dir"))
             {
                 //Debug.Log(hit.transform.name + " was hit");
                 PointCheck tar = hit.transform.GetComponent<PointCheck>();
@@ -55,22 +97,36 @@ public class PlayerMovement : MonoBehaviour
                     //Set point target
                     Vector3 tg = new Vector3(tar.pos.x, 0f, tar.pos.z);
                     //Give info to position manager
-                    if (posM.checkForPos(tg) && checkForDiagnal(tg))
+                    if (checkPath(tg) && checkForDiagnal(tg) && posM.checkForPos(tg))
                     {
                         norm = tg;
-                    }
-                    else
-                    {
-                        print("Point is occupied");
                     }
                 }
             }
         }
     }
 
-    void checkPath()
+    bool checkPath(Vector3 tart)
     {
-        // Use the player's gfx to raycast a direction to check for entities
+        // Use the player's gfx to raycast a direction to check for entities in the path
+
+        RaycastHit hit;
+
+        tart.y = transform.position.y;
+
+        //Rotate Player to point
+        transform.LookAt(tart);
+
+        //Check his path for entities
+        if(Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, range, LayerMask.GetMask("Entity"))){
+            //debug
+            print("Entity is in my path");
+
+            return false;
+        }
+
+        // there is not entity in path so it's clear to move to that point
+        return true;
     }
 
     bool checkForDiagnal(Vector3 pos)

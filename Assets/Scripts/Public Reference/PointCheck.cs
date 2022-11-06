@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PointCheck : MonoBehaviour
@@ -19,6 +17,19 @@ public class PointCheck : MonoBehaviour
         //Check if an entity is on the point
         if(other.gameObject.layer == LayerMask.NameToLayer("Entity")){
             isOccupied = true;
+
+            //When it is a entity with this component check its turn variable and deduce it by an amount
+            PlayerMovement pm = other.GetComponent<PlayerMovement>();
+            if(pm != null)
+            {
+                if(pm.playerTurn != 0)
+                {
+                    //deduce a value from the player turn var and set this obj's position
+                    pm.deduceTurn(1, pos);
+                    //debug
+                    print("Deduce a turn from the player");
+                }
+            }
             //debug
             print("There is an entity at " + this.name);
         }
