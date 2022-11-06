@@ -29,7 +29,7 @@ public class PlayerControls : MonoBehaviour
     {
         managerScript = managerObject.GetComponent<PlayerManager>(); // grab player manager
         gameplayInput = this.gameObject.GetComponent<PlayerInput>(); // grabbing player controls to turn on/off and change inputmaps
-        turnScript = GameObject.Find("Turn Manager").GetComponent<TurnManager>(); // grabs turnManager off of PlayerManager
+        turnScript = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>(); // grabs turnManager off of PlayerManager
         this.gameObject.tag = "Player"; //set player tag to "Player"
     }
 
