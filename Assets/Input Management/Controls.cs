@@ -29,7 +29,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Dice Roll"",
-                    ""type"": ""PassThrough"",
+                    ""type"": ""Button"",
                     ""id"": ""9e09bccc-59d4-4fac-9e2a-ca26d90eabdb"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -106,7 +106,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
             ""id"": ""9e6889f1-7673-455f-8d70-879dc688d15d"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""MiniGameTest"",
                     ""type"": ""Button"",
                     ""id"": ""eae981b5-83b0-4d92-a4b2-5c48a778c180"",
                     ""expectedControlType"": ""Button"",
@@ -119,11 +119,22 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b19261c7-a801-460f-9ef3-14ec73157d24"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""MiniGameTest"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e93afa5d-95a0-43ec-8f73-a1f981261d49"",
+                    ""path"": ""<DualShockGamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MiniGameTest"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -140,7 +151,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Off_Newaction = m_Off.FindAction("New action", throwIfNotFound: true);
         // miniGamePlay
         m_miniGamePlay = asset.FindActionMap("miniGamePlay", throwIfNotFound: true);
-        m_miniGamePlay_Newaction = m_miniGamePlay.FindAction("New action", throwIfNotFound: true);
+        m_miniGamePlay_MiniGameTest = m_miniGamePlay.FindAction("MiniGameTest", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -266,12 +277,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     // miniGamePlay
     private readonly InputActionMap m_miniGamePlay;
     private IMiniGamePlayActions m_MiniGamePlayActionsCallbackInterface;
-    private readonly InputAction m_miniGamePlay_Newaction;
+    private readonly InputAction m_miniGamePlay_MiniGameTest;
     public struct MiniGamePlayActions
     {
         private @Controls m_Wrapper;
         public MiniGamePlayActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_miniGamePlay_Newaction;
+        public InputAction @MiniGameTest => m_Wrapper.m_miniGamePlay_MiniGameTest;
         public InputActionMap Get() { return m_Wrapper.m_miniGamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -281,16 +292,16 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_MiniGamePlayActionsCallbackInterface != null)
             {
-                @Newaction.started -= m_Wrapper.m_MiniGamePlayActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_MiniGamePlayActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_MiniGamePlayActionsCallbackInterface.OnNewaction;
+                @MiniGameTest.started -= m_Wrapper.m_MiniGamePlayActionsCallbackInterface.OnMiniGameTest;
+                @MiniGameTest.performed -= m_Wrapper.m_MiniGamePlayActionsCallbackInterface.OnMiniGameTest;
+                @MiniGameTest.canceled -= m_Wrapper.m_MiniGamePlayActionsCallbackInterface.OnMiniGameTest;
             }
             m_Wrapper.m_MiniGamePlayActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
+                @MiniGameTest.started += instance.OnMiniGameTest;
+                @MiniGameTest.performed += instance.OnMiniGameTest;
+                @MiniGameTest.canceled += instance.OnMiniGameTest;
             }
         }
     }
@@ -305,6 +316,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     }
     public interface IMiniGamePlayActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnMiniGameTest(InputAction.CallbackContext context);
     }
 }

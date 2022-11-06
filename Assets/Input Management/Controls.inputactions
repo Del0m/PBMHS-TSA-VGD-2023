@@ -7,7 +7,7 @@
             "actions": [
                 {
                     "name": "Dice Roll",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "9e09bccc-59d4-4fac-9e2a-ca26d90eabdb",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -84,7 +84,7 @@
             "id": "9e6889f1-7673-455f-8d70-879dc688d15d",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "MiniGameTest",
                     "type": "Button",
                     "id": "eae981b5-83b0-4d92-a4b2-5c48a778c180",
                     "expectedControlType": "Button",
@@ -97,11 +97,22 @@
                 {
                     "name": "",
                     "id": "b19261c7-a801-460f-9ef3-14ec73157d24",
-                    "path": "",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "MiniGameTest",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e93afa5d-95a0-43ec-8f73-a1f981261d49",
+                    "path": "<DualShockGamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MiniGameTest",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

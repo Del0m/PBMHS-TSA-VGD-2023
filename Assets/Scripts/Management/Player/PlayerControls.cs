@@ -18,7 +18,6 @@ public class PlayerControls : MonoBehaviour
 
     //turns and controls
     public int turnOrder;
-    public bool hasGone;
 
     public PlayerInput gameplayInput;
     public Controls controls;
@@ -37,7 +36,6 @@ public class PlayerControls : MonoBehaviour
 
     private void Start() // run methods on start
     {
-        PlayerTurn(); // sets player's turn
         turnOrder = GameObject.FindGameObjectsWithTag("Player").Length; //giving player turn order
 
         //initalize controls class
@@ -47,14 +45,18 @@ public class PlayerControls : MonoBehaviour
     void Update()
     {
         controls.boardGamePlay.DiceRoll.started += DiceRoll;
+        controls.miniGamePlay.MiniGameTest.started += MiniGameTest;
 
-        PlayerTurn(); // sets player's turn
+
+        print(gameplayInput.currentActionMap);
     }
     
     public void PlayerTurn() // check if player turn is now
     {
-        //int currentTurn = managerScript.currentTurn;
+        Debug.Log("running PlayerTurn on player " + turnOrder);
         int currentTurn = turnScript.currentTurn;
+
+        Debug.Log(currentTurn);
         //grab all players on map, give turn order based on amount of players
 
         if(turnOrder != currentTurn)
@@ -73,9 +75,31 @@ public class PlayerControls : MonoBehaviour
     {
         if(context.performed) // makes sure it is ONLY RAN ONCE!!!! courtesy of my boy GlenZPS
         {
+            Debug.Log("Performing DiceRoll!");
             turnScript.ChangeTurn();
-            hasGone = true;
+            PlayerTurn();
         }
 
+    }
+    public void MiniGameTest(InputAction.CallbackContext context) // run when diceroll performed
+    {
+        if (context.performed) // makes sure it is ONLY RAN ONCE!!!! courtesy of my boy GlenZPS
+        {
+            Debug.Log("running minigame inputs!");
+        }
+
+    }
+    public void PlayerMiniGameMode(bool inMiniGame)
+    {
+        if(inMiniGame == true)
+        {
+            gameplayInput.actions.FindActionMap("boardGamePlay").Disable(); // disable boardgame controls
+            gameplayInput.actions.FindActionMap("miniGamePlay").Enable(); // make it to where it changes control schemes, but otherwise we're keeping it :) 
+        }
+        else
+        {
+            gameplayInput.actions.FindActionMap("miniGamePlay").Disable(); // disable minigame controls
+            gameplayInput.actions.FindActionMap("boardGamePlay").Enable(); // make it to where it changes control schemes, but otherwise we're keeping it :) 
+        }
     }
 }

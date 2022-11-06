@@ -14,7 +14,7 @@ public class TurnManager : MonoBehaviour
 
     //minigame Management elements
 
-    private MiniGameManager miniGameManger;
+    private MiniGameManager miniGameScript;
 
     // Start is called before the first frame update
     void Start()
@@ -22,18 +22,24 @@ public class TurnManager : MonoBehaviour
         this.gameObject.tag = "Turn Manager";//change this object to have turn manager tag
 
         playerManager = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>(); // call player manager for player array
-        miniGameManger = GameObject.FindGameObjectWithTag("Mini Game Manager").GetComponent<MiniGameManager>(); // call manager to start / end / bring players to games.
+        miniGameScript = GameObject.FindGameObjectWithTag("Mini Game Manager").GetComponent<MiniGameManager>(); // call manager to start / end / bring players to games.
 
     }
     public void ChangeTurn() // to be called from player controls to change to the next turn
     {
-        Debug.Log(currentTurn);
         currentTurn = currentTurn + 1; // update to next turn
-        Debug.Log("Changing turn! Turn is now: " + currentTurn);
-        if(currentTurn > players.Length)
+        for(int i = 0; i == players.Length - 1; i++)
+        {
+            Debug.Log("running!");
+
+            //check all player turns
+            players[i].GetComponent<PlayerControls>().PlayerTurn();
+        }
+        if(currentTurn > players.Length && miniGameScript.hasStarted == false)
         {
             Debug.Log("Resetting turn!");
             currentTurn = 1;
+            miniGameScript.StartMiniGame(players);
         }
     }
 

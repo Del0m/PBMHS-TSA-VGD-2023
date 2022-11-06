@@ -12,6 +12,9 @@ public class MiniGameManager : MonoBehaviour
 
     //players
     private GameObject[] players; // player array to change controls, bring to map, etc.
+
+    //variables for minigame
+    public bool hasStarted = false;
     private void Awake()
     {
         this.gameObject.tag = "Mini Game Manager";
@@ -30,12 +33,12 @@ public class MiniGameManager : MonoBehaviour
         LoadPlayers(playerCall);
 
         //changing player controls
-        for (int i = 0; i >= players.Length; i++)
+        for (int i = 0; i == players.Length - 1; i++)
         {
-            players[i].GetComponent<PlayerControls>().gameplayInput.actions.FindActionMap("boardGamePlay").Disable();
-            players[i].GetComponent<PlayerControls>().gameplayInput.actions.FindActionMap("miniGamePlay").Enable();
-        }
+            players[i].GetComponent<PlayerControls>().PlayerMiniGameMode(true);
 
+            hasStarted = true;
+        }
 
     }
 
