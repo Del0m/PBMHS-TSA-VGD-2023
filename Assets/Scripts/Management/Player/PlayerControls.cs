@@ -44,8 +44,9 @@ public class PlayerControls : MonoBehaviour
     }
     void Update()
     {
-        controls.miniGamePlay.MiniGameTest.started += MiniGameTest; // test control for minigame mode
-        controls.boardGamePlay.DiceRoll.started += DiceRoll; // test control for boardgame mode
+        //control update functions
+        //controls.miniGamePlay.MiniGameTest.started += MiniGameTest; // test control for minigame mode
+        //controls.boardGamePlay.DiceRoll.started += DiceRoll; // test control for boardgame mode
     }
     
     public void PlayerTurn() // check if player turn is now
