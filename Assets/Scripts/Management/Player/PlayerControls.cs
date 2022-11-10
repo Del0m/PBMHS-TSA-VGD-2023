@@ -8,7 +8,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerControls : MonoBehaviour
 {
-
+    //stats will remain here for the time being...
+    [Header("Stats")]
+    public int playerScore;
 
     //script to be called for player management
     [SerializeField]
@@ -19,6 +21,7 @@ public class PlayerControls : MonoBehaviour
     //turns and controls
     public int turnOrder;
 
+    [Header("Controls")]
     public PlayerInput gameplayInput;
     public Controls controls;
 
