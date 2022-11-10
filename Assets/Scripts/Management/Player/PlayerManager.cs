@@ -11,7 +11,6 @@ public class PlayerManager : MonoBehaviour
 
     public TurnManager turnManager;
 
-
     private void Start() // intializing scripts that will be used
     {
         this.gameObject.tag = "Player Manager";//change this object to have player manager tag

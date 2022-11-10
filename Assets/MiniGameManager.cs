@@ -9,7 +9,6 @@ using UnityEngine;
 
 public class MiniGameManager : MonoBehaviour
 {
-
     //players
     private GameObject[] players; // player array to change controls, bring to map, etc.
 
@@ -19,22 +18,17 @@ public class MiniGameManager : MonoBehaviour
     {
         this.gameObject.tag = "Mini Game Manager";
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
 
     public void StartMiniGame(GameObject[] playerCall) //called from TurnManager, this will grab all given players and bring them to a minigame
     {
         Debug.Log("Starting Minigame!");
-        //update current player array
-        LoadPlayers(playerCall);
+        players = playerCall;
 
         //changing player controls
-        for (int i = 0; i == players.Length - 1; i++)
+        for (int i = 0; i >= players.Length - 1; i++)
         {
+            Debug.Log("Changing Controls on Player " + i);
             players[i].GetComponent<PlayerControls>().PlayerMiniGameMode(true);
 
             hasStarted = true;
@@ -42,7 +36,7 @@ public class MiniGameManager : MonoBehaviour
 
     }
 
-    private void LoadPlayers(GameObject[] player)
+    public void GetPlayers(GameObject[] player)
     {
         //turning given player array to current MiniGameManager player array
         players = player;

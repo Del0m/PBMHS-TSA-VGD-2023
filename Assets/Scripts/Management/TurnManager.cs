@@ -30,8 +30,6 @@ public class TurnManager : MonoBehaviour
         currentTurn = currentTurn + 1; // update to next turn
         for(int i = 0; i == players.Length - 1; i++)
         {
-            Debug.Log("running!");
-
             //check all player turns
             players[i].GetComponent<PlayerControls>().PlayerTurn();
         }
