@@ -7,6 +7,8 @@ TagManager:
   - Player Manager
   - Turn Manager
   - Mini Game Manager
+  - Minigame
+  - Minigame Spawn
   layers:
   - Default
   - TransparentFX

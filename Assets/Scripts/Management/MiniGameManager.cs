@@ -14,6 +14,9 @@ public class MiniGameManager : MonoBehaviour
 
     //variables for minigame
     public bool hasStarted = false;
+
+    //array for all available minigames
+    private GameObject minigame;
     private void Awake()
     {
         this.gameObject.tag = "Mini Game Manager";
@@ -24,7 +27,7 @@ public class MiniGameManager : MonoBehaviour
     {
         Debug.Log("Starting Minigame!");
         players = playerCall;
-
+        LoadGamesFromFile();
         //changing player controls
         for (int i = 0; i >= players.Length - 1; i++)
         {
@@ -33,6 +36,8 @@ public class MiniGameManager : MonoBehaviour
 
             hasStarted = true;
         }
+        // grabbing minigame to choose
+        
 
     }
 
@@ -41,6 +46,11 @@ public class MiniGameManager : MonoBehaviour
         //turning given player array to current MiniGameManager player array
         players = player;
 
+    }
+    private void LoadGamesFromFile() // resource.load all games, pick one, deload
+    {
+        Debug.Log("Loading!");
+        var gamePile = Resources.LoadAll("Assets/Prefabs/Mini-Games"); // grabs length of games, used to randomly pick a game from the list
     }
 
 
