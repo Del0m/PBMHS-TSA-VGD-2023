@@ -3,13 +3,15 @@
 */
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
     private PlayerManager playerManager;
     private GameObject[] players;
-
+    public int elapsedTurns = 0;
+    public Text elapsedCounter;
     public int currentTurn;
 
     //minigame Management elements
@@ -36,9 +38,14 @@ public class TurnManager : MonoBehaviour
         if(currentTurn > players.Length && miniGameScript.hasStarted == false)
         {
             Debug.Log("Resetting turn!");
+            elapsedTurns += 1;
             currentTurn = 1;
             miniGameScript.StartMiniGame(players);
         }
+    }
+
+    private void LateUpdate() {
+        elapsedCounter.text = "Elapsed Turns " + elapsedTurns.ToString(); 
     }
 
     public void GetPlayers(GameObject[] playerArray) // grab players from PlayerManager and put into array
