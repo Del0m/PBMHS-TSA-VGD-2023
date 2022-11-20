@@ -44,6 +44,7 @@ public class TurnManager : MonoBehaviour
     public void GetPlayers(GameObject[] playerArray) // grab players from PlayerManager and put into array
     {
         players = playerArray; // grab array given from player Manager
+        miniGameScript.GetPlayers(playerArray);
     }
     // on second thought, this is a very secure solution... Wont be used tho :-)
 }

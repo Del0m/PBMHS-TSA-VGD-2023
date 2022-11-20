@@ -4,10 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameHandler : MonoBehaviour
+public class GameHandler : MiniGameManager
 {
     //arrays
-    private GameObject[] players;
+    public GameObject[] players;
     private GameObject[] spawns;
 
 
@@ -23,11 +23,10 @@ public class GameHandler : MonoBehaviour
         //calling children components
         miniCam = this.gameObject.GetComponentInChildren<Camera>(); // should grab camera off of Minigame View.
     }
-    /*
+
     // Update is called once per frame
     void Update()
     {
-        
+        GetPlayers(players);
     }
-    */
 }
