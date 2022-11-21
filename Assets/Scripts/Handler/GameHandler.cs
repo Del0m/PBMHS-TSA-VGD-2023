@@ -17,7 +17,7 @@ public class GameHandler : MonoBehaviour
     public Camera miniCam;
 
     //turn
-    private int gameOrder;
+    private int gameOrder = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -45,15 +45,19 @@ public class GameHandler : MonoBehaviour
         if (playerTurn == currentTurn)
         {
             gameOrder++;
-            if (gameOrder > players.Length - 1) { gameOrder = 0; } // quickly check if turns need to be looped back
-
+            if (gameOrder > players.Length) { gameOrder = 1; } // quickly check if turns need to be looped back
+            GradeMove(input);
             return true;
         }
 
         gameOrder++;
-        if (gameOrder > players.Length - 1) { gameOrder = 0; } // quickly check if turns need to be looped back
+        if (gameOrder > players.Length) { gameOrder = 1; } // quickly check if turns need to be looped back
 
         return false;
+    }
+    public virtual void GradeMove(string move)
+    {
+        //holds the grading procedure for the move; ONLY TO BE EDITED IN THE CHILDREN SCRIPTS
     }
 
 }
