@@ -25,20 +25,34 @@ public class TurnManager : MonoBehaviour
         miniGameScript = GameObject.FindGameObjectWithTag("Mini Game Manager").GetComponent<MiniGameManager>(); // call manager to start / end / bring players to games.
 
     }
+    private void Update()
+    {
+        NewRound();
+    }
     public void ChangeTurn() // to be called from player controls to change to the next turn
     {
         currentTurn = currentTurn + 1; // update to next turn
-        for(int i = 0; i == players.Length; i++)
+
+    }
+    public void NewRound() // if current turn > player.length; run minigame
+    {
+        while(currentTurn > players.Length)
         {
-            //check all player turns
-            players[i].GetComponent<PlayerControls>().PlayerTurn();
-        }
-        if(currentTurn > players.Length && miniGameScript.hasStarted == false)
-        {
-            Debug.Log("Resetting turn!");
             currentTurn = 1;
-            miniGameScript.StartMiniGame(players);
+            for (int i = 0; i == players.Length; i++)
+            {
+                //check all player turns
+                players[i].GetComponent<PlayerControls>().PlayerTurn();
+            }
+            if (miniGameScript.hasStarted == false)
+            {
+                Debug.Log("Resetting turn!");
+                currentTurn = 1;
+                miniGameScript.StartMiniGame(players);
+                miniGameScript.hasStarted = true;
+            }
         }
+        
     }
 
     public void GetPlayers(GameObject[] playerArray) // grab players from PlayerManager and put into array

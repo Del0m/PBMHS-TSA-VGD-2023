@@ -50,7 +50,6 @@ public class GameHandler : MonoBehaviour
             return true;
         }
 
-        gameOrder++;
         if (gameOrder > players.Length) { gameOrder = 1; } // quickly check if turns need to be looped back
 
         return false;

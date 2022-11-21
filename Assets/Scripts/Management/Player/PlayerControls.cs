@@ -72,7 +72,7 @@ public class PlayerControls : MonoBehaviour
         if(context.performed) // makes sure it is ONLY RAN ONCE!!!! courtesy of my boy GlenZPS
         {
             Debug.Log("Performing DiceRoll!");
-            turnScript.ChangeTurn();
+            turnScript.currentTurn++;
             PlayerTurn();
         }
 

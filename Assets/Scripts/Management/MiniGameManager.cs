@@ -27,18 +27,20 @@ public class MiniGameManager : MonoBehaviour
     {
         Debug.Log("Starting Minigame!");
         players = playerCall;
-        LoadGamesFromFile();
         //changing player controls
-        for (int i = 0; i >= players.Length - 1; i++)
+        for (int i = 0; i < players.Length; i++)
         {
             Debug.Log("Changing Controls on Player " + i);
             players[i].GetComponent<PlayerControls>().PlayerMiniGameMode(true);
 
-
+        }
+        if(hasStarted != true)
+        {
+            // grabbing minigame to choose
+            LoadGamesFromFile();
             hasStarted = true;
         }
-        // grabbing minigame to choose
-        LoadGamesFromFile();
+
 
 
     }
@@ -64,7 +66,6 @@ public class MiniGameManager : MonoBehaviour
     private void LoadGamesFromFile() // resource.load all games, pick one, deload
     {
         Debug.Log("Loading!");
-        var gamePile = Resources.Load<GameObject>("Assets/Prefabs/Mini-Games/Minigame A.prefab"); // grabs length of games, used to randomly pick a game from the list
         GameObject minigameInstance = Instantiate(Resources.Load("Prefabs/Mini-Games/Minigame A", typeof(GameObject))) as GameObject;
     }
     private void KillGamesFromFile()
