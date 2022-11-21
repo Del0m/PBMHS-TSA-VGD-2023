@@ -42,6 +42,18 @@ public class MiniGameManager : MonoBehaviour
 
 
     }
+    public void EndMiniGame() //kills all minigames, brings back controls to players
+    {
+        KillGamesFromFile(); // deletes minigame
+        for (int i = 0; i >= players.Length - 1; i++) // brings plrs back to board.
+        {
+            Debug.Log("Changing Controls on Player " + i);
+            players[i].GetComponent<PlayerControls>().PlayerMiniGameMode(false);
+
+
+            hasStarted = false;
+        }
+    }
 
     public void GetPlayers(GameObject[] player)
     {
@@ -54,6 +66,11 @@ public class MiniGameManager : MonoBehaviour
         Debug.Log("Loading!");
         var gamePile = Resources.Load<GameObject>("Assets/Prefabs/Mini-Games/Minigame A.prefab"); // grabs length of games, used to randomly pick a game from the list
         GameObject minigameInstance = Instantiate(Resources.Load("Prefabs/Mini-Games/Minigame A", typeof(GameObject))) as GameObject;
+    }
+    private void KillGamesFromFile()
+    {
+        var gameOut = GameObject.FindGameObjectWithTag("Minigame");
+        Destroy(gameOut);
     }
 
 

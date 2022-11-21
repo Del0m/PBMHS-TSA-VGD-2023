@@ -10,7 +10,7 @@ public class TurnManager : MonoBehaviour
     private PlayerManager playerManager;
     private GameObject[] players;
 
-    public int currentTurn;
+    public int currentTurn = 1;
 
     //minigame Management elements
 
@@ -28,7 +28,7 @@ public class TurnManager : MonoBehaviour
     public void ChangeTurn() // to be called from player controls to change to the next turn
     {
         currentTurn = currentTurn + 1; // update to next turn
-        for(int i = 0; i == players.Length - 1; i++)
+        for(int i = 0; i == players.Length; i++)
         {
             //check all player turns
             players[i].GetComponent<PlayerControls>().PlayerTurn();

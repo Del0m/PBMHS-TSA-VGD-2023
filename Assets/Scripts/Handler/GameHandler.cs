@@ -46,7 +46,7 @@ public class GameHandler : MonoBehaviour
         {
             gameOrder++;
             if (gameOrder > players.Length) { gameOrder = 1; } // quickly check if turns need to be looped back
-            GradeMove(input);
+            GradeMove(input); // check trivia move for validity
             return true;
         }
 
