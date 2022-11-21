@@ -84,9 +84,36 @@
             "id": "9e6889f1-7673-455f-8d70-879dc688d15d",
             "actions": [
                 {
-                    "name": "MiniGameTest",
+                    "name": "TriviaInput1",
                     "type": "Button",
                     "id": "eae981b5-83b0-4d92-a4b2-5c48a778c180",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TriviaInput2",
+                    "type": "Button",
+                    "id": "45def2b6-e75c-49eb-899f-4f53404f8a89",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TriviaInput3",
+                    "type": "Button",
+                    "id": "27705e51-07bb-4299-8d63-b63cbbb51aa7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TriviaInput4",
+                    "type": "Button",
+                    "id": "7edd2b31-6180-44a7-bb7e-d50da099008c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -97,11 +124,11 @@
                 {
                     "name": "",
                     "id": "b19261c7-a801-460f-9ef3-14ec73157d24",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MiniGameTest",
+                    "action": "TriviaInput1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -112,7 +139,73 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MiniGameTest",
+                    "action": "TriviaInput1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ca70e7d2-2d87-497c-bf1e-88374242279a",
+                    "path": "<DualShockGamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TriviaInput2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6f6eef69-f2e4-4c86-8bb8-6e9843acca08",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TriviaInput2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e2c7ce7c-a6a9-44fa-bd90-c9027e482417",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TriviaInput3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a0d91dea-e771-4ebd-b423-24a27bb03222",
+                    "path": "<DualShockGamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TriviaInput3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "86304c43-2c04-4c02-88f2-2099136a53fc",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TriviaInput4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f9259bd8-ccf2-42bf-a896-c714f3a0bd09",
+                    "path": "<DualShockGamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TriviaInput4",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

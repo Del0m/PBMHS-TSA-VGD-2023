@@ -77,11 +77,41 @@ public class PlayerControls : MonoBehaviour
         }
 
     }
-    public void MiniGameTest(InputAction.CallbackContext context) // run when minigametest performed
+    //
+    public void TriviaGameInput(InputAction.CallbackContext context) // run when minigametest performed
     {
+        Debug.Log("Input Performed!");
+        Debug.Log(context.action.name);
         if (context.performed) // makes sure it is ONLY RAN ONCE!!!! courtesy of my boy GlenZPS
         {
-            Debug.Log("running minigame inputs!");
+            var input = "null";
+
+            // call minigame
+            var minigame = GameObject.FindGameObjectWithTag("Minigame").GetComponent<GameHandler>();
+
+            switch(context.action.name) // multiple choice input for trivia game
+            {
+                case "TriviaInput1":
+                    input = "A";
+                    Debug.Log("User " + turnOrder + "has inputted " + input);
+                    break;
+
+                case "TriviaInput2":
+                    input = "B";
+                    Debug.Log("User " + turnOrder + "has inputted " + input);
+                    break;
+
+                case "TriviaInput3":
+                    input = "C";
+                    Debug.Log("User " + turnOrder + "has inputted " + input);
+                    break;
+
+                case "TriviaInput4":
+                    input = "D";
+                    Debug.Log("User " + turnOrder + "has inputted " + input);
+                    break;
+            }
+            minigame.InputChoice(input, turnOrder);
         }
 
     }

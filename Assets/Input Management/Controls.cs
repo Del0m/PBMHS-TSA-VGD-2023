@@ -106,9 +106,36 @@ public partial class @Controls : IInputActionCollection2, IDisposable
             ""id"": ""9e6889f1-7673-455f-8d70-879dc688d15d"",
             ""actions"": [
                 {
-                    ""name"": ""MiniGameTest"",
+                    ""name"": ""TriviaInput1"",
                     ""type"": ""Button"",
                     ""id"": ""eae981b5-83b0-4d92-a4b2-5c48a778c180"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TriviaInput2"",
+                    ""type"": ""Button"",
+                    ""id"": ""45def2b6-e75c-49eb-899f-4f53404f8a89"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TriviaInput3"",
+                    ""type"": ""Button"",
+                    ""id"": ""27705e51-07bb-4299-8d63-b63cbbb51aa7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TriviaInput4"",
+                    ""type"": ""Button"",
+                    ""id"": ""7edd2b31-6180-44a7-bb7e-d50da099008c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -119,11 +146,11 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b19261c7-a801-460f-9ef3-14ec73157d24"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MiniGameTest"",
+                    ""action"": ""TriviaInput1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -134,7 +161,73 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""MiniGameTest"",
+                    ""action"": ""TriviaInput1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ca70e7d2-2d87-497c-bf1e-88374242279a"",
+                    ""path"": ""<DualShockGamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TriviaInput2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6f6eef69-f2e4-4c86-8bb8-6e9843acca08"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TriviaInput2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e2c7ce7c-a6a9-44fa-bd90-c9027e482417"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TriviaInput3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a0d91dea-e771-4ebd-b423-24a27bb03222"",
+                    ""path"": ""<DualShockGamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TriviaInput3"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""86304c43-2c04-4c02-88f2-2099136a53fc"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TriviaInput4"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f9259bd8-ccf2-42bf-a896-c714f3a0bd09"",
+                    ""path"": ""<DualShockGamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TriviaInput4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -151,7 +244,10 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Off_Newaction = m_Off.FindAction("New action", throwIfNotFound: true);
         // miniGamePlay
         m_miniGamePlay = asset.FindActionMap("miniGamePlay", throwIfNotFound: true);
-        m_miniGamePlay_MiniGameTest = m_miniGamePlay.FindAction("MiniGameTest", throwIfNotFound: true);
+        m_miniGamePlay_TriviaInput1 = m_miniGamePlay.FindAction("TriviaInput1", throwIfNotFound: true);
+        m_miniGamePlay_TriviaInput2 = m_miniGamePlay.FindAction("TriviaInput2", throwIfNotFound: true);
+        m_miniGamePlay_TriviaInput3 = m_miniGamePlay.FindAction("TriviaInput3", throwIfNotFound: true);
+        m_miniGamePlay_TriviaInput4 = m_miniGamePlay.FindAction("TriviaInput4", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -277,12 +373,18 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     // miniGamePlay
     private readonly InputActionMap m_miniGamePlay;
     private IMiniGamePlayActions m_MiniGamePlayActionsCallbackInterface;
-    private readonly InputAction m_miniGamePlay_MiniGameTest;
+    private readonly InputAction m_miniGamePlay_TriviaInput1;
+    private readonly InputAction m_miniGamePlay_TriviaInput2;
+    private readonly InputAction m_miniGamePlay_TriviaInput3;
+    private readonly InputAction m_miniGamePlay_TriviaInput4;
     public struct MiniGamePlayActions
     {
         private @Controls m_Wrapper;
         public MiniGamePlayActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @MiniGameTest => m_Wrapper.m_miniGamePlay_MiniGameTest;
+        public InputAction @TriviaInput1 => m_Wrapper.m_miniGamePlay_TriviaInput1;
+        public InputAction @TriviaInput2 => m_Wrapper.m_miniGamePlay_TriviaInput2;
+        public InputAction @TriviaInput3 => m_Wrapper.m_miniGamePlay_TriviaInput3;
+        public InputAction @TriviaInput4 => m_Wrapper.m_miniGamePlay_TriviaInput4;
         public InputActionMap Get() { return m_Wrapper.m_miniGamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -292,16 +394,34 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_MiniGamePlayActionsCallbackInterface != null)
             {
-                @MiniGameTest.started -= m_Wrapper.m_MiniGamePlayActionsCallbackInterface.OnMiniGameTest;
-                @MiniGameTest.performed -= m_Wrapper.m_MiniGamePlayActionsCallbackInterface.OnMiniGameTest;
-                @MiniGameTest.canceled -= m_Wrapper.m_MiniGamePlayActionsCallbackInterface.OnMiniGameTest;
+                @TriviaInput1.started -= m_Wrapper.m_MiniGamePlayActionsCallbackInterface.OnTriviaInput1;
+                @TriviaInput1.performed -= m_Wrapper.m_MiniGamePlayActionsCallbackInterface.OnTriviaInput1;
+                @TriviaInput1.canceled -= m_Wrapper.m_MiniGamePlayActionsCallbackInterface.OnTriviaInput1;
+                @TriviaInput2.started -= m_Wrapper.m_MiniGamePlayActionsCallbackInterface.OnTriviaInput2;
+                @TriviaInput2.performed -= m_Wrapper.m_MiniGamePlayActionsCallbackInterface.OnTriviaInput2;
+                @TriviaInput2.canceled -= m_Wrapper.m_MiniGamePlayActionsCallbackInterface.OnTriviaInput2;
+                @TriviaInput3.started -= m_Wrapper.m_MiniGamePlayActionsCallbackInterface.OnTriviaInput3;
+                @TriviaInput3.performed -= m_Wrapper.m_MiniGamePlayActionsCallbackInterface.OnTriviaInput3;
+                @TriviaInput3.canceled -= m_Wrapper.m_MiniGamePlayActionsCallbackInterface.OnTriviaInput3;
+                @TriviaInput4.started -= m_Wrapper.m_MiniGamePlayActionsCallbackInterface.OnTriviaInput4;
+                @TriviaInput4.performed -= m_Wrapper.m_MiniGamePlayActionsCallbackInterface.OnTriviaInput4;
+                @TriviaInput4.canceled -= m_Wrapper.m_MiniGamePlayActionsCallbackInterface.OnTriviaInput4;
             }
             m_Wrapper.m_MiniGamePlayActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @MiniGameTest.started += instance.OnMiniGameTest;
-                @MiniGameTest.performed += instance.OnMiniGameTest;
-                @MiniGameTest.canceled += instance.OnMiniGameTest;
+                @TriviaInput1.started += instance.OnTriviaInput1;
+                @TriviaInput1.performed += instance.OnTriviaInput1;
+                @TriviaInput1.canceled += instance.OnTriviaInput1;
+                @TriviaInput2.started += instance.OnTriviaInput2;
+                @TriviaInput2.performed += instance.OnTriviaInput2;
+                @TriviaInput2.canceled += instance.OnTriviaInput2;
+                @TriviaInput3.started += instance.OnTriviaInput3;
+                @TriviaInput3.performed += instance.OnTriviaInput3;
+                @TriviaInput3.canceled += instance.OnTriviaInput3;
+                @TriviaInput4.started += instance.OnTriviaInput4;
+                @TriviaInput4.performed += instance.OnTriviaInput4;
+                @TriviaInput4.canceled += instance.OnTriviaInput4;
             }
         }
     }
@@ -316,6 +436,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     }
     public interface IMiniGamePlayActions
     {
-        void OnMiniGameTest(InputAction.CallbackContext context);
+        void OnTriviaInput1(InputAction.CallbackContext context);
+        void OnTriviaInput2(InputAction.CallbackContext context);
+        void OnTriviaInput3(InputAction.CallbackContext context);
+        void OnTriviaInput4(InputAction.CallbackContext context);
     }
 }

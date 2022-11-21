@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: -1113952073325499374}
   m_Layer: 0
   m_Name: Minigame A
-  m_TagString: Untagged
+  m_TagString: Minigame
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,6 +207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b58ad40207572ad47997694776557993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  miniCam: {fileID: 1723600911007300850}
 --- !u!1 &6911633442454236671
 GameObject:
   m_ObjectHideFlags: 0

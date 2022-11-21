@@ -4,29 +4,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameHandler : MiniGameManager
+public class GameHandler : MonoBehaviour
 {
     //arrays
-    public GameObject[] players;
     private GameObject[] spawns;
+    private GameObject[] players;
 
+    //user choices
+    public string input;
 
     //children objects
-    private Camera miniCam;
+    public Camera miniCam;
+
+    //turn
+    private int gameOrder;
+
     // Start is called before the first frame update
     void Start()
     {
-        //calling all players, calling all minigame spawns
-        players = GameObject.FindGameObjectsWithTag("Player");
+        players = GameObject.FindGameObjectsWithTag("Player"); // find all players
+
         spawns = GameObject.FindGameObjectsWithTag("Minigame Spawn"); // spawn for player to put in if need be.
 
         //calling children components
         miniCam = this.gameObject.GetComponentInChildren<Camera>(); // should grab camera off of Minigame View.
     }
 
-    // Update is called once per frame
-    void Update()
+    public void InputChoice(string choice, int turnOrder) // input for trivia-like games, T/F, multiple choice, etc.
     {
-        GetPlayers(players);
+        input = choice; // change current input, i'll do something fancier l8r
+
+        //checking if turn was made durinng right turn
+        CheckResult(turnOrder, gameOrder);
     }
+
+    public bool CheckResult(int playerTurn, int currentTurn) // checks to see if turn was allowed to happen, and then send forward result 
+    {
+        players = GameObject.FindGameObjectsWithTag("Player"); // find all players
+
+        if (playerTurn == currentTurn)
+        {
+            gameOrder++;
+            if (gameOrder > players.Length - 1) { gameOrder = 0; } // quickly check if turns need to be looped back
+
+            return true;
+        }
+
+        gameOrder++;
+        if (gameOrder > players.Length - 1) { gameOrder = 0; } // quickly check if turns need to be looped back
+
+        return false;
+    }
+
 }

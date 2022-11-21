@@ -103,7 +103,23 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1152684079109578990}
         m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
-        m_MethodName: MiniGameTest
+        m_MethodName: TriviaGameInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
+    m_ActionId: eae981b5-83b0-4d92-a4b2-5c48a778c180
+    m_ActionName: miniGamePlay/MiniGameTest[/Keyboard/space,/DualShock4GamepadHID/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152684079109578990}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: TriviaGameInput
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -113,8 +129,40 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: eae981b5-83b0-4d92-a4b2-5c48a778c180
-    m_ActionName: miniGamePlay/MiniGameTest[/Keyboard/space,/DualShock4GamepadHID/buttonSouth]
+    m_ActionId: 45def2b6-e75c-49eb-899f-4f53404f8a89
+    m_ActionName: miniGamePlay/TriviaInput2[/DualShock4GamepadHID/buttonWest,/Keyboard/2]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152684079109578990}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: TriviaGameInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 27705e51-07bb-4299-8d63-b63cbbb51aa7
+    m_ActionName: miniGamePlay/TriviaInput3[/Keyboard/3,/DualShock4GamepadHID/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1152684079109578990}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: TriviaGameInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7edd2b31-6180-44a7-bb7e-d50da099008c
+    m_ActionName: miniGamePlay/TriviaInput4[/Keyboard/4,/DualShock4GamepadHID/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: boardGamePlay

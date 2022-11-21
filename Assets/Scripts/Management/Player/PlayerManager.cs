@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour
 {
     //player tracking variables
     public int playerCount = 0;
-    private GameObject[] players;
+    public GameObject[] players;
 
     public TurnManager turnManager;
 
