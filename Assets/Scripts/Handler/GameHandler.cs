@@ -46,7 +46,7 @@ public class GameHandler : MonoBehaviour
         {
             gameOrder++;
             if (gameOrder > players.Length) { gameOrder = 1; } // quickly check if turns need to be looped back
-            GradeMove(input); // check trivia move for validity
+            GradeMove(input, gameOrder); // check trivia move for validity
             return true;
         }
 
@@ -54,7 +54,7 @@ public class GameHandler : MonoBehaviour
 
         return false;
     }
-    public virtual void GradeMove(string move)
+    public virtual void GradeMove(string move, int turn)
     {
         //holds the grading procedure for the move; ONLY TO BE EDITED IN THE CHILDREN SCRIPTS
     }
