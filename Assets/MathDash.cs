@@ -1,3 +1,4 @@
+//armin delmo, math dash game for VGD 2022. Guantanamo Bay cannot get me to work on this PoS again...
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,132 +6,148 @@ using UnityEngine.InputSystem; // for sensing input
 public class MathDash : GameHandler
 {
     string rightMove = "A";
-    int[] numbers;
+    private int[] numbers = new int[2];
     //player values
     private int[] score = new int[4];
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-
-             // check every frame to see if correct move is made
+        CreateQuestion(); // start minigame
     }
     private int[] CreateQuestion() // uses math formula to return 4 choices
     {
         //math formula to create questions
         var questionType = Random.Range(0, 3); // 0 addition, 1 subtraction, 2 mult, 3 division
         var questionsPrompts = new int[5];
-        switch(questionType) // question type deciding what math question to throw.
+        var problemType = "null";
+
+        switch (questionType) // question type deciding what math question to throw.
         {
             case 0: // addition
-                var numberA = Random.Range(0, 200); //numbers[0] = numberA;
-                var numberB = Random.Range(0, 200);// numbers[1] = numberB;
+                numbers[0] = Random.Range(0, 200); //numbers[0] = numberA;
+                numbers[1] = Random.Range(0, 200);// numbers[1] = numberB;
 
                 var addition = new int[] // first entry is correct, the rest are wrong
                 {
-                    numberA + numberB,
-                    numberA - Random.Range(2,10) + numberB,
-                    numberA / 2 + numberB,
-                    numberB - numberA,
-                    numberA + numberB // correct answer
+                    numbers[0] + numbers[1],
+                    numbers[0] - Random.Range(2,10) + numbers[1],
+                    numbers[0] / 2 + numbers[1],
+                    numbers[1] - numbers[0],
+                    numbers[0] + numbers[1] // correct answer
 
                 };
                 //two numbers that will be given to player to decipher
-
-
+                problemType = "addition";
 
                 questionsPrompts = addition;
                 break;
             case 1: // subtraction
-                numberA = Random.Range(0, 200);
-                numberB = Random.Range(0, 200);
+                numbers[0] = Random.Range(0, 200);
+                numbers[1] = Random.Range(0, 200);
 
                 var subtraction = new int[] // first entry is correct, the rest are wrong
                 {
-                    numberA - numberB,
-                    numberA + Random.Range(2,10) - numberB,
-                    numberA / 2 - numberB,
-                    numberB - numberA,
-                    numberB - numberA // correct answer
+                    numbers[0] - numbers[1],
+                    numbers[0] + Random.Range(2,10) - numbers[1],
+                    numbers[0] / 2 - numbers[1],
+                    numbers[0] - numbers[1],
+                    numbers[0] - numbers[1] // correct answer
 
                 };
                 //two numbers that will be given to player to decipher
-               // numbers[0] = numberA;
+                
                 //numbers[1] = numberB;
-
+                problemType = "subtraction";
                 questionsPrompts = subtraction;
                 break;
             case 2: // multiplication
-                var numberC = Random.Range(1, 14);
-                var numberD = Random.Range(1, 14);
+                numbers[0] = Random.Range(1, 14);
+                numbers[1] = Random.Range(1, 14);
+
                 var multiplication = new int[] // first entry is correct, the rest are wrong
                 {
-                    numberC * numberD,
-                    numberC * Random.Range(2,10) - numberD,
-                    numberC * 2 - numberD,
-                    numberC / numberD,
-                    numberC * numberD // correct answer
+                    numbers[0] * numbers[1],
+                    numbers[0] * Random.Range(2,10) - numbers[1],
+                    numbers[0] * 2 - numbers[1],
+                    numbers[0] / numbers[1],
+                    numbers[0] * numbers[1] // correct answer
 
                 };
                 //two numbers that will be given to player to decipher
                 //numbers[0] = numberC;
                 //numbers[1] = numberD;
-
+                problemType = "multiplication";
                 questionsPrompts = multiplication;
                 break;
+                
             case 3: // division 
-                var numberE = Random.Range(15, 100);
-                var numberF = Random.Range(1, 10);
+                numbers[0] = Random.Range(15, 100);
+                numbers[1] = Random.Range(1, 10);
 
                 //while loop to get a whole answer 
-                while(numberE/numberF % 1 != 0)
+                while(numbers[0] / numbers[1] % 1 != 0)
                 {
-                    numberE = Random.Range(15, 100);
-                    numberF = Random.Range(1, 10);
+                    numbers[0] = Random.Range(15, 100);
+                    numbers[1] = Random.Range(1, 10);
                 }
 
                 var division = new int[] // first entry is correct, the rest are wrong
                 {
-                    numberE / numberF,
-                    numberE / 2 * numberF,
-                    numberE * 2 / numberF,
-                    numberF / numberE,
-                    numberE / numberF // correct answer
+                    numbers[0] / numbers[1],
+                    numbers[0] / 2 * numbers[1],
+                    numbers[0] * 2 / numbers[1],
+                    numbers[1] / numbers[0],
+                    numbers[0] / numbers[1] // correct answer
 
                 };
                 //two numbers that will be given to player to decipher
-               // numbers[0] = numberE;
+                // numbers[0] = numberE;
                 //numbers[1] = numberF;
-
+                problemType = "division";
                 questionsPrompts = division;
                 break;
         }
-        SortQuestions(questionsPrompts, numbers);
+        SortQuestions(questionsPrompts, numbers, problemType);
         return questionsPrompts;
     }
 
-    private int[] SortQuestions(int[] answers, int[] addends) // sorts the four questions 
+    private int[] SortQuestions(int[] answers, int[] addends, string math) // sorts the four questions 
     {
         var sortedQuestions = new int[4]; // questions that will show up on the UI
-        var random = new int[4] { 3, 2, 1, 0 };
+        var sortParameter = new int[4];
+
+        //randomizer formula for sorting questions
+        for(int i = 0; i <= 3; i++)
+        {
+            var randInt = Random.Range(0, 3);
+
+            for(int j = 0; j < i; j++)
+            {
+                while(randInt == sortParameter[j])
+                {
+                    randInt = Random.Range(0, 3);
+                }
+            }
+            sortParameter[i] = randInt;
+        }  
+        
         for(int i = 0; i < 3; i++) // randomizing each question's position.
         {
-            sortedQuestions[random[i]] = answers[i];
+            sortedQuestions[sortParameter[i]] = answers[i];
         }
         var loop = 0;
 
         while(sortedQuestions[loop] != answers[0]) // finding correct answer
         {
-            Debug.LogError(sortedQuestions[loop] + " and " + answers[0]);
             loop++;
         }
-        
+        if(loop >= 4)
+        {
+            SortQuestions(answers, addends, math); // recurse to prevent error
+            return sortedQuestions;
+        }
 
-        switch(loop)
+        switch (loop)
         {
             case 0:
                 rightMove = "A";
@@ -147,7 +164,12 @@ public class MathDash : GameHandler
                 break;
         }
         Debug.LogWarning("The correct answer is: " + rightMove);
+        //ProgramUI();
         return sortedQuestions;
+    }
+    private void ProgramUI() // adds all the arrays onto a UI
+    {
+
     }
 
     public override void GradeMove(string move, int turn)
