@@ -58,5 +58,13 @@ public class GameHandler : MonoBehaviour
     {
         //holds the grading procedure for the move; ONLY TO BE EDITED IN THE CHILDREN SCRIPTS
     }
+    public virtual void CollectUI() // collects all ui elements for ProgramUI()
+    {
+
+    }
+    public virtual void ProgramUI() // for the purpose of adding UI for the games
+    {
+
+    }
 
 }

@@ -167,7 +167,13 @@ public class MathDash : GameHandler
         //ProgramUI();
         return sortedQuestions;
     }
-    private void ProgramUI() // adds all the arrays onto a UI
+    public override void CollectUI()
+    {
+        //collects ui elements from minigame object
+        var canvas = GameObject.FindGameObjectWithTag("Minigame UI");
+        GameObject.Find
+    }
+    public override void ProgramUI() // adds all the arrays onto a UI
     {
 
     }
