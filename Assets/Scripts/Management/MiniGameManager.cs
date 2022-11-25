@@ -67,6 +67,7 @@ public class MiniGameManager : MonoBehaviour
     {
         Debug.Log("Loading!");
         GameObject minigameInstance = Instantiate(Resources.Load("Prefabs/Mini-Games/Minigame A", typeof(GameObject))) as GameObject;
+        minigameInstance.GetComponent<GameHandler>().JumpStart();
     }
     private void KillGamesFromFile()
     {

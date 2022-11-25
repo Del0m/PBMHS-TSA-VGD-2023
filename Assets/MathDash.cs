@@ -3,12 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem; // for sensing input
+using TMPro; // for text mesh modification
 public class MathDash : GameHandler
 {
     string rightMove = "A";
     private int[] numbers = new int[2];
     //player values
     private int[] score = new int[4];
+
+    //UI definitions
+    public TextMeshProUGUI[] question;
 
     private void Start()
     {
@@ -18,26 +22,25 @@ public class MathDash : GameHandler
     {
         //math formula to create questions
         var questionType = Random.Range(0, 3); // 0 addition, 1 subtraction, 2 mult, 3 division
-        var questionsPrompts = new int[5];
+        var questionsPrompts = new int[4];
         var problemType = "null";
 
         switch (questionType) // question type deciding what math question to throw.
         {
             case 0: // addition
-                numbers[0] = Random.Range(0, 200); //numbers[0] = numberA;
-                numbers[1] = Random.Range(0, 200);// numbers[1] = numberB;
+                numbers[0] = Random.Range(0, 200); 
+                numbers[1] = Random.Range(0, 200);
 
                 var addition = new int[] // first entry is correct, the rest are wrong
                 {
                     numbers[0] + numbers[1],
                     numbers[0] - Random.Range(2,10) + numbers[1],
                     numbers[0] / 2 + numbers[1],
-                    numbers[1] - numbers[0],
-                    numbers[0] + numbers[1] // correct answer
+                    numbers[1] - numbers[0]
 
                 };
                 //two numbers that will be given to player to decipher
-                problemType = "addition";
+                problemType = "+";
 
                 questionsPrompts = addition;
                 break;
@@ -50,14 +53,13 @@ public class MathDash : GameHandler
                     numbers[0] - numbers[1],
                     numbers[0] + Random.Range(2,10) - numbers[1],
                     numbers[0] / 2 - numbers[1],
-                    numbers[0] - numbers[1],
-                    numbers[0] - numbers[1] // correct answer
+                    numbers[0] - numbers[1]
 
                 };
                 //two numbers that will be given to player to decipher
                 
                 //numbers[1] = numberB;
-                problemType = "subtraction";
+                problemType = "-";
                 questionsPrompts = subtraction;
                 break;
             case 2: // multiplication
@@ -69,14 +71,13 @@ public class MathDash : GameHandler
                     numbers[0] * numbers[1],
                     numbers[0] * Random.Range(2,10) - numbers[1],
                     numbers[0] * 2 - numbers[1],
-                    numbers[0] / numbers[1],
-                    numbers[0] * numbers[1] // correct answer
+                    numbers[0] / numbers[1]
 
                 };
                 //two numbers that will be given to player to decipher
                 //numbers[0] = numberC;
                 //numbers[1] = numberD;
-                problemType = "multiplication";
+                problemType = "x";
                 questionsPrompts = multiplication;
                 break;
                 
@@ -96,14 +97,13 @@ public class MathDash : GameHandler
                     numbers[0] / numbers[1],
                     numbers[0] / 2 * numbers[1],
                     numbers[0] * 2 / numbers[1],
-                    numbers[1] / numbers[0],
-                    numbers[0] / numbers[1] // correct answer
+                    numbers[1] / numbers[0]
 
                 };
                 //two numbers that will be given to player to decipher
                 // numbers[0] = numberE;
                 //numbers[1] = numberF;
-                problemType = "division";
+                problemType = "/";
                 questionsPrompts = division;
                 break;
         }
@@ -117,9 +117,10 @@ public class MathDash : GameHandler
         var sortParameter = new int[4];
 
         //randomizer formula for sorting questions
-        for(int i = 0; i <= 3; i++)
+        for(int i = 0; i < 4; i++)
         {
-            var randInt = Random.Range(0, 3);
+            var randInt = Random.Range(0, 4);
+            print(randInt);
 
             for(int j = 0; j < i; j++)
             {
@@ -130,8 +131,7 @@ public class MathDash : GameHandler
             }
             sortParameter[i] = randInt;
         }  
-        
-        for(int i = 0; i < 3; i++) // randomizing each question's position.
+        for(int i = 0; i < 4; i++) // randomizing each question's position.
         {
             sortedQuestions[sortParameter[i]] = answers[i];
         }
@@ -152,7 +152,6 @@ public class MathDash : GameHandler
             case 0:
                 rightMove = "A";
                 break;
-
             case 1:
                 rightMove = "B";
                 break;
@@ -164,17 +163,24 @@ public class MathDash : GameHandler
                 break;
         }
         Debug.LogWarning("The correct answer is: " + rightMove);
-        //ProgramUI();
+        ProgramUI(sortedQuestions, numbers, math); // update ui for questions
         return sortedQuestions;
     }
-    public override void CollectUI()
+    private void ProgramUI(int[] entry, int[] numbers, string math) // adds all the arrays onto a UI
     {
         //collects ui elements from minigame object
-        var canvas = GameObject.FindGameObjectWithTag("Minigame UI");
-        GameObject.Find
-    }
-    public override void ProgramUI() // adds all the arrays onto a UI
-    {
+        var prompt = GameObject.FindGameObjectWithTag("Minigame Question");
+
+
+        var player = gameOrder; // player turn order
+
+        //for loop to change all questions to diff names
+        for(int i = 0; i < question.Length; i++)
+        {
+            question[i].text = i+1 + ": " + entry[i]; // updates answer on UI for user to see.
+        }
+        prompt.GetComponent<TextMeshProUGUI>().text = numbers[0] + " " + math + " " + numbers[1];
+
 
     }
 
@@ -184,6 +190,8 @@ public class MathDash : GameHandler
         {
             Debug.Log("Correct!");
             score[turn-1]++;
+            print(score[turn - 1] + "The Score btw");
+            EndGame(score[turn - 1]); // check to see if game needs to end
             CreateQuestion();
 
         }
@@ -193,6 +201,21 @@ public class MathDash : GameHandler
             CreateQuestion();
         }
 
+    }
+    private void EndGame(int score)
+    {
+        print("Recorded score is: " + score);
+        if(score >= 5)
+        {
+            miniManager.EndMiniGame();
+            Debug.Log("Game is Done!");
+        }
+    }
+
+    public override void JumpStart()
+    {
+        base.JumpStart();
+        CreateQuestion();
     }
 
 }

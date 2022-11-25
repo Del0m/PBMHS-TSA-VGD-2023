@@ -17,11 +17,16 @@ public class GameHandler : MonoBehaviour
     public Camera miniCam;
 
     //turn
-    private int gameOrder = 1;
+    public int gameOrder = 1;
+
+    //ouytside scripts
+    public MiniGameManager miniManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        miniManager = GameObject.FindGameObjectWithTag("Mini Game Manager").GetComponent<MiniGameManager>();
+
         players = GameObject.FindGameObjectsWithTag("Player"); // find all players
 
         spawns = GameObject.FindGameObjectsWithTag("Minigame Spawn"); // spawn for player to put in if need be.
@@ -58,13 +63,10 @@ public class GameHandler : MonoBehaviour
     {
         //holds the grading procedure for the move; ONLY TO BE EDITED IN THE CHILDREN SCRIPTS
     }
-    public virtual void CollectUI() // collects all ui elements for ProgramUI()
+    public  virtual void JumpStart() // to be used to start the questions for the game.
     {
 
     }
-    public virtual void ProgramUI() // for the purpose of adding UI for the games
-    {
 
-    }
 
 }
