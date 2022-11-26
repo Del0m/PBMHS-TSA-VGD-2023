@@ -12,6 +12,7 @@ TagManager:
   - Minigame UI
   - Minigame Question
   - Minigame Turn
+  - Minigame Card
   layers:
   - Default
   - TransparentFX

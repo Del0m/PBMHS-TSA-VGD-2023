@@ -38,7 +38,6 @@ public class MiniGameManager : MonoBehaviour
         //changing player controls
         for (int i = 0; i < players.Length; i++)
         {
-            Debug.Log("Changing Controls on Player " + i);
             players[i].GetComponent<PlayerInput>().SwitchCurrentActionMap("miniGamePlay");
 
         }
@@ -73,7 +72,7 @@ public class MiniGameManager : MonoBehaviour
     private void LoadGamesFromFile() // resource.load all games, pick one, deload
     {
         Debug.Log("Loading!");
-        GameObject minigameInstance = Instantiate(Resources.Load("Prefabs/Mini-Games/Minigame A", typeof(GameObject))) as GameObject;
+        GameObject minigameInstance = Instantiate(Resources.Load("Prefabs/Mini-Games/Minigame B", typeof(GameObject))) as GameObject;
         minigameInstance.GetComponent<GameHandler>().JumpStart();
     }
     private void KillGamesFromFile()

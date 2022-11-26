@@ -46,7 +46,6 @@ public class TurnManager : MonoBehaviour
             }
             if (miniGameScript.hasStarted == false)
             {
-                Debug.Log("Resetting turn!");
                 currentTurn = 1;
                 miniGameScript.StartMiniGame(players);
                 miniGameScript.hasStarted = true;
