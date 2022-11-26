@@ -8,7 +8,7 @@ public class GameHandler : MonoBehaviour
 {
     //arrays
     private GameObject[] spawns;
-    private GameObject[] players;
+    public GameObject[] players;
 
     //user choices
     public string input;

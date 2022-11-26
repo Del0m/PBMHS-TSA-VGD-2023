@@ -11,6 +11,7 @@ TagManager:
   - Minigame Spawn
   - Minigame UI
   - Minigame Question
+  - Minigame Turn
   layers:
   - Default
   - TransparentFX

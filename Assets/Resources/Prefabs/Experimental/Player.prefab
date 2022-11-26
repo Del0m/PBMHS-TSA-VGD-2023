@@ -112,7 +112,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
     m_ActionId: eae981b5-83b0-4d92-a4b2-5c48a778c180
     m_ActionName: miniGamePlay/MiniGameTest[/Keyboard/space,/DualShock4GamepadHID/buttonSouth]
   - m_PersistentCalls:

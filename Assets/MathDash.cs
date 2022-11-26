@@ -117,21 +117,23 @@ public class MathDash : GameHandler
         var sortParameter = new int[4];
 
         //randomizer formula for sorting questions
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < 3; i++)
         {
             var randInt = Random.Range(0, 4);
-            print(randInt);
 
-            for(int j = 0; j < i; j++)
+            for(int j = 0; j < i;)
             {
                 while(randInt == sortParameter[j])
                 {
                     randInt = Random.Range(0, 3);
                 }
+                j++;
             }
             sortParameter[i] = randInt;
-        }  
-        for(int i = 0; i < 4; i++) // randomizing each question's position.
+
+        }
+        print(sortParameter[0] + " " + sortParameter[1] + " " + sortParameter[2] + " " + sortParameter[3]);
+        for (int i = 0; i < 3; i++) // randomizing each question's position.
         {
             sortedQuestions[sortParameter[i]] = answers[i];
         }
@@ -141,13 +143,13 @@ public class MathDash : GameHandler
         {
             loop++;
         }
-        if(loop >= 4)
+        if(loop >= 4) //this recursion is only a front to my awful coding skills, this makes my code not crap the bed.
         {
             SortQuestions(answers, addends, math); // recurse to prevent error
             return sortedQuestions;
         }
 
-        switch (loop)
+        switch (loop) // assign correct question to right move
         {
             case 0:
                 rightMove = "A";
@@ -164,7 +166,7 @@ public class MathDash : GameHandler
         }
         Debug.LogWarning("The correct answer is: " + rightMove);
         ProgramUI(sortedQuestions, numbers, math); // update ui for questions
-        return sortedQuestions;
+        return sortedQuestions; //useless. for now :)
     }
     private void ProgramUI(int[] entry, int[] numbers, string math) // adds all the arrays onto a UI
     {
@@ -181,18 +183,23 @@ public class MathDash : GameHandler
         }
         prompt.GetComponent<TextMeshProUGUI>().text = numbers[0] + " " + math + " " + numbers[1];
 
+        //program ui to show current person's turn
+        var plrTurn = GameObject.FindGameObjectWithTag("Minigame Turn");
+
+        plrTurn.GetComponent<TextMeshProUGUI>().text = "Player " + player + "'s turn!";
+
 
     }
 
-    public override void GradeMove(string move, int turn)
+    public override void GradeMove(string move, int turn) // checks move if its valid
     {
-       if(move == rightMove)
+       if(move == rightMove) // correct move made
         {
             Debug.Log("Correct!");
-            score[turn-1]++;
-            print(score[turn - 1] + "The Score btw");
+            score[turn-1]++; // add score
+            CreateQuestion(); // make new question
             EndGame(score[turn - 1]); // check to see if game needs to end
-            CreateQuestion();
+
 
         }
         else
@@ -202,16 +209,22 @@ public class MathDash : GameHandler
         }
 
     }
+     // partly depreciated until this function can actually trigger stuff on MiniGameManager
     private void EndGame(int score)
     {
         print("Recorded score is: " + score);
         if(score >= 5)
         {
             miniManager.EndMiniGame();
+            for(int i = 0; i < players.Length; i++)
+            {
+                miniManager.hasStarted = false;
+                players[i].GetComponent<PlayerInput>().SwitchCurrentActionMap("boardGamePlay");
+            }
             Debug.Log("Game is Done!");
         }
     }
-
+    
     public override void JumpStart()
     {
         base.JumpStart();

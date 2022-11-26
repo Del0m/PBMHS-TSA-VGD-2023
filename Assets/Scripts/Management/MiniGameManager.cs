@@ -6,6 +6,7 @@ this script will load once all players have finished their turns, it will begin 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MiniGameManager : MonoBehaviour
 {
@@ -21,6 +22,13 @@ public class MiniGameManager : MonoBehaviour
     {
         this.gameObject.tag = "Mini Game Manager";
     }
+    private void Update() // checks to see if the game has ended
+    {
+        if(GameObject.FindGameObjectWithTag("Minigame") == null) //checks if game is still on map
+        {
+            EndMiniGame();
+        }    
+    }
 
 
     public void StartMiniGame(GameObject[] playerCall) //called from TurnManager, this will grab all given players and bring them to a minigame
@@ -31,7 +39,7 @@ public class MiniGameManager : MonoBehaviour
         for (int i = 0; i < players.Length; i++)
         {
             Debug.Log("Changing Controls on Player " + i);
-            players[i].GetComponent<PlayerControls>().PlayerMiniGameMode(true);
+            players[i].GetComponent<PlayerInput>().SwitchCurrentActionMap("miniGamePlay");
 
         }
         if(hasStarted != true)
@@ -46,15 +54,14 @@ public class MiniGameManager : MonoBehaviour
     }
     public void EndMiniGame() //kills all minigames, brings back controls to players
     {
-        KillGamesFromFile(); // deletes minigame
-        for (int i = 0; i >= players.Length - 1; i++) // brings plrs back to board.
+        hasStarted = false;
+        Debug.Log("Ending minigame");
+        for (int i = 0; i < players.Length; i++) // brings plrs back to board.
         {
-            Debug.Log("Changing Controls on Player " + i);
-            players[i].GetComponent<PlayerControls>().PlayerMiniGameMode(false);
-
-
-            hasStarted = false;
+            Debug.Log("Changing Board on Player " + i);
+            players[i].GetComponent<PlayerInput>().SwitchCurrentActionMap("boardGamePlay");
         }
+        KillGamesFromFile(); // deletes minigame
     }
 
     public void GetPlayers(GameObject[] player)

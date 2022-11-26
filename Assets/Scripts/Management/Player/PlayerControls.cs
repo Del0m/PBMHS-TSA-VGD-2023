@@ -47,6 +47,15 @@ public class PlayerControls : MonoBehaviour
         //control update functions
         //controls.miniGamePlay.MiniGameTest.started += MiniGameTest; // test control for minigame mode
         //controls.boardGamePlay.DiceRoll.started += DiceRoll; // test control for boardgame mode
+        if(GameObject.FindGameObjectWithTag("Mini Game Manager").GetComponent<MiniGameManager>().hasStarted == false)
+        {
+            gameplayInput.SwitchCurrentActionMap("boardGamePlay");
+        }
+        else
+        {
+            gameplayInput.SwitchCurrentActionMap("miniGamePlay");
+        }
+        Debug.Log(gameplayInput.currentActionMap);
     }
     
     public void PlayerTurn() // check if player turn is now
@@ -109,7 +118,11 @@ public class PlayerControls : MonoBehaviour
                     Debug.Log("User " + turnOrder + "has inputted " + input);
                     break;
             }
-            minigame.InputChoice(input, turnOrder);
+            if(GameObject.FindGameObjectWithTag("Minigame") != null)
+            {
+                minigame.InputChoice(input, turnOrder);
+            }
+
         }
 
     }
@@ -117,15 +130,12 @@ public class PlayerControls : MonoBehaviour
     {
         if(inMiniGame == true)
         {
-            gameplayInput.actions.FindActionMap("boardGamePlay").Disable(); // disable boardgame controls
-            gameplayInput.actions.FindActionMap("miniGamePlay").Enable(); // make it to where it changes control schemes, but otherwise we're keeping it :) 
-            Debug.Log("enabling minigameplay!");
+            gameplayInput.SwitchCurrentActionMap("miniGamePlay");
         }
         else
         {
             Debug.Log("enabling boardgameplay!");
-            gameplayInput.actions.FindActionMap("miniGamePlay").Disable(); // disable minigame controls
-            gameplayInput.actions.FindActionMap("boardGamePlay").Enable(); // make it to where it changes control schemes, but otherwise we're keeping it :) 
+            gameplayInput.SwitchCurrentActionMap("boardGamePlay");
         }
     }
 }
