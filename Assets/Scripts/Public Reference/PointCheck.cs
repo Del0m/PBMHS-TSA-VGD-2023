@@ -6,10 +6,38 @@ public class PointCheck : MonoBehaviour
 
     public bool isOccupied { get; private set; } = false;
 
+    public int correspondingPlayerIndex = -1;
+
+    Renderer mesh;
+
     // Start is called before the first frame update
     void Awake()
     {
         pos = this.transform.position;
+        mesh = GetComponent<Renderer>();
+        changeToPlayerColor();
+    }
+
+    void changeToPlayerColor()
+    {
+        switch (correspondingPlayerIndex)
+        {
+            case -1:
+                mesh.material.color = Color.white;
+                break;
+            case 0:
+                mesh.material.color = Color.blue;
+                break;
+            case 1:
+                mesh.material.color = Color.red;
+                break;
+            case 2:
+                mesh.material.color = Color.green;
+                break;
+            case 3:
+                mesh.material.color = Color.yellow;
+                break;
+        }
     }
 
     private void OnTriggerEnter(Collider other)

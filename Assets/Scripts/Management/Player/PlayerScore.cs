@@ -1,6 +1,8 @@
 //This class is used to check for a player's score or stats
 //* recommend to make this script a required script for other scripts *
-public class PlayerScore 
+using UnityEngine;
+
+public class PlayerScore : MonoBehaviour
 {
     //Can be called from any script
     public int Score = 0;

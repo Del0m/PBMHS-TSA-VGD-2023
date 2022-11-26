@@ -1,21 +1,24 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent (typeof(PlayerScore))]
 public class PlayerMovement : MonoBehaviour
 {
-    //Range of the raycasting
-    public float range = 100f;
+    //Range used to make sure player doesn't select points very far away from them
+    public float range = 8f;
     //Speed of the player moving to a point
     public float movementSpeed = 5;
 
     private Camera cam;
-    private PositionManager posM;
     public Vector3 norm { private get; set; }
 
     //Call randomizer script
     public int playerTurn { get; private set; } = 0;
+
+    //Private vars
+    private PlayerScore ps;
+    private Renderer mesh;
     private Randomizer rand;
 
     // Start is called before the first frame update
@@ -25,15 +28,37 @@ public class PlayerMovement : MonoBehaviour
         norm = this.transform.position;
         //Find the position manager
         GameObject obj = GameObject.FindGameObjectWithTag("Manager");
-        //Sets the position manager to the object with the 'Manager' tag
-        posM = obj.GetComponent<PositionManager>();
         //Finds the camera object with a tag
         GameObject camObj = GameObject.FindGameObjectWithTag("MainCamera");
         //Sets the camera to the object with the 'MainCamera' tag
         cam = camObj.GetComponent<Camera>();
         //Set the 'Randomizer' class 
         rand = this.GetComponent<Randomizer>();
+        //Set the 'PlayerScore' class
+        ps = this.GetComponent<PlayerScore>();
+        //Set the Player's renderer
+        mesh = this.GetComponent<Renderer>();
+
         StartCoroutine(waitForInit());
+    }
+
+    void changePlayerColor()
+    {
+        switch (ps.playerIndex)
+        {
+            case 0:
+                mesh.material.color = Color.blue;
+                break;
+            case 1:
+                mesh.material.color = Color.red;
+                break;
+            case 2:
+                mesh.material.color = Color.green;
+                break;
+            case 3:
+                mesh.material.color = Color.yellow;
+                break;
+        }
     }
 
     IEnumerator waitForInit()
@@ -42,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
         // Debug | on awake set a random number between 1 - 6
         if (rand != null)
             playerTurn = rand.DiceRoll(1, 6);
+        changePlayerColor();
         print(playerTurn);
     }
 
@@ -79,6 +105,12 @@ public class PlayerMovement : MonoBehaviour
         moveToPoint(norm);
     }
 
+    //debug and can be removed
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, range);
+    }
+
     void userInput()
     {
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
@@ -92,12 +124,13 @@ public class PlayerMovement : MonoBehaviour
             {
                 //Debug.Log(hit.transform.name + " was hit");
                 PointCheck tar = hit.transform.GetComponent<PointCheck>();
-                if (tar != null && posM != null)
+                if (tar != null)
                 {
+                    float dist = Vector3.Distance(this.transform.position, tar.pos);
                     //Set point target
                     Vector3 tg = new Vector3(tar.pos.x, 0f, tar.pos.z);
                     //Give info to position manager
-                    if (checkPath(tg) && checkForDiagnal(tg) && posM.checkForPos(tg))
+                    if (checkPath(tg, dist) && tar.correspondingPlayerIndex == ps.playerIndex && !tar.isOccupied)
                     {
                         norm = tg;
                     }
@@ -106,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    bool checkPath(Vector3 tart)
+    bool checkPath(Vector3 tart, float dist)
     {
         // Use the player's gfx to raycast a direction to check for entities in the path
 
@@ -118,10 +151,17 @@ public class PlayerMovement : MonoBehaviour
         transform.LookAt(tart);
 
         //Check his path for entities
-        if(Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, range, LayerMask.GetMask("Entity"))){
+        if(Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, dist, LayerMask.GetMask("Entity"))){
             //debug
             print("Entity is in my path");
 
+            return false;
+        }
+
+        //Check distance from the player
+        if(Vector3.Distance(this.transform.position, tart) > range)
+        {
+            print(tart + " is very far away from the player");
             return false;
         }
 
