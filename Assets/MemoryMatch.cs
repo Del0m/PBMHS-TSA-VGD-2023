@@ -7,7 +7,7 @@ using TMPro; // for text mesh modification
 public class MemoryMatch : GameHandler
 {
     //variables
-    public int clicked;
+    public int clicked, cardsLeft; // specifically for tracking cards
     private int[] score = new int[4] { 0, 0, 0, 0 };
 
     GameObject[] cardsPicked = new GameObject[2]; // for the purpose of cards
@@ -36,7 +36,10 @@ public class MemoryMatch : GameHandler
                 }
             }
             sort[i] = randInt;
-
+            for(int k = 0; k < cardAmount; k++)
+            {
+                Debug.Log(sort[k]);
+            }
         }
         var num = 1;
         //putting numbers on the cards
@@ -70,8 +73,14 @@ public class MemoryMatch : GameHandler
         }
         players[gameOrder - 1].GetComponent<PlayerInput>().ActivateInput();
     }
-    private void CheckCards() // when player flips any two given cards, see if they have the same number, then give them a score.
+
+    private void AddCards() // when all cards are off the field, add new ones
     {
+        if(cardsLeft < 3) // threshold point, usually a pair off.
+        {
+            //add code for deleting all cards on field and duplicating new ones.
+        }
+
 
     }
     private GameObject[] CollectCards() // runs FGOWT; grabs all cards on UI field.
@@ -97,7 +106,7 @@ public class MemoryMatch : GameHandler
         if (clicked >= 2) // see if two cards are flipped
         {
             //using wait coroutine to show both cards before disappearing
-            StartCoroutine(ButtonRoutine(2)); // coroutine wait function and holder of rest of script cuz i don't know how to fix it.... 
+            StartCoroutine(ButtonRoutine(1)); // coroutine wait function and holder of rest of script cuz i don't know how to fix it.... 
         }
 
         IEnumerator ButtonRoutine(int time) // local IEnumerator since it won't be needed anywhere else.
@@ -110,8 +119,16 @@ public class MemoryMatch : GameHandler
                 //give 1 point
                 score[gameOrder]++;
                 Debug.Log("You Scored!");
-                //reset clicked
+                //destroy cards that were picked as right.
+                Destroy(cardsPicked[0]);
+                Destroy(cardsPicked[1]);
+                //reset clicked and cardsLeft
+                cardsLeft -= 2;
+                AddCards(); // to be ran to see if cards need to be restocked.
                 clicked = 0;
+
+
+
             }
             else
             {
@@ -127,4 +144,6 @@ public class MemoryMatch : GameHandler
             }
         }
     }
+
+
 }

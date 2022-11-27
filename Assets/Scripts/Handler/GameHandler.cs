@@ -67,6 +67,21 @@ public class GameHandler : MonoBehaviour
     {
 
     }
+    //timer for the player; will change gameorder when timer runs out; to be used in any minigame that needs it
+    public void Timer(double timeRemaining)
+    {
+        //using time.deltaTime to how long user has left
+        while (timeRemaining > 0)
+        {
+            timeRemaining -= Time.deltaTime; //deltatime tracks time fairly easily
+        }
 
+        if (timeRemaining < 0) // check if time is up after while loop
+        {
+            Debug.Log("Times up!");
+            return; 
+        }
+        return;
+    }
 
 }
