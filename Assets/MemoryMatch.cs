@@ -3,36 +3,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem; // for sensing input
+using UnityEngine.EventSystems;
 using TMPro; // for text mesh modification
 public class MemoryMatch : GameHandler
 {
     //variables
     public int clicked, cardsLeft; // specifically for tracking cards
-    private int[] score = new int[4] { 0, 0, 0, 0 };
+    
 
-    GameObject[] cardsPicked = new GameObject[2]; // for the purpose of cards
+    private GameObject[] cardsPicked = new GameObject[2]; private GameObject[] cards = new GameObject[10];  // for the purpose of cards
+
     public override void JumpStart()
     {
         base.JumpStart();
         //build cards
         BuildCards(10); // 10 cards to be built
+        CountDown(); // time players for how long they're in minigame
     }
     private void BuildCards(int cardAmount) // grabs given cards, and gives them random numbers
     {
         Debug.Log("building cards");
         //randomizes card data and spawns it on the cards.
-        var cards = CollectCards();
+        cards = CollectCards();
+
+        Debug.Log(CollectCards());
+        cardsLeft = cards.Length;
 
         var sort = new int[cardAmount];
         //randomizer formula for card picks
         for (int i = 0; i < sort.Length - 1; i++) // to be put in a function L8R
         {
-            var randInt = Random.Range(0, cardAmount); // includes value above since max is exclusive for Random.Range
+            var randInt = UnityEngine.Random.Range(0, cardAmount); // includes value above since max is exclusive for Random.Range
             for (int j = 0; j < i; j++) // for loop to check for repeat values
             {
                 while (randInt == sort[j]) // got same value? reroll
                 {
-                    randInt = Random.Range(0, cardAmount);
+                    randInt = UnityEngine.Random.Range(0, cardAmount);
                 }
             }
             sort[i] = randInt;
@@ -47,6 +53,7 @@ public class MemoryMatch : GameHandler
         {
             //grabs two from sort; assigns a number to them, rinse and repeat
             //ran twice to pick two cards that will be modified
+            Debug.Log(cards[i]);
             cards[sort[i]].GetComponentInChildren<TextMeshProUGUI>().text = num.ToString(); // turns int into string.
             cards[sort[i+1]].GetComponentInChildren<TextMeshProUGUI>().text = num.ToString(); //i+1 to grab the next randomized spot
 
@@ -56,9 +63,31 @@ public class MemoryMatch : GameHandler
 
 
             num++; //make new number to put on card
+
+            
         }
 
+
     }
+    private void CountDown() // for the purpose of giving players a time limit for the minigame
+    {
+        var timesUp = Timer(15); // give 15 seconds to player to do minigame
+
+        while(timesUp == false) // hold script till times up
+        {
+            // do nothing
+        }
+        Debug.Log("Times Up!");
+        gameOrder++;
+        //check to see if game order exceeds player count
+        if(gameOrder > players.Length)
+        {
+            gameOrder = 0; // set back to beginning
+        }
+        //recurse function
+        CountDown();
+    }
+
     private void PlayerAction() // will turn on and off player ability to manipulate UI for the game.
     {
         //for loop to enable correct action map
@@ -76,9 +105,14 @@ public class MemoryMatch : GameHandler
 
     private void AddCards() // when all cards are off the field, add new ones
     {
-        if(cardsLeft < 3) // threshold point, usually a pair off.
+        if(cardsLeft < 5) // threshold point, usually a pair off.
         {
-            //add code for deleting all cards on field and duplicating new ones.
+            //refresh CardGroup
+            for(int i = 0; i < cards.Length; i++) // loops through, turns all cards back on
+            {
+                cards[i].SetActive(true);
+            }
+            BuildCards(10);
         }
 
 
@@ -119,29 +153,33 @@ public class MemoryMatch : GameHandler
                 //give 1 point
                 score[gameOrder]++;
                 Debug.Log("You Scored!");
-                //destroy cards that were picked as right.
-                Destroy(cardsPicked[0]);
-                Destroy(cardsPicked[1]);
+
+                //disable cards that were picked as right
+                cardsPicked[0].SetActive(false);
+                cardsPicked[1].SetActive(false);
                 //reset clicked and cardsLeft
                 cardsLeft -= 2;
-                AddCards(); // to be ran to see if cards need to be restocked.
+
                 clicked = 0;
 
-
-
+                //affix player event system cursor back to an active card
+                var activeCard = GameObject.FindGameObjectWithTag("Minigame Card"); // finds an active card
+                var eventSystem = GameObject.Find("EventSystem");
+                eventSystem.GetComponent<EventSystem>().SetSelectedGameObject(activeCard);
+                
+                
             }
             else
             {
                 Debug.Log("Did NOT score");
                 clicked = 0;
             }
-            //set all text colors to white (make invisible again)
-            var cards = CollectCards();
 
-            for (int i = 0; i < cards.Length; i++) // for loop to change all cards
+            for (int i = 0; i < cards.Length; i++) // for loop to change all cards back to white
             {
                 cards[i].GetComponentInChildren<TextMeshProUGUI>().CrossFadeAlpha(0, 0, false);
             }
+            AddCards(); // to be ran to see if cards need to be restocked.
         }
     }
 

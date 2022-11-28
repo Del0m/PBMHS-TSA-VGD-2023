@@ -8,8 +8,7 @@ public class MathDash : GameHandler
 {
     string rightMove = "A";
     private int[] numbers = new int[2];
-    //player values
-    private int[] score = new int[4];
+
 
     //UI definitions
     public TextMeshProUGUI[] question;
