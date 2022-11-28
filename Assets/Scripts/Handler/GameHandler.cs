@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameHandler : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class GameHandler : MonoBehaviour
     public Camera miniCam;
 
     //turn
-    public int gameOrder = 1;
+    public int gameOrder = 0;
 
     //ouytside scripts
     public MiniGameManager miniManager;

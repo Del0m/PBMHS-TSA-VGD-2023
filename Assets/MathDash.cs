@@ -208,14 +208,14 @@ public class MathDash : GameHandler
         }
 
     }
-     // partly depreciated until this function can actually trigger stuff on MiniGameManager
+    // partly depreciated until this function can actually trigger stuff on MiniGameManager
     private void EndGame(int score)
     {
         print("Recorded score is: " + score);
-        if(score >= 5)
+        if (score >= 5)
         {
             miniManager.EndMiniGame();
-            for(int i = 0; i < players.Length; i++)
+            for (int i = 0; i < players.Length; i++)
             {
                 miniManager.hasStarted = false;
                 players[i].GetComponent<PlayerInput>().SwitchCurrentActionMap("boardGamePlay");
@@ -223,7 +223,7 @@ public class MathDash : GameHandler
             Debug.Log("Game is Done!");
         }
     }
-    
+
     public override void JumpStart()
     {
         base.JumpStart();

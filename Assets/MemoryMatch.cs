@@ -5,17 +5,40 @@ using UnityEngine;
 using UnityEngine.InputSystem; // for sensing input
 using UnityEngine.EventSystems;
 using TMPro; // for text mesh modification
+using System;
+
 public class MemoryMatch : GameHandler
 {
     //variables
     public int clicked, cardsLeft; // specifically for tracking cards
-    
+    public double timeRemaining = 17;
 
     private GameObject[] cardsPicked = new GameObject[2]; private GameObject[] cards = new GameObject[10];  // for the purpose of cards
+    private GameObject timer, playerText, scoreText;
+    private void Update() // time and end condition 
+    {
+        timeRemaining -= Time.deltaTime;
+        //update UI
+        var timeShown = Convert.ToInt32(timeRemaining);
+        timer.GetComponent<TextMeshProUGUI>().text = "Time Left: " + timeShown;
+        if( timeRemaining < 0 ) // switch player at end of their turn in minigame
+        {
+            timeRemaining = 15;
+            gameOrder++;
+            if( gameOrder > players.Length )
+            {
+                EndGame(); // kill the game
+            }
+        }
 
+    }
     public override void JumpStart()
     {
         base.JumpStart();
+        //timer, score, and player text initalization
+        timer = GameObject.Find("Timer");
+        scoreText = GameObject.Find("Score");
+        playerText = GameObject.Find("Player Turn");
         //build cards
         BuildCards(10); // 10 cards to be built
         //CountDown(); // time players for how long they're in minigame
@@ -66,26 +89,8 @@ public class MemoryMatch : GameHandler
 
             
         }
-
-
-    }
-    private void CountDown() // for the purpose of giving players a time limit for the minigame
-    {
-        var timesUp = Timer(15); // give 15 seconds to player to do minigame
-
-        while(timesUp == false) // hold script till times up
-        {
-            // do nothing
-        }
-        Debug.Log("Times Up!");
-        gameOrder++;
-        //check to see if game order exceeds player count
-        if(gameOrder > players.Length)
-        {
-            gameOrder = 0; // set back to beginning
-        }
-        //recurse function
-        CountDown();
+        //initalize player's turn
+        playerText.GetComponent<TextMeshProUGUI>().text = "Player " + gameOrder + "'s turn!";
     }
 
     private void PlayerAction() // will turn on and off player ability to manipulate UI for the game.
@@ -100,7 +105,7 @@ public class MemoryMatch : GameHandler
         {
             players[i].GetComponent<PlayerInput>().DeactivateInput();
         }
-        players[gameOrder - 1].GetComponent<PlayerInput>().ActivateInput();
+        players[gameOrder].GetComponent<PlayerInput>().ActivateInput();
     }
 
     private void AddCards() // when all cards are off the field, add new ones
@@ -153,6 +158,8 @@ public class MemoryMatch : GameHandler
                 //give 1 point
                 score[gameOrder]++;
                 Debug.Log("You Scored!");
+                //change score text
+                scoreText.GetComponent<TextMeshProUGUI>().text = "Score: " + score[gameOrder];
 
                 //disable cards that were picked as right
                 cardsPicked[0].SetActive(false);
@@ -181,6 +188,32 @@ public class MemoryMatch : GameHandler
             }
             AddCards(); // to be ran to see if cards need to be restocked.
         }
+    }
+
+    //check game end conditions and award win to user
+    private void EndGame()
+    {
+        //for loop to find greatest score
+        var greatestScore = score[0];
+        var greatestPlayer = 0; // player with the highest score
+        for (int i = 0; i < players.Length; i++)
+        {
+            //greatestScore < score[i]?
+            if (greatestScore < score[i])
+            {
+                score[i] = greatestScore;
+                greatestPlayer = i;
+            }
+        }
+        //add scoreManager here []
+        //actually ending the game
+        miniManager.EndMiniGame();
+        for (int i = 0; i < players.Length; i++)
+        {
+            miniManager.hasStarted = false;
+            players[i].GetComponent<PlayerInput>().SwitchCurrentActionMap("boardGamePlay");
+        }
+        Debug.Log("Game is Done!");
     }
 
 
