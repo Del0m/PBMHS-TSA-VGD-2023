@@ -22,18 +22,7 @@
                     "path": "<DualShockGamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "Dice Roll",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "91e74819-e0ea-49a3-b85a-847dd91ed0f1",
-                    "path": "<XInputController>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
+                    "groups": "Controller",
                     "action": "Dice Roll",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -44,7 +33,7 @@
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "PC",
                     "action": "Dice Roll",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -127,7 +116,7 @@
                     "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "PC",
                     "action": "TriviaInput1",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -138,7 +127,7 @@
                     "path": "<DualShockGamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Controller",
                     "action": "TriviaInput1",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -149,7 +138,7 @@
                     "path": "<DualShockGamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "PC",
                     "action": "TriviaInput2",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -160,7 +149,7 @@
                     "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Controller",
                     "action": "TriviaInput2",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -171,7 +160,7 @@
                     "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "PC",
                     "action": "TriviaInput3",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -182,7 +171,7 @@
                     "path": "<DualShockGamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Controller",
                     "action": "TriviaInput3",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -193,7 +182,7 @@
                     "path": "<Keyboard>/4",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "PC",
                     "action": "TriviaInput4",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -204,7 +193,7 @@
                     "path": "<DualShockGamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Controller",
                     "action": "TriviaInput4",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -313,7 +302,7 @@
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Controller",
                     "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -324,7 +313,7 @@
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "PC",
                     "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -335,7 +324,7 @@
                     "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "PC",
                     "action": "Point",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -346,7 +335,7 @@
                     "path": "<Pen>/position",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "PC",
                     "action": "Point",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -357,7 +346,7 @@
                     "path": "<Touchscreen>/touch*/position",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "PC",
                     "action": "Point",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -379,7 +368,7 @@
                     "path": "<Gamepad>/leftStick/up",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Controller",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -390,7 +379,7 @@
                     "path": "<Gamepad>/rightStick/up",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Controller",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -401,7 +390,7 @@
                     "path": "<Gamepad>/leftStick/down",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Controller",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -412,7 +401,7 @@
                     "path": "<Gamepad>/rightStick/down",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Controller",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -423,7 +412,7 @@
                     "path": "<Gamepad>/leftStick/left",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Controller",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -434,7 +423,7 @@
                     "path": "<Gamepad>/rightStick/left",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Controller",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -445,7 +434,7 @@
                     "path": "<Gamepad>/leftStick/right",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Controller",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -456,7 +445,7 @@
                     "path": "<Gamepad>/rightStick/right",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Controller",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -467,7 +456,7 @@
                     "path": "<Gamepad>/dpad",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Controller",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -489,7 +478,7 @@
                     "path": "<Joystick>/stick/up",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Controller",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -500,7 +489,7 @@
                     "path": "<Joystick>/stick/down",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Controller",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -511,7 +500,7 @@
                     "path": "<Joystick>/stick/left",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Controller",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -522,7 +511,7 @@
                     "path": "<Joystick>/stick/right",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Controller",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -544,7 +533,7 @@
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "PC",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -555,7 +544,7 @@
                     "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "PC",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -566,7 +555,7 @@
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "PC",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -577,7 +566,7 @@
                     "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "PC",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -588,7 +577,7 @@
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "PC",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -599,7 +588,7 @@
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "PC",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -610,7 +599,7 @@
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "PC",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -621,7 +610,7 @@
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "PC",
                     "action": "Navigate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -676,7 +665,7 @@
                     "path": "<Mouse>/scroll",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "PC",
                     "action": "ScrollWheel",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -687,7 +676,7 @@
                     "path": "<Mouse>/middleButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "PC",
                     "action": "MiddleClick",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -698,7 +687,7 @@
                     "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "PC",
                     "action": "RightClick",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -706,5 +695,33 @@
             ]
         }
     ],
-    "controlSchemes": []
+    "controlSchemes": [
+        {
+            "name": "PC",
+            "bindingGroup": "PC",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Controller",
+            "bindingGroup": "Controller",
+            "devices": [
+                {
+                    "devicePath": "<DualShockGamepad>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
 }

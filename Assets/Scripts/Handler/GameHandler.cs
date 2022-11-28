@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameHandler : MonoBehaviour
 {
@@ -17,10 +18,13 @@ public class GameHandler : MonoBehaviour
     public Camera miniCam;
 
     //turn
-    public int gameOrder = 1;
+    public int gameOrder = 0;
 
     //ouytside scripts
     public MiniGameManager miniManager;
+
+    //player values
+    public int[] score = new int[4];
 
     // Start is called before the first frame update
     void Start()
@@ -65,10 +69,10 @@ public class GameHandler : MonoBehaviour
     }
     public  virtual void JumpStart() // to be used to start the questions for the game.
     {
-
+        score = new int[4] { 0, 0, 0, 0 }; // setting arrays with base values
     }
     //timer for the player; will change gameorder when timer runs out; to be used in any minigame that needs it
-    public void Timer(double timeRemaining)
+    public bool Timer(double timeRemaining)
     {
         //using time.deltaTime to how long user has left
         while (timeRemaining > 0)
@@ -79,9 +83,9 @@ public class GameHandler : MonoBehaviour
         if (timeRemaining < 0) // check if time is up after while loop
         {
             Debug.Log("Times up!");
-            return; 
+            return true; 
         }
-        return;
+        return false; // return false in case of error
     }
 
 }
