@@ -7,14 +7,13 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     //Range used to make sure player doesn't select points very far away from them
+    //Maximum range to find the closest point
     public float range = 8f;
     //Speed of the player moving to a point
     public float movementSpeed = 5;
 
     //Minimum range to find the closest point
     public float minRange = 3f;
-    //Maximum range to find the closest point
-    public float maxRange = 7f;
 
     private Camera cam;
     public Vector3 norm { private get; set; }
@@ -174,7 +173,7 @@ public class PlayerMovement : MonoBehaviour
     {
         foreach(PointCheck p in points)
         {
-            if(Vector3.Distance(this.transform.position, p.pos) < maxRange && p.correspondingPlayerIndex == ps.playerIndex && !p.hasSeenPlayer)
+            if(Vector3.Distance(this.transform.position, p.pos) < range && p.correspondingPlayerIndex == ps.playerIndex && !p.hasSeenPlayer)
             {
                 if(Vector3.Distance(this.transform.position, p.pos) > minRange)
                 {
