@@ -18,7 +18,7 @@ public class MemoryMatch : GameHandler
         base.JumpStart();
         //build cards
         BuildCards(10); // 10 cards to be built
-        CountDown(); // time players for how long they're in minigame
+        //CountDown(); // time players for how long they're in minigame
     }
     private void BuildCards(int cardAmount) // grabs given cards, and gives them random numbers
     {
