@@ -8,6 +8,8 @@ public class PointCheck : MonoBehaviour
 
     public int correspondingPlayerIndex = -1;
 
+    public bool hasSeenPlayer = false;
+
     Renderer mesh;
 
     // Start is called before the first frame update
@@ -60,6 +62,18 @@ public class PointCheck : MonoBehaviour
             }
             //debug
             print("There is an entity at " + this.name);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.gameObject.layer == LayerMask.NameToLayer("Entity"))
+        {
+            hasSeenPlayer = true;
+        }
+        else
+        {
+            hasSeenPlayer = false;
         }
     }
 

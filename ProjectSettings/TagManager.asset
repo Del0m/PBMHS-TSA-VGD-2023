@@ -13,6 +13,7 @@ TagManager:
   - Minigame Question
   - Minigame Turn
   - Minigame Card
+  - pos
   layers:
   - Default
   - TransparentFX
@@ -20,8 +21,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - dir
+  - Entity
   - 
   - 
   - 

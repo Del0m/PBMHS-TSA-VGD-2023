@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -9,6 +10,11 @@ public class PlayerMovement : MonoBehaviour
     public float range = 8f;
     //Speed of the player moving to a point
     public float movementSpeed = 5;
+
+    //Minimum range to find the closest point
+    public float minRange = 3f;
+    //Maximum range to find the closest point
+    public float maxRange = 7f;
 
     private Camera cam;
     public Vector3 norm { private get; set; }
@@ -21,21 +27,41 @@ public class PlayerMovement : MonoBehaviour
     private Renderer mesh;
     private Randomizer rand;
 
+    private GameObject[] pointObjects;
+    public List<PointCheck> points = new List<PointCheck>();
+
+    void addMapPoints()
+    {
+        //Find the points and put into array
+        pointObjects = GameObject.FindGameObjectsWithTag("pos");
+
+        for (int i = 0; i < pointObjects.Length; i++)
+        {
+            if (i == pointObjects.Length)
+                break;
+            points.Add(pointObjects[i].GetComponent<PointCheck>());
+        }
+
+        print(points.Count);
+        //Put points into a list
+    }
+
     // Start is called before the first frame update
     void Awake()
     {
         //Set by default the current position
         norm = this.transform.position;
-        //Find the position manager
-        GameObject obj = GameObject.FindGameObjectWithTag("Manager");
         //Sets the camera to the object with the 'MainCamera' tag
-        cam = this.GetComponentInChildren<Camera>();
+        GameObject camObj = GameObject.FindGameObjectWithTag("MainCamera");
+        cam = camObj.GetComponent<Camera>();
         //Set the 'Randomizer' class 
         rand = this.GetComponent<Randomizer>();
         //Set the 'PlayerScore' class
         ps = this.GetComponent<PlayerScore>();
         //Set the Player's renderer
         mesh = this.GetComponent<Renderer>();
+
+        addMapPoints();
 
         StartCoroutine(waitForInit());
     }
@@ -61,10 +87,11 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator waitForInit()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1.5f);
         // Debug | on awake set a random number between 1 - 6
-        if (rand != null)
-            playerTurn = rand.DiceRoll(1, 6);
+        // if (rand != null)
+        //      playerTurn = rand.DiceRoll(1, 6);
+        playerTurn = 99999;
         changePlayerColor();
         print(playerTurn);
     }
@@ -95,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
 
         // When player has turns, the player is able to give input
         //[] Make a different type of input if on controller
-        if(playerTurn > 0)
+        if(playerTurn > 0 && cam != null)
         {
             userInput();
         }
@@ -128,10 +155,38 @@ public class PlayerMovement : MonoBehaviour
                     //Set point target
                     Vector3 tg = new Vector3(tar.pos.x, 0f, tar.pos.z);
                     //Give info to position manager
-                    if (checkPath(tg, dist) && tar.correspondingPlayerIndex == ps.playerIndex && !tar.isOccupied)
+                    if (checkPath(tg, dist) && tar.correspondingPlayerIndex == ps.playerIndex && !tar.isOccupied && !tar.hasSeenPlayer)
                     {
                         norm = tg;
                     }
+                }
+            }
+        }else if (Input.GetKeyUp(KeyCode.Space))
+        {
+            print("Space being pressed");
+            // Automatically move to closes point
+            checkClosePoint();
+        }
+    }
+
+
+    void checkClosePoint()
+    {
+        foreach(PointCheck p in points)
+        {
+            if(Vector3.Distance(this.transform.position, p.pos) < maxRange && p.correspondingPlayerIndex == ps.playerIndex && !p.hasSeenPlayer)
+            {
+                if(Vector3.Distance(this.transform.position, p.pos) > minRange)
+                {
+                    Vector3 t = new Vector3(p.pos.x, 0f, p.pos.z);
+
+                    float dist = Vector3.Distance(this.transform.position, p.pos);
+
+                    if(checkPath(t, dist) && !p.isOccupied)
+                    {
+                        norm = t;
+                    }
+                    break;
                 }
             }
         }
