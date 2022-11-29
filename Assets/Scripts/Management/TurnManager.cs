@@ -13,12 +13,12 @@ public class TurnManager : MonoBehaviour
 
     public int currentTurn = 1;
     public int turnsElapsed = 0;
-
+    int previousTurn = 1; // for the purposes of checking if currentturn has updated!
     static string winner;
 
     //minigame Management elements
 
-    private MiniGameManager miniGameScript;
+    public MiniGameManager miniGameScript;
 
     //grab score manager
     private ScoreManager scoreScript;
@@ -50,12 +50,27 @@ public class TurnManager : MonoBehaviour
     private void Update()
     {
         NewRound();
+        UpdateTurn();
     }
     public void ChangeTurn() // to be called from player controls to change to the next turn
     {
         currentTurn = currentTurn + 1; // update to next turn
         turnUI.GetComponent<TextMeshProUGUI>().text = "Player " + (currentTurn+1).ToString() + "'s turn!";
 
+    }
+    public void UpdateTurn()
+    {
+        if(previousTurn != currentTurn)
+        {
+            for (int i = 0; i < players.Length; i++) // runPlayerTurn on all players
+            {
+                players[i].GetComponent<PlayerControls>().PlayerTurn(); // update turns on player array.
+                Debug.Log("Updating Player " + i);
+            }
+
+            previousTurn = currentTurn;
+        }
+        
     }
     public void NewRound() // if current turn > player.length; run minigame
     {
@@ -87,7 +102,7 @@ public class TurnManager : MonoBehaviour
             }
 #endif
             
-            for (int i = 0; i == players.Length; i++)
+            for (int i = 0; i < players.Length; i++)
             {
                 //check all player turns
                 players[i].GetComponent<PlayerControls>().PlayerTurn();
@@ -95,7 +110,7 @@ public class TurnManager : MonoBehaviour
             if (miniGameScript.hasStarted == false)
             {
                 currentTurn = 1;
-                miniGameScript.StartMiniGame(players);
+                miniGameScript.StartMiniGame();
                 miniGameScript.hasStarted = true;
             }
         }

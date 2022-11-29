@@ -283,19 +283,67 @@ MonoBehaviour:
     m_ActionId: 0b754ce7-50d6-4855-9cb6-10157e91ca68
     m_ActionName: Off/New action
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 685583093832377026}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: TriviaGameInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: eae981b5-83b0-4d92-a4b2-5c48a778c180
     m_ActionName: miniGamePlay/TriviaInput1[/Keyboard/1,/DualShock4GamepadHID/buttonSouth]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 685583093832377026}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: TriviaGameInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 45def2b6-e75c-49eb-899f-4f53404f8a89
     m_ActionName: miniGamePlay/TriviaInput2[/DualShock4GamepadHID/buttonWest,/Keyboard/2]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 685583093832377026}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: TriviaGameInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 27705e51-07bb-4299-8d63-b63cbbb51aa7
     m_ActionName: miniGamePlay/TriviaInput3[/Keyboard/3,/DualShock4GamepadHID/buttonNorth]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 685583093832377026}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: TriviaGameInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 7edd2b31-6180-44a7-bb7e-d50da099008c
     m_ActionName: miniGamePlay/TriviaInput4[/Keyboard/4,/DualShock4GamepadHID/buttonEast]
   - m_PersistentCalls:
@@ -338,6 +386,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: b86c7005-a58d-4928-8b86-e06a4d690e9a
     m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 433cffb4-5169-4fd5-8956-66771039061b
+    m_ActionName: boardGamePlay/Pause Menu[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: boardGamePlay

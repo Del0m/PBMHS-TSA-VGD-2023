@@ -191,7 +191,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""path"": ""<DualShockGamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""PC"",
+                    ""groups"": ""Controller"",
                     ""action"": ""TriviaInput2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -202,7 +202,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/2"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Controller"",
+                    ""groups"": ""PC"",
                     ""action"": ""TriviaInput2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false

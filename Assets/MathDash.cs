@@ -15,8 +15,10 @@ public class MathDash : GameHandler
 
     private void Start()
     {
+        players = GameObject.FindGameObjectsWithTag("Player");
         CreateQuestion(); // start minigame
     }
+
     private int[] CreateQuestion() // uses math formula to return 4 choices
     {
         //math formula to create questions
@@ -227,6 +229,14 @@ public class MathDash : GameHandler
     public override void JumpStart()
     {
         base.JumpStart();
+
+       /*
+        * for (int i = 0; i < players.Length; i++)
+        {
+            // change controls on all the players
+            players[i].GetComponent<PlayerControls>().PlayerMiniGameMode(true);
+        }
+       */
         CreateQuestion();
     }
 

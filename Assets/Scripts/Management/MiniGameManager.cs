@@ -26,10 +26,10 @@ public class MiniGameManager : MonoBehaviour
     }
 
 
-    public void StartMiniGame(GameObject[] playerCall) //called from TurnManager, this will grab all given players and bring them to a minigame
+    public void StartMiniGame() //called from TurnManager, this will grab all given players and bring them to a minigame
     {
         Debug.Log("Starting Minigame!");
-        players = playerCall;
+        players = GameObject.FindGameObjectsWithTag("Player");
         //changing player controls
         for (int i = 0; i < players.Length; i++)
         {
@@ -50,11 +50,17 @@ public class MiniGameManager : MonoBehaviour
     {
         hasStarted = false;
         Debug.Log("Ending minigame");
+        players = GameObject.FindGameObjectsWithTag("Player");
         for (int i = 0; i < players.Length; i++) // brings plrs back to board.
         {
+            if(i == players.Length)
+            {
+                break;
+            }
             Debug.Log("Changing Board on Player " + i);
             players[i].GetComponent<PlayerInput>().SwitchCurrentActionMap("boardGamePlay");
         }
+
         KillGamesFromFile(); // deletes minigame
     }
 

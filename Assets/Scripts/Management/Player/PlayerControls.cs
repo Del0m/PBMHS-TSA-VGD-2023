@@ -55,17 +55,18 @@ public class PlayerControls : MonoBehaviour
         //controls.miniGamePlay.MiniGameTest.started += MiniGameTest; // test control for minigame mode
         //controls.boardGamePlay.DiceRoll.started += DiceRoll; // test control for boardgame mode
         Debug.Log(gameplayInput.currentActionMap);
-        if(turnScript.currentTurn == turnOrder)
+       /* if(turnScript.currentTurn == turnOrder && turnScript.miniGameScript.hasStarted != true)
         {
             PlayerTurn();
         }
-
+       */
     }
     
     public void PlayerTurn() // check if player turn is now
     {
         int currentTurn = turnScript.currentTurn; //grab all players on map, give turn order based on amount of players
         Debug.Log("Current Turn: " + currentTurn + " Turn Order: " + turnOrder);
+
 
         if (turnOrder != currentTurn)
         {

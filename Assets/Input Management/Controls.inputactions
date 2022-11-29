@@ -169,7 +169,7 @@
                     "path": "<DualShockGamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
-                    "groups": "PC",
+                    "groups": "Controller",
                     "action": "TriviaInput2",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -180,7 +180,7 @@
                     "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Controller",
+                    "groups": "PC",
                     "action": "TriviaInput2",
                     "isComposite": false,
                     "isPartOfComposite": false

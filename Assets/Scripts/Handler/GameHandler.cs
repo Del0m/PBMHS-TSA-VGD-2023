@@ -31,6 +31,8 @@ public class GameHandler : MonoBehaviour
     {
         miniManager = GameObject.FindGameObjectWithTag("Mini Game Manager").GetComponent<MiniGameManager>();
 
+        players = new GameObject[GameObject.FindGameObjectsWithTag("Player").Length];
+
         players = GameObject.FindGameObjectsWithTag("Player"); // find all players
 
         spawns = GameObject.FindGameObjectsWithTag("Minigame Spawn"); // spawn for player to put in if need be.

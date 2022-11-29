@@ -767,11 +767,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b58ad40207572ad47997694776557993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  players: []
+  players:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   input: 
   miniCam: {fileID: 1723600911007300850}
   gameOrder: 1
   miniManager: {fileID: 2599730231567918915, guid: 9af4a2d24364a11488fbaef3814e917a, type: 3}
+  score: 00000000000000000000000000000000
   question:
   - {fileID: 5310581155180794186}
   - {fileID: 3192511159010174625}
