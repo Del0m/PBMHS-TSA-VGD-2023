@@ -60,10 +60,16 @@ public class TurnManager : MonoBehaviour
     }
     public void UpdateTurn()
     {
+        players = GameObject.FindGameObjectsWithTag("Player");
         if(previousTurn != currentTurn)
         {
-            for (int i = 0; i < players.Length; i++) // runPlayerTurn on all players
+            for (int i = 0; i <= players.Length; i++) // runPlayerTurn on all players
             {
+                if(players.Length == 0)
+                {
+                    break;
+                }
+
                 players[i].GetComponent<PlayerControls>().PlayerTurn(); // update turns on player array.
                 Debug.Log("Updating Player " + i);
             }
