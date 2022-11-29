@@ -43,7 +43,8 @@ public class PlayerControls : MonoBehaviour
 
 
         //initalizing inital position
-        var initalSpot = GameObject.Find("PlayerSpawn" + turnOrder);
+        var val = turnOrder - 1;
+        var initalSpot = GameObject.Find("PlayerSpawn" + val);
         this.gameObject.transform.position = new Vector3(initalSpot.transform.position.x,this.transform.position.y+1,initalSpot.transform.position.z);
 
         var playerMovementScript = this.gameObject.GetComponent<PlayerMovement>();
@@ -84,15 +85,10 @@ public class PlayerControls : MonoBehaviour
         }
 
     }
-    public void DiceRoll(InputAction.CallbackContext context) // run when diceroll performed
+    public void FinishTurn()
     {
-        if(context.performed) // makes sure it is ONLY RAN ONCE!!!! courtesy of my boy GlenZPS
-        {
-            Debug.Log("Performing DiceRoll!");
-            turnScript.currentTurn++;
-            PlayerTurn();
-        }
-
+        turnScript.currentTurn++; // advance turn
+        PlayerTurn();
     }
     //
     public void TriviaGameInput(InputAction.CallbackContext context) // run when minigametest performed

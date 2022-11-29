@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 public class TurnManager : MonoBehaviour
 {
     private PlayerManager playerManager;
@@ -21,6 +22,10 @@ public class TurnManager : MonoBehaviour
 
     //grab score manager
     private ScoreManager scoreScript;
+
+    //ui elements
+    private GameObject movementUI;
+    private GameObject turnUI;
     private void Awake()
     {
         this.gameObject.tag = "Turn Manager";//change this object to have turn manager tag
@@ -33,6 +38,10 @@ public class TurnManager : MonoBehaviour
         playerManager = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>(); // call player manager for player array
         miniGameScript = GameObject.FindGameObjectWithTag("Mini Game Manager").GetComponent<MiniGameManager>(); // call manager to start / end / bring players to games.
 
+
+        //processing ui elements
+        movementUI = GameObject.Find("Movement Turn");
+        turnUI = GameObject.Find("Moves Left");
     }
     private void Update()
     {
@@ -41,6 +50,7 @@ public class TurnManager : MonoBehaviour
     public void ChangeTurn() // to be called from player controls to change to the next turn
     {
         currentTurn = currentTurn + 1; // update to next turn
+        turnUI.GetComponent<TextMeshProUGUI>().text = "Player " + currentTurn + "'s turn!";
 
     }
     public void NewRound() // if current turn > player.length; run minigame
@@ -58,7 +68,7 @@ public class TurnManager : MonoBehaviour
                 }
                 winner = "i";
             }
-            SceneManager.LoadScene("End");
+            SceneManager.LoadScene("EndScreen");
         }
         while (currentTurn > players.Length)
         {

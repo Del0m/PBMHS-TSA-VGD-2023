@@ -35,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
     private PlayerInput playerControl;
     private Controls controls;
 
+    private PlayerControls playerScript;
+
     void addMapPoints()
     {
         //Find the points and put into array
@@ -71,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
         //set player controls
         controls = new Controls();
         playerControl = this.GetComponent<PlayerInput>();
+        playerScript = this.GetComponent<PlayerControls>();
 
         StartCoroutine(waitForInit());
 
@@ -148,6 +151,10 @@ public class PlayerMovement : MonoBehaviour
         if(playerTurn > 0)
         {
             checkClosePoint();
+        }
+        else // end the turn
+        {
+            
         }
         /*
         //When player uses input 
