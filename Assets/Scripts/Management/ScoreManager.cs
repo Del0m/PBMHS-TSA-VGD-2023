@@ -47,6 +47,10 @@ public class ScoreManager : MonoBehaviour
     }
 
     // Awake is called before first frame
+    private void Awake()
+    {
+        this.gameObject.tag = "Score Manager";
+    }
     void Start()
     {
         findPlayers();

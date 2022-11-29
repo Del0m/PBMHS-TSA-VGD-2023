@@ -4,17 +4,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class TurnManager : MonoBehaviour
 {
     private PlayerManager playerManager;
     private GameObject[] players;
 
     public int currentTurn = 1;
+    public int turnsElapsed = 0;
+
+    static string winner;
 
     //minigame Management elements
 
     private MiniGameManager miniGameScript;
+
+    //grab score manager
+    private ScoreManager scoreScript;
     private void Awake()
     {
         this.gameObject.tag = "Turn Manager";//change this object to have turn manager tag
@@ -23,8 +29,7 @@ public class TurnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-
+        scoreScript = GameObject.FindGameObjectWithTag("Score Manager").GetComponent<ScoreManager>();
         playerManager = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>(); // call player manager for player array
         miniGameScript = GameObject.FindGameObjectWithTag("Mini Game Manager").GetComponent<MiniGameManager>(); // call manager to start / end / bring players to games.
 
@@ -40,7 +45,22 @@ public class TurnManager : MonoBehaviour
     }
     public void NewRound() // if current turn > player.length; run minigame
     {
-        while(currentTurn > players.Length)
+        if (turnsElapsed > 9) // end the game
+        {
+            Debug.Log("Ending the game!");
+            var highestScore = 0;
+            var highestPlayer = 0;
+            for (int i = 0; i < scoreScript.playerS.Length; i++) // check to see who has the highest score
+            {
+                if (highestScore < scoreScript.playerS[i].Score)
+                {
+                    highestPlayer = i;
+                }
+                winner = "i";
+            }
+            SceneManager.LoadScene("End");
+        }
+        while (currentTurn > players.Length)
         {
 #if UNITY_EDITOR
             if(players.Length == 0)
@@ -49,6 +69,7 @@ public class TurnManager : MonoBehaviour
             }
 #endif
             currentTurn = 1;
+            
             for (int i = 0; i == players.Length; i++)
             {
                 //check all player turns
