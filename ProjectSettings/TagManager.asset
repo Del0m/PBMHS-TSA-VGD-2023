@@ -13,8 +13,9 @@ TagManager:
   - Minigame Question
   - Minigame Turn
   - Minigame Card
-  - pos
   - Score Manager
+  - Movement Manager
+  - Tile
   layers:
   - Default
   - TransparentFX

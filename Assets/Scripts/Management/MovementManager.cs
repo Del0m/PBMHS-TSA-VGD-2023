@@ -8,7 +8,7 @@ using UnityEngine;
 public class MovementManager : MonoBehaviour
 {
     //tile and tile related goods
-    public Transform[] tiles;
+    public Transform[] tile;
 
     //managers
     private PlayerManager plrManage;
@@ -26,7 +26,7 @@ public class MovementManager : MonoBehaviour
 
     void Start()
     {
-        tiles = InitializeTiles();
+        tile = InitializeTiles();
     }
     public void GetPlayers(GameObject[] foreignPlayer) // to grab players from playermanager array
     {
@@ -45,5 +45,11 @@ public class MovementManager : MonoBehaviour
         }
         return localTile;
     }
+    public Transform CallTile(int position, int increase)
+    {
+        var newPosition = position + increase; // adding their current position and rolled die
 
+        //giving them the specific tile
+        return tile[newPosition];
+    }
 }

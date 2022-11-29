@@ -39,7 +39,8 @@ public class PlayerControls : MonoBehaviour
         controls = new Controls();
         PlayerTurn();
 
-
+        //setting start position
+        this.transform.position = moveManage.CallTile(position, 0).position;
 
     }
     void Update()
@@ -76,15 +77,31 @@ public class PlayerControls : MonoBehaviour
         turnScript.currentTurn++; // advance turn
         PlayerTurn();
     }
+    //variable for the purpose of moving
+    bool hasRan = false;
     public void DiceRoll(InputAction.CallbackContext context) // run when diceroll performed
     {
-        if(context.performed) // makes sure its only ran once
+        if(context.performed && hasRan == false) // makes sure its only ran once
         {
-            PlayerTurn(); // makes sure its their turn
-
-            //running public function from MovementManager
-
+            StartCoroutine(Moving(2));
         }
+    }
+    IEnumerator Moving(int wait)
+    {
+        hasRan = true;
+        var diceRoll = Random.Range(1, 7);
+
+        var movesRemaining = diceRoll;
+        while(movesRemaining > 0) // keep moving player to next tile until no more moves
+        {
+            Debug.Log("Moving.");
+            var newTile = moveManage.CallTile(position, 1); // moving one tile at a time
+            position++; // moving position ahead
+            this.transform.position = newTile.position; // teleport to new position
+            movesRemaining--; // decrease movement till they are out of moves left.
+            yield return new WaitForSeconds(wait); // wait a certain amount of time until charting the next move.
+        }
+        FinishTurn(); // end turn, send to next player
     }
     public void TriviaGameInput(InputAction.CallbackContext context) // run when tirivalinput is performed
     {
