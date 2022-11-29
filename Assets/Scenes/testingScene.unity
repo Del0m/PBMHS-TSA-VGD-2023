@@ -893,6 +893,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mini Game Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 2599730231567918914, guid: 9af4a2d24364a11488fbaef3814e917a, type: 3}
+      propertyPath: m_TagString
+      value: Mini Game Manager
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9af4a2d24364a11488fbaef3814e917a, type: 3}
 --- !u!1001 &8197119642370370014

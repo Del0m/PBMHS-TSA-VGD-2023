@@ -41,6 +41,11 @@ public class PlayerControls : MonoBehaviour
         //initalize controls class
         controls = new Controls();
 
+
+        //initalizing inital position
+        var initalSpot = GameObject.Find("Point " + "(" + turnOrder + ")");
+        this.gameObject.transform.position = new Vector3(initalSpot.transform.position.x,this.transform.position.y,initalSpot.transform.position.z);
+
     }
     void Update()
     {
