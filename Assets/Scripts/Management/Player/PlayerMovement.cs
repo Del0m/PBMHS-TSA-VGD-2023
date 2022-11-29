@@ -131,7 +131,6 @@ public class PlayerMovement : MonoBehaviour
         //debug and can be removed
         Debug.DrawLine(transform.position, transform.forward * range, Color.yellow);
 
-
         // Move player to point when there is a change on the target
         moveToPoint(norm);
     }
@@ -146,7 +145,10 @@ public class PlayerMovement : MonoBehaviour
     {
         print("Checking the closest point...");
         // Automatically move to closes point
-        checkClosePoint();
+        if(playerTurn > 0)
+        {
+            checkClosePoint();
+        }
         /*
         //When player uses input 
         if (Input.GetMouseButtonDown(0))
@@ -158,7 +160,6 @@ public class PlayerMovement : MonoBehaviour
         }
         */
     }
-
 
     void checkClosePoint()
     {
