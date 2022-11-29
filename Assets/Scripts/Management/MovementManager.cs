@@ -7,25 +7,43 @@ using UnityEngine;
 
 public class MovementManager : MonoBehaviour
 {
-    //initalizing
+    //tile and tile related goods
     public Transform[] tiles;
-    GameObject player;
-    int position;
-    public int movement;
-    void Start()
+
+    //managers
+    private PlayerManager plrManage;
+    private TurnManager turnManage;
+
+    //player array
+    private GameObject[] players;
+
+    private void Awake() // for manager initalization
     {
-        player = this.gameObject;
-        position = 1;
-        int movement = 0;
-        MoveTile(player, tiles, position, movement);
+        this.gameObject.tag = "Movement Manager";
+        /*plrManage = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>();
+        turnManage = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>(); */
     }
 
-    private void MoveTile(GameObject player, Transform[] tiles, int position, int movement)
+    void Start()
     {
-        //will change position, then change transform of player to tile.
-        position = movement + position - 1;
-        
-        //change position to new tile
-        player.transform.position = new Vector3(tiles[position].position.x, tiles[position].position.y, player.transform.position.z); // no z
+        tiles = InitializeTiles();
     }
+    public void GetPlayers(GameObject[] foreignPlayer) // to grab players from playermanager array
+    {
+        players = foreignPlayer;
+    }
+
+    Transform[] InitializeTiles()
+    {
+        //will grab all tiles on map, and will find length, and categorize them
+        var tileAmount = GameObject.FindGameObjectsWithTag("Tile");
+        var localTile = new Transform[tileAmount.Length];
+        for(int i = 0; i < tileAmount.Length; i++) // loop through all tiles, put them in neat array :)
+        {
+            Debug.Log("collecting tile " + i);
+           localTile[i] = tileAmount[i].transform;
+        }
+        return localTile;
+    }
+
 }

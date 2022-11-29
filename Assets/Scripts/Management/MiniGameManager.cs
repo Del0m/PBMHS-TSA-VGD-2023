@@ -22,13 +22,6 @@ public class MiniGameManager : MonoBehaviour
     {
         this.gameObject.tag = "Mini Game Manager";
     }
-    private void Update() // checks to see if the game has ended
-    {
-        if(GameObject.FindGameObjectWithTag("Minigame") == null) //checks if game is still on map
-        {
-            EndMiniGame();
-        }    
-    }
 
 
     public void StartMiniGame(GameObject[] playerCall) //called from TurnManager, this will grab all given players and bring them to a minigame

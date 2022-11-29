@@ -208,11 +208,13 @@ public class MemoryMatch : GameHandler
         //add scoreManager here []
         //actually ending the game
         miniManager.EndMiniGame();
+        /*
         for (int i = 0; i < players.Length; i++)
         {
             miniManager.hasStarted = false;
             players[i].GetComponent<PlayerInput>().SwitchCurrentActionMap("boardGamePlay");
         }
+        */
         Debug.Log("Game is Done!");
     }
 

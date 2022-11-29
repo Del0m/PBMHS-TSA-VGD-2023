@@ -13,7 +13,7 @@ public class ScoreManager : MonoBehaviour
     {
         //Finds Game Objects with tag 'Player'
         playerObj = GameObject.FindGameObjectsWithTag("Player");
-        print("Player obj list is " + playerObj.Length);
+        //print("Player obj list is " + playerObj.Length);
 
         //Sort 1D array in order by name from least to greatest
         Array.Sort(playerObj, (a, b) => a.name.CompareTo(b.name));
@@ -40,7 +40,7 @@ public class ScoreManager : MonoBehaviour
             {
                 playerS[i].playerIndex = i;
                 //debug
-                print(playerObj[i].name + " has an index of " + playerS[i].playerIndex);
+                //print(playerObj[i].name + " has an index of " + playerS[i].playerIndex);
             }
             i++;
         }

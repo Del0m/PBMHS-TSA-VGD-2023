@@ -151,21 +151,24 @@ public class PlayerMovement : MonoBehaviour
     }
 
     bool hasRan = false;
-    public void userInput()
+    public void userInput(InputAction.CallbackContext context)
     {
-        // Automatically move to closes point
-        if(hasRan == false) // not allow player to roll several times.
+        if(context.performed)
         {
-            StartCoroutine(MakeMove(2));
+            // Automatically move to closes point
+            playerScript.PlayerTurn();
+            if (hasRan == false) // not allow player to roll several times.
+            {
+                StartCoroutine(MakeMove(2));
+            }
         }
-
     }
 
     void checkClosePoint()
     {
         foreach(PointCheck p in points)
         {
-            if(Vector3.Distance(this.transform.position, p.pos) < range && p.correspondingPlayerIndex == ps.playerIndex && !p.hasSeenPlayer)
+            if(Vector3.Distance(this.transform.position, p.pos) < range && p.correspondingPlayerIndex == ps.playerIndex)
             {
                 if(Vector3.Distance(this.transform.position, p.pos) > minRange)
                 {
@@ -195,12 +198,14 @@ public class PlayerMovement : MonoBehaviour
         transform.LookAt(tart);
 
         //Check his path for entities
+        /*
         if(Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, dist, LayerMask.GetMask("Entity"))){
             //debug
             print("Entity is in my path");
 
             return false;
         }
+        */
 
         //Check distance from the player
         if(Vector3.Distance(this.transform.position, tart) > range)

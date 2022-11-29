@@ -10,47 +10,36 @@ public class PlayerControls : MonoBehaviour
 {
     //stats will remain here for the time being...
     [Header("Stats")]
-    public int playerScore;
+    public int position;
 
     //script to be called for player management
     [SerializeField]
     private GameObject managerObject;
     public PlayerManager managerScript;
-    public TurnManager turnScript;
-
+    private TurnManager turnScript;
+    private MovementManager moveManage;
     //turns and controls
     public int turnOrder;
 
     [Header("Controls")]
     public PlayerInput gameplayInput;
     public Controls controls;
-    private void Awake() // can only grab things on object already
+
+    private void Start() // run methods on start
     {
-        managerScript = managerObject.GetComponent<PlayerManager>(); // grab player manager
+        managerScript = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>();// grab player manager
+        moveManage = GameObject.FindGameObjectWithTag("Movement Manager").GetComponent<MovementManager>(); // grab movement manager
         gameplayInput = this.gameObject.GetComponent<PlayerInput>(); // grabbing player controls to turn on/off and change inputmaps
         turnScript = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>(); // grabs turnManager off of PlayerManager
         this.gameObject.tag = "Player"; //set player tag to "Player"
 
-        PlayerTurn();
-    }
-
-
-
-    private void Start() // run methods on start
-    {
         turnOrder = GameObject.FindGameObjectsWithTag("Player").Length; //giving player turn order
 
         //initalize controls class
         controls = new Controls();
+        PlayerTurn();
 
 
-        //initalizing inital position
-        var val = turnOrder - 1;
-        var initalSpot = GameObject.Find("PlayerSpawn" + val);
-        this.gameObject.transform.position = new Vector3(initalSpot.transform.position.x,this.transform.position.y+1,initalSpot.transform.position.z);
-
-        var playerMovementScript = this.gameObject.GetComponent<PlayerMovement>();
-        playerMovementScript.norm = this.gameObject.transform.position;
 
     }
     void Update()
@@ -58,34 +47,28 @@ public class PlayerControls : MonoBehaviour
         //control update functions
         //controls.miniGamePlay.MiniGameTest.started += MiniGameTest; // test control for minigame mode
         //controls.boardGamePlay.DiceRoll.started += DiceRoll; // test control for boardgame mode
-        if(GameObject.FindGameObjectWithTag("Mini Game Manager").GetComponent<MiniGameManager>().hasStarted == false)
-        {
-            gameplayInput.SwitchCurrentActionMap("boardGamePlay");
-        }
-        else
-        {
-            gameplayInput.SwitchCurrentActionMap("miniGamePlay");
-        }
         Debug.Log(gameplayInput.currentActionMap);
+        if(turnScript.currentTurn == turnOrder)
+        {
+            PlayerTurn();
+        }
     }
     
     public void PlayerTurn() // check if player turn is now
     {
-        Debug.Log("running PlayerTurn on player " + turnOrder);
-        int currentTurn = turnScript.currentTurn;
+        int currentTurn = turnScript.currentTurn; //grab all players on map, give turn order based on amount of players
+        Debug.Log("Current Turn: " + currentTurn + " Turn Order: " + turnOrder);
 
-        Debug.Log(currentTurn);
-        //grab all players on map, give turn order based on amount of players
-
-        if(turnOrder != currentTurn)
+        if (turnOrder != currentTurn)
         {
+            Debug.Log("Turning off action...");
             gameplayInput.SwitchCurrentActionMap("Off"); // disable gameplay controls
+
         }
         else
         {
             gameplayInput.SwitchCurrentActionMap("boardGamePlay"); // enable gameplay controls
         }
-
     }
     public void FinishTurn()
     {
@@ -93,8 +76,17 @@ public class PlayerControls : MonoBehaviour
         turnScript.currentTurn++; // advance turn
         PlayerTurn();
     }
-    //
-    public void TriviaGameInput(InputAction.CallbackContext context) // run when minigametest performed
+    public void DiceRoll(InputAction.CallbackContext context) // run when diceroll performed
+    {
+        if(context.performed) // makes sure its only ran once
+        {
+            PlayerTurn(); // makes sure its their turn
+
+            //running public function from MovementManager
+
+        }
+    }
+    public void TriviaGameInput(InputAction.CallbackContext context) // run when tirivalinput is performed
     {
         if (context.performed) // makes sure it is ONLY RAN ONCE!!!! courtesy of my boy GlenZPS
         {

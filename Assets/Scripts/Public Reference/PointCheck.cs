@@ -69,7 +69,7 @@ public class PointCheck : MonoBehaviour
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("Entity"))
         {
-            hasSeenPlayer = true;
+            hasSeenPlayer = false;
         }
         else
         {

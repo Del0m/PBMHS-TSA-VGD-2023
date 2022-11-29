@@ -9,7 +9,7 @@ using TMPro;
 public class TurnManager : MonoBehaviour
 {
     private PlayerManager playerManager;
-    private GameObject[] players;
+    public GameObject[] players;
 
     public int currentTurn = 1;
     public int turnsElapsed = 0;

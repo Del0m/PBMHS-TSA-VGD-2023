@@ -207,8 +207,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152bb9dae49c4ac47b0939f53fd3c210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 15
-  movementSpeed: 8
+  range: 8
+  movementSpeed: 12
   minRange: 3
   norm: {x: 0, y: 0, z: 0}
   points: []
@@ -255,7 +255,7 @@ MonoBehaviour:
   managerScript: {fileID: 8197119641342339074, guid: 68bf2936e131abb4990f2e44dc3f3d07, type: 3}
   turnScript: {fileID: 0}
   turnOrder: 0
-  gameplayInput: {fileID: 0}
+  gameplayInput: {fileID: 1532664851640778665}
 --- !u!114 &1532664851640778665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -286,7 +286,7 @@ MonoBehaviour:
       - m_Target: {fileID: 7935428175225436900}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: userInput
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

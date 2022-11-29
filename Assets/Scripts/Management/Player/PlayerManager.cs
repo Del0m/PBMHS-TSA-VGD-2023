@@ -11,12 +11,15 @@ public class PlayerManager : MonoBehaviour
 
     public TurnManager turnManager;
     private ScoreManager scoreScript;
+    public MovementManager moveManage;
 
     private void Start() // intializing scripts that will be used
     {
         this.gameObject.tag = "Player Manager";//change this object to have player manager tag
         scoreScript = GameObject.FindGameObjectWithTag("Score Manager").GetComponent<ScoreManager>(); // score script to send players to update.
         turnManager = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>(); // turn manager script for updating purposes
+
+        moveManage = GameObject.FindGameObjectWithTag("Movement Manager").GetComponent<MovementManager>(); // movement manager for updating purposes.
     }
 
     private void Update() // me giving up on an elegant solution, will constantly update numbers since NOTHING ELSE WORKS
@@ -31,5 +34,7 @@ public class PlayerManager : MonoBehaviour
 
         turnManager.GetPlayers(players); // update player array in turnManager
         scoreScript.findPlayers();
+
+        moveManage.GetPlayers(players);
     }
 }
