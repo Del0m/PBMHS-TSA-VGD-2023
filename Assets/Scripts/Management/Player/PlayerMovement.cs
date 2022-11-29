@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem; // for the purposes of manipulating player controls
+using TMPro; // to manipulate ui
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent (typeof(PlayerScore))]
@@ -36,6 +37,9 @@ public class PlayerMovement : MonoBehaviour
     private Controls controls;
 
     private PlayerControls playerScript;
+
+    //ui elements
+    private GameObject turnUI;
 
     void addMapPoints()
     {
@@ -77,6 +81,8 @@ public class PlayerMovement : MonoBehaviour
 
         StartCoroutine(waitForInit());
 
+        turnUI = GameObject.Find("Moves Left");
+
 
     }
 
@@ -106,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
         // if (rand != null)
         //      playerTurn = rand.DiceRoll(1, 6);
         changePlayerColor();
-        playerTurn = 2;
+        playerTurn = 5;
         print(playerTurn);
     }
 
@@ -144,28 +150,15 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, range);
     }
 
+    bool hasRan = false;
     public void userInput()
     {
-        print("Checking the closest point...");
         // Automatically move to closes point
-        if(playerTurn > 0)
+        if(hasRan == false) // not allow player to roll several times.
         {
-            checkClosePoint();
+            StartCoroutine(MakeMove(2));
         }
-        else // end the turn
-        {
-            
-        }
-        /*
-        //When player uses input 
-        if (Input.GetMouseButtonDown(0))
-        {
-            
-        }else if (Input.GetKeyUp(KeyCode.Space))
-        {
 
-        }
-        */
     }
 
     void checkClosePoint()
@@ -253,5 +246,24 @@ public class PlayerMovement : MonoBehaviour
             Debug.LogWarning("No target found");
             return;
         }
+    }
+    IEnumerator MakeMove(int seconds)
+    {
+        hasRan = true;
+        var roll = Random.Range(1, 7);
+
+        playerTurn = roll; // updates player movement to move this amount of times.
+        var movesLeft = roll; // defines how many moves are left to do for the player
+        while (playerTurn > 0)
+        {
+            Debug.Log("Moving!");
+
+            turnUI.GetComponent<TextMeshProUGUI>().text = "Moves Left: " + movesLeft;
+            checkClosePoint();
+            yield return new WaitForSeconds(seconds);
+            movesLeft--;
+        }
+        playerScript.FinishTurn();
+        hasRan = false;
     }
 }

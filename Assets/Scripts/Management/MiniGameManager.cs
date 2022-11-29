@@ -60,6 +60,7 @@ public class MiniGameManager : MonoBehaviour
             Debug.Log("Changing Board on Player " + i);
             players[i].GetComponent<PlayerInput>().SwitchCurrentActionMap("boardGamePlay");
         }
+        
         KillGamesFromFile(); // deletes minigame
     }
 

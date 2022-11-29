@@ -30,6 +30,8 @@ public class PlayerControls : MonoBehaviour
         gameplayInput = this.gameObject.GetComponent<PlayerInput>(); // grabbing player controls to turn on/off and change inputmaps
         turnScript = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>(); // grabs turnManager off of PlayerManager
         this.gameObject.tag = "Player"; //set player tag to "Player"
+
+        PlayerTurn();
     }
 
 
@@ -77,16 +79,17 @@ public class PlayerControls : MonoBehaviour
 
         if(turnOrder != currentTurn)
         {
-            gameplayInput.actions.FindActionMap("boardGamePlay").Disable(); // disable gameplay controls
+            gameplayInput.SwitchCurrentActionMap("Off"); // disable gameplay controls
         }
         else
         {
-            gameplayInput.actions.FindActionMap("boardGamePlay").Enable(); // enable gameplay controls
+            gameplayInput.SwitchCurrentActionMap("boardGamePlay"); // enable gameplay controls
         }
 
     }
     public void FinishTurn()
     {
+        Debug.Log("Finished Turn!");
         turnScript.currentTurn++; // advance turn
         PlayerTurn();
     }

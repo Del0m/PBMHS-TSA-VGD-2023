@@ -41,7 +41,6 @@ public class TurnManager : MonoBehaviour
 
         //processing ui elements
         movementUI = GameObject.Find("Movement Turn");
-        turnUI = GameObject.Find("Moves Left");
     }
     private void Update()
     {
@@ -50,7 +49,7 @@ public class TurnManager : MonoBehaviour
     public void ChangeTurn() // to be called from player controls to change to the next turn
     {
         currentTurn = currentTurn + 1; // update to next turn
-        turnUI.GetComponent<TextMeshProUGUI>().text = "Player " + currentTurn + "'s turn!";
+        turnUI.GetComponent<TextMeshProUGUI>().text = "Player " + currentTurn+1 + "'s turn!";
 
     }
     public void NewRound() // if current turn > player.length; run minigame
@@ -78,7 +77,6 @@ public class TurnManager : MonoBehaviour
                 break;
             }
 #endif
-            currentTurn = 1;
             
             for (int i = 0; i == players.Length; i++)
             {
