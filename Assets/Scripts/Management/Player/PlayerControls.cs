@@ -44,7 +44,10 @@ public class PlayerControls : MonoBehaviour
 
         //initalizing inital position
         var initalSpot = GameObject.Find("Point " + "(" + turnOrder + ")");
-        this.gameObject.transform.position = new Vector3(initalSpot.transform.position.x,this.transform.position.y,initalSpot.transform.position.z);
+        this.gameObject.transform.position = new Vector3(initalSpot.transform.position.x,this.transform.position.y+1,initalSpot.transform.position.z);
+
+        var playerMovementScript = this.gameObject.GetComponent<PlayerMovement>();
+        playerMovementScript.norm = this.gameObject.transform.position;
 
     }
     void Update()

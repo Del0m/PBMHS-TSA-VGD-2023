@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem; // for the purposes of manipulating player controls
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent (typeof(PlayerScore))]
@@ -16,7 +17,8 @@ public class PlayerMovement : MonoBehaviour
     public float minRange = 3f;
 
     private Camera cam;
-    public Vector3 norm { private get; set; }
+    [HideInInspector]
+    public Vector3 norm;
 
     //Call randomizer script
     public int playerTurn { get; private set; } = 0;
@@ -28,6 +30,10 @@ public class PlayerMovement : MonoBehaviour
 
     private GameObject[] pointObjects;
     public List<PointCheck> points = new List<PointCheck>();
+
+    //player controls
+    private PlayerInput playerControl;
+    private Controls controls;
 
     void addMapPoints()
     {
@@ -62,7 +68,13 @@ public class PlayerMovement : MonoBehaviour
 
         addMapPoints();
 
+        //set player controls
+        controls = new Controls();
+        playerControl = this.GetComponent<PlayerInput>();
+
         StartCoroutine(waitForInit());
+
+
     }
 
     void changePlayerColor()
@@ -90,8 +102,8 @@ public class PlayerMovement : MonoBehaviour
         // Debug | on awake set a random number between 1 - 6
         // if (rand != null)
         //      playerTurn = rand.DiceRoll(1, 6);
-        playerTurn = 99999;
         changePlayerColor();
+        playerTurn = 2;
         print(playerTurn);
     }
 
@@ -119,12 +131,7 @@ public class PlayerMovement : MonoBehaviour
         //debug and can be removed
         Debug.DrawLine(transform.position, transform.forward * range, Color.yellow);
 
-        // When player has turns, the player is able to give input
-        //[] Make a different type of input if on controller
-        if(playerTurn > 0 && cam != null)
-        {
-            userInput();
-        }
+
         // Move player to point when there is a change on the target
         moveToPoint(norm);
     }
@@ -135,37 +142,21 @@ public class PlayerMovement : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, range);
     }
 
-    void userInput()
+    public void userInput()
     {
-        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
+        print("Checking the closest point...");
+        // Automatically move to closes point
+        checkClosePoint();
+        /*
         //When player uses input 
         if (Input.GetMouseButtonDown(0))
         {
-            //Check what the player hits
-            if (Physics.Raycast(ray, out hit) && hit.transform.gameObject.layer == LayerMask.NameToLayer("dir"))
-            {
-                //Debug.Log(hit.transform.name + " was hit");
-                PointCheck tar = hit.transform.GetComponent<PointCheck>();
-                if (tar != null)
-                {
-                    float dist = Vector3.Distance(this.transform.position, tar.pos);
-                    //Set point target
-                    Vector3 tg = new Vector3(tar.pos.x, 0f, tar.pos.z);
-                    //Give info to position manager
-                    if (checkPath(tg, dist) && tar.correspondingPlayerIndex == ps.playerIndex && !tar.isOccupied && !tar.hasSeenPlayer)
-                    {
-                        norm = tg;
-                    }
-                }
-            }
+            
         }else if (Input.GetKeyUp(KeyCode.Space))
         {
-            print("Space being pressed");
-            // Automatically move to closes point
-            checkClosePoint();
+
         }
+        */
     }
 
 

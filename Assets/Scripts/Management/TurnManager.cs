@@ -15,11 +15,15 @@ public class TurnManager : MonoBehaviour
     //minigame Management elements
 
     private MiniGameManager miniGameScript;
+    private void Awake()
+    {
+        this.gameObject.tag = "Turn Manager";//change this object to have turn manager tag
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        this.gameObject.tag = "Turn Manager";//change this object to have turn manager tag
+        
 
         playerManager = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>(); // call player manager for player array
         miniGameScript = GameObject.FindGameObjectWithTag("Mini Game Manager").GetComponent<MiniGameManager>(); // call manager to start / end / bring players to games.
@@ -38,6 +42,12 @@ public class TurnManager : MonoBehaviour
     {
         while(currentTurn > players.Length)
         {
+#if UNITY_EDITOR
+            if(players.Length == 0)
+            {
+                break;
+            }
+#endif
             currentTurn = 1;
             for (int i = 0; i == players.Length; i++)
             {
