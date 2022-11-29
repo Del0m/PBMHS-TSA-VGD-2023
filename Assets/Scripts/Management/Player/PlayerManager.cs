@@ -10,11 +10,12 @@ public class PlayerManager : MonoBehaviour
     public GameObject[] players;
 
     public TurnManager turnManager;
+    private ScoreManager scoreScript;
 
     private void Start() // intializing scripts that will be used
     {
         this.gameObject.tag = "Player Manager";//change this object to have player manager tag
-
+        scoreScript = GameObject.FindGameObjectWithTag("Score Manager").GetComponent<ScoreManager>(); // score script to send players to update.
         turnManager = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>(); // turn manager script for updating purposes
     }
 
@@ -29,5 +30,6 @@ public class PlayerManager : MonoBehaviour
         playerCount = players.Length; // update count with current players in array
 
         turnManager.GetPlayers(players); // update player array in turnManager
+        scoreScript.findPlayers();
     }
 }

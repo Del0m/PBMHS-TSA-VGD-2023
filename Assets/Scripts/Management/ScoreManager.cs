@@ -9,7 +9,7 @@ public class ScoreManager : MonoBehaviour
     GameObject[] playerObj;
 
     //Finds player's with 'PlayerScore' Script
-    void findPlayers()
+    public void findPlayers()
     {
         //Finds Game Objects with tag 'Player'
         playerObj = GameObject.FindGameObjectsWithTag("Player");
