@@ -71,10 +71,6 @@ public class PointCheck : MonoBehaviour
         {
             hasSeenPlayer = true;
         }
-        else
-        {
-            hasSeenPlayer = false;
-        }
     }
 
     private void OnTriggerExit(Collider other)

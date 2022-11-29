@@ -30,7 +30,8 @@ public class PlayerMovement : MonoBehaviour
     private Randomizer rand;
 
     private GameObject[] pointObjects;
-    public List<PointCheck> points = new List<PointCheck>();
+    private List<PointCheck> points = new List<PointCheck>();
+    private bool hasReachedPoint = false;
 
     //player controls
     private PlayerInput playerControl;
@@ -154,7 +155,7 @@ public class PlayerMovement : MonoBehaviour
     public void userInput()
     {
         // Automatically move to closes point
-        if(hasRan == false) // not allow player to roll several times.
+        if(hasRan == false && hasReachedPoint == true) // not allow player to roll several times.
         {
             StartCoroutine(MakeMove(2));
         }
@@ -238,6 +239,11 @@ public class PlayerMovement : MonoBehaviour
             if (Vector3.Distance(transform.position, target) != 0)
             {
                 this.transform.position = Vector3.MoveTowards(this.transform.position, target, movementSpeed * Time.deltaTime);
+                hasReachedPoint = false;
+            }
+            else
+            {
+                hasReachedPoint = true;
             }
         }
         else
