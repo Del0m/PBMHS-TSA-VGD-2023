@@ -18,6 +18,8 @@ public class MiniGameManager : MonoBehaviour
 
     //array for all available minigames
     private GameObject minigame;
+    private string[] miniGameName = { "Prefabs/Mini-Games/Minigame A", "Prefabs/Mini-Games/Minigame B" };
+
     private void Awake()
     {
         this.gameObject.tag = "Mini Game Manager";
@@ -53,7 +55,6 @@ public class MiniGameManager : MonoBehaviour
             Debug.Log("Changing Board on Player " + i);
             players[i].GetComponent<PlayerInput>().SwitchCurrentActionMap("boardGamePlay");
         }
-        
         KillGamesFromFile(); // deletes minigame
     }
 
@@ -61,12 +62,16 @@ public class MiniGameManager : MonoBehaviour
     {
         //turning given player array to current MiniGameManager player array
         players = player;
-
     }
     private void LoadGamesFromFile() // resource.load all games, pick one, deload
     {
         Debug.Log("Loading!");
-        GameObject minigameInstance = Instantiate(Resources.Load("Prefabs/Mini-Games/Minigame B", typeof(GameObject))) as GameObject;
+
+        int i = Random.Range(0, 2);
+
+        string selectedMiniGame = miniGameName[i];
+
+        GameObject minigameInstance = Instantiate(Resources.Load(selectedMiniGame, typeof(GameObject))) as GameObject;
         minigameInstance.GetComponent<GameHandler>().JumpStart();
     }
     private void KillGamesFromFile()

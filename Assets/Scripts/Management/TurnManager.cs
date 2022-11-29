@@ -26,9 +26,14 @@ public class TurnManager : MonoBehaviour
     //ui elements
     private GameObject movementUI;
     private GameObject turnUI;
+
+    public TextMeshProUGUI winnerText;
+    public GameObject winnerScreen;
+
     private void Awake()
     {
         this.gameObject.tag = "Turn Manager";//change this object to have turn manager tag
+        winnerScreen.SetActive(false);
     }
 
     // Start is called before the first frame update
@@ -65,9 +70,13 @@ public class TurnManager : MonoBehaviour
                 {
                     highestPlayer = i;
                 }
-                winner = "i";
+                winner = i.ToString();
+
             }
-            SceneManager.LoadScene("EndScreen");
+            winnerScreen.SetActive(true);
+            string PlayerWinner = "Player" + (highestPlayer + 1).ToString() + " has Won!";
+            winnerText.text = PlayerWinner;
+            StartCoroutine(waitToLoad());
         }
         while (currentTurn > players.Length)
         {
@@ -91,6 +100,12 @@ public class TurnManager : MonoBehaviour
             }
         }
         
+    }
+
+    IEnumerator waitToLoad()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("EndScene");
     }
 
     public void GetPlayers(GameObject[] playerArray) // grab players from PlayerManager and put into array

@@ -35,6 +35,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""433cffb4-5169-4fd5-8956-66771039061b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -57,6 +66,28 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""PC"",
                     ""action"": ""Dice Roll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ffd96598-0f90-4028-8292-c8b5e8f45d95"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Pause Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b4300ac0-ac2b-4a19-9bef-7795144b41ce"",
+                    ""path"": ""<DualShockGamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Pause Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -750,6 +781,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         // boardGamePlay
         m_boardGamePlay = asset.FindActionMap("boardGamePlay", throwIfNotFound: true);
         m_boardGamePlay_DiceRoll = m_boardGamePlay.FindAction("Dice Roll", throwIfNotFound: true);
+        m_boardGamePlay_PauseMenu = m_boardGamePlay.FindAction("Pause Menu", throwIfNotFound: true);
         // Off
         m_Off = asset.FindActionMap("Off", throwIfNotFound: true);
         m_Off_Newaction = m_Off.FindAction("New action", throwIfNotFound: true);
@@ -831,11 +863,13 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_boardGamePlay;
     private IBoardGamePlayActions m_BoardGamePlayActionsCallbackInterface;
     private readonly InputAction m_boardGamePlay_DiceRoll;
+    private readonly InputAction m_boardGamePlay_PauseMenu;
     public struct BoardGamePlayActions
     {
         private @Controls m_Wrapper;
         public BoardGamePlayActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @DiceRoll => m_Wrapper.m_boardGamePlay_DiceRoll;
+        public InputAction @PauseMenu => m_Wrapper.m_boardGamePlay_PauseMenu;
         public InputActionMap Get() { return m_Wrapper.m_boardGamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -848,6 +882,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @DiceRoll.started -= m_Wrapper.m_BoardGamePlayActionsCallbackInterface.OnDiceRoll;
                 @DiceRoll.performed -= m_Wrapper.m_BoardGamePlayActionsCallbackInterface.OnDiceRoll;
                 @DiceRoll.canceled -= m_Wrapper.m_BoardGamePlayActionsCallbackInterface.OnDiceRoll;
+                @PauseMenu.started -= m_Wrapper.m_BoardGamePlayActionsCallbackInterface.OnPauseMenu;
+                @PauseMenu.performed -= m_Wrapper.m_BoardGamePlayActionsCallbackInterface.OnPauseMenu;
+                @PauseMenu.canceled -= m_Wrapper.m_BoardGamePlayActionsCallbackInterface.OnPauseMenu;
             }
             m_Wrapper.m_BoardGamePlayActionsCallbackInterface = instance;
             if (instance != null)
@@ -855,6 +892,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @DiceRoll.started += instance.OnDiceRoll;
                 @DiceRoll.performed += instance.OnDiceRoll;
                 @DiceRoll.canceled += instance.OnDiceRoll;
+                @PauseMenu.started += instance.OnPauseMenu;
+                @PauseMenu.performed += instance.OnPauseMenu;
+                @PauseMenu.canceled += instance.OnPauseMenu;
             }
         }
     }
@@ -1075,6 +1115,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     public interface IBoardGamePlayActions
     {
         void OnDiceRoll(InputAction.CallbackContext context);
+        void OnPauseMenu(InputAction.CallbackContext context);
     }
     public interface IOffActions
     {
