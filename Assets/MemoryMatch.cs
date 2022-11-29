@@ -11,9 +11,9 @@ public class MemoryMatch : GameHandler
 {
     //variables
     public int clicked, cardsLeft; // specifically for tracking cards
-    public double timeRemaining = 17;
+    public double timeRemaining = 15;
 
-    private GameObject[] cardsPicked = new GameObject[2]; private GameObject[] cards = new GameObject[10];  // for the purpose of cards
+    private GameObject[] cardsPicked = new GameObject[2] { null, null }; private GameObject[] cards = new GameObject[10];  // for the purpose of cards
     private GameObject timer, playerText, scoreText;
     private void Update() // time and end condition 
     {
@@ -131,7 +131,13 @@ public class MemoryMatch : GameHandler
     string[] cardValue = new string[2] { null, null }; // vars for OnPress
     public void OnPress(GameObject ui) // button flip over 
     {
-        Debug.Log(clicked);
+        Debug.Log(cardsPicked[clicked]);
+        Debug.Log("UI Element Selected: " + ui);
+        if (cardsPicked[clicked] == ui)
+        {
+            Debug.LogError("Same One Clicked!");
+            return; // break in case of emergency
+        }
         cardsPicked[clicked] = ui;
 
         cardValue[clicked] = ui.GetComponentInChildren<TextMeshProUGUI>().text; // add value of card onto array to check if cards are the same l8r

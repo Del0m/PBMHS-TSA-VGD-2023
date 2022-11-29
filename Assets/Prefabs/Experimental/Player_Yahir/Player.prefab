@@ -88,7 +88,6 @@ GameObject:
   - component: {fileID: 7935428175225436898}
   - component: {fileID: 7935428175225436901}
   - component: {fileID: 7935428175225436902}
-  - component: {fileID: 7935428175225436900}
   - component: {fileID: 7935428175225436923}
   - component: {fileID: 7935428175225436922}
   - component: {fileID: 685583093832377026}
@@ -195,23 +194,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0000001, y: 2, z: 1.0000002}
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &7935428175225436900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7935428175225436908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 152bb9dae49c4ac47b0939f53fd3c210, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 8
-  movementSpeed: 12
-  minRange: 3
-  norm: {x: 0, y: 0, z: 0}
-  points: []
 --- !u!114 &7935428175225436923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,10 +232,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8589ae05a73aef43b251b66a120e2ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerScore: 0
+  position: 0
   managerObject: {fileID: 8197119641342339079, guid: 68bf2936e131abb4990f2e44dc3f3d07, type: 3}
   managerScript: {fileID: 8197119641342339074, guid: 68bf2936e131abb4990f2e44dc3f3d07, type: 3}
-  turnScript: {fileID: 0}
   turnOrder: 0
   gameplayInput: {fileID: 1532664851640778665}
 --- !u!114 &1532664851640778665
@@ -283,9 +264,9 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7935428175225436900}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: userInput
+      - m_Target: {fileID: 685583093832377026}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: DiceRoll
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
