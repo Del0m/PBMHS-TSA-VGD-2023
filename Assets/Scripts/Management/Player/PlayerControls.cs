@@ -53,6 +53,7 @@ public class PlayerControls : MonoBehaviour
         {
             PlayerTurn();
         }
+
     }
     
     public void PlayerTurn() // check if player turn is now
@@ -101,6 +102,7 @@ public class PlayerControls : MonoBehaviour
             movesRemaining--; // decrease movement till they are out of moves left.
             yield return new WaitForSeconds(wait); // wait a certain amount of time until charting the next move.
         }
+        hasRan = false;
         FinishTurn(); // end turn, send to next player
     }
     public void TriviaGameInput(InputAction.CallbackContext context) // run when tirivalinput is performed
