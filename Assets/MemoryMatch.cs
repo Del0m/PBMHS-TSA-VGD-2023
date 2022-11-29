@@ -193,6 +193,9 @@ public class MemoryMatch : GameHandler
                 cards[i].GetComponentInChildren<TextMeshProUGUI>().CrossFadeAlpha(0, 0, false);
             }
             AddCards(); // to be ran to see if cards need to be restocked.
+            //remove cards from cardsPicked
+            cardsPicked[0] = null;
+            cardsPicked[1] = null;
         }
     }
 
