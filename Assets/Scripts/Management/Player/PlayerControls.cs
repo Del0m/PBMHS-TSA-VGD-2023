@@ -4,6 +4,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerControls : MonoBehaviour
@@ -25,6 +26,8 @@ public class PlayerControls : MonoBehaviour
     public PlayerInput gameplayInput;
     public Controls controls;
 
+    private GameObject turnUI;
+
     private void Start() // run methods on start
     {
         managerScript = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>();// grab player manager
@@ -41,6 +44,9 @@ public class PlayerControls : MonoBehaviour
 
         //setting start position
         this.transform.position = moveManage.CallTile(position, 0).position;
+
+        //turnui initaliation
+        turnUI = GameObject.Find("Moves Left");
 
     }
     void Update()
@@ -100,6 +106,9 @@ public class PlayerControls : MonoBehaviour
             position++; // moving position ahead
             this.transform.position = newTile.position; // teleport to new position
             movesRemaining--; // decrease movement till they are out of moves left.
+
+            //show moves remaining via UI
+            turnUI.GetComponent<TextMeshProUGUI>().text = "Moves Left: " + movesRemaining;
             yield return new WaitForSeconds(wait); // wait a certain amount of time until charting the next move.
         }
         hasRan = false;

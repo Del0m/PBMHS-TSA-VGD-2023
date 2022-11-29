@@ -49,7 +49,7 @@ public class TurnManager : MonoBehaviour
     public void ChangeTurn() // to be called from player controls to change to the next turn
     {
         currentTurn = currentTurn + 1; // update to next turn
-        turnUI.GetComponent<TextMeshProUGUI>().text = "Player " + currentTurn+1 + "'s turn!";
+        turnUI.GetComponent<TextMeshProUGUI>().text = "Player " + (currentTurn+1).ToString() + "'s turn!";
 
     }
     public void NewRound() // if current turn > player.length; run minigame
