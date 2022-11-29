@@ -1,6 +1,7 @@
 /* armindelmo MovementManager.cs 10 / 2 / 22
   The purpose of this program is to move the player from one tile to another.
 */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,10 +39,15 @@ public class MovementManager : MonoBehaviour
         //will grab all tiles on map, and will find length, and categorize them
         var tileAmount = GameObject.FindGameObjectsWithTag("Tile");
         var localTile = new Transform[tileAmount.Length];
+
         for(int i = 0; i < tileAmount.Length; i++) // loop through all tiles, put them in neat array :)
         {
+            if (GameObject.Find(i.ToString()) == null)
+            {
+                Debug.LogError("Issue in finding tile " + i);
+            }
             Debug.Log("collecting tile " + i);
-           localTile[i] = tileAmount[i].transform;
+           localTile[i] = GameObject.Find(i.ToString()).transform;
         }
         return localTile;
     }
