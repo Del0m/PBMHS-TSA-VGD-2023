@@ -120,7 +120,6 @@ public class MemoryMatch : GameHandler
             BuildCards(10);
         }
 
-
     }
     private GameObject[] CollectCards() // runs FGOWT; grabs all cards on UI field.
     {
@@ -131,21 +130,27 @@ public class MemoryMatch : GameHandler
     string[] cardValue = new string[2] { null, null }; // vars for OnPress
     public void OnPress(GameObject ui) // button flip over 
     {
-        Debug.Log(cardsPicked[clicked]);
+
+        //Debug.Log(cardsPicked[clicked]);
         Debug.Log("UI Element Selected: " + ui);
+        
+        if(clicked == 2)
+        {
+            clicked = 0;
+        }
+        
         if (cardsPicked[clicked] == ui)
         {
-            Debug.LogError("Same One Clicked!");
+            //Debug.LogError("Same One Clicked!");
             return; // break in case of emergency
         }
+        
         cardsPicked[clicked] = ui;
 
         cardValue[clicked] = ui.GetComponentInChildren<TextMeshProUGUI>().text; // add value of card onto array to check if cards are the same l8r
         clicked++;
         //ui.GetComponentInChildren<TextMeshProUGUI>().color = new Color(0, 0, 0); // set to black
         ui.GetComponentInChildren<TextMeshProUGUI>().CrossFadeAlpha(255, 0.2f, false);
-
-
         
 
         if (clicked >= 2) // see if two cards are flipped

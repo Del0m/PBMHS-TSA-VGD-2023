@@ -114,6 +114,7 @@ public class MathDash : GameHandler
 
     private int[] SortQuestions(int[] answers, int[] addends, string math) // sorts the four questions 
     {
+        print("MATH DASH " + "Creating questions");
         var sortedQuestions = new int[4]; // questions that will show up on the UI
         var sortParameter = new int[4];
 
@@ -217,9 +218,13 @@ public class MathDash : GameHandler
         if (score >= 5)
         {
             miniManager.EndMiniGame();
+            miniManager.hasStarted = false;
             for (int i = 0; i < players.Length; i++)
             {
-                miniManager.hasStarted = false;
+                if(players.Length == 0)
+                {
+                    break;
+                }
                 players[i].GetComponent<PlayerInput>().SwitchCurrentActionMap("boardGamePlay");
             }
             Debug.Log("Game is Done!");

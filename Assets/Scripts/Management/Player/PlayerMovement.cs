@@ -262,6 +262,11 @@ public class PlayerMovement : MonoBehaviour
         var movesLeft = roll; // defines how many moves are left to do for the player
         while (playerTurn > 0)
         {
+            if(playerTurn == 0)
+            {
+                break;
+            }
+
             Debug.Log("Moving!");
 
             turnUI.GetComponent<TextMeshProUGUI>().text = "Moves Left: " + movesLeft;

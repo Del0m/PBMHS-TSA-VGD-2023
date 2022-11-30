@@ -102,6 +102,10 @@ public class PlayerControls : MonoBehaviour
         var movesRemaining = diceRoll;
         while(movesRemaining > 0) // keep moving player to next tile until no more moves
         {
+            if(movesRemaining == 0)
+            {
+                break;
+            }
             Debug.Log("Moving.");
             var newTile = moveManage.CallTile(position, 1); // moving one tile at a time
             position++; // moving position ahead

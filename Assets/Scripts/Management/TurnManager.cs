@@ -63,7 +63,7 @@ public class TurnManager : MonoBehaviour
         players = GameObject.FindGameObjectsWithTag("Player");
         if(previousTurn != currentTurn)
         {
-            for (int i = 0; i <= players.Length; i++) // runPlayerTurn on all players
+            for (int i = 0; i < players.Length; i++) // runPlayerTurn on all players
             {
                 if(players.Length == 0)
                 {
@@ -80,44 +80,58 @@ public class TurnManager : MonoBehaviour
     }
     public void NewRound() // if current turn > player.length; run minigame
     {
-        if (turnsElapsed > 9) // end the game
-        {
-            Debug.Log("Ending the game!");
-            var highestScore = 0;
-            var highestPlayer = 0;
-            for (int i = 0; i < scoreScript.playerS.Length; i++) // check to see who has the highest score
-            {
-                if (highestScore < scoreScript.playerS[i].Score)
-                {
-                    highestPlayer = i;
-                }
-                winner = i.ToString();
-
-            }
-            winnerScreen.SetActive(true);
-            string PlayerWinner = "Player" + (highestPlayer + 1).ToString() + " has Won!";
-            winnerText.text = PlayerWinner;
-            StartCoroutine(waitToLoad());
-        }
+        print("Building new round");
+        print(turnsElapsed);
         while (currentTurn > players.Length)
         {
-#if UNITY_EDITOR
+            print("Making new minigame");
             if(players.Length == 0)
             {
                 break;
             }
-#endif
             
             for (int i = 0; i < players.Length; i++)
             {
                 //check all player turns
+                if (players.Length == 0)
+                {
+                    break;
+                }
                 players[i].GetComponent<PlayerControls>().PlayerTurn();
             }
             if (miniGameScript.hasStarted == false)
             {
+                print("NEW ROUND");
+                turnsElapsed++;
                 currentTurn = 1;
-                miniGameScript.StartMiniGame();
-                miniGameScript.hasStarted = true;
+                if (turnsElapsed > 9) // end the game
+                {
+                    Debug.Log("Ending the game!");
+                    var highestScore = 0;
+                    var highestPlayer = 0;
+                    for (int i = 0; i < scoreScript.playerS.Length; i++) // check to see who has the highest score
+                    {
+                        if (scoreScript.playerS.Length == 0)
+                        {
+                            break;
+                        }
+                        if (highestScore < scoreScript.playerS[i].Score)
+                        {
+                            highestPlayer = i;
+                        }
+                        winner = i.ToString();
+
+                    }
+                    winnerScreen.SetActive(true);
+                    string PlayerWinner = "Player" + (highestPlayer + 1).ToString() + " has Won!";
+                    winnerText.text = PlayerWinner;
+                    StartCoroutine(waitToLoad());
+                }
+                else
+                {
+                    miniGameScript.StartMiniGame();
+                    miniGameScript.hasStarted = true;
+                }
             }
         }
         
@@ -126,7 +140,7 @@ public class TurnManager : MonoBehaviour
     IEnumerator waitToLoad()
     {
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene("EndScene");
+        SceneManager.LoadScene(2);
     }
 
     public void GetPlayers(GameObject[] playerArray) // grab players from PlayerManager and put into array
