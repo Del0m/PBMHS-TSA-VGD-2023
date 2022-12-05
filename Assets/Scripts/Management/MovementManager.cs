@@ -11,8 +11,6 @@ public class MovementManager : MonoBehaviour
     //tile and tile related goods
     public Transform[] tile;
 
-    //managers
-    private PlayerManager plrManage;
     private TurnManager turnManage;
 
     //player array

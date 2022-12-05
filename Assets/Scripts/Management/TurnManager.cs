@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 using TMPro;
 public class TurnManager : MonoBehaviour
 {
-    private PlayerManager playerManager;
     public GameObject[] players;
 
     public int currentTurn = 1;
@@ -40,7 +39,6 @@ public class TurnManager : MonoBehaviour
     void Start()
     {
         scoreScript = GameObject.FindGameObjectWithTag("Score Manager").GetComponent<ScoreManager>();
-        playerManager = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>(); // call player manager for player array
         miniGameScript = GameObject.FindGameObjectWithTag("Mini Game Manager").GetComponent<MiniGameManager>(); // call manager to start / end / bring players to games.
 
 

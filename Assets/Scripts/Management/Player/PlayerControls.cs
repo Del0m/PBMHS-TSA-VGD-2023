@@ -16,7 +16,6 @@ public class PlayerControls : MonoBehaviour
     //script to be called for player management
     [SerializeField]
     private GameObject managerObject;
-    public PlayerManager managerScript;
     private TurnManager turnScript;
     private MovementManager moveManage;
     //turns and controls
@@ -30,7 +29,6 @@ public class PlayerControls : MonoBehaviour
 
     private void Start() // run methods on start
     {
-        managerScript = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>();// grab player manager
         moveManage = GameObject.FindGameObjectWithTag("Movement Manager").GetComponent<MovementManager>(); // grab movement manager
         gameplayInput = this.gameObject.GetComponent<PlayerInput>(); // grabbing player controls to turn on/off and change inputmaps
         turnScript = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>(); // grabs turnManager off of PlayerManager
