@@ -25,7 +25,7 @@ public class PlayerControls : MonoBehaviour
     public PlayerInput gameplayInput;
     public Controls controls;
 
-
+    private GameObject turnUI;
 
     private void Start() // run methods on start
     {
@@ -37,11 +37,13 @@ public class PlayerControls : MonoBehaviour
         turnOrder = GameObject.FindGameObjectsWithTag("Player").Length; //giving player turn order
 
         //initalize controls class
-        controls = new Controls();
-        PlayerTurn();
+        controls = new Controls();  
 
         //setting start position
         this.transform.position = moveManage.CallTile(position, 0).position;
+
+        //turnui initaliation
+        turnUI = GameObject.Find("Moves Left");
 
     }
     void Update()
@@ -57,39 +59,36 @@ public class PlayerControls : MonoBehaviour
        */
     }
     
-    public void PlayerTurn() // check if player turn is now
-    {
-        int currentTurn = turnScript.currentTurn; //grab all players on map, give turn order based on amount of players
-        Debug.Log("Current Turn: " + currentTurn + " Turn Order: " + turnOrder);
-
-
-        if (turnOrder != currentTurn)
-        {
-            Debug.Log("Turning off action...");
-            gameplayInput.SwitchCurrentActionMap("Off"); // disable gameplay controls
-
-        }
-        else
-        {
-            gameplayInput.SwitchCurrentActionMap("boardGamePlay"); // enable gameplay controls
-        }
-    }
-    public void FinishTurn()
-    {
-        Debug.Log("Finished Turn!");
-        turnScript.currentTurn++; // advance turn
-        PlayerTurn();
-    }
     //variable for the purpose of moving
     bool hasRan = false;
     public void DiceRoll(InputAction.CallbackContext context) // run when diceroll performed
     {
         if(context.performed && hasRan == false) // makes sure its only ran once
         {
-            //do nothing for the moment.
+            StartCoroutine(Moving(2));
         }
     }
+    public IEnumerator Moving(int wait)
+    {
+        hasRan = true;
+        var diceRoll = Random.Range(1, 7);
 
+        var movesRemaining = diceRoll;
+        while(movesRemaining > 0) // keep moving player to next tile until no more moves
+        {
+            if(movesRemaining > 0) // check statement so program doesn't die.
+            {
+                Debug.Log("Moving.");
+                var newTile = moveManage.CallTile(position, 1); // moving one tile at a time
+                position++; // moving position ahead
+                this.transform.position = newTile.position; // teleport to new position
+                movesRemaining--; // decrease movement till they are out of moves left.
+
+                yield return new WaitForSeconds(wait);
+            }
+        }
+        hasRan = false;
+    }
     public void TriviaGameInput(InputAction.CallbackContext context) // run when tirivalinput is performed
     {
         if (context.performed) // makes sure it is ONLY RAN ONCE!!!! courtesy of my boy GlenZPS
