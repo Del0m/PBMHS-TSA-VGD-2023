@@ -25,7 +25,7 @@ public class PlayerControls : MonoBehaviour
     public PlayerInput gameplayInput;
     public Controls controls;
 
-    private GameObject turnUI;
+
 
     private void Start() // run methods on start
     {
@@ -42,9 +42,6 @@ public class PlayerControls : MonoBehaviour
 
         //setting start position
         this.transform.position = moveManage.CallTile(position, 0).position;
-
-        //turnui initaliation
-        turnUI = GameObject.Find("Moves Left");
 
     }
     void Update()
@@ -89,34 +86,10 @@ public class PlayerControls : MonoBehaviour
     {
         if(context.performed && hasRan == false) // makes sure its only ran once
         {
-            StartCoroutine(Moving(2));
+            //do nothing for the moment.
         }
     }
-    IEnumerator Moving(int wait)
-    {
-        hasRan = true;
-        var diceRoll = Random.Range(1, 7);
 
-        var movesRemaining = diceRoll;
-        while(movesRemaining > 0) // keep moving player to next tile until no more moves
-        {
-            if(movesRemaining == 0)
-            {
-                break;
-            }
-            Debug.Log("Moving.");
-            var newTile = moveManage.CallTile(position, 1); // moving one tile at a time
-            position++; // moving position ahead
-            this.transform.position = newTile.position; // teleport to new position
-            movesRemaining--; // decrease movement till they are out of moves left.
-
-            //show moves remaining via UI
-            turnUI.GetComponent<TextMeshProUGUI>().text = "Moves Left: " + movesRemaining;
-            yield return new WaitForSeconds(wait); // wait a certain amount of time until charting the next move.
-        }
-        hasRan = false;
-        FinishTurn(); // end turn, send to next player
-    }
     public void TriviaGameInput(InputAction.CallbackContext context) // run when tirivalinput is performed
     {
         if (context.performed) // makes sure it is ONLY RAN ONCE!!!! courtesy of my boy GlenZPS
