@@ -49,7 +49,7 @@ public class TurnManager : MonoBehaviour
         if(playerTurn == currentTurn) //check to see if its the players turn
         {
             //move player
-            player.GetComponent<PlayerControls>().Moving(2);
+            player.GetComponent<PlayerControls>().Moving(2); // 2 is the wait time between moves
         }
     }
 
