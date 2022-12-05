@@ -47,15 +47,7 @@ public class PlayerControls : MonoBehaviour
     }
     void Update()
     {
-        //control update functions
-        //controls.miniGamePlay.MiniGameTest.started += MiniGameTest; // test control for minigame mode
-        //controls.boardGamePlay.DiceRoll.started += DiceRoll; // test control for boardgame mode
         Debug.Log(gameplayInput.currentActionMap);
-       /* if(turnScript.currentTurn == turnOrder && turnScript.miniGameScript.hasStarted != true)
-        {
-            PlayerTurn();
-        }
-       */
     }
     
     //variable for the purpose of moving
@@ -87,56 +79,5 @@ public class PlayerControls : MonoBehaviour
             }
         }
         hasRan = false;
-    }
-    public void TriviaGameInput(InputAction.CallbackContext context) // run when tirivalinput is performed
-    {
-        if (context.performed) // makes sure it is ONLY RAN ONCE!!!! courtesy of my boy GlenZPS
-        {
-            var input = "null";
-
-            // call minigame
-            var minigame = GameObject.FindGameObjectWithTag("Minigame").GetComponent<GameHandler>();
-
-            switch(context.action.name) // multiple choice input for trivia game
-            {
-                case "TriviaInput1":
-                    input = "A";
-                    Debug.Log("User " + turnOrder + "has inputted " + input);
-                    break;
-
-                case "TriviaInput2":
-                    input = "B";
-                    Debug.Log("User " + turnOrder + "has inputted " + input);
-                    break;
-
-                case "TriviaInput3":
-                    input = "C";
-                    Debug.Log("User " + turnOrder + "has inputted " + input);
-                    break;
-
-                case "TriviaInput4":
-                    input = "D";
-                    Debug.Log("User " + turnOrder + "has inputted " + input);
-                    break;
-            }
-            if(GameObject.FindGameObjectWithTag("Minigame") != null)
-            {
-                minigame.InputChoice(input, turnOrder);
-            }
-
-        }
-
-    }
-    public void PlayerMiniGameMode(bool inMiniGame)
-    {
-        if(inMiniGame == true)
-        {
-            gameplayInput.SwitchCurrentActionMap("miniGamePlay");
-        }
-        else
-        {
-            Debug.Log("enabling boardgameplay!");
-            gameplayInput.SwitchCurrentActionMap("boardGamePlay");
-        }
     }
 }
