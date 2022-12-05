@@ -39,8 +39,7 @@ public class PlayerControls : MonoBehaviour
         //initalize controls class
         controls = new Controls();  
 
-        //setting start position
-        this.transform.position = moveManage.CallTile(position, 0).position;
+        //make area to set start position.
 
         //turnui initaliation
         turnUI = GameObject.Find("Moves Left");

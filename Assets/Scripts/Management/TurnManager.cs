@@ -8,15 +8,13 @@ using UnityEngine.SceneManagement;
 using TMPro;
 public class TurnManager : MonoBehaviour
 {
-    public GameObject[] players;
-
     public int currentTurn = 1;
     public int turnsElapsed = 0;
 
 
     //minigame Management elements
 
-    public MiniGameManager miniGameScript;
+    private MiniGameManager miniGameScript;
 
     //grab score manager
     private ScoreManager scoreScript;

@@ -18,18 +18,12 @@ public class MovementManager : MonoBehaviour
 
     private void Awake() // for manager initalization
     {
-        this.gameObject.tag = "Movement Manager";
-        /*plrManage = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>();
-        turnManage = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>(); */
+        this.gameObject.tag = "Movement Manager"; //  allow gameobjects to find this script.
     }
 
     void Start()
     {
         tile = InitializeTiles();
-    }
-    public void GetPlayers(GameObject[] foreignPlayer) // to grab players from playermanager array
-    {
-        players = foreignPlayer;
     }
 
     Transform[] InitializeTiles()
