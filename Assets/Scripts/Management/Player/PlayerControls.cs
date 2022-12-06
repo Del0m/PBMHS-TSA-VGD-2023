@@ -77,7 +77,8 @@ public class PlayerControls : MonoBehaviour
                 Debug.Log("Moving.");
                 var newTile = moveManage.CallTile(position, 1); // moving one tile at a time
                 position++; // moving position ahead
-                this.transform.position = newTile.position; // teleport to new position
+
+                this.transform.position = Vector2.MoveTowards(this.transform.position, newTile.position, 2 * Time.deltaTime); // move to new position using DeltaTime
                 movesRemaining--; // decrease movement till they are out of moves left.
 
                 yield return new WaitForSeconds(wait);
