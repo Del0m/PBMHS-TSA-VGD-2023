@@ -6,18 +6,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
+
 public class TurnManager : MonoBehaviour
 {
     public int currentTurn = 1;
     public int turnsElapsed = 0;
 
 
-    //minigame Management elements
+    //manage the minigames
 
-    private MiniGameManager miniGameScript;
+    public MiniGameManager miniGameScript;
 
-    //grab score manager
-    private ScoreManager scoreScript;
+    //modify scores of players
+    public ScoreManager scoreScript;
 
 
     public TextMeshProUGUI winnerText;
@@ -32,15 +34,29 @@ public class TurnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        scoreScript = GameObject.FindGameObjectWithTag("Score Manager").GetComponent<ScoreManager>();
-        miniGameScript = GameObject.FindGameObjectWithTag("Mini Game Manager").GetComponent<MiniGameManager>(); // call manager to start / end / bring players to games.
+        //putting these in if statements because they should be publicly listed and added.
+        if(scoreScript == null)
+        {
+            scoreScript = GameObject.FindGameObjectWithTag("Score Manager").GetComponent<ScoreManager>();
+
+        }
+        if(miniGameScript == null)
+        {
+            miniGameScript = GameObject.FindGameObjectWithTag("Mini Game Manager").GetComponent<MiniGameManager>(); // call manager to start / end / bring players to games.
+        }
 
 
     }
-    private void Update()
+    private void RoundCheck() // compares currentTurn with player count, exceeds, start minigame
     {
+        var playerCount = GameObject.FindGameObjectsWithTag("Player").Length;
 
+        if(playerCount < currentTurn) // turn on el minigame
+        {
+            
+        }
     }
+
     public void RunTurn(GameObject player) // updates turn for players
     {
         var playerTurn = player.GetComponent<PlayerControls>().turnOrder;
@@ -49,6 +65,7 @@ public class TurnManager : MonoBehaviour
             //move player
             player.GetComponent<PlayerControls>().Moving(2); // 2 is the wait time between moves
         }
+        //check to see if turn has gone over the playercount
     }
 
 }

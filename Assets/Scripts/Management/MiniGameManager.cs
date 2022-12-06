@@ -25,27 +25,9 @@ public class MiniGameManager : MonoBehaviour
     }
 
 
-    public void StartMiniGame() //called from TurnManager, this will grab all given players and bring them to a minigame
+    public void StartMiniGame() //start minigame when turns have passed
     {
-        Debug.Log("Starting Minigame!");
-
-        if(players.Length == 0)
-        {
-            Debug.LogError("Player length is ZERO");
-            return;
-        }
-
-        //changing player controls
-        for (int i = 0; i < players.Length; i++)
-        {
-            if(players.Length == 0)
-            {
-                break;
-            }
-            players[i].GetComponent<PlayerInput>().SwitchCurrentActionMap("miniGamePlay");
-
-        }
-        if(hasStarted != true)
+        if (hasStarted != true)
         {
             // grabbing minigame to choose
             LoadGamesFromFile();
@@ -69,19 +51,8 @@ public class MiniGameManager : MonoBehaviour
 
         KillGamesFromFile(); // deletes minigame
     }
-
-    public void GetPlayers(GameObject[] player)
-    {
-        //turning given player array to current MiniGameManager player array
-        players = player;
-    }
     private void LoadGamesFromFile() // resource.load all games, pick one, deload
-    {
-        Debug.Log("Loading!");
-
-        GameObject minigameInstance = Instantiate(Resources.Load("Prefabs/Mini-Games/Minigame B", typeof(GameObject))) as GameObject;
-        minigameInstance.GetComponent<GameHandler>().JumpStart();
-        
+    { 
     }
     private void KillGamesFromFile()
     {
