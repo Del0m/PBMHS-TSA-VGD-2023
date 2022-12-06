@@ -78,10 +78,14 @@ public class PlayerControls : MonoBehaviour
                 var newTile = moveManage.CallTile(position, 1); // moving one tile at a time
                 position++; // moving position ahead
 
-                this.transform.position = Vector2.MoveTowards(this.transform.position, newTile.position, 2 * Time.deltaTime); // move to new position using DeltaTime
-                movesRemaining--; // decrease movement till they are out of moves left.
+                while(this.transform.position.x != newTile.transform.position.x && this.transform.position.y == newTile.transform.position.y) // keep user moving until they get there.
+                {
+                    //need to find better solution, really slow while moving.
+                    this.transform.position = Vector2.MoveTowards(this.transform.position, newTile.position, 2 * Time.deltaTime); // move to new position using DeltaTime
+                }
 
-                yield return new WaitForSeconds(wait);
+                movesRemaining--; // decrease movement till they are out of moves left.
+                yield return new WaitForSeconds(wait); // give time to move to position.
             }
         }
         hasRan = false;
