@@ -53,7 +53,7 @@ public class TurnManager : MonoBehaviour
 
         if(playerCount < currentTurn) // turn on el minigame
         {
-            // have a coroutine to turn on the minigame
+            StartCoroutine(miniGameScript.StartMiniGame()); // running minigame coroutine to advise players, and spawn game.
         }
     }
 
@@ -66,6 +66,6 @@ public class TurnManager : MonoBehaviour
             player.GetComponent<PlayerControls>().Moving(2); // 2 is the wait time between moves
         }
         //check to see if turn has gone over the playercount
+        RoundCheck();
     }
-
 }

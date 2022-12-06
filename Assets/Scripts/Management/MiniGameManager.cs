@@ -17,22 +17,47 @@ public class MiniGameManager : MonoBehaviour
     public bool hasStarted = false;
 
     //array for all available minigames
-    private GameObject minigame;
+    private GameObject[] minigame;
+
+    //randomizer to randomly select minigames
+    private Randomizer rand;
 
     private void Awake()
     {
         this.gameObject.tag = "Mini Game Manager";
     }
 
-
-    public void StartMiniGame() //start minigame when turns have passed
+    private void SpawnMinigame() // randomly selects a minigame from public gameobject list
     {
-        if (hasStarted != true)
+        try // statement to check for invalid minigame length
         {
-            // grabbing minigame to choose
-            LoadGamesFromFile();
-            hasStarted = true;
+            if(minigame.Length < 0 )
+            {
+                //custom exception for debugging purposes.
+                throw new System.Exception("Error found, no minigames located. Please add minigames through the public list.");
+            }
+            else
+            {
+                var pick = rand.DiceRoll(0, minigame.Length); // randomly selects a minigame using the length of minigame array
+                Instantiate(minigame[pick]); // spawns minigame
+            }
         }
+        catch (System.Exception e)
+        {
+            Debug.LogError(e);
+        }
+        
+
+    }
+    public IEnumerator StartMiniGame()
+    {
+        /*
+         * add ui updates here notifying players of upcoming minigame
+         */
+
+
+        yield return new WaitForSeconds(5); // wait 5 seconds before putting player into game.
+        SpawnMinigame();
     }
     public void EndMiniGame() //kills all minigames, brings back controls to players
     {

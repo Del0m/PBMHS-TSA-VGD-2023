@@ -15,9 +15,9 @@ public class PlayerControls : MonoBehaviour
 
     //script to be called for player management
     [SerializeField]
-    private GameObject managerObject;
-    private TurnManager turnScript;
-    private MovementManager moveManage;
+    public GameObject managerObject;
+    public TurnManager turnScript;
+    public MovementManager moveManage;
     //turns and controls
     public int turnOrder;
 
@@ -29,9 +29,16 @@ public class PlayerControls : MonoBehaviour
 
     private void Start() // run methods on start
     {
-        moveManage = GameObject.FindGameObjectWithTag("Movement Manager").GetComponent<MovementManager>(); // grab movement manager
+        if(moveManage == null) // check if hasn't been publicly assigned already.
+        {
+            moveManage = GameObject.FindGameObjectWithTag("Movement Manager").GetComponent<MovementManager>(); // grab movement manager
+        }
+        if(turnScript == null) // check if hasn't been publicly assigned already.
+        {
+            turnScript = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>(); // grabs turnManager off of PlayerManager
+        }
+        
         gameplayInput = this.gameObject.GetComponent<PlayerInput>(); // grabbing player controls to turn on/off and change inputmaps
-        turnScript = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>(); // grabs turnManager off of PlayerManager
         this.gameObject.tag = "Player"; //set player tag to "Player"
 
         turnOrder = GameObject.FindGameObjectsWithTag("Player").Length; //giving player turn order
@@ -39,15 +46,12 @@ public class PlayerControls : MonoBehaviour
         //initalize controls class
         controls = new Controls();  
 
-        //make area to set start position.
+        //make area to set start position. (this shouldn't be done here)
 
         //turnui initaliation
-        turnUI = GameObject.Find("Moves Left");
+        //turnUI = GameObject.Find("Moves Left");
+        // useless for the time being..
 
-    }
-    void Update()
-    {
-        Debug.Log(gameplayInput.currentActionMap);
     }
     
     //variable for the purpose of moving
@@ -56,7 +60,8 @@ public class PlayerControls : MonoBehaviour
     {
         if(context.performed && hasRan == false) // makes sure its only ran once
         {
-            turnScript.RunTurn(this.gameObject); // adds self to turnmanager functino.
+            turnScript.RunTurn(this.gameObject); // adds self to turnmanager function.
+            //this will recurse back to the player, it just checks directly for whose turn it is without messing with the controls
         }
     }
     public IEnumerator Moving(int wait)
