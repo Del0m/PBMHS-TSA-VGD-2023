@@ -56,7 +56,7 @@ public class PlayerControls : MonoBehaviour
     {
         if(context.performed && hasRan == false) // makes sure its only ran once
         {
-            StartCoroutine(Moving(2));
+            turnScript.RunTurn(this.gameObject); // adds self to turnmanager functino.
         }
     }
     public IEnumerator Moving(int wait)

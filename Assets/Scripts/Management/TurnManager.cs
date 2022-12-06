@@ -53,7 +53,7 @@ public class TurnManager : MonoBehaviour
 
         if(playerCount < currentTurn) // turn on el minigame
         {
-            
+            // have a coroutine to turn on the minigame
         }
     }
 
