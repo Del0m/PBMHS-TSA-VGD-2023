@@ -28,7 +28,7 @@ public class TurnManager : MonoBehaviour
     private void Awake()
     {
         this.gameObject.tag = "Turn Manager";//change this object to have turn manager tag
-        winnerScreen.SetActive(false);
+        //winnerScreen.SetActive(false);
     }
 
     // Start is called before the first frame update
@@ -47,7 +47,7 @@ public class TurnManager : MonoBehaviour
 
 
     }
-    private void RoundCheck() // compares currentTurn with player count, exceeds, start minigame
+    public void RoundCheck() // compares currentTurn with player count, exceeds, start minigame
     {
         var playerCount = GameObject.FindGameObjectsWithTag("Player").Length;
 
@@ -57,15 +57,16 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    public void RunTurn(GameObject player) // updates turn for players
+    public bool RunTurn(GameObject player) // updates turn for players
     {
+
         var playerTurn = player.GetComponent<PlayerControls>().turnOrder;
         if(playerTurn == currentTurn) //check to see if its the players turn
         {
             //move player
-            player.GetComponent<PlayerControls>().Moving(2); // 2 is the wait time between moves
+            Debug.Log("Running turn");
+            return true;
         }
-        //check to see if turn has gone over the playercount
-        RoundCheck();
+        return false;
     }
 }
