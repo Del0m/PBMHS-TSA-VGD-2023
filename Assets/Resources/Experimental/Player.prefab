@@ -50,7 +50,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   position: 0
   managerObject: {fileID: 8197119641342339079, guid: 68bf2936e131abb4990f2e44dc3f3d07, type: 3}
-  managerScript: {fileID: 0}
+  turnScript: {fileID: 7539990095854232699, guid: 272ecc4e08db2dc4d91962dc740c4b86, type: 3}
+  moveManage: {fileID: 5553524578980428731, guid: 5f62cf75d30e2dc4db42f0a1bc5a8065, type: 3}
   turnOrder: 0
   gameplayInput: {fileID: 1152684079109578991}
 --- !u!114 &1152684079109578991
@@ -79,6 +80,10 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6daf38fd-522e-46ec-9b82-c12e5f1281ed
+    m_ActionName: Gameplay/Move[/Keyboard/a,/Keyboard/leftArrow,/Keyboard/rightArrow,/Keyboard/d]
+  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1152684079109578990}
         m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
@@ -91,120 +96,20 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
-    m_ActionId: 9e09bccc-59d4-4fac-9e2a-ca26d90eabdb
-    m_ActionName: Gameplay/Dice Roll
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 0b754ce7-50d6-4855-9cb6-10157e91ca68
-    m_ActionName: Off/New action
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1152684079109578990}
-        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
-        m_MethodName: TriviaGameInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: eae981b5-83b0-4d92-a4b2-5c48a778c180
-    m_ActionName: miniGamePlay/MiniGameTest[/Keyboard/space,/DualShock4GamepadHID/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1152684079109578990}
-        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
-        m_MethodName: TriviaGameInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 45def2b6-e75c-49eb-899f-4f53404f8a89
-    m_ActionName: miniGamePlay/TriviaInput2[/DualShock4GamepadHID/buttonWest,/Keyboard/2]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1152684079109578990}
-        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
-        m_MethodName: TriviaGameInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 27705e51-07bb-4299-8d63-b63cbbb51aa7
-    m_ActionName: miniGamePlay/TriviaInput3[/Keyboard/3,/DualShock4GamepadHID/buttonNorth]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1152684079109578990}
-        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
-        m_MethodName: TriviaGameInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 7edd2b31-6180-44a7-bb7e-d50da099008c
-    m_ActionName: miniGamePlay/TriviaInput4[/Keyboard/4,/DualShock4GamepadHID/buttonEast]
+    m_ActionId: 304ef7ee-0fe5-4c29-9f8a-be666494c794
+    m_ActionName: Gameplay/Attack[/Keyboard/enter]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 60e3383f-edf6-4b68-bcc4-315f1988d0e3
-    m_ActionName: UI/Click[/DualShock4GamepadHID/buttonSouth,/Mouse/leftButton]
+    m_ActionId: 14972e23-c884-4458-9d99-4afde0beff46
+    m_ActionName: Gameplay/Jump[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: df8af020-0a34-42d1-9e75-123377aad0e4
-    m_ActionName: UI/Point[/Mouse/position]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 27a33e0f-740d-40b5-90b4-a3e49aa78337
-    m_ActionName: UI/Navigate[/DualShock4GamepadHID/leftStick/up,/DualShock4GamepadHID/rightStick/up,/DualShock4GamepadHID/leftStick/down,/DualShock4GamepadHID/rightStick/down,/DualShock4GamepadHID/leftStick/left,/DualShock4GamepadHID/rightStick/left,/DualShock4GamepadHID/leftStick/right,/DualShock4GamepadHID/rightStick/right,/DualShock4GamepadHID/dpad,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 33a36131-37c8-495c-b42b-75edc1c1d943
-    m_ActionName: UI/Submit[/Keyboard/enter,/DualShock4GamepadHID/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 2b4a2ae6-c5ee-4ac9-a123-4713dca514f4
-    m_ActionName: UI/Cancel[/Keyboard/escape,/DualShock4GamepadHID/buttonEast]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7bf49857-d644-4cf6-964f-f569e751b89a
-    m_ActionName: UI/TrackedDevicePosition
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 1858bd30-f6b0-4a5b-9b35-b2c531666f57
-    m_ActionName: UI/TrackedDeviceOrientation
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 5c00aa06-d988-47eb-a1d4-15b83a36917c
-    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 6f2f50ee-3db6-45cc-bd41-a34a4dcfa102
-    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b86c7005-a58d-4928-8b86-e06a4d690e9a
-    m_ActionName: UI/RightClick[/Mouse/rightButton]
-  m_NeverAutoSwitchControlSchemes: 0
+    m_ActionId: d214d637-50f7-463f-804d-c0b0fcf5dfcc
+    m_ActionName: Pre-Game/New action
+  m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
-  m_DefaultActionMap: boardGamePlay
+  m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!61 &1152684079109578984
