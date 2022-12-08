@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a812c3d093fc4bd42a2484527eaad523, type: 3}
+  m_Name: GoldenSandles
+  m_EditorClassIdentifier: 
+  name: Golden Sandles
+  isDefaultItem: 0
+  icon: {fileID: 21300000, guid: f27b40f7b00a96745b4b0d90f2ab9344, type: 3}
+  equipementClass: 1
+  damageModifier: 0
+  armorModifier: 2
+  movementModifier: 3
+  value: 34
+  colliderType: 1
+  radius: 0.095
+  size: {x: 0.2, y: 0.21}
+  objectSize: {x: 4, y: 4}
