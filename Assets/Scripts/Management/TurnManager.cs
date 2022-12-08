@@ -47,16 +47,14 @@ public class TurnManager : MonoBehaviour
         currentTurn++;
         if(playerCount < currentTurn) // turn on el minigame
         {
-            Debug.Log(miniGameScript);
             miniGameScript.MinigameStartup(); // running minigame coroutine to advise players, and spawn game.
         }
         
     }
     public void SetTurn(int integer) { currentTurn = integer; } // sets turn back to normal
 
-    public bool RunTurn(GameObject player) // updates turn for players
+    public bool RunTurn(GameObject player, int playerTurn) // updates turn for players
     {
-        var playerTurn = player.GetComponent<PlayerControls>().turnOrder;
         if(playerTurn == currentTurn) //check to see if its the players turn
         {
             //move player
