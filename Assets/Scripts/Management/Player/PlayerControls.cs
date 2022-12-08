@@ -71,12 +71,9 @@ public class PlayerControls : MonoBehaviour
             if (turnScript.RunTurn(this.gameObject) == true) //check to see if conditions are met on TurnManager
             {
                 StartCoroutine(Moving(2)); // begin moving player
-
-
-                turnScript.RoundCheck();// check to see if new turn is in order.
             }
         }
-        IEnumerator Moving(int wait)
+    IEnumerator Moving(int wait)
         {
             Debug.Log("Running Turn");
             hasRan = true;
@@ -98,6 +95,7 @@ public class PlayerControls : MonoBehaviour
                 }
             }
             hasRan = false;
+            turnScript.RoundCheck(); // advance turn, see if new turn is in order.
         }
     }
 }
