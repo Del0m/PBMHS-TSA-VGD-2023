@@ -8,10 +8,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
-    //defining player array
-    private GameObject[] player;
-    private PlayerInputManager manager;
-    private TurnManager turn;
+
+    private PlayerInputManager manager; // disable joining mechanics
+    private TurnManager turn; // start up turns
     private void Start()
     {
         manager = GetComponent<PlayerInputManager>();

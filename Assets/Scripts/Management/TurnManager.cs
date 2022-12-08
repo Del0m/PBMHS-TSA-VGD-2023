@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TurnManager : MonoBehaviour
 {
-    static int currentTurn = 1;
+    static int currentTurn = 0;
     public int turnsElapsed = 0;
 
 

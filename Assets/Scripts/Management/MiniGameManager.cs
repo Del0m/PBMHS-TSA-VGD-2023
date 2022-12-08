@@ -91,10 +91,10 @@ public class MiniGameManager : MonoBehaviour
         KillGamesFromFile(); // deletes minigame
 
         // [] put a function that changes ui to let users know they're coming back to board.
-        turnScript.ResetTurn();
-    }
-    private void LoadGamesFromFile() // resource.load all games, pick one, deload
-    { 
+        turnScript.SetTurn(1);
+
+        //elapse the turns
+        turnScript.turnsElapsed++;
     }
     private void KillGamesFromFile()
     {
