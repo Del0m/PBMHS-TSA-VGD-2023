@@ -52,7 +52,7 @@ public class TurnManager : MonoBehaviour
         }
         
     }
-    public void ResetTurn() { currentTurn = 1; } // sets turn back to normal
+    public void SetTurn(int integer) { currentTurn = integer; } // sets turn back to normal
 
     public bool RunTurn(GameObject player) // updates turn for players
     {
