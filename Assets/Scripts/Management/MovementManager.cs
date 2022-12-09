@@ -9,7 +9,7 @@ using UnityEngine;
 public class MovementManager : MonoBehaviour
 {
     //tile and tile related goods
-    public Transform[] tile;
+    private Transform[] tile;
 
     private TurnManager turnManage;
 
@@ -41,6 +41,7 @@ public class MovementManager : MonoBehaviour
             Debug.Log("collecting tile " + i);
            localTile[i] = GameObject.Find(i.ToString()).transform;
         }
+        Debug.LogError(localTile[1]);
         return localTile;
     }
     public Transform CallTile(int position, int increase)
@@ -48,6 +49,7 @@ public class MovementManager : MonoBehaviour
         var newPosition = position + increase; // adding their current position and rolled die
 
         //giving them the specific tile
+
         return tile[newPosition];
     }
 }

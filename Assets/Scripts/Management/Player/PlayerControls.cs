@@ -17,7 +17,7 @@ public class PlayerControls : MonoBehaviour
     [SerializeField]
     public GameObject managerObject;
     public TurnManager turnScript;
-    public MovementManager moveManage;
+    private MovementManager moveManage;
     //turns and controls
     public int turnOrder;
 
@@ -29,22 +29,22 @@ public class PlayerControls : MonoBehaviour
 
     private void Start() // run methods on start
     {
-        if(moveManage == null) // check if hasn't been publicly assigned already.
+        if (moveManage == null) // check if hasn't been publicly assigned already.
         {
             moveManage = GameObject.FindGameObjectWithTag("Movement Manager").GetComponent<MovementManager>(); // grab movement manager
         }
-        if(turnScript == null) // check if hasn't been publicly assigned already.
+        if (turnScript == null) // check if hasn't been publicly assigned already.
         {
             turnScript = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>(); // grabs turnManager off of PlayerManager
         }
-        
+
         gameplayInput = this.gameObject.GetComponent<PlayerInput>(); // grabbing player controls to turn on/off and change inputmaps
         this.gameObject.tag = "Player"; //set player tag to "Player"
 
         turnOrder = GameObject.FindGameObjectsWithTag("Player").Length; //giving player turn order
 
         //initalize controls class
-        controls = new Controls();  
+        controls = new Controls();
 
         //make area to set start position. (this shouldn't be done here)
 
@@ -53,36 +53,50 @@ public class PlayerControls : MonoBehaviour
         // useless for the time being..
 
     }
-    
+    Transform newTile; // for the purpose of updating the player to a new position!
+    private void Update()
+    {
+        if(newTile != null)
+        {
+            transform.position = Vector2.MoveTowards(this.transform.position, newTile.position, 5 * Time.deltaTime); // move to new position using DeltaTime
+
+        }
+    }
     //variable for the purpose of moving
     bool hasRan = false;
     public void DiceRoll(InputAction.CallbackContext context) // run when diceroll performed
     {
-        if(context.performed && hasRan == false) // makes sure its only ran once
+        if (context.performed && hasRan == false) // makes sure its only ran once
         {
-            turnScript.RunTurn(this.gameObject); // adds self to turnmanager function.
-            //this will recurse back to the player, it just checks directly for whose turn it is without messing with the controls
-        }
-    }
-    public IEnumerator Moving(int wait)
-    {
-        hasRan = true;
-        var diceRoll = Random.Range(1, 7);
-
-        var movesRemaining = diceRoll;
-        while(movesRemaining > 0) // keep moving player to next tile until no more moves
-        {
-            if(movesRemaining > 0) // check statement so program doesn't die.
+            if (turnScript.RunTurn(this.gameObject) == true) //check to see if conditions are met on TurnManager
             {
-                Debug.Log("Moving.");
-                var newTile = moveManage.CallTile(position, 1); // moving one tile at a time
-                position++; // moving position ahead
-                this.transform.position = newTile.position; // teleport to new position
-                movesRemaining--; // decrease movement till they are out of moves left.
-
-                yield return new WaitForSeconds(wait);
+                StartCoroutine(Moving(2)); // begin moving player
             }
         }
-        hasRan = false;
+    IEnumerator Moving(int wait)
+        {
+            Debug.Log("Running Turn");
+            hasRan = true;
+            var diceRoll = Random.Range(1, 7);
+
+            Debug.Log("Dice roll is: " + diceRoll);
+            var movesRemaining = diceRoll;
+            while (movesRemaining > 0) // keep moving player to next tile until no more moves
+            {
+                if (movesRemaining > 0) // check statement so program doesn't die.
+                {
+                    Debug.Log("Moving.");
+                    newTile = moveManage.CallTile(position, 1); // moving one tile at a time
+
+                    position++; // moving position ahead
+                    
+                    movesRemaining--; // decrease movement till they are out of moves left.
+                    yield return new WaitForSeconds(wait); // give time to move to position.
+                }
+            }
+            hasRan = false;
+            turnScript.RoundCheck(); // advance turn, see if new turn is in order.
+        }
     }
 }
+

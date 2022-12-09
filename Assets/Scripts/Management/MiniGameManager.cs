@@ -22,9 +22,20 @@ public class MiniGameManager : MonoBehaviour
     //randomizer to randomly select minigames
     private Randomizer rand;
 
-    private void Awake()
+    //defining the TurnManager
+    public TurnManager turnScript;
+
+    private void Awake() // to set tag so other manager can collect on Start()
     {
         this.gameObject.tag = "Mini Game Manager";
+    }
+
+    private void Start() // collect TurnManager
+    {
+        if(turnScript == null)
+        {
+            turnScript = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>();
+        }
     }
 
     private void SpawnMinigame() // randomly selects a minigame from public gameobject list
@@ -49,8 +60,13 @@ public class MiniGameManager : MonoBehaviour
         
 
     }
-    public IEnumerator StartMiniGame()
+    public void MinigameStartup()
     {
+        StartCoroutine(StartMiniGame());
+    }
+    IEnumerator StartMiniGame()
+    {
+        Debug.Log("Starting new minigame!");
         /*
          * add ui updates here notifying players of upcoming minigame
          */
@@ -66,18 +82,19 @@ public class MiniGameManager : MonoBehaviour
         players = GameObject.FindGameObjectsWithTag("Player");
         for (int i = 0; i < players.Length; i++) // brings plrs back to board.
         {
-            if(players.Length == 0)
+            if (players.Length == 0)
             {
                 break;
             }
             Debug.Log("Changing Board on Player " + (i + 1));
-            players[i].GetComponent<PlayerInput>().SwitchCurrentActionMap("boardGamePlay");
         }
-
         KillGamesFromFile(); // deletes minigame
-    }
-    private void LoadGamesFromFile() // resource.load all games, pick one, deload
-    { 
+
+        // [] put a function that changes ui to let users know they're coming back to board.
+        turnScript.SetTurn(1);
+
+        //elapse the turns
+        turnScript.turnsElapsed++;
     }
     private void KillGamesFromFile()
     {
