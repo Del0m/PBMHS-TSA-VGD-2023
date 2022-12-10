@@ -63,23 +63,21 @@ public class PlayerControls : MonoBehaviour
         }
     }
     //variable for the purpose of moving
-    bool hasRan = false;
-    public void DiceRoll(InputAction.CallbackContext context) // run when diceroll performed
+    bool hasRan = false; // start off with all players being able to move.
+    public void DiceRoll(InputAction.CallbackContext context) // run when player rolls dice on board
     {
         if (context.performed && hasRan == false) // makes sure its only ran once
         {
-            if (turnScript.RunTurn(this.gameObject) == true) //check to see if conditions are met on TurnManager
+            if (turnScript.RunTurn(this.gameObject, turnOrder) == true) //check to see if conditions are met on TurnManager
             {
                 StartCoroutine(Moving(2)); // begin moving player
             }
         }
-    IEnumerator Moving(int wait)
+    IEnumerator Moving(int wait) // coroutine to move around the board.
         {
-            Debug.Log("Running Turn");
-            hasRan = true;
-            var diceRoll = Random.Range(1, 7);
+            hasRan = true; // prevent player from running coroutine again
+            var diceRoll = Random.Range(1, 7); // pick a number from one to six
 
-            Debug.Log("Dice roll is: " + diceRoll);
             var movesRemaining = diceRoll;
             while (movesRemaining > 0) // keep moving player to next tile until no more moves
             {
@@ -94,8 +92,8 @@ public class PlayerControls : MonoBehaviour
                     yield return new WaitForSeconds(wait); // give time to move to position.
                 }
             }
-            hasRan = false;
             turnScript.RoundCheck(); // advance turn, see if new turn is in order.
+            hasRan = false; // allow player to roll again, but their turn has moved, so they won't be able to.
         }
     }
 }
