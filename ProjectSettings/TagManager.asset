@@ -11,7 +11,7 @@ TagManager:
   - Minigame Spawn
   - Minigame UI
   - Minigame Question
-  - Minigame Turn
+  - Ground
   - Minigame Card
   - Score Manager
   - Movement Manager
@@ -20,7 +20,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - dir
