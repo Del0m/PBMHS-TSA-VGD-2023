@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
 
             //run timer
             timer += Time.deltaTime;
-            if(timer > downtime)
+            if(timer > downtime) // when timer exceeds the cooldown
             {
                 //allow acting to happen again.
                 timer = 0;
