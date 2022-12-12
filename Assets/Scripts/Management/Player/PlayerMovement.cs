@@ -22,6 +22,12 @@ public class PlayerMovement : MonoBehaviour
 
     private Controls controls;
 
+    //player action variables
+    private bool canAct;
+    public bool acting;
+    //cool down for player actions
+    private double _cooldown = 0.5; // base cooldown for player
+
     private void Awake()
     {
         controls = new Controls();
@@ -39,12 +45,43 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         XMovement();
+        Cooldown(_cooldown);
     }
     private void XMovement() // for the purposes of moving the player left and right
     {
         //running player movement in here.
         movementInput = controls.Gameplay.Move.ReadValue<Vector2>().x; // read x value of movement input
         rb.velocity = new Vector2((movementInput * speed), rb.velocity.y); // change velocity to move player, but don't change y velocity.
+    }
+
+    //timer for Cooldown
+    private double timer;
+    private void Cooldown(double downtime) // prevent player from acting several times a second
+    {
+        if(canAct == false)
+        {
+            //run timer
+            timer += Time.deltaTime;
+            if(timer > downtime)
+            {
+                //allow acting to happen again.
+                timer = 0;
+                canAct = true;
+            }
+        }
+    }
+    public void Act(InputAction.CallbackContext context) // uses cooldown to allow player to act on limited interval.
+    {
+        //prevent repeating actions, and cooldown
+        if(context.performed && canAct == true)
+        {
+            //run animations
+
+            //turn on bool for acting to allow minigames to recognize boolean
+            acting = true;
+            Debug.Log("Acting!");
+            canAct = false; // set cooldown
+        }
     }
     public void Jump(InputAction.CallbackContext context) // input action to increase the players velocity up
     {
