@@ -2,6 +2,7 @@
 //the purpose of this program is to allow xy movement for the player during minigames.
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,7 +10,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
-
+    
 
     //stats for player movement
     public int speed = 2;
@@ -60,6 +61,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if(canAct == false)
         {
+            acting = false; // preventing acting from staying on constantly
+
             //run timer
             timer += Time.deltaTime;
             if(timer > downtime)
