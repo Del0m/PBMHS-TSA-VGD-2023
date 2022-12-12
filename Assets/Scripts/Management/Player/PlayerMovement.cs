@@ -9,14 +9,11 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
-
-
     //stats for player movement
     public int speed = 2;
     public float movementInput;
 
     private bool canJump;
-    private bool canMove = true;
     //things needed to move player
     private Rigidbody2D rb;
 
@@ -24,14 +21,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        //initalize controls class
         controls = new Controls();
     }
     private void Start()
     {
         // initalizing player controls and gameplay input
         controls.Gameplay.Move.Enable();
-        //initalize controls class
-        
 
         this.gameObject.tag = "Player"; //set player tag to "Player"
         rb = this.GetComponent<Rigidbody2D>();
