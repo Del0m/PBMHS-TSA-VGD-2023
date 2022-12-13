@@ -5,30 +5,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
+using UnityEngine.VFX;
 
 public class GameHandler : MonoBehaviour
 {
-    //player input manager to instantiate new player prefabs
-    private PlayerInputManager spawnManager;
-    private GameObject[] playerCount;
+    //player array to modify rigidbodies and teleport
+    private GameObject[] player;
 
-    public GameObject plafrab; // player prefab
+    //array of spawns
+    private GameObject[] teleport;
+
     private void Start()
     {
-        playerCount = GameObject.FindGameObjectsWithTag("Player");
-        StartCoroutine(SpawnPlayers());
+        StartCoroutine(TeleportPlayers());
     }
-    public IEnumerator SpawnPlayers() // spawns players that will do movement.
+    public IEnumerator TeleportPlayers() // teleports players into minigame
     {
-        yield return new WaitForSeconds(15);
-        for(int i = 0; i < playerCount.Length; i++) // for loop to spawn players
-        {
-            Debug.Log("Instantiating player " + i);
-            //paireddevice is the device the player is currently using
-            var instantiation = PlayerInput.Instantiate(plafrab, i, null, -1, playerCount[i].GetComponent<PlayerInput>().user.pairedDevices[0]);
-            //spawnManager.JoinPlayer(i, -1, null, player[i].GetComponent<PlayerInput>().user.pairedDevices[0]); // spawns player with select prefab
+        Debug.Log("Waiting...");
+        yield return new WaitForSeconds(5);
 
-            yield return new WaitForSeconds(1); // wait for each player to be fully spawned in.
+        player = GameObject.FindGameObjectsWithTag("Player");
+        for (int i = 0; i < player.Length; i++) // for loop to spawn players
+        {
+            Debug.Log("Teleporting and enabling player " + i);
+
+            player[i].transform.position = teleport[i].transform.position; // set position for player in minigame
+            player[i].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic; //turn on player movement by allowing rigidbody to take movement
+
+            yield return new WaitForSeconds(1); // wait for each player to be fully teleported in.
         }
 
     }

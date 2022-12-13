@@ -10,7 +10,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
-    
+    public InputDevice currentDevice; // for game handler to grab and put on new instantiations
 
     //stats for player movement
     [Header("Stats")]
@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         controls = new Controls();
+        currentDevice = GetComponent<PlayerInput>().devices[0];
     }
     private void Start()
     {
@@ -44,11 +45,14 @@ public class PlayerMovement : MonoBehaviour
 
         this.gameObject.tag = "Player"; //set player tag to "Player"
         rb = this.GetComponent<Rigidbody2D>();
+
+        //setting inputdevice to player for game manager
     }
     private void FixedUpdate()
     {
         XMovement();
         Cooldown(_cooldown);
+        print(currentDevice);
     }
     private void XMovement() // for the purposes of moving the player left and right
     {
