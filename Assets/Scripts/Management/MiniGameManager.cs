@@ -86,7 +86,9 @@ public class MiniGameManager : MonoBehaviour
             {
                 break;
             }
-            Debug.Log("Changing Board on Player " + (i + 1));
+            Debug.Log("Returning player back to position.");
+            //find corresponding tile, return them back to the position.
+            players[i].transform.position = GameObject.Find(players[i].GetComponent<PlayerControls>().position.ToString()).transform.position;
         }
         KillGamesFromFile(); // deletes minigame
 
