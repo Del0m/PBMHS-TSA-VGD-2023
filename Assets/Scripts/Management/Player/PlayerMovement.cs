@@ -13,11 +13,13 @@ public class PlayerMovement : MonoBehaviour
     
 
     //stats for player movement
+    [Header("Stats")]
     public int speed = 2;
-    public float movementInput;
-
+    public int jumpPower = 10;
+    
+    private float movementInput;
     private bool canJump;
-    private bool canMove = true;
+
     //things needed to move player
     private Rigidbody2D rb;
 
@@ -90,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(context.performed && canJump == true) // ensures its only ran once
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + 10);
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + jumpPower);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
