@@ -17,6 +17,8 @@ public class GameHandler : MonoBehaviour
 
     private void Start()
     {
+        //grab teleports.
+        teleport = GameObject.FindGameObjectsWithTag("Teleport");
         StartCoroutine(TeleportPlayers());
     }
     public IEnumerator TeleportPlayers() // teleports players into minigame
