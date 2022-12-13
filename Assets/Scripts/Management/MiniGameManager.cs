@@ -95,10 +95,10 @@ public class MiniGameManager : MonoBehaviour
         // [] put a function that changes ui to let users know they're coming back to board.
         turnScript.SetTurn(1);
 
-        //elapse the turns
+        //elapse the turns; once reaches end amount, game will end.
         turnScript.turnsElapsed++;
     }
-    private void KillGamesFromFile()
+    private void KillGamesFromFile() // remove minigame instance.
     {
         var gameOut = GameObject.FindGameObjectWithTag("Minigame");
         Destroy(gameOut);
