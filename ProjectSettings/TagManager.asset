@@ -8,14 +8,11 @@ TagManager:
   - Turn Manager
   - Mini Game Manager
   - Minigame
-  - Minigame Spawn
-  - Minigame UI
-  - Minigame Question
   - Ground
-  - Minigame Card
   - Score Manager
   - Movement Manager
   - Tile
+  - Teleport
   layers:
   - Default
   - TransparentFX

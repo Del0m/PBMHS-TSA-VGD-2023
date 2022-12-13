@@ -75,6 +75,12 @@ public class MiniGameManager : MonoBehaviour
         yield return new WaitForSeconds(5); // wait 5 seconds before putting player into game.
         SpawnMinigame();
     }
+    public IEnumerator UIEndGame() // ui to show users the minigame is ending
+    {
+        //show UI
+        yield return new WaitForSeconds(5); // wait 5 seconds before deleting board.
+        EndMiniGame();
+    }
     public void EndMiniGame() //kills all minigames, brings back controls to players
     {
         hasStarted = false;
@@ -86,19 +92,20 @@ public class MiniGameManager : MonoBehaviour
             {
                 break;
             }
-            Debug.Log("Changing Board on Player " + (i + 1));
+            Debug.Log("Returning player back to position.");
+            //find corresponding tile, return them back to the position.
+            players[i].transform.position = GameObject.Find(players[i].GetComponent<PlayerControls>().position.ToString()).transform.position;
         }
         KillGamesFromFile(); // deletes minigame
 
-        // [] put a function that changes ui to let users know they're coming back to board.
         turnScript.SetTurn(1);
 
-        //elapse the turns
+        //elapse the turns; once reaches end amount, game will end.
         turnScript.turnsElapsed++;
     }
-    private void KillGamesFromFile()
+    private void KillGamesFromFile() // remove minigame instance.
     {
-        var gameOut = GameObject.FindGameObjectWithTag("Minigame");
+        var gameOut = GameObject.FindGameObjectWithTag("Minigame"); // find object with "minigame" tag
         Destroy(gameOut);
     }
 
