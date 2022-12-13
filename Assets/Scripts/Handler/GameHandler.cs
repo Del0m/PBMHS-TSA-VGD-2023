@@ -10,16 +10,15 @@ using UnityEngine.VFX;
 public class GameHandler : MonoBehaviour
 {
     //player array to modify rigidbodies and teleport
-    private GameObject[] player;
+    public GameObject[] player;
 
     //array of spawns
-    private GameObject[] teleport;
+    public GameObject[] teleport;
 
     private void Start()
     {
         //grab teleports.
         teleport = GameObject.FindGameObjectsWithTag("Teleport");
-        StartCoroutine(TeleportPlayers());
     }
     public IEnumerator TeleportPlayers() // teleports players into minigame
     {

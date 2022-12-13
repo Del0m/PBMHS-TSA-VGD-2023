@@ -42,7 +42,7 @@ public class MiniGameManager : MonoBehaviour
     {
         try // statement to check for invalid minigame length
         {
-            if(minigame.Length < 0 )
+            if(minigame.Length < 1 ) // 0 minigames
             {
                 //custom exception for debugging purposes.
                 throw new System.Exception("Error found, no minigames located. Please add minigames through the public list.");
