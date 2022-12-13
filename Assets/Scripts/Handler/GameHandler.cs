@@ -16,9 +16,11 @@ public class GameHandler : MonoBehaviour
     private void Start()
     {
         playerCount = GameObject.FindGameObjectsWithTag("Player");
+        StartCoroutine(SpawnPlayers());
     }
     public IEnumerator SpawnPlayers() // spawns players that will do movement.
     {
+        yield return new WaitForSeconds(15);
         for(int i = 0; i < playerCount.Length; i++) // for loop to spawn players
         {
             Debug.Log("Instantiating player " + i);
