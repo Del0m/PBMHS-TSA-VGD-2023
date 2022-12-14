@@ -11,4 +11,12 @@ public class MathDash : GameHandler
     {
         StartCoroutine(TeleportPlayers()); // teleport players to the minigame.
     }
+    void SpawnCards() // problem cards the players can grab to solve the problem
+    {
+
+    }
+    void NewProblem()
+    {
+
+    }
 }
