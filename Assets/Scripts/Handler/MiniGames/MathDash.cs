@@ -10,6 +10,7 @@ public class MathDash : GameHandler
     //problem variables
     public int[] number = new int[2]; // numbers that will be used for the problems.
     public char problemType;
+    public int answer;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +31,8 @@ public class MathDash : GameHandler
                 number[0] = Random.Range(0, 300);
                 number[1] = Random.Range(0, 300);
 
+                //defining answer
+                answer = number[0] + number[1];
                 break;
             case 1: // minus
                 problemType = '-';
@@ -38,6 +41,8 @@ public class MathDash : GameHandler
                 number[0] = Random.Range(0, 300);
                 number[1] = Random.Range(0, 300);
 
+                //defining answer
+                answer = number[0] - number[1];
                 break;
             case 2: // mult
                 problemType = '*';
@@ -46,6 +51,8 @@ public class MathDash : GameHandler
                 number[0] = Random.Range(1, 15);
                 number[1] = Random.Range(1, 15);
 
+                //defining answer
+                answer = number[0] * number[1];
                 break;
             case 3: // div
                 problemType = '/';
@@ -60,7 +67,8 @@ public class MathDash : GameHandler
                     number[0] = Random.Range(0, 30);
                     number[1] = Random.Range(0, 30);
                 }
-
+                //defining answer
+                answer = number[0] / number[1];
                 break;
         }
     }
