@@ -7,7 +7,10 @@ using UnityEngine;
 
 public class MathDash : GameHandler
 {
+    //problem variables
     public int[] number = new int[2]; // numbers that will be used for the problems.
+    public char problemType;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +20,6 @@ public class MathDash : GameHandler
     void MakeProblem() // making the problem that the players have to solve
     {
         var randomProblem = Random.Range(0, 4);
-        var problemType = 'a';
 
         switch(randomProblem) //switch statement to find if it will be +, -, *, or /
         {
