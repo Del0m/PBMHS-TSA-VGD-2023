@@ -40,7 +40,7 @@ public class GameHandler : MonoBehaviour
             Debug.Log("Teleporting and enabling player " + i);
             Debug.Log(player[i]);
             player[i].transform.position = teleport[i].transform.position; // set position for player in minigame
-            player[i].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic; //turn on player movement by allowing rigidbody to take movement
+            player[i].GetComponent<PlayerMovement>().GameSwitch(true); //turn on player movement by allowing rigidbody to take movement
 
             yield return new WaitForSeconds(1); // wait for each player to be fully teleported in.
         }

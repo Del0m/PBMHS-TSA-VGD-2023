@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public int jumpPower = 10;
     
     private float movementInput;
-    private bool canJump;
+    private bool canJump = false;
 
     //things needed to move player
     private Rigidbody2D rb;
@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private Controls controls;
 
     //player action variables
-    private bool canAct;
+    private bool canAct = false;
     public bool acting;
     //cool down for player actions
     private double _cooldown = 0.5; // base cooldown for player
@@ -53,6 +53,22 @@ public class PlayerMovement : MonoBehaviour
         XMovement();
         Cooldown(_cooldown);
         print(currentDevice);
+    }
+    public void GameSwitch(bool enable) // start game for the player using switch.
+    {
+        switch(enable)
+        {
+            case true:
+                canAct = true;
+                canJump = true;
+                rb.bodyType = RigidbodyType2D.Dynamic;
+                break;
+            case false:
+                canAct = false;
+                canJump = false;
+                rb.bodyType = RigidbodyType2D.Static;
+                break;
+        }
     }
     private void XMovement() // for the purposes of moving the player left and right
     {
