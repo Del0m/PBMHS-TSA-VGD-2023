@@ -27,15 +27,17 @@ public class Card : MonoBehaviour
             minigame = GameObject.FindGameObjectWithTag("Minigame").GetComponent<MathDash>();
         }    
     }
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.collider.tag == "Player")
+        if (collision.tag == "Player")
         {
+            Debug.Log("Player has entered.");
             //check to see if they're acting.
-            if(collision.collider.GetComponent<PlayerMovement>().acting == true)
+            if (collision.GetComponent<PlayerMovement>().acting == true)
             {
+                Debug.Log("Checking!");
                 //checking answer, and deleting card if its correct.
-                minigame.CheckAnswer(collision.collider.gameObject, value); // collision = player, value = card value
+                minigame.CheckAnswer(collision.gameObject, value); // collision = player, value = card value
             }
         }
     }

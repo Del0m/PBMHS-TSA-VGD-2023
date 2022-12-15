@@ -52,7 +52,6 @@ public class PlayerMovement : MonoBehaviour
     {
         XMovement();
         Cooldown(_cooldown);
-        print(currentDevice);
     }
     public void GameSwitch(bool enable) // start game for the player using switch.
     {
@@ -83,8 +82,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if(canAct == false)
         {
-            acting = false; // preventing acting from staying on constantly
-
             //run timer
             timer += Time.deltaTime;
             if(timer > downtime) // when timer exceeds the cooldown
@@ -95,6 +92,12 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+    IEnumerator ActRoutine()
+    {
+        acting = true;
+        yield return new WaitForSeconds(0.2f);
+        acting = false;
+    }
     public void Act(InputAction.CallbackContext context) // uses cooldown to allow player to act on limited interval.
     {
         //prevent repeating actions, and cooldown
@@ -103,15 +106,17 @@ public class PlayerMovement : MonoBehaviour
             //run animations
 
             //turn on bool for acting to allow minigames to recognize boolean
-            acting = true;
+            StartCoroutine(ActRoutine()); // run coroutine to have acting on for a bit.
             Debug.Log("Acting!");
             canAct = false; // set cooldown
         }
     }
     public void Jump(InputAction.CallbackContext context) // input action to increase the players velocity up
     {
+        Debug.Log("Attempting to Jump?!");
         if(context.performed && canJump == true) // ensures its only ran once
         {
+            Debug.Log("Jumping!");
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + jumpPower);
         }
     }
