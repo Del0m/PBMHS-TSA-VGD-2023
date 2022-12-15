@@ -76,8 +76,23 @@ public class MathDash : GameHandler
     {
 
     }
-    void NewProblem()
+    public void CheckAnswer(GameObject player, int guess) // award player with points if correctly slammed right card
     {
-
+        if(guess == answer)
+        {
+            //update UI in here
+            gameScore[player.GetComponent<PlayerControls>().turnOrder]++; // player position in score array is awarded a point
+            Debug.Log("correct!");
+        }
+        else
+        {
+            //update UI on player.
+            Debug.Log("incorrect!");
+        }
+    }
+    IEnumerator NewProblem() // procedure to put new problem on the board.
+    {
+        MakeProblem(); // make factors and answer
+        yield return new WaitForSeconds(2); // wait for two seconds so everything initalizes correctly.
     }
 }
