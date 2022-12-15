@@ -38,6 +38,8 @@ public class Card : MonoBehaviour
                 Debug.Log("Checking!");
                 //checking answer, and deleting card if its correct.
                 minigame.CheckAnswer(collision.gameObject, value); // collision = player, value = card value
+
+                Destroy(this.gameObject, 0.5f); // destroy object after checking for the answer.
             }
         }
     }

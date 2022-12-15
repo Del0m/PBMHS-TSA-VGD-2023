@@ -122,6 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   jumpPower: 20
+  fallThrough: 0
   acting: 0
 --- !u!61 &2609490234402768864
 BoxCollider2D:
@@ -214,6 +215,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: d214d637-50f7-463f-804d-c0b0fcf5dfcc
     m_ActionName: Pre-Game/New action
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2609490234402768869}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Drop
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c6637afe-811f-47c7-9e24-a8a24609b036
+    m_ActionName: Gameplay/Drop[/Keyboard/s]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay

@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     
     private float movementInput;
     private bool canJump = false;
+
+    public bool fallThrough = false;
 
     //things needed to move player
     private Rigidbody2D rb;
@@ -98,6 +101,12 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         acting = false;
     }
+    public void Drop(InputAction.CallbackContext context)
+    {
+        //check to see when stops, when stops; disallow moving.
+        if(context.performed) { fallThrough = true; }
+        if(context.canceled) { fallThrough = false; }
+    }
     public void Act(InputAction.CallbackContext context) // uses cooldown to allow player to act on limited interval.
     {
         //prevent repeating actions, and cooldown
@@ -113,27 +122,25 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Jump(InputAction.CallbackContext context) // input action to increase the players velocity up
     {
-        Debug.Log("Attempting to Jump?!");
         if(context.performed && canJump == true) // ensures its only ran once
         {
             Debug.Log("Jumping!");
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + jumpPower);
+            canJump = false; // turn off jumping to prevent them from jumping again.
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        Debug.Log("collision detected");
-        if (collision.collider.tag == "Ground")
+        if(collision.collider.tag == "Ground")
         {
-            canJump = true;
+            canJump = true; // enable jumping
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        Debug.Log("collision gone");
         if (collision.collider.tag == "Ground")
         {
-            canJump = false;
+            canJump = false; // disable jumping
         }
     }
 }
