@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public int jumpPower = 10;
     
     private float movementInput;
-    private bool canJump = false;
+    public bool canJump = false;
 
     public bool fallThrough = false;
 
@@ -37,7 +37,6 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         controls = new Controls();
-        currentDevice = GetComponent<PlayerInput>().devices[0];
     }
     private void Start()
     {
@@ -127,20 +126,6 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Jumping!");
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + jumpPower);
             canJump = false; // turn off jumping to prevent them from jumping again.
-        }
-    }
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if(collision.collider.tag == "Ground")
-        {
-            canJump = true; // enable jumping
-        }
-    }
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.collider.tag == "Ground")
-        {
-            canJump = false; // disable jumping
         }
     }
 }

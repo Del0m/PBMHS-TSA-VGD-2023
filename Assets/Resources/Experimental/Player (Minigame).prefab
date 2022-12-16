@@ -123,6 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   jumpPower: 20
+  canJump: 0
   fallThrough: 0
   acting: 0
 --- !u!61 &2609490234402768864
@@ -247,6 +248,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6087907061578244499}
   - component: {fileID: 3420117061755579398}
+  - component: {fileID: 2007044718087343452}
   m_Layer: 0
   m_Name: JumpTrigger
   m_TagString: Untagged
@@ -282,7 +284,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.01584196, y: -0.41505718}
+  m_Offset: {x: 0.003168106, y: -0.41505718}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -293,5 +295,17 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.030474663, y: 0.23325157}
+  m_Size: {x: 0.9429703, y: 0.23325157}
   m_EdgeRadius: 0
+--- !u!114 &2007044718087343452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2723512089463554615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40acf1346db0b594f89766acef1fd423, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
