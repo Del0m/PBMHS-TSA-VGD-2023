@@ -35,9 +35,11 @@ public class Card : MonoBehaviour
             //check to see if they're acting.
             if (collision.GetComponent<PlayerMovement>().acting == true)
             {
+                var clicker = collision.gameObject;
+                print(clicker);
                 Debug.Log("Checking!");
                 //checking answer, and deleting card if its correct.
-                minigame.CheckAnswer(collision.gameObject, value); // collision = player, value = card value
+                minigame.CheckAnswer(clicker, value); // collision = player, value = card value
 
                 Destroy(this.gameObject, 0.5f); // destroy object after checking for the answer.
             }

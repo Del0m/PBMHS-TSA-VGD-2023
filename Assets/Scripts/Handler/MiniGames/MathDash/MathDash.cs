@@ -15,10 +15,13 @@ public class MathDash : GameHandler
 
     public GameObject[] card;
 
+    private Vector2 randPos;
+
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(TeleportPlayers()); // teleport players to the minigame.
+        StartCoroutine(NewProblem()); // makes new problem to have player solve.
     }
 
     void MakeProblem() // making the problem that the players have to solve
@@ -72,8 +75,23 @@ public class MathDash : GameHandler
                 }
                 //defining answer
                 answer = number[0] / number[1];
+                print(answer);
                 break;
         }
+    }
+    void RandomizePosition() // this runs to randomize the position in the arena
+    {
+        //getting dimensions of arena
+        var xLow = GameObject.Find("Outer Left").transform.position.x+1;
+        var xHigh = GameObject.Find("Outer Right").transform.position.x-1;
+
+        var yLow = GameObject.Find("Outer Bottom").transform.position.y+3;
+        var yHigh = GameObject.Find("Outer Top").transform.position.y-3;
+
+        //returning random values to spawn target in.
+        randPos = new Vector2(Random.Range(xLow,xHigh),Random.Range(yLow,yHigh));
+        return;
+
     }
     IEnumerator SpawnCards(int answer) // problem cards the players can grab to solve the problem
     {
@@ -111,7 +129,10 @@ public class MathDash : GameHandler
                     break;
             }
             //spawn in object in random area in minigame arena.
-            //Instantiate(cardPrefab)
+            RandomizePosition(); // randomizing position and spawning card
+            var newCard = Instantiate(cardPrefab, randPos, new Quaternion()); // spawning new card.
+            newCard.GetComponent<Card>().value = cardDisplay; // setting what is on the card
+            print("Instantiating card!");
         }
 
     }
@@ -122,6 +143,7 @@ public class MathDash : GameHandler
             //update UI in here
             gameScore[player.GetComponent<PlayerControls>().turnOrder]++; // player position in score array is awarded a point
             Debug.Log("correct!");
+            StartCoroutine(NewProblem()); // making new problem for player
         }
         else
         {
@@ -133,5 +155,6 @@ public class MathDash : GameHandler
     {
         MakeProblem(); // make factors and answer
         yield return new WaitForSeconds(2); // wait for two seconds so everything initalizes correctly.
+        StartCoroutine(SpawnCards(answer)); // spawn cards in map
     }
 }
