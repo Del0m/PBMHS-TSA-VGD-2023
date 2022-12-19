@@ -11,6 +11,10 @@ public class Card : MonoBehaviour
 
     //grabbing game mother
     public MathDash minigame;
+    private void Update()
+    {
+        Debug.Log(this.gameObject.activeInHierarchy);
+    }
     private void Start()
     {
 
@@ -41,7 +45,7 @@ public class Card : MonoBehaviour
                 //checking answer, and deleting card if its correct.
                 minigame.CheckAnswer(clicker, value); // collision = player, value = card value
 
-                Destroy(this.gameObject, 0.5f); // destroy object after checking for the answer.
+                Destroy(this.gameObject, 2.5f); // destroy object after checking for the answer.
             }
         }
     }

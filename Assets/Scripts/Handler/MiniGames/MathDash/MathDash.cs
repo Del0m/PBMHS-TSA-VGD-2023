@@ -152,8 +152,7 @@ public class MathDash : GameHandler
         {
             //update UI in here
             gameScore[player.GetComponent<PlayerControls>().turnOrder]++; // player position in score array is awarded a point
-            Debug.Log("correct!");
-            StartCoroutine(NewProblem()); // making new problem for player
+            this.StartCoroutine(NewProblem()); // making new problem for player
         }
         else
         {
