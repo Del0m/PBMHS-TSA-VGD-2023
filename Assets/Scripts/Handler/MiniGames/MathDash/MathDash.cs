@@ -163,6 +163,11 @@ public class MathDash : GameHandler
     }
     IEnumerator NewProblem() // procedure to put new problem on the board.
     {
+        //delete all current cards
+        for(int i = 0; i < card.Length; i++)
+        {
+            Destroy(card[i].gameObject); // destroy card in array
+        }
         MakeProblem(); // make factors and answer
         yield return new WaitForSeconds(2); // wait for two seconds so everything initalizes correctly.
         StartCoroutine(SpawnCards(answer)); // spawn cards in map
