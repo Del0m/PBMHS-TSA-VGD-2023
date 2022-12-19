@@ -2,7 +2,6 @@
 
 using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
 using UnityEngine;
 
 public class MathDash : GameHandler
@@ -10,18 +9,20 @@ public class MathDash : GameHandler
     //problem variables
     public int[] number = new int[2]; // numbers that will be used for the problems.
     public char problemType;
-    public int answer;
+    static int answer;
     public GameObject cardPrefab;
 
     public GameObject[] card;
 
     private Vector2 randPos;
-
+    [SerializeField]
+    static int[] gameScore = { 0,0,0,0 };
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(TeleportPlayers()); // teleport players to the minigame.
         StartCoroutine(NewProblem()); // makes new problem to have player solve.
+
     }
 
     void MakeProblem() // making the problem that the players have to solve
@@ -63,15 +64,15 @@ public class MathDash : GameHandler
             case 3: // div
                 problemType = '/';
 
-                //making nums for problem
-                number[0] = Random.Range(0, 30);
-                number[1] = Random.Range(0, 30);
+                //making nums for problem; using one as minimum to prevent div error
+                number[0] = Random.Range(1, 30);
+                number[1] = Random.Range(1, 30);
 
                 //running loop to ensure whole number is gotten for players
                 while (number[0] % number[1] != 0)
                 {
-                    number[0] = Random.Range(0, 30);
-                    number[1] = Random.Range(0, 30);
+                    number[0] = Random.Range(1, 30);
+                    number[1] = Random.Range(1, 30);
                 }
                 //defining answer
                 answer = number[0] / number[1];
@@ -97,18 +98,23 @@ public class MathDash : GameHandler
     {
         //randomly select amount of cards to have on board.
         var cardAmount = Random.Range(5, 11); ; // 5-10 cards will be spawned
-        var rightCard = Random.Range(0,cardAmount - 1); // in array
 
         var cardDisplay = new int();
         yield return new WaitForSeconds(0.5f);
 
+        //instantiating card with correct answer
+        RandomizePosition();
+        var rightCard = Instantiate(cardPrefab, randPos, new Quaternion()); // spawning new card.
+        rightCard.GetComponent<Card>().value = answer;
+
         for (int i = 0; i < cardAmount; i++) // for loop to spawn in cards with random values
         {
+            var randomized = new int[] { Random.Range(1, 11), Random.Range(1, 6) };
             var rand = Random.Range(0, 5);
             switch (rand) // switch statement to decide what is on the card.
             {
                 case 0:
-                    cardDisplay = answer + Random.Range(1, 11);
+                    cardDisplay = answer + randomized[0];
                     //instantiate card with +1-10
                     break;
                 case 1:
@@ -116,15 +122,15 @@ public class MathDash : GameHandler
                     //instantiate card with answer negative
                     break;
                 case 2:
-                    cardDisplay = answer - Random.Range(1, 11);
+                    cardDisplay = answer - randomized[0];
                     //instantiate card with answer - 10
                     break;
                 case 3:
-                    cardDisplay = answer - Random.Range(1, 6);
+                    cardDisplay = answer - randomized[1];
                     //instantiate card with answer +- (1,5)
                     break;
                 case 4:
-                    cardDisplay = answer;
+                    cardDisplay = answer * randomized[0];
                     //instantiate card with answer
                     break;
             }
@@ -138,6 +144,9 @@ public class MathDash : GameHandler
     }
     public void CheckAnswer(GameObject player, int guess) // award player with points if correctly slammed right card
     {
+        Debug.Log(guess + " " + answer);
+        print(player);
+        
         if(guess == answer)
         {
             //update UI in here
