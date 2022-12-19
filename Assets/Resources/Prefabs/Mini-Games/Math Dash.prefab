@@ -1320,10 +1320,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: []
   teleport: []
-  gameScore: 
   number: 0000000000000000
   problemType: 0
-  answer: 0
   cardPrefab: {fileID: 2405302169707791164, guid: 7167c31d78fd8914a9c900e864aa5d71, type: 3}
   card: []
 --- !u!1 &3480112940713055154

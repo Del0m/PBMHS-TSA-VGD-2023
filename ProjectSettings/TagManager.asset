@@ -14,7 +14,7 @@ TagManager:
   - Tile
   - Teleport
   - Pause
-  - CoinCounter
+  - Minigame Element
   layers:
   - Default
   - TransparentFX
