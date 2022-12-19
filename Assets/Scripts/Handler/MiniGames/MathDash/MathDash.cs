@@ -140,7 +140,8 @@ public class MathDash : GameHandler
             newCard.GetComponent<Card>().value = cardDisplay; // setting what is on the card
             print("Instantiating card!");
         }
-
+        //add all cards to array
+        card = GameObject.FindGameObjectsWithTag("Minigame Element");
     }
     public void CheckAnswer(GameObject player, int guess) // award player with points if correctly slammed right card
     {
