@@ -11,6 +11,9 @@ public class MathDash : GameHandler
     public int[] number = new int[2]; // numbers that will be used for the problems.
     public char problemType;
     public int answer;
+    public GameObject cardPrefab;
+
+    public GameObject[] card;
 
     // Start is called before the first frame update
     void Start()
@@ -72,8 +75,44 @@ public class MathDash : GameHandler
                 break;
         }
     }
-    void SpawnCards() // problem cards the players can grab to solve the problem
+    IEnumerator SpawnCards(int answer) // problem cards the players can grab to solve the problem
     {
+        //randomly select amount of cards to have on board.
+        var cardAmount = Random.Range(5, 11); ; // 5-10 cards will be spawned
+        var rightCard = Random.Range(0,cardAmount - 1); // in array
+
+        var cardDisplay = new int();
+        yield return new WaitForSeconds(0.5f);
+
+        for (int i = 0; i < cardAmount; i++) // for loop to spawn in cards with random values
+        {
+            var rand = Random.Range(0, 5);
+            switch (rand) // switch statement to decide what is on the card.
+            {
+                case 0:
+                    cardDisplay = answer + Random.Range(1, 11);
+                    //instantiate card with +1-10
+                    break;
+                case 1:
+                    cardDisplay = -answer;
+                    //instantiate card with answer negative
+                    break;
+                case 2:
+                    cardDisplay = answer - Random.Range(1, 11);
+                    //instantiate card with answer - 10
+                    break;
+                case 3:
+                    cardDisplay = answer - Random.Range(1, 6);
+                    //instantiate card with answer +- (1,5)
+                    break;
+                case 4:
+                    cardDisplay = answer;
+                    //instantiate card with answer
+                    break;
+            }
+            //spawn in object in random area in minigame arena.
+            //Instantiate(cardPrefab)
+        }
 
     }
     public void CheckAnswer(GameObject player, int guess) // award player with points if correctly slammed right card
