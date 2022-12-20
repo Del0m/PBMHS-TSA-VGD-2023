@@ -2,6 +2,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class MathDash : GameHandler
@@ -15,8 +16,11 @@ public class MathDash : GameHandler
     public GameObject[] card;
 
     private Vector2 randPos;
-    [SerializeField]
+
     public int[] gameScore = { 0,0,0,0 };
+
+    //ui
+    public TextMeshProUGUI text; // prompt for players to solve
     // Start is called before the first frame update
     void Start()
     {
@@ -82,11 +86,11 @@ public class MathDash : GameHandler
     void RandomizePosition() // this runs to randomize the position in the arena
     {
         //getting dimensions of arena
-        var xLow = GameObject.Find("Outer Left").transform.position.x+1;
-        var xHigh = GameObject.Find("Outer Right").transform.position.x-1;
+        var xLow = GameObject.Find("Outer Left").transform.position.x+4;
+        var xHigh = GameObject.Find("Outer Right").transform.position.x-4;
 
-        var yLow = GameObject.Find("Outer Bottom").transform.position.y+3;
-        var yHigh = GameObject.Find("Outer Top").transform.position.y-3;
+        var yLow = GameObject.Find("Outer Bottom").transform.position.y+8;
+        var yHigh = GameObject.Find("Outer Top").transform.position.y-8;
 
         //returning random values to spawn target in.
         randPos = new Vector2(Random.Range(xLow,xHigh),Random.Range(yLow,yHigh));
@@ -129,7 +133,7 @@ public class MathDash : GameHandler
                     //instantiate card with answer +- (1,5)
                     break;
                 case 4:
-                    cardDisplay = answer * randomized[0];
+                    cardDisplay = answer + randomized[0] * 2;
                     //instantiate card with answer
                     break;
             }
@@ -138,25 +142,27 @@ public class MathDash : GameHandler
             var newCard = Instantiate(cardPrefab, randPos, new Quaternion()); // spawning new card.
             newCard.GetComponent<Card>().value = cardDisplay; // setting what is on the card
             print("Instantiating card!");
+            newCard.tag = "Minigame Element"; // the card prefab won't have the tag to not be deleted.
         }
         //add all cards to array
         card = GameObject.FindGameObjectsWithTag("Minigame Element");
+
+        //update ui
+        text.text = "What is: " + number[0] + " " + problemType + " " + number[1] + "?";
     }
     public void CheckAnswer(GameObject player, int guess) // award player with points if correctly slammed right card
     {
-        Debug.Log(guess + " " + answer);
         print(player);
         
         if(guess == answer)
         {
-            //update UI in here
+            text.text = "Correct! The Answer is: " + answer; // changes text to show they got it correct.
             gameScore[player.GetComponent<PlayerControls>().turnOrder]++; // player position in score array is awarded a point
             this.StartCoroutine(NewProblem()); // making new problem for player
         }
         else
         {
             //update UI on player.
-            Debug.Log("incorrect!");
         }
     }
     IEnumerator NewProblem() // procedure to put new problem on the board.
@@ -166,6 +172,7 @@ public class MathDash : GameHandler
         {
             Destroy(card[i].gameObject); // destroy card in array
         }
+        yield return new WaitForSeconds(1);
         MakeProblem(); // make factors and answer
         yield return new WaitForSeconds(2); // wait for two seconds so everything initalizes correctly.
         StartCoroutine(SpawnCards(answer)); // spawn cards in map

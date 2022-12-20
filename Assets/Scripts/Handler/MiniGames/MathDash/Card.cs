@@ -11,6 +11,8 @@ public class Card : MonoBehaviour
 
     //grabbing game mother
     public MathDash minigame;
+
+    private bool hasClicked; // to prevent multiple runs of game
     private void Update()
     {
         Debug.Log(this.gameObject.activeInHierarchy);
@@ -37,15 +39,16 @@ public class Card : MonoBehaviour
         {
             Debug.Log("Player has entered.");
             //check to see if they're acting.
-            if (collision.GetComponent<PlayerMovement>().acting == true)
+            if (collision.GetComponent<PlayerMovement>().acting == true && hasClicked == false)
             {
+                hasClicked = true;
                 var clicker = collision.gameObject;
                 print(clicker);
                 Debug.Log("Checking!");
                 //checking answer, and deleting card if its correct.
                 minigame.CheckAnswer(clicker, value); // collision = player, value = card value
 
-                Destroy(this.gameObject, 2.5f); // destroy object after checking for the answer.
+                Destroy(this.gameObject, 1f); // destroy object after checking for the answer.
             }
         }
     }
