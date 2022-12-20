@@ -108,7 +108,7 @@ public class MathDash : GameHandler
         //instantiating card with correct answer
         RandomizePosition();
         var rightCard = Instantiate(cardPrefab, randPos, new Quaternion()); // spawning new card.
-        rightCard.GetComponent<Card>().value = answer;
+        rightCard.GetComponentInChildren<Card>().value = answer;
 
         for (int i = 0; i < cardAmount; i++) // for loop to spawn in cards with random values
         {
@@ -140,7 +140,7 @@ public class MathDash : GameHandler
             //spawn in object in random area in minigame arena.
             RandomizePosition(); // randomizing position and spawning card
             var newCard = Instantiate(cardPrefab, randPos, new Quaternion()); // spawning new card.
-            newCard.GetComponent<Card>().value = cardDisplay; // setting what is on the card
+            newCard.GetComponentInChildren<Card>().value = cardDisplay; // setting what is on the card
             print("Instantiating card!");
             newCard.tag = "Minigame Element"; // the card prefab won't have the tag to not be deleted.
         }
