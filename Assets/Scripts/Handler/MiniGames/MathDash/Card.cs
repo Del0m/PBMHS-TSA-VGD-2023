@@ -66,7 +66,7 @@ public class Card : MonoBehaviour
                 //checking answer, and deleting card if its correct.
                 minigame.CheckAnswer(clicker, value); // collision = player, value = card value
 
-                Destroy(this.transform.parent.gameObject, 1f); // destroy whole object after checking for the answer.
+                Destroy(transform.parent.gameObject, 1f); // destroy whole object after checking for the answer.
             }
         }
     }
