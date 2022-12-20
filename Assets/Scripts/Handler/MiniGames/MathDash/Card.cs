@@ -21,6 +21,8 @@ public class Card : MonoBehaviour
         //having card move
         //use rigidbody addforce in one direction super fast and just let it bounce over time.
 
+
+
     }
     private void Start()
     {
@@ -36,11 +38,22 @@ public class Card : MonoBehaviour
         if(minigame == null)
         {
             minigame = GameObject.FindGameObjectWithTag("Minigame").GetComponent<MathDash>();
-        }    
+        }
+        //making angle it will shoot at
+        StartCoroutine(SwitchDirection(10,10));
+    }
+
+    Vector2 ChooseVectorDirection() // calculates random vector to shoot card at
+    {
+        var angle = Random.Range(0, 360); // random angle 0 - 360
+        var radAngle = angle * Mathf.Deg2Rad; // turn to radians to calculate vector
+
+        var randVect = new Vector2(Mathf.Cos(radAngle), Mathf.Sin(radAngle)); //some weird trig shit, dunno what it means.
+        return randVect;
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Player" && hasClicked == false) // check statement to not repeat runs
         {
             Debug.Log("Player has entered.");
             //check to see if they're acting.
@@ -56,5 +69,15 @@ public class Card : MonoBehaviour
                 Destroy(this.gameObject, 1f); // destroy object after checking for the answer.
             }
         }
+    }
+    IEnumerator SwitchDirection(int second, int i)
+    {
+        var rand = Random.Range(-3f, 4f);
+        for(int j = 0; j < i; j++)
+        {
+            rb.velocity = ChooseVectorDirection() * 5; // randomly chooses direction, bouncy material will keep it from losing traction.
+            yield return new WaitForSeconds(second+rand);
+        }
+
     }
 }

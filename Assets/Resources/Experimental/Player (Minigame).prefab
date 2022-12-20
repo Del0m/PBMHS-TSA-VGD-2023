@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2609490234402768864}
   - component: {fileID: 2609490234402768879}
   - component: {fileID: -3255879220076682217}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player (Minigame)
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 6087907061578244499}
   - component: {fileID: 3420117061755579398}
   - component: {fileID: 2007044718087343452}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: JumpTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
