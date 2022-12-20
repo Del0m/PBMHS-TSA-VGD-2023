@@ -17,7 +17,9 @@ public class GameHandler : MonoBehaviour
     public GameObject[] teleport;
 
     //score
-    //public int[] gameScore;
+    public int[] gameScore = { 0,0,0,0 };
+
+    public Transform[] border; // array holding the borders
 
     private void Start()
     {

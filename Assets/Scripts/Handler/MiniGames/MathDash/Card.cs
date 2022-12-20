@@ -12,10 +12,15 @@ public class Card : MonoBehaviour
     //grabbing game mother
     public MathDash minigame;
 
+    //rigidbody to send in direction
+    public Rigidbody2D rb;
+
     private bool hasClicked; // to prevent multiple runs of game
     private void Update()
     {
-        Debug.Log(this.gameObject.activeInHierarchy);
+        //having card move
+        //use rigidbody addforce in one direction super fast and just let it bounce over time.
+
     }
     private void Start()
     {

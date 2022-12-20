@@ -17,7 +17,7 @@ public class MathDash : GameHandler
 
     private Vector2 randPos;
 
-    public int[] gameScore = { 0,0,0,0 };
+
 
     //ui
     public TextMeshProUGUI text; // prompt for players to solve
@@ -86,11 +86,11 @@ public class MathDash : GameHandler
     void RandomizePosition() // this runs to randomize the position in the arena
     {
         //getting dimensions of arena
-        var xLow = GameObject.Find("Outer Left").transform.position.x+4;
-        var xHigh = GameObject.Find("Outer Right").transform.position.x-4;
+        var xLow = border[0].transform.position.x+4;
+        var xHigh = border[2].transform.position.x-4;
 
-        var yLow = GameObject.Find("Outer Bottom").transform.position.y+8;
-        var yHigh = GameObject.Find("Outer Top").transform.position.y-8;
+        var yLow = border[1].transform.position.y+4;
+        var yHigh = border[3].transform.position.y-2;
 
         //returning random values to spawn target in.
         randPos = new Vector2(Random.Range(xLow,xHigh),Random.Range(yLow,yHigh));
