@@ -9,20 +9,19 @@ public class MathDash : GameHandler
     //problem variables
     public int[] number = new int[2]; // numbers that will be used for the problems.
     public char problemType;
-    static int answer;
+    public int answer;
     public GameObject cardPrefab;
 
     public GameObject[] card;
 
     private Vector2 randPos;
     [SerializeField]
-    static int[] gameScore = { 0,0,0,0 };
+    public int[] gameScore = { 0,0,0,0 };
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(TeleportPlayers()); // teleport players to the minigame.
         StartCoroutine(NewProblem()); // makes new problem to have player solve.
-
     }
 
     void MakeProblem() // making the problem that the players have to solve
