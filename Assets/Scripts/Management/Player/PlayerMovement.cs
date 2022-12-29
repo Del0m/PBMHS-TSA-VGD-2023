@@ -34,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
     //cool down for player actions
     private double _cooldown = 0.5; // base cooldown for player
 
+    public bool holding; // for minigames to see if they're holding something.
+
     private void Awake()
     {
         controls = new Controls();
