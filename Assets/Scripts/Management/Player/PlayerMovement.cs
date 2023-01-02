@@ -38,7 +38,8 @@ public class PlayerMovement : MonoBehaviour
     //cool down for player actions
     private double _cooldown = 0.5; // base cooldown for player
 
-    public bool holding; // for minigames to see if they're holding something.
+    public GameObject holding; // for minigames to see if they're holding something.
+    private bool canPick; // to tell if something is in the pick up radius
 
     private void Awake()
     {
@@ -61,6 +62,48 @@ public class PlayerMovement : MonoBehaviour
         XMovement();
         YMovement();
         Cooldown(_cooldown);
+
+        // if statement to keep held object in hand
+        if(holding != null)
+        {
+            holding.transform.position = this.gameObject.transform.position;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision) // for the purposes of holding new objects
+    {
+        if(collision.tag == "Minigame Element")
+        {
+            if(holding == null)
+            {
+                // change boolean to true to allow items to be picked up
+                canPick = true;
+            }
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        canPick = false; // prevent pickup of new items
+    }
+    bool holdOngoing = false;
+    public IEnumerator HoldRoutine(bool isDrop,GameObject newObject) // routine to change the new gameObject that player is holding
+    {
+        if(holdOngoing == false)
+        {
+            holdOngoing = true;
+            if (isDrop == false)
+            {
+                holding = newObject; // change gameObject being held to the new one
+                canPick = false; // prevent pickup of new items
+            }
+            else
+            {
+                holding = null;
+            }
+            yield return new WaitForSeconds(0.5f);
+            holdOngoing = false;
+        }
+        
+        yield return null;
     }
     public void GameSwitch(bool enable, bool topDown) // start game for the player using switch.
     {

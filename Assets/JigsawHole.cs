@@ -10,44 +10,34 @@ public class JigsawHole : MonoBehaviour
 
     // variables to detect if piece will be taken
     public bool taking;
-    public bool inProgress; // to prevent multiple runs
-    IEnumerator EnableTake(float time) // hold something open for a select amount of time
-    {
-        if(inProgress == false)
-        {
-            Debug.Log("Running EnableTake()");
-            inProgress = true;
 
-            taking = true; // allows puzzle pieces to be taken
-            yield return new WaitForSeconds(time);
-            taking = false; // disallows puzzle pieces to be taken
-            inProgress = false;
+    GameObject holding; // for the triggers
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Player")
+        {
+            holding = collision.GetComponent<PlayerMovement>().holding;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.tag == "Minigame Element")
+        {
+            taking = true;
         }
     }
     private void OnTriggerStay2D(Collider2D collision) // turns on and grabs puzzle pieces
     {
-        Debug.Log("Triggered");
-        if (collision.tag == "Minigame Element") // to see if it is a puzzle piece
-        {
-            Debug.Log("Puzzle piece detected...");
-            if (taking == true)
-            {
-                Debug.Log("Moving the piece");
-                collision.transform.position = this.gameObject.transform.position; // set puzzle piece in.
-                taking = false;
-            }
-        }
-
         if (collision.tag == "Player")
         {
-            Debug.Log("Player Triggered");
-            if (collision.GetComponent<PlayerMovement>().holding == true)
+            if (holding != null && holding.tag == "Minigame Element") // check to see if holding minigame item
             {
-                taking = false;
-            }
-            if(collision.GetComponent<PlayerMovement>().holding == false && collision.GetComponent<PlayerMovement>().acting == true)
-            {
-                taking = true;
+                Debug.Log("detected.");
+                if(collision.GetComponent<PlayerMovement>().acting == true && taking == true)
+                {
+                    holding.transform.position = this.gameObject.transform.position;
+                    taking = false;
+                }
             }
         }
     
