@@ -14,18 +14,18 @@ public class Jigsaw_Board : MonoBehaviour
     public string pieceID; // to find if piece is correct; transfers to puzzle piece
     public GameObject[] slot;
 
-    public IEnumerator BoardStartup() // runs functions to start up the player's board in the game
+    public IEnumerator BoardStartup(int plrOrder) // runs functions to start up the player's board in the game
     {
-        PieceSpawn();
+        PieceSpawn(plrOrder);
         yield return new WaitForSeconds(2);
 
     }
-    void PieceSpawn() // run SpawnPuzzle
+    void PieceSpawn(int plrOrder) // run SpawnPuzzle
     {
         //randomly select puzzleImage array here [ ]
 
         //
-        puzzleScript.SpawnPuzzle(this.gameObject); // spawning the puzzle pieces in here.
+        puzzleScript.SpawnPuzzle(this.gameObject, plrOrder); // spawning the puzzle pieces in here.
 
     }
 }

@@ -16,9 +16,13 @@ public class JigsawPuzzle : GameHandler
     // random vector to put piece in
     private Vector2 randPos;
 
+    // jigsaw image users must produce
+    public GameObject imageCollection; // gameobject that will store all, will be instantiated and removed.
+    private Sprite[] jigsawImage;
+
     private void Start()
     {
-        StartCoroutine(TeleportPlayers()); // teleport players to game
+        StartCoroutine(TeleportPlayers(true)); // teleport players to game; topdown game
         StartCoroutine(FormBoard());
     }
     void RandomizePosition() // this runs to randomize the position in the arena
@@ -35,6 +39,12 @@ public class JigsawPuzzle : GameHandler
         return;
 
     }
+    private void SelectImage() // purpose is to select random image collection from ones available.
+    {
+        var images = Instantiate(imageCollection); // to grab images
+        jigsawImage = images.GetComponent<ImageScript>().ImageSelection(); // grab randomImage.
+        Destroy(images, 1f); // rid imageCollection
+    }
 
     private IEnumerator FormBoard() // instantiates board
     {
@@ -48,16 +58,13 @@ public class JigsawPuzzle : GameHandler
             Debug.Log("spawning board");
             var plrBoard = Instantiate(boardPrefab, puzzleLocation[i].position, new Quaternion(0, 0, 0, 0));
             plrBoard.transform.position = new Vector3(plrBoard.transform.position.x, plrBoard.transform.position.y, 0f);
-            // for loop to give names to all the children of plrBoard
-            for(int j = 0; j < 9; j++)
-            {
-                // renaming slot[i] to custom ID
-                plrBoard.GetComponent<Jigsaw_Board>().slot[i].name = playerCount.ToString() + j.ToString(); // change name in order to differntiate between pieces
-            }
-            StartCoroutine(plrBoard.GetComponent<Jigsaw_Board>().BoardStartup()); // run startup function to begin game
+
+
+            SelectImage(); // selects image puzzle will base itself on.
+            StartCoroutine(plrBoard.GetComponent<Jigsaw_Board>().BoardStartup(i)); // run startup function to begin game
         }
     }
-    public void SpawnPuzzle(GameObject parent) // spawns puzzle pieces, uses parent to define puzzle images
+    public void SpawnPuzzle(GameObject parent, int plrOrder) // spawns puzzle pieces, uses parent to define puzzle images
     {
         // for loop to create pieces for puzzle
         for(int i = 0; i < 9; i++)
@@ -66,9 +73,10 @@ public class JigsawPuzzle : GameHandler
             var jigsawPiece = Instantiate(piecePrefab, randPos, new Quaternion(0, 0, 0, 0)); // make jigsaw piece spawn on map
 
             // mod jigsaw piece to have image
-            //jigsawPiece.GetComponent<Image>().sprite = parent.GetComponent<Jigsaw_Board>().puzzleImage[i].sprite;
+            jigsawPiece.GetComponent<SpriteRenderer>().sprite = jigsawImage[i];
 
-            //jigsawPiece.GetComponent</*add jigsaw piece in here*/>().pieceID = parent.name + i.ToString(); // to prevent incorrect puzzle pieces being put in
+            jigsawPiece.GetComponent<JigsawPiece>().imageID = plrOrder; // ID image
+            jigsawPiece.GetComponent<JigsawPiece>().pieceID = i; // to prevent incorrect puzzle pieces being put in
         }
     }
 

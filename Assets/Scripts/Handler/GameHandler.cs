@@ -26,7 +26,7 @@ public class GameHandler : MonoBehaviour
         
         teleport = GameObject.FindGameObjectsWithTag("Teleport");
     }
-    public IEnumerator TeleportPlayers() // teleports players into minigame
+    public IEnumerator TeleportPlayers(bool topDown) // teleports players into minigame
     {
         Debug.Log("Waiting...");
         //grab teleports.
@@ -42,7 +42,7 @@ public class GameHandler : MonoBehaviour
             Debug.Log("Teleporting and enabling player " + i);
             Debug.Log(player[i]);
             player[i].transform.position = teleport[i].transform.position; // set position for player in minigame
-            player[i].GetComponent<PlayerMovement>().GameSwitch(true); //turn on player movement by allowing rigidbody to take movement
+            player[i].GetComponent<PlayerMovement>().GameSwitch(true,topDown); //turn on player movement by allowing rigidbody to take movement
 
             yield return new WaitForSeconds(1); // wait for each player to be fully teleported in.
         }

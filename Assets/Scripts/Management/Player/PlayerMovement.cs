@@ -17,9 +17,12 @@ public class PlayerMovement : MonoBehaviour
     [Header("Stats")]
     public int speed = 2;
     public int jumpPower = 10;
-    
-    private float movementInput;
+
+    private float xMovementInput;
+    private float yMovementInput;
+
     public bool canJump = false;
+    public bool canEverJump = false;
 
     public bool fallThrough = false;
 
@@ -30,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
     //player action variables
     private bool canAct = false;
+    private bool canYMovement = false;
     public bool acting;
     //cool down for player actions
     private double _cooldown = 0.5; // base cooldown for player
@@ -55,29 +59,50 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         XMovement();
+        YMovement();
         Cooldown(_cooldown);
     }
-    public void GameSwitch(bool enable) // start game for the player using switch.
+    public void GameSwitch(bool enable, bool topDown) // start game for the player using switch.
     {
         switch(enable)
         {
             case true:
                 canAct = true;
                 canJump = true;
+                canEverJump = true;
                 rb.bodyType = RigidbodyType2D.Dynamic;
                 break;
             case false:
                 canAct = false;
                 canJump = false;
+                canEverJump = false;
                 rb.bodyType = RigidbodyType2D.Static;
                 break;
+        }
+        switch(topDown) // for games to enable yMovement
+        {
+            case true:
+                canEverJump = false;
+                canYMovement = true;
+
+                rb.gravityScale = 0; // prevents slow-fall of player
+
+                break;
+            case false:
+                canEverJump = true;
+                canYMovement = false;
+
+                rb.gravityScale = 1; // allows fall of player
+
+                break;
+                
         }
     }
     private void XMovement() // for the purposes of moving the player left and right
     {
         //running player movement in here.
-        movementInput = controls.Gameplay.Move.ReadValue<Vector2>().x; // read x value of movement input
-        rb.velocity = new Vector2((movementInput * speed), rb.velocity.y); // change velocity to move player, but don't change y velocity.
+        xMovementInput = controls.Gameplay.Move.ReadValue<Vector2>().x; // read x value of movement input
+        rb.velocity = new Vector2((xMovementInput * speed), rb.velocity.y); // change velocity to move player, but don't change y velocity.
     }
 
     //timer for Cooldown
@@ -123,11 +148,21 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Jump(InputAction.CallbackContext context) // input action to increase the players velocity up
     {
-        if(context.performed && canJump == true) // ensures its only ran once
+        if(context.performed && canJump == true && canEverJump == true) // ensures its only ran once
         {
             Debug.Log("Jumping!");
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + jumpPower);
             canJump = false; // turn off jumping to prevent them from jumping again.
+        }
+    }
+    public void YMovement() // player moves up and down
+    {
+        if(canYMovement == true)
+        {
+            //running player movement in here.
+            yMovementInput = controls.Gameplay.Move.ReadValue<Vector2>().y; // read x value of movement input
+            rb.velocity = new Vector2( rb.velocity.x, (yMovementInput * speed)); // change velocity to move player, but don't change y velocity.
+
         }
     }
 }
