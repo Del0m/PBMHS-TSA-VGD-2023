@@ -87,17 +87,27 @@ public class PlayerMovement : MonoBehaviour
     bool holdOngoing = false;
     public IEnumerator HoldRoutine(bool isDrop,GameObject newObject) // routine to change the new gameObject that player is holding
     {
-        if(holdOngoing == false)
+        Debug.Log("Running!");
+        if(canPick == false) // kill statement to prevent players in minigames grabbing things they shouldn't
         {
+            Debug.Log("Not running...");
+            yield return null;
+        }
+        if(holdOngoing == false && newObject.GetComponent<HoldableItem>().canPickUp == true) // see if coroutine is already running / see if object can be picked
+        {
+            Debug.Log("Attempting to Grab Item!");
             holdOngoing = true;
             if (isDrop == false)
             {
+                Debug.Log("Grabbing Item!");
                 holding = newObject; // change gameObject being held to the new one
+                newObject.GetComponent<HoldableItem>().beingHeld = true; // to register for minigames
                 canPick = false; // prevent pickup of new items
             }
             else
             {
                 holding = null;
+                newObject.GetComponent<HoldableItem>().beingHeld = false; // disable hold for minigames
             }
             yield return new WaitForSeconds(0.5f);
             holdOngoing = false;
@@ -105,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
         
         yield return null;
     }
-    public void GameSwitch(bool enable, bool topDown) // start game for the player using switch.
+    public void GameSwitch(bool enable, bool topDown, bool pick) // start game for the player using switch.
     {
         switch(enable)
         {
@@ -140,6 +150,15 @@ public class PlayerMovement : MonoBehaviour
                 break;
                 
         }
+        switch(pick)
+        {
+            case true:
+                canPick = true;
+                break;
+            default:
+                canPick = false;
+                break;
+        }    
     }
     private void XMovement() // for the purposes of moving the player left and right
     {

@@ -24,7 +24,7 @@ public class MathDash : GameHandler
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(TeleportPlayers(false)); // teleport players to the minigame.
+        StartCoroutine(TeleportPlayers(false,false)); // teleport players to the minigame.
         StartCoroutine(NewProblem()); // makes new problem to have player solve.
     }
 

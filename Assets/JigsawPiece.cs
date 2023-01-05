@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class JigsawPiece : MonoBehaviour
+public class JigsawPiece : HoldableItem
 {
     public int pieceID; // ID to differentiate sections of image
     public int imageID; // ID to differntiate the image
@@ -17,6 +17,7 @@ public class JigsawPiece : MonoBehaviour
         {
             if(collision.GetComponent<PlayerMovement>().holding == null && collision.GetComponent<PlayerMovement>().acting == true)
             {
+                Debug.Log("Attempting to run coroutine!");
                 StartCoroutine(collision.GetComponent<PlayerMovement>().HoldRoutine(false, this.gameObject));
             }
             else if(collision.GetComponent<PlayerMovement>().holding == gameObject && collision.GetComponent<PlayerMovement>().acting == true)

@@ -9,11 +9,11 @@ using UnityEngine.UI;
 public class Jigsaw_Board : MonoBehaviour
 {
     public JigsawPuzzle puzzleScript; // parent script; calls functions
-    public Image[] puzzleImage; // segments of images to be put
     public int pieceCount = 9;
     public string pieceID; // to find if piece is correct; transfers to puzzle piece
     public GameObject[] slot;
 
+    public int piecesCorrect; // amount of pieces correct for user
     public IEnumerator BoardStartup(int plrOrder) // runs functions to start up the player's board in the game
     {
         PieceSpawn(plrOrder);
@@ -23,9 +23,18 @@ public class Jigsaw_Board : MonoBehaviour
     void PieceSpawn(int plrOrder) // run SpawnPuzzle
     {
         //randomly select puzzleImage array here [ ]
+        puzzleScript.SpawnPuzzle(this.gameObject, plrOrder, slot[0].transform); // spawning the puzzle pieces in here.
 
-        //
-        puzzleScript.SpawnPuzzle(this.gameObject, plrOrder); // spawning the puzzle pieces in here.
+    }
+    public void ChangeCorrect(int value) // update the amount of pieces slottedd correctly in the game
+    {
+        piecesCorrect += value; // update value
+
+        // run the function to check to see if it is time to end the game
+        if(piecesCorrect == pieceCount)
+        {
+            puzzleScript.CheckEnd(piecesCorrect); // procedure to end game
+        }
 
     }
 }
