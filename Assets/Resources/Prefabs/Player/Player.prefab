@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2609490234402768879}
   - component: {fileID: -3255879220076682217}
   m_Layer: 7
-  m_Name: Player (Minigame)
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
