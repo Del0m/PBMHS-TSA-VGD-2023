@@ -21,7 +21,7 @@ public class HotPotato : GameHandler
     }
     IEnumerator StartGame() // starts game by spawning the potato 
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
         SpawnPotato();
         yield return null;
     }

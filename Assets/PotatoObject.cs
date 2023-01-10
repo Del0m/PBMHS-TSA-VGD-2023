@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class PotatoObject : MonoBehaviour
@@ -16,35 +17,41 @@ public class PotatoObject : MonoBehaviour
     public GameObject highlight;
     public GameObject highlightInstance;
 
-    // booleans to allow bomb to move from one player to another
-    bool canMove;
     void Update()
     {
-        timeLeft -= Time.deltaTime; // descend time until 0, at which function will make it explode with the player
         Explode();
         MovePotato();
     }
+    bool hasRan;
     void Explode() // check if time is up and destroy itself and penalize player
     {
-        if (timeLeft < 0) // time is up
+
+        if (timeLeft < 0 && hasRan == false) // time is up
         {
+            hasRan = true;
+            Debug.Log("Exploded.");
             parentScript.ScorePlayer(holdingPlayer, -1); // penalize player for dying with the potato
-            parentScript.EndGame();
+            StartCoroutine(parentScript.EndGame());
+
+            Destroy(this.gameObject, 1f); // destroy game object as it isn't needed
+        }
+        else
+        {
+            timeLeft -= Time.deltaTime; // descend time until 0, at which function will make it explode with the player
         }
     }
     void MovePotato() // move the potato from one player to another
     {
-        if(canMove == true)
-        {
-            // moves potato to new player highlighted at 15 units a second
-            Vector2.MoveTowards(this.gameObject.transform.position, highlightInstance.transform.parent.position, 15*Time.deltaTime);
-        }
+        // moves potato to new player highlighted at 15 units a second
+
+        transform.position = Vector2.MoveTowards(this.transform.position, parentScript.player[holdingPlayer].transform.position, 15 * Time.deltaTime);
     }
     void HighlightPass() // show player who they will be passing to
     {
         if(highlightInstance) // check if it exists before potentially spitting error out
         {
             Destroy(highlightInstance);
+            highlightInstance = null;
         }
         // highlight the player that can be thrown to.
         highlightInstance = Instantiate(highlight, parentScript.player[holdingPlayer + potentialPass].transform);
@@ -65,10 +72,7 @@ public class PotatoObject : MonoBehaviour
                 Debug.LogError("Invalid pass made! Check code for errors.");
                 throw;
             }
-
-            canMove = true;
-            yield return new WaitForSeconds(0.5f); // wait half a second before disallowing movement
-            canMove = false;
+            yield return null;
 
         }
     }
