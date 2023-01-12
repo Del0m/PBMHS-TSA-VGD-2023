@@ -1,6 +1,7 @@
 /*armindelmo turnmanager.cs
  * the purpose of this program is to seperate all the users into their respective turns.
 */
+using TMPro;
 using UnityEngine;
 
 public class TurnManager : MonoBehaviour
@@ -15,6 +16,10 @@ public class TurnManager : MonoBehaviour
 
     //modify scores of players
     public ScoreManager scoreScript;
+
+    // ui to update players on current turn
+    public TextMeshProUGUI roundUI; // tells the round for the players
+    public GameObject[] playerUI; // to be highlighted by the game to tell players its their turn!
 
 
     private void Awake()
@@ -45,6 +50,9 @@ public class TurnManager : MonoBehaviour
         Debug.Log("Checking new round! Advancing Turn!");
         var playerCount = GameObject.FindGameObjectsWithTag("Player").Length;
         currentTurn++;
+
+        // run ui update
+        UIUpdate(); 
         if(playerCount < currentTurn) // turn on el minigame
         {
             miniGameScript.MinigameStartup(); // running minigame coroutine to advise players, and spawn game.
@@ -63,5 +71,11 @@ public class TurnManager : MonoBehaviour
         }
         Debug.Log("Turn failed, " + currentTurn + " does not equal " + playerTurn);
         return false;
+    }
+    public void UIUpdate() // update the UI on the turn counter in the UI Canvas
+    {
+        roundUI.text = turnsElapsed.ToString();
+
+        // highlight the current player here [ ]
     }
 }

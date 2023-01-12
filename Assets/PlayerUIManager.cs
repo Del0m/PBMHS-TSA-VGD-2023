@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerUIManager : MonoBehaviour
 {
     public GameObject[] playerUI; // the UI that shows the player's wins, icon and buffs
+    public GameObject turnCounter; // the UI that shows the current round the game is on
 
     // this will be ran in the PlayerManager
     public void InitalizeUI() // this is to hide UI that won't be used in the game due to a lack of plrs
