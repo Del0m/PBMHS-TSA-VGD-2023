@@ -16,7 +16,7 @@ public class HotPotato : GameHandler
 
     private void Start()
     {
-        StartCoroutine(TeleportPlayers(false, false));
+        StartCoroutine(TeleportPlayers(false, false, false));
         StartCoroutine(StartGame());
     }
     IEnumerator StartGame() // starts game by spawning the potato 

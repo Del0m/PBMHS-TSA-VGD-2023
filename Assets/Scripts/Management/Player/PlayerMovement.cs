@@ -162,6 +162,19 @@ public class PlayerMovement : MonoBehaviour
                 break;
         }    
     }
+    public double ReadMoveValues(char ch) // to read move values of the player to use them for minigame purposes
+    {
+        if(ch == 'x')
+        {
+            return xMovementInput;
+        }
+        if(ch == 'y')
+        {
+            return yMovementInput;
+        }
+        Debug.LogError("Error, please change ReadMoveValues to either 'x', or 'y' ");
+        return 0; // fail statement
+    }
     public void XMovement(InputAction.CallbackContext ctx) // for the purposes of moving the player left and right
     {
         //running player movement in here.
