@@ -24,7 +24,7 @@ public class JigsawPuzzle : GameHandler
 
     private void Start()
     {
-        StartCoroutine(TeleportPlayers(true,true)); // teleport players to game; topdown game
+        StartCoroutine(TeleportPlayers(true,true, true)); // teleport players to game; topdown game
         StartCoroutine(FormBoard());
     }
     public void CheckEnd(int correctPieceCount) // check to see if user has correctly solved the puzzle
