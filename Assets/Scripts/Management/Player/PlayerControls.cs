@@ -43,7 +43,6 @@ public class PlayerControls : MonoBehaviour
         catch (System.Exception)
         {
             Debug.LogError("Movement Manager or TurnManager is not present!");
-            throw;
         }
 
 
