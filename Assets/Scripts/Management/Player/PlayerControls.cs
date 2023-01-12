@@ -29,14 +29,23 @@ public class PlayerControls : MonoBehaviour
 
     private void Start() // run methods on start
     {
-        if (moveManage == null) // check if hasn't been publicly assigned already.
+        try
         {
-            moveManage = GameObject.FindGameObjectWithTag("Movement Manager").GetComponent<MovementManager>(); // grab movement manager
+            if (moveManage == null) // check if hasn't been publicly assigned already.
+            {
+                moveManage = GameObject.FindGameObjectWithTag("Movement Manager").GetComponent<MovementManager>(); // grab movement manager
+            }
+            if (turnScript == null) // check if hasn't been publicly assigned already.
+            {
+                turnScript = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>(); // grabs turnManager off of PlayerManager
+            }
         }
-        if (turnScript == null) // check if hasn't been publicly assigned already.
+        catch (System.Exception)
         {
-            turnScript = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>(); // grabs turnManager off of PlayerManager
+            Debug.LogError("Movement Manager or TurnManager is not present!");
+            throw;
         }
+
 
         gameplayInput = this.gameObject.GetComponent<PlayerInput>(); // grabbing player controls to turn on/off and change inputmaps
         this.gameObject.tag = "Player"; //set player tag to "Player"

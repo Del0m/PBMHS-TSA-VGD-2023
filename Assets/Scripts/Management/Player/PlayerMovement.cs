@@ -11,8 +11,6 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
-    public InputDevice currentDevice; // for game handler to grab and put on new instantiations
-
     //stats for player movement
     [Header("Stats")]
     public int speed = 2;
@@ -59,12 +57,16 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        XMovement();
-        YMovement();
         Cooldown(_cooldown);
+        // for movement
+        rb.velocity = new Vector2((xMovementInput * speed), rb.velocity.y); // move x
+        if(canYMovement)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, (yMovementInput * speed)); // move y
+        }
 
         // if statement to keep held object in hand
-        if(holding != null)
+        if (holding != null)
         {
             holding.transform.position = this.gameObject.transform.position;
         }
@@ -160,11 +162,17 @@ public class PlayerMovement : MonoBehaviour
                 break;
         }    
     }
-    private void XMovement() // for the purposes of moving the player left and right
+    public void XMovement(InputAction.CallbackContext ctx) // for the purposes of moving the player left and right
     {
         //running player movement in here.
-        xMovementInput = controls.Gameplay.Move.ReadValue<Vector2>().x; // read x value of movement input
-        rb.velocity = new Vector2((xMovementInput * speed), rb.velocity.y); // change velocity to move player, but don't change y velocity.
+
+        xMovementInput = ctx.ReadValue<Vector2>().x; // read x value of movement input
+
+    }
+    public void YMovement(InputAction.CallbackContext ctx) // player moves up and down
+    {
+        //running player movement in here.
+        yMovementInput = ctx.ReadValue<Vector2>().y; // read x value of movement input
     }
 
     //timer for Cooldown
@@ -215,16 +223,6 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Jumping!");
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + jumpPower);
             canJump = false; // turn off jumping to prevent them from jumping again.
-        }
-    }
-    public void YMovement() // player moves up and down
-    {
-        if(canYMovement == true)
-        {
-            //running player movement in here.
-            yMovementInput = controls.Gameplay.Move.ReadValue<Vector2>().y; // read x value of movement input
-            rb.velocity = new Vector2( rb.velocity.x, (yMovementInput * speed)); // change velocity to move player, but don't change y velocity.
-
         }
     }
 }
