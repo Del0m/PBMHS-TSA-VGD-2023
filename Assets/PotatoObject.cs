@@ -44,6 +44,7 @@ public class PotatoObject : MonoBehaviour
             parentScript.ScorePlayer(holdingPlayer, -1); // penalize player for dying with the potato
             StartCoroutine(parentScript.EndGame());
 
+            Destroy(highlightInstance, 1f); // destroy the instance of highlight
             Destroy(this.gameObject, 1f); // destroy game object as it isn't needed
         }
         else
@@ -73,10 +74,19 @@ public class PotatoObject : MonoBehaviour
             if (parentScript.player.Length < holdingPlayer + potentialPass)
             {
                 potentialPass = 0; // reset back to first player
+                if (potentialPass == holdingPlayer)
+                {
+                    potentialPass++;
+                }
                 highlight = parentScript.player[potentialPass];
+
             }
             else
             {
+                if (potentialPass == holdingPlayer)
+                {
+                    potentialPass++;
+                }
                 highlight = parentScript.player[potentialPass];
             }
         }
@@ -84,19 +94,23 @@ public class PotatoObject : MonoBehaviour
         {
             routineOngoing = true;
             potentialPass += increment; // move pass to the left
-            if(potentialPass == holdingPlayer)
-            {
-                potentialPass += increment; // to prevent highlighting self
-                Debug.Log("Currently highlighting self, attempting to fix.");
-            }
+
             if (holdingPlayer + potentialPass < 0)
             {
                 potentialPass = parentScript.player.Length - 1;
                 if (potentialPass == holdingPlayer)
+                {
+                    potentialPass--;
+                }
                 highlight = parentScript.player[potentialPass]; // move to last player in array
             }
             else
             {
+                if (potentialPass == holdingPlayer)
+                {
+                    potentialPass--;
+                }
+
                 highlight = parentScript.player[potentialPass];
             }
         }
@@ -113,7 +127,7 @@ public class PotatoObject : MonoBehaviour
         {
             StartCoroutine(HighlightRoutine(-1));
         }
-        HighlightPass();
+        if (highlight != null) { HighlightPass(); } // prevent error spam
     }
     void HighlightPass() // show player who they will be passing to
     {
@@ -123,7 +137,7 @@ public class PotatoObject : MonoBehaviour
             highlightInstance = null;
         }
         // highlight the player that can be thrown to.
-        highlightInstance = Instantiate(highlightObject, highlight.transform);
+        highlightInstance = Instantiate(highlightObject, highlight.transform.position,  new Quaternion(0,0,0,0));
 
     }
     IEnumerator Pass() // see if conditions to pass from one player to another are met, and then pass to player  
@@ -131,10 +145,12 @@ public class PotatoObject : MonoBehaviour
         // if holding player acts to throw object.
         if (parentScript.player[holdingPlayer].GetComponent<PlayerMovement>().acting == true)
         {
+            Debug.Log("Passing!");
             try
             {
                 holdingPlayer = potentialPass; // change integer to now be the player who is holding the potato
                 var failSafe = parentScript.player[holdingPlayer]; // to check if code fails (wrong player selected)
+                Destroy(highlightInstance); // delete highlight to prevent it from staying onto player
             }
             catch (System.Exception)
             {
