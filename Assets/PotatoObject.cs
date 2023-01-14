@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Security.Cryptography;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class PotatoObject : MonoBehaviour
@@ -27,10 +28,41 @@ public class PotatoObject : MonoBehaviour
         StartCoroutine(Pass());
         ChangeHighlight();
 
+        ChangeScale(); // visual aid
+
         if(highlightObject == null)
         {
             highlightObject = Resources.Load("Prefabs/Mini-Games/Minigame Assets/Highlight", typeof(GameObject)) as GameObject;
             Resources.UnloadUnusedAssets(); // prevent memory leak
+        }
+    }
+    float timeElapsed; // to scale the potato object as the time goes on.
+    bool explodeAnim; // to enable the explosion animation
+
+    void ChangeScale() // this function is to change the scale of the object to animate it.
+    {
+        timeElapsed += Time.deltaTime;
+        var scaleModifier = 1 + (timeElapsed / 10);
+        if(this.gameObject.transform.localScale.x <= 1) // check to see if it hasn't increased
+        {
+            this.gameObject.transform.localScale = new Vector3
+                (scaleModifier,
+                scaleModifier,
+                scaleModifier);
+        }
+        else if (explodeAnim == false) // slowly scale down to come back up
+        {
+            this.gameObject.transform.localScale = new Vector3
+                (this.gameObject.transform.localScale.x - Time.deltaTime, 
+                this.gameObject.transform.localScale.y - Time.deltaTime,
+                1f);
+        }
+        if(explodeAnim == true)
+        {
+            this.gameObject.transform.localScale = new Vector3
+        (this.gameObject.transform.localScale.x + Time.deltaTime,
+        this.gameObject.transform.localScale.y + Time.deltaTime,
+        1f);
         }
     }
     bool hasRan;
@@ -45,6 +77,7 @@ public class PotatoObject : MonoBehaviour
             StartCoroutine(parentScript.EndGame());
 
             Destroy(highlightInstance, 1f); // destroy the instance of highlight
+
             Destroy(this.gameObject, 1f); // destroy game object as it isn't needed
         }
         else
@@ -110,7 +143,7 @@ public class PotatoObject : MonoBehaviour
                 {
                     potentialPass--;
                 }
-
+                if(holdingPlayer < 0) { potentialPass = parentScript.player.Length - 1; } // prevent negative numbers
                 highlight = parentScript.player[potentialPass];
             }
         }
@@ -149,6 +182,8 @@ public class PotatoObject : MonoBehaviour
             try
             {
                 holdingPlayer = potentialPass; // change integer to now be the player who is holding the potato
+
+                if (parentScript.player[holdingPlayer] == null) { throw new System.Exception(); }
                 var failSafe = parentScript.player[holdingPlayer]; // to check if code fails (wrong player selected)
                 Destroy(highlightInstance); // delete highlight to prevent it from staying onto player
             }
