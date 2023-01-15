@@ -94,7 +94,7 @@ public class MiniGameManager : MonoBehaviour
             }
             Debug.Log("Returning player back to position.");
             //find corresponding tile, return them back to the position.
-            players[i].transform.position = GameObject.Find(players[i].GetComponent<PlayerControls>().position.ToString()).transform.position;
+            players[i].transform.position = GameObject.Find(players[i].GetComponent<PlayerStats>().position.ToString()).transform.position;
         }
         KillGamesFromFile(); // deletes minigame
 

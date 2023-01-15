@@ -7,14 +7,15 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
+
 public class PlayerControls : MonoBehaviour
 {
     //stats will remain here for the time being...
     [Header("Stats")]
-    public int position;
+    public PlayerStats stat;
 
     //script to be called for player management
-    [SerializeField]
     public GameObject managerObject;
     public TurnManager turnScript;
     private MovementManager moveManage;
@@ -92,9 +93,9 @@ public class PlayerControls : MonoBehaviour
                 if (movesRemaining > 0) // check statement so program doesn't die.
                 {
                     Debug.Log("Moving.");
-                    newTile = moveManage.CallTile(position, 1); // moving one tile at a time
+                    newTile = moveManage.CallTile(stat.position, 1); // moving one tile at a time
 
-                    position++; // moving position ahead
+                    stat.position++; // moving position ahead
                     
                     movesRemaining--; // decrease movement till they are out of moves left.
                     yield return new WaitForSeconds(wait); // give time to move to position.

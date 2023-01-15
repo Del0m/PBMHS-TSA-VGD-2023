@@ -1,5 +1,6 @@
 //armin delmo PlayerMovement.cs
 //the purpose of this program is to allow xy movement for the player during minigames.
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,6 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
-    //stats for player movement
-    [Header("Stats")]
-    public int speed = 2;
-    public int jumpPower = 10;
 
     private float xMovementInput;
     private float yMovementInput;
@@ -33,8 +30,13 @@ public class PlayerMovement : MonoBehaviour
     private bool canAct = false;
     private bool canYMovement = false;
     public bool acting;
-    //cool down for player actions
-    private double _cooldown = 0.5; // base cooldown for player
+
+    //attacking variables
+    bool isAttacking;
+
+
+    //player stats to reference
+    public PlayerStats stat;
 
     public GameObject holding; // for minigames to see if they're holding something.
     private bool canPick; // to tell if something is in the pick up radius
@@ -57,12 +59,12 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Cooldown(_cooldown);
+        Cooldown(stat.cooldown);
         // for movement
-        rb.velocity = new Vector2((xMovementInput * speed), rb.velocity.y); // move x
+        rb.velocity = new Vector2((xMovementInput * stat.speed), rb.velocity.y); // move x
         if(canYMovement)
         {
-            rb.velocity = new Vector2(rb.velocity.x, (yMovementInput * speed)); // move y
+            rb.velocity = new Vector2(rb.velocity.x, (yMovementInput * stat.speed)); // move y
         }
 
         // if statement to keep held object in hand
@@ -79,6 +81,14 @@ public class PlayerMovement : MonoBehaviour
             {
                 // change boolean to true to allow items to be picked up
                 canPick = true;
+            }
+        }
+        if(collision.tag == "Entity" && isAttacking == true)
+        {
+            if(collision.GetComponent<EntityStats>() != null)
+            {
+                StartCoroutine(collision.GetComponent<EntityStats>().TakeDamage(stat.damage));
+                isAttacking = false;
             }
         }
     }
@@ -204,11 +214,13 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-    IEnumerator ActRoutine()
+    IEnumerator ActRoutine() // coroutine to enable - disable temp vars
     {
         acting = true;
+        isAttacking = true;
         yield return new WaitForSeconds(0.2f);
         acting = false;
+        isAttacking = false;
     }
     public void Drop(InputAction.CallbackContext context)
     {
@@ -234,7 +246,7 @@ public class PlayerMovement : MonoBehaviour
         if(context.performed && canJump == true && canEverJump == true) // ensures its only ran once
         {
             Debug.Log("Jumping!");
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + jumpPower);
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + stat.jumpPower);
             canJump = false; // turn off jumping to prevent them from jumping again.
         }
     }
