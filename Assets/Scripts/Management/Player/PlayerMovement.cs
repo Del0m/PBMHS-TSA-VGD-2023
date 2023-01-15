@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     //player action variables
     private bool canAct = false;
     private bool canYMovement = false;
+    private bool canMoveFreely = true;
     public bool acting;
     //cool down for player actions
     private double _cooldown = 0.5; // base cooldown for player
@@ -59,10 +60,28 @@ public class PlayerMovement : MonoBehaviour
     {
         Cooldown(_cooldown);
         // for movement
-        rb.velocity = new Vector2((xMovementInput * speed), rb.velocity.y); // move x
-        if(canYMovement)
+        if (canMoveFreely)
         {
-            rb.velocity = new Vector2(rb.velocity.x, (yMovementInput * speed)); // move y
+            rb.velocity = new Vector2((xMovementInput * speed), rb.velocity.y); // move x
+            if (canYMovement)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, (yMovementInput * speed)); // move y
+            }
+        }
+        else
+        {
+            if (staticMovementSet)
+            {
+                //Move statically in one direction
+                if (myDir)
+                {
+                    rb.velocity = new Vector2((staticSpeed * currentIncrement), rb.velocity.y);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, (staticSpeed * currentIncrement));
+                }
+            }
         }
 
         // if statement to keep held object in hand
@@ -71,6 +90,24 @@ public class PlayerMovement : MonoBehaviour
             holding.transform.position = this.gameObject.transform.position;
         }
     }
+
+    //Private vars for static movement
+    private bool myDir;
+    private float staticSpeed;
+    private float incrementAmount;
+    private float currentIncrement = 1;
+    private float defaultIncrement = 1;
+    private bool staticMovementSet = false;
+
+    //Note: dir: true is up and false is down
+    public void setStaticDir(bool dir, float baseSpeed, float increment)
+    {
+        myDir = dir;
+        staticSpeed = baseSpeed;
+        incrementAmount = increment;
+        staticMovementSet = true;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision) // for the purposes of holding new objects
     {
         if(collision.tag == "Minigame Element")
