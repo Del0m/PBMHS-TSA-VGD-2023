@@ -113,6 +113,8 @@ public class PlayerMovement : MonoBehaviour
         _cooldown = timeToResetSpeed;
         jumpPower = jumpP;
         _jumpCooldown = jumpTimer;
+        //Unlock player
+        GameSwitch(true, false, false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision) // for the purposes of holding new objects

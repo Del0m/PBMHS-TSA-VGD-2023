@@ -17,7 +17,6 @@ public class RunningScaper : GameHandler
 {
     [Header("Minigame Parameters")]
     public int timerLength = 10;
-    public bool playerDir = true;
     public float playerBaseSpeed = 2;
     public float playerMovementIncrement = 1.1f;
     public float playerIncrementCooldown = 0.5f;
@@ -27,13 +26,16 @@ public class RunningScaper : GameHandler
     [Header("DEBUG")]
     [SerializeField]
     private bool _timer = false; //used for debug
+    [SerializeField]
     private float miniGameStartUpTime = 4f;
+    [SerializeField]
+    private bool playerDir = true;
 
     // Start is called before the first frame update
     void Start()
     {
         //Call to teleport player's to their positions
-        StartCoroutine(TeleportPlayers(false, true, true));
+        StartCoroutine(TeleportPlayers(false, true, false));
         StartCoroutine(StartGame(miniGameStartUpTime));
     }
 
@@ -76,8 +78,66 @@ public class RunningScaper : GameHandler
     {
         //Debug
         Debug.Log("Timer ended");
+        //Decide the winner by score and how far they went
+
+        int i = checkScore();
+
+        Debug.Log(player[i].name + "" + (i) + " got top in score");
+
+        i = checkDistanceScore();
+
+        Debug.Log(player[i].name + "" + i + " got the farthest");
+
+
         //Call game end
         EndGame();
+    }
+
+    int checkScore()
+    {
+        //The first player automatically becomes of the highest score
+        int playerIndex = 0;
+
+        //Set the first player as the highest score
+        int highestScore = gameScore[0];
+
+        for(int i = 0; i < gameScore.Length; i++)
+        {
+            //Compare scores
+
+            //compare using if conditions and replace the highest score accordingly
+            if (gameScore[i] > highestScore)
+            {
+                highestScore = gameScore[i];
+                playerIndex = i;
+            }
+
+        }
+
+        return playerIndex;
+    }
+
+    //Make sure all players spawn at the same time 
+    int checkDistanceScore()
+    {
+        //The first player automatically becomes of the highest score
+        int playerIndex = 0;
+
+        float xDistance = player[0].transform.position.x;
+
+        for(int i = 0; i< player.Length; i++)
+        {
+            //Compare distance
+
+            //Replace highest xDistance accordingly
+            if (player[i].transform.position.x > xDistance)
+            {
+                xDistance = player[i].transform.position.x;
+                playerIndex = i;
+            }
+        }
+
+        return playerIndex;
     }
 
 

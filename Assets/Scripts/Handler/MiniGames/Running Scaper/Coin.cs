@@ -31,7 +31,7 @@ public class Coin : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
@@ -39,6 +39,7 @@ public class Coin : MonoBehaviour
             if (i > -1) 
             {
                 minigame.ScorePlayer(i, scoreAmount);
+                Destroy(this.gameObject);
             }
         }
     }
