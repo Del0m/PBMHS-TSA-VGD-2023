@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     public bool acting;
     //cool down for player actions
     private double _cooldown = 0.5; // base cooldown for player
+    private double _jumpCooldown = 1;
 
     public GameObject holding; // for minigames to see if they're holding something.
     private bool canPick; // to tell if something is in the pick up radius
@@ -58,7 +59,9 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        //Call cooldown
         Cooldown(_cooldown);
+        jumpCooldown(_jumpCooldown);
         // for movement
         if (canMoveFreely)
         {
@@ -99,13 +102,17 @@ public class PlayerMovement : MonoBehaviour
     private float defaultIncrement = 1;
     private bool staticMovementSet = false;
 
-    //Note: dir: true is up and false is down
-    public void setStaticDir(bool dir, float baseSpeed, float increment)
+    //Note: dir: true is left or right and false is up or down
+    public void setStaticDir(bool dir, float baseSpeed,int jumpP, float increment, float timeToResetSpeed, double jumpTimer)
     {
+        canMoveFreely = false;
+        staticMovementSet = true;
         myDir = dir;
         staticSpeed = baseSpeed;
         incrementAmount = increment;
-        staticMovementSet = true;
+        _cooldown = timeToResetSpeed;
+        jumpPower = jumpP;
+        _jumpCooldown = jumpTimer;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) // for the purposes of holding new objects
@@ -227,6 +234,7 @@ public class PlayerMovement : MonoBehaviour
 
     //timer for Cooldown
     private double timer;
+    private double jumpTimer;
     private void Cooldown(double downtime) // prevent player from acting several times a second
     {
         if(canAct == false)
@@ -238,6 +246,20 @@ public class PlayerMovement : MonoBehaviour
                 //allow acting to happen again.
                 timer = 0;
                 canAct = true;
+            }
+        }
+    }
+    private void jumpCooldown(double downtime) //Prevents from player being able to spam jump
+    {
+        if(!canJump && canEverJump)
+        {
+            //Run timer
+            jumpTimer += Time.deltaTime;
+            if(jumpTimer > downtime)  // when timer exceeds the cooldown
+            {
+                // Allow jumping to happen again
+                jumpTimer = 0;
+                canJump = true;
             }
         }
     }
@@ -274,5 +296,20 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + jumpPower);
             canJump = false; // turn off jumping to prevent them from jumping again.
         }
+    }
+    public void TapToIncrement(InputAction.CallbackContext context)
+    {
+        if (context.performed && canAct == true)
+        {
+            //Call a couroutine to increment
+            StartCoroutine(incrementMovement());
+        }
+    }
+
+    IEnumerator incrementMovement()
+    {
+        currentIncrement += incrementAmount;
+        yield return new WaitForSeconds((float)_cooldown);
+        currentIncrement = defaultIncrement;
     }
 }

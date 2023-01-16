@@ -62,6 +62,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Smash"",
+                    ""type"": ""Button"",
+                    ""id"": ""2d1517d1-37b0-455b-ab52-7b9a4dfa7d86"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -284,6 +293,28 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Drop"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6e884bd9-407c-4c44-8652-53161196b3f4"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Smash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7b692498-5385-47da-984c-05e4beddf065"",
+                    ""path"": ""<DualShockGamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Smash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -352,6 +383,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Gameplay_Action = m_Gameplay.FindAction("Action", throwIfNotFound: true);
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
         m_Gameplay_Drop = m_Gameplay.FindAction("Drop", throwIfNotFound: true);
+        m_Gameplay_Smash = m_Gameplay.FindAction("Smash", throwIfNotFound: true);
         // Pre-Game
         m_PreGame = asset.FindActionMap("Pre-Game", throwIfNotFound: true);
         m_PreGame_Newaction = m_PreGame.FindAction("New action", throwIfNotFound: true);
@@ -418,6 +450,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Action;
     private readonly InputAction m_Gameplay_Jump;
     private readonly InputAction m_Gameplay_Drop;
+    private readonly InputAction m_Gameplay_Smash;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
@@ -426,6 +459,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Action => m_Wrapper.m_Gameplay_Action;
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
         public InputAction @Drop => m_Wrapper.m_Gameplay_Drop;
+        public InputAction @Smash => m_Wrapper.m_Gameplay_Smash;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -447,6 +481,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Drop.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDrop;
                 @Drop.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDrop;
                 @Drop.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDrop;
+                @Smash.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSmash;
+                @Smash.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSmash;
+                @Smash.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSmash;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -463,6 +500,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Drop.started += instance.OnDrop;
                 @Drop.performed += instance.OnDrop;
                 @Drop.canceled += instance.OnDrop;
+                @Smash.started += instance.OnSmash;
+                @Smash.performed += instance.OnSmash;
+                @Smash.canceled += instance.OnSmash;
             }
         }
     }
@@ -524,6 +564,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnAction(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnDrop(InputAction.CallbackContext context);
+        void OnSmash(InputAction.CallbackContext context);
     }
     public interface IPreGameActions
     {
