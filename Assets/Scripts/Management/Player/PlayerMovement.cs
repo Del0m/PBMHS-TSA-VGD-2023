@@ -45,7 +45,6 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Sounds")]
     public AudioClip[] footstep;
-    public AudioClip jumpSound;
     public AudioClip dropSound;
 
     private void Awake()
@@ -286,24 +285,11 @@ public class PlayerMovement : MonoBehaviour
             isPlaying = false; // allow sounds to play again
         }
     }
-    public void JumpDrop(bool jump)
+    public void DropSound()
     {
-        switch (jump)
-        {
-            case false:
-
-                playInstance = dropSound;
-                Debug.Log(settings.soundVolume * settings.masterVolume);
-                playSound.PlayOneShot(playInstance, (settings.soundVolume * settings.masterVolume));
-
-                break;
-            case true:
-
-                playInstance = jumpSound;
-                playSound.PlayOneShot(playInstance, (settings.soundVolume * settings.masterVolume));
-
-                break;
-        }
+        playInstance = dropSound;
+        Debug.Log(settings.soundVolume * settings.masterVolume);
+        playSound.PlayOneShot(playInstance, (settings.soundVolume * settings.masterVolume));
     }
 
 }

@@ -15,6 +15,7 @@ TagManager:
   - Teleport
   - Pause
   - Minigame Element
+  - Settings
   layers:
   - Default
   - TransparentFX
