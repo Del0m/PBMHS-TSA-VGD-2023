@@ -52,10 +52,10 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 2
+  m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 2
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 810e3ee32e7537e4e9c363d3aa02c8a3, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -72,12 +72,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152bb9dae49c4ac47b0939f53fd3c210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
-  jumpPower: 20
   canJump: 0
   canEverJump: 0
   fallThrough: 0
   acting: 0
+  isAttacking: 0
+  stat: {fileID: 4021387965015513840}
   holding: {fileID: 0}
 --- !u!61 &2609490234402768864
 BoxCollider2D:
@@ -215,10 +215,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8589ae05a73aef43b251b66a120e2ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: 0
+  stat: {fileID: 4021387965015513840}
   managerObject: {fileID: 0}
   turnScript: {fileID: 0}
-  turnOrder: 0
   gameplayInput: {fileID: 0}
 --- !u!212 &-8695361002692835325
 SpriteRenderer:
@@ -284,6 +283,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec0f67e90868d64bb6c6134e60ac4d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  position: 0
+  turnOrder: 0
+  speed: 15
+  jumpPower: 15
+  damage: 5
+  cooldown: 0.5
 --- !u!1 &2723512089463554615
 GameObject:
   m_ObjectHideFlags: 0

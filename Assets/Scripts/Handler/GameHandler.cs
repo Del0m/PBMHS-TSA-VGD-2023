@@ -19,6 +19,8 @@ public class GameHandler : MonoBehaviour
     //score
     public int[] gameScore = { 0,0,0,0 };
 
+    public int winner; // if need be 
+
     public Transform[] border; // array holding the borders
 
     private void Start()
@@ -48,7 +50,7 @@ public class GameHandler : MonoBehaviour
         }
 
     }
-    public IEnumerator EndGame() // coroutine to end the game as a player has won.
+    public virtual IEnumerator EndGame() // coroutine to end the game as a player has won.
     {
         Debug.Log("Game has ended.");
         yield return null;

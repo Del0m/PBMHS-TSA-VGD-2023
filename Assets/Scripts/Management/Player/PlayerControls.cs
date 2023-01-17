@@ -19,8 +19,6 @@ public class PlayerControls : MonoBehaviour
     public GameObject managerObject;
     public TurnManager turnScript;
     private MovementManager moveManage;
-    //turns and controls
-    public int turnOrder;
 
     [Header("Controls")]
     public PlayerInput gameplayInput;
@@ -50,7 +48,7 @@ public class PlayerControls : MonoBehaviour
         gameplayInput = this.gameObject.GetComponent<PlayerInput>(); // grabbing player controls to turn on/off and change inputmaps
         this.gameObject.tag = "Player"; //set player tag to "Player"
 
-        turnOrder = GameObject.FindGameObjectsWithTag("Player").Length; //giving player turn order
+        stat.turnOrder = GameObject.FindGameObjectsWithTag("Player").Length; //giving player turn order
 
         //initalize controls class
         controls = new Controls();
@@ -77,7 +75,7 @@ public class PlayerControls : MonoBehaviour
     {
         if (context.performed && hasRan == false) // makes sure its only ran once
         {
-            if (turnScript.RunTurn(this.gameObject, turnOrder) == true) //check to see if conditions are met on TurnManager
+            if (turnScript.RunTurn(this.gameObject, stat.turnOrder) == true) //check to see if conditions are met on TurnManager
             {
                 StartCoroutine(Moving(2)); // begin moving player
             }

@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     public bool acting;
 
     //attacking variables
-    bool isAttacking;
+    public bool isAttacking;
 
 
     //player stats to reference
@@ -81,14 +81,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 // change boolean to true to allow items to be picked up
                 canPick = true;
-            }
-        }
-        if(collision.tag == "Entity" && isAttacking == true)
-        {
-            if(collision.GetComponent<EntityStats>() != null)
-            {
-                StartCoroutine(collision.GetComponent<EntityStats>().TakeDamage(stat.damage));
-                isAttacking = false;
             }
         }
     }

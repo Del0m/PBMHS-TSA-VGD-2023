@@ -9,6 +9,7 @@ public class PlayerStats : MonoBehaviour
     // board stats
     [Header("Board Stats")]
     public int position;
+    public int turnOrder;
 
     //stats for player movement
     [Header("Minigame Stats")]

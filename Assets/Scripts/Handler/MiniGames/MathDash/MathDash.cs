@@ -157,7 +157,7 @@ public class MathDash : GameHandler
         if(guess == answer)
         {
             text.text = "Correct! The Answer is: " + answer; // changes text to show they got it correct.
-            gameScore[player.GetComponent<PlayerControls>().turnOrder]++; // player position in score array is awarded a point
+            gameScore[player.GetComponent<PlayerStats>().turnOrder]++; // player position in score array is awarded a point
             this.StartCoroutine(NewProblem()); // making new problem for player
         }
         else
