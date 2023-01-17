@@ -29,10 +29,11 @@ public class EntityStats : MonoBehaviour
         {
             this.GetComponent<AudioSource>(); // to prevent audio error
         }
-        if(settings == null)
+        if (settings == null)
         {
-            settings = new Settings(); // make settings block to access
+            settings = GameObject.FindGameObjectWithTag("Settings").GetComponent<Settings>();
         }
+
     }
     IEnumerator DamageFlash() // indicate damage has been dealt to object. Also plays sounds!
     {

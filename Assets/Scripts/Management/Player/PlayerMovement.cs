@@ -43,7 +43,10 @@ public class PlayerMovement : MonoBehaviour
     public GameObject holding; // for minigames to see if they're holding something.
     private bool canPick; // to tell if something is in the pick up radius
 
+    [Header("Sounds")]
     public AudioClip[] footstep;
+    public AudioClip jumpSound;
+    public AudioClip dropSound;
 
     private void Awake()
     {
@@ -51,11 +54,12 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Start()
     {
-        // making settings object
+        // finding settings object
         if(settings == null)
         {
-            settings = new Settings();
+            settings = GameObject.FindGameObjectWithTag("Settings").GetComponent<Settings>();
         }
+
         // initalizing player controls and gameplay input
         controls.Gameplay.Move.Enable();
         //initalize controls class
@@ -281,8 +285,25 @@ public class PlayerMovement : MonoBehaviour
 
             isPlaying = false; // allow sounds to play again
         }
-
-
-
     }
+    public void JumpDrop(bool jump)
+    {
+        switch (jump)
+        {
+            case false:
+
+                playInstance = dropSound;
+                Debug.Log(settings.soundVolume * settings.masterVolume);
+                playSound.PlayOneShot(playInstance, (settings.soundVolume * settings.masterVolume));
+
+                break;
+            case true:
+
+                playInstance = jumpSound;
+                playSound.PlayOneShot(playInstance, (settings.soundVolume * settings.masterVolume));
+
+                break;
+        }
+    }
+
 }

@@ -19,6 +19,7 @@ public class Jump : MonoBehaviour
         if(collision.tag == "Ground")
         {
             player.canJump = true;
+            player.JumpDrop(false);
         }
     }
     private void OnTriggerExit2D(Collider2D collision) //disable jumping
@@ -26,6 +27,8 @@ public class Jump : MonoBehaviour
         if(collision.tag == "Ground")
         {
             player.canJump = false;
+            player.JumpDrop(true);
+
         }
     }
 }

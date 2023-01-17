@@ -85,6 +85,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f0e8a9df078dcb04496da87a38c80413, type: 3}
   - {fileID: 8300000, guid: 83c888469356d184f877db826ae86f5a, type: 3}
   - {fileID: 8300000, guid: 674fd4ea99b036644916e497874ea436, type: 3}
+  jumpSound: {fileID: 0}
+  dropSound: {fileID: 8300000, guid: 94f890f15f2e34241b6b1786109369df, type: 3}
 --- !u!61 &2609490234402768864
 BoxCollider2D:
   m_ObjectHideFlags: 0
