@@ -10,8 +10,10 @@ using UnityEngine.InputSystem;
 
 //requiring components to allow player to move properly
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(AudioSource))]
 public class PlayerMovement : MonoBehaviour
 {
+    private Settings settings;
 
     private float xMovementInput;
     private float yMovementInput;
@@ -41,12 +43,19 @@ public class PlayerMovement : MonoBehaviour
     public GameObject holding; // for minigames to see if they're holding something.
     private bool canPick; // to tell if something is in the pick up radius
 
+    public AudioClip[] footstep;
+
     private void Awake()
     {
         controls = new Controls();
     }
     private void Start()
     {
+        // making settings object
+        if(settings == null)
+        {
+            settings = new Settings();
+        }
         // initalizing player controls and gameplay input
         controls.Gameplay.Move.Enable();
         //initalize controls class
@@ -55,7 +64,8 @@ public class PlayerMovement : MonoBehaviour
         this.gameObject.tag = "Player"; //set player tag to "Player"
         rb = this.GetComponent<Rigidbody2D>();
 
-        //setting inputdevice to player for game manager
+        // setting audiosource for player
+        playSound = this.GetComponent<AudioSource>();
     }
     private void FixedUpdate()
     {
@@ -72,6 +82,7 @@ public class PlayerMovement : MonoBehaviour
         {
             holding.transform.position = this.gameObject.transform.position;
         }
+        StartCoroutine(Footstep());
     }
     private void OnTriggerEnter2D(Collider2D collision) // for the purposes of holding new objects
     {
@@ -241,5 +252,37 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + stat.jumpPower);
             canJump = false; // turn off jumping to prevent them from jumping again.
         }
+    }
+
+    AudioClip playInstance;
+    AudioSource playSound;
+    bool isPlaying;
+    IEnumerator Footstep() // play footstep sound effects while moving
+    {
+        if(rb.velocity.x != 0 && isPlaying == false && canJump == true) // to check if x movement
+        {
+            Debug.Log("Attempting to play!");
+            isPlaying = true; // prevent multiple sounds from playing
+
+            playInstance = footstep[UnityEngine.Random.Range(0, footstep.Length)];
+            playSound.PlayOneShot(playInstance, (settings.soundVolume*settings.masterVolume));
+            yield return new WaitForSeconds(playInstance.length + 0.15f); // prevent overlapping sounds
+
+            isPlaying = false; // allow sounds to play again
+
+        }
+        if(rb.velocity.y != 0 && isPlaying == false && canYMovement == true)
+        {
+            isPlaying = true; // prevent multiple sounds from playing
+
+            playInstance = footstep[UnityEngine.Random.Range(0, footstep.Length)];
+            playSound.PlayOneShot(playInstance, (settings.soundVolume * settings.masterVolume));
+            yield return new WaitForSeconds(playInstance.length + 0.15f); // prevent overlapping sounds
+
+            isPlaying = false; // allow sounds to play again
+        }
+
+
+
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class EntityStats : MonoBehaviour
 {
     [Header("Stats")]
@@ -17,9 +18,26 @@ public class EntityStats : MonoBehaviour
 
     public bool isDead;
     public GameObject killer;
-    IEnumerator DamageFlash() // indicate damage has been dealt to object.
+
+    [Header("Sounds")]
+    public AudioClip hit;
+    public AudioSource soundPlayer;
+    public Settings settings;
+    private void Start()
+    {
+        if(soundPlayer == null)
+        {
+            this.GetComponent<AudioSource>(); // to prevent audio error
+        }
+        if(settings == null)
+        {
+            settings = new Settings(); // make settings block to access
+        }
+    }
+    IEnumerator DamageFlash() // indicate damage has been dealt to object. Also plays sounds!
     {
         var objectColor = this.GetComponent<SpriteRenderer>();
+        soundPlayer.PlayOneShot(hit, (settings.masterVolume * settings.soundVolume));
         for(int i = 0; i < objectColor.color.r; i+=5)
         {
             objectColor.color = new Color(objectColor.color.r + i,0,0); // progressively turn more red
