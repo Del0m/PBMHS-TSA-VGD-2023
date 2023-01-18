@@ -13,7 +13,7 @@ public class PlayerStats : MonoBehaviour
 
     //stats for player movement
     [Header("Minigame Stats")]
-    public int speed = 15;
+    public float speed = 15;
     public int jumpPower = 20;
     public int damage = 5;
     //cool down for player actions
@@ -27,14 +27,15 @@ public class PlayerStats : MonoBehaviour
         // upgrade the stat by the multiplier 
         stat *= multiplier;
     }
-    public IEnumerator BuffStat(double stat, int time, int multiplier) // temporarily upgrades or downgrades stats
+    public IEnumerator BuffStat(double stat, double time, double multiplier) // temporarily upgrades or downgrades stats
     {
         // changing the stat to the upgraded amount
         var oldStat = stat; // variable to switch stat back to its original amount
         stat *= multiplier;
+        Debug.Log("Old Stat:" + oldStat + "New Stat: " + stat);
 
         // wait time to bring back to normal
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(((float)time));
 
         // return stats back to normal
         stat = oldStat;

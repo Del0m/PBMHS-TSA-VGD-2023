@@ -55,7 +55,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 3
   m_Material: {fileID: 6200000, guid: 810e3ee32e7537e4e9c363d3aa02c8a3, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -85,8 +85,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f0e8a9df078dcb04496da87a38c80413, type: 3}
   - {fileID: 8300000, guid: 83c888469356d184f877db826ae86f5a, type: 3}
   - {fileID: 8300000, guid: 674fd4ea99b036644916e497874ea436, type: 3}
-  jumpSound: {fileID: 8300000, guid: 1c0090fc42d7ca148999d361e74a5c74, type: 3}
   dropSound: {fileID: 8300000, guid: 94f890f15f2e34241b6b1786109369df, type: 3}
+  dashSound: {fileID: 8300000, guid: 180b5f8f162d8b642931f15e11e47f4c, type: 3}
+  particlePrefab: {fileID: 2045440048820027072, guid: 30897cfe76aa67144b09a26df0c9a172, type: 3}
 --- !u!61 &2609490234402768864
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -206,6 +207,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c6637afe-811f-47c7-9e24-a8a24609b036
     m_ActionName: Gameplay/Drop[/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2609490234402768869}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: Dash
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4b9ba64f-f4a4-44f9-b95f-588063a51e25
+    m_ActionName: Gameplay/Dash[/Keyboard/shift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -294,7 +311,7 @@ MonoBehaviour:
   position: 0
   turnOrder: 0
   speed: 15
-  jumpPower: 15
+  jumpPower: 30
   damage: 5
   cooldown: 0.5
 --- !u!82 &5025792139998733991
@@ -317,7 +334,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.6112957
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0

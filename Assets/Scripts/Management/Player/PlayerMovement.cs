@@ -3,7 +3,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security;
+using System.Security.Cryptography.X509Certificates;
+using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -22,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
     public bool canEverJump = false;
 
     public bool fallThrough = false;
+
+    bool canDash = true;
 
     //things needed to move player
     private Rigidbody2D rb;
@@ -46,6 +52,11 @@ public class PlayerMovement : MonoBehaviour
     [Header("Sounds")]
     public AudioClip[] footstep;
     public AudioClip dropSound;
+    public AudioClip dashSound;
+
+    [Header("Particles")]
+    public GameObject particlePrefab;
+    ParticleSystem particle;
 
     private void Awake()
     {
@@ -72,7 +83,8 @@ public class PlayerMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Cooldown(stat.cooldown);
+        ActCooldown(stat.cooldown);
+        DashCooldown(stat.cooldown * 2);
         // for movement
         rb.velocity = new Vector2((xMovementInput * stat.speed), rb.velocity.y); // move x
         if(canYMovement)
@@ -163,7 +175,7 @@ public class PlayerMovement : MonoBehaviour
                 canEverJump = true;
                 canYMovement = false;
 
-                rb.gravityScale = 1; // allows fall of player
+                rb.gravityScale = 3; // allows fall of player
 
                 break;
                 
@@ -203,20 +215,53 @@ public class PlayerMovement : MonoBehaviour
         //running player movement in here.
         yMovementInput = ctx.ReadValue<Vector2>().y; // read x value of movement input
     }
+    public void Dash(InputAction.CallbackContext ctx)
+    {
+        if(ctx.performed && canDash == true)
+        {
+            Debug.Log("Dashing!");
+            StartCoroutine(DashRoutine());
+            canDash = false;
+        }
+    }
+    public IEnumerator DashRoutine()
+    {
+        playInstance = dashSound;
+        playSound.PlayOneShot(playInstance, (settings.soundVolume * settings.masterVolume));
+
+        SetParticle(SetDirection());
+        var originalSpeed = stat.speed;
+        stat.speed *= 3;
+        yield return new WaitForSeconds(0.25f);
+        stat.speed = originalSpeed;
+    }
 
     //timer for Cooldown
-    private double timer;
-    private void Cooldown(double downtime) // prevent player from acting several times a second
+    private double timerAct;
+    private void ActCooldown(double downtime) // prevent player from acting several times a second
     {
         if(canAct == false)
         {
             //run timer
-            timer += Time.deltaTime;
-            if(timer > downtime) // when timer exceeds the cooldown
+            timerAct += Time.deltaTime;
+            if(timerAct > downtime) // when timer exceeds the cooldown
             {
                 //allow acting to happen again.
-                timer = 0;
+                timerAct = 0;
                 canAct = true;
+            }
+        }
+    }
+    private double timerDash;
+    private void DashCooldown(double downtime)
+    {
+        if(canDash == false)
+        {
+            timerDash += Time.deltaTime;
+            if(timerDash > downtime)
+            {
+                timerDash = 0;
+                canDash = true;
             }
         }
     }
@@ -290,6 +335,87 @@ public class PlayerMovement : MonoBehaviour
         playInstance = dropSound;
         Debug.Log(settings.soundVolume * settings.masterVolume);
         playSound.PlayOneShot(playInstance, (settings.soundVolume * settings.masterVolume));
+    }
+    public Quaternion SetDirection() // set direction for particle
+    {
+        var direction = 0;
+        switch(yMovementInput)
+        {
+            case 1:
+                direction = -90;
+                break;
+            case -1:
+                direction = 90;
+                break;
+            default:
+                break;
+        }
+        switch(xMovementInput)
+        {
+            case 1:
+                if(direction != 0)
+                {
+                    switch (direction)
+                    {
+                        case 90:
+                            direction = -45;
+                            break;
+                        case -90:
+                            direction = 45;
+                            break;
+                    }
+                }
+                else
+                {
+                    direction = -180;
+                }
+                break;
+            case -1:
+                if (direction != 0)
+                {
+                    switch (direction)
+                    {
+                        case 90:
+                            direction = 45;
+                            break;
+                        case -90:
+                            direction = -45;
+                            break;
+                    }
+                }
+                else
+                {
+                    direction = 0;
+                }
+                break;
+            default:
+                break;
+        }
+        return new Quaternion(0, 0, direction, 0);
+    }
+    void SetParticle(Quaternion rot)
+    {
+        var particleObject = Instantiate(particlePrefab, this.transform);
+        particle = particleObject.GetComponent<ParticleSystem>();
+
+        Debug.Log("Running SetParticle()");
+        particle.gameObject.transform.rotation = rot;
+        particle.Play();
+
+        Destroy(particle, particle.main.duration);
+
+    }
+    void SetParticle(Quaternion rot, Vector2 pos) // play particle in specific position
+    {
+        var particleObject = Instantiate(particlePrefab, this.transform);
+        particle = particleObject.GetComponent<ParticleSystem>();
+
+        particle.gameObject.transform.position = pos;
+        particle.gameObject.transform.rotation = rot;
+
+        particle.Play();
+
+        Destroy(particle, particle.main.duration);
     }
 
 }

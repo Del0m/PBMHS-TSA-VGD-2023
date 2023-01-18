@@ -62,6 +62,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""4b9ba64f-f4a4-44f9-b95f-588063a51e25"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -284,6 +293,28 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Drop"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ea6f2dba-6842-4a63-8d89-26b57295e624"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2c931a16-122a-4166-b889-8b1571d62d1a"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -352,6 +383,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Gameplay_Action = m_Gameplay.FindAction("Action", throwIfNotFound: true);
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
         m_Gameplay_Drop = m_Gameplay.FindAction("Drop", throwIfNotFound: true);
+        m_Gameplay_Dash = m_Gameplay.FindAction("Dash", throwIfNotFound: true);
         // Pre-Game
         m_PreGame = asset.FindActionMap("Pre-Game", throwIfNotFound: true);
         m_PreGame_Newaction = m_PreGame.FindAction("New action", throwIfNotFound: true);
@@ -418,6 +450,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Action;
     private readonly InputAction m_Gameplay_Jump;
     private readonly InputAction m_Gameplay_Drop;
+    private readonly InputAction m_Gameplay_Dash;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
@@ -426,6 +459,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Action => m_Wrapper.m_Gameplay_Action;
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
         public InputAction @Drop => m_Wrapper.m_Gameplay_Drop;
+        public InputAction @Dash => m_Wrapper.m_Gameplay_Dash;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -447,6 +481,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Drop.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDrop;
                 @Drop.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDrop;
                 @Drop.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDrop;
+                @Dash.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnDash;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -463,6 +500,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Drop.started += instance.OnDrop;
                 @Drop.performed += instance.OnDrop;
                 @Drop.canceled += instance.OnDrop;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
             }
         }
     }
@@ -524,6 +564,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnAction(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnDrop(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
     public interface IPreGameActions
     {
