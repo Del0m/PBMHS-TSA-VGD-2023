@@ -80,14 +80,16 @@ public class RunningScaper : GameHandler
         Debug.Log("Timer ended");
         //Decide the winner by score and how far they went
 
-        int i = checkScore();
+        if(player.Length > 0)
+        {
+            int i = checkScore();
 
-        Debug.Log(player[i].name + "" + (i) + " got top in score");
+            Debug.Log(player[i].name + "" + (i) + " got top in score");
 
-        i = checkDistanceScore();
+            i = checkDistanceScore();
 
-        Debug.Log(player[i].name + "" + i + " got the farthest");
-
+            Debug.Log(player[i].name + "" + i + " got the farthest");
+        }
 
         //Call game end
         EndGame();
