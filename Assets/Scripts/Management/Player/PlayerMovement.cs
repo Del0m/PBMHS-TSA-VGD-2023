@@ -395,27 +395,20 @@ public class PlayerMovement : MonoBehaviour
     }
     void SetParticle(Quaternion rot)
     {
-        var particleObject = Instantiate(particlePrefab, this.transform);
+        var particleObject = Instantiate(particlePrefab, this.gameObject.transform.position, this.transform.rotation);
         particle = particleObject.GetComponent<ParticleSystem>();
 
-        Debug.Log("Running SetParticle()");
         particle.gameObject.transform.rotation = rot;
-        particle.Play();
-
-        Destroy(particle, particle.main.duration);
 
     }
     void SetParticle(Quaternion rot, Vector2 pos) // play particle in specific position
     {
-        var particleObject = Instantiate(particlePrefab, this.transform);
+        var particleObject = Instantiate(particlePrefab, this.gameObject.transform.position, this.transform.rotation);
         particle = particleObject.GetComponent<ParticleSystem>();
 
         particle.gameObject.transform.position = pos;
         particle.gameObject.transform.rotation = rot;
 
-        particle.Play();
-
-        Destroy(particle, particle.main.duration);
     }
 
 }

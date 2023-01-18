@@ -7,10 +7,11 @@ public class ParticleScript : MonoBehaviour
     ParticleSystem particle;
     private void Start()
     {
+
         particle = GetComponent<ParticleSystem>();
         particle.Play();
 
-        Destroy(particle, 1f);
+        Destroy(particle.gameObject, 2f);
 
     }
 }
