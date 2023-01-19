@@ -14,7 +14,7 @@ public class CamViewMObjs : MonoBehaviour
     private void Start()
     {
         //Get players and define as targets
-        GameObject gh = GameObject.FindGameObjectWithTag("minigame");
+        GameObject gh = GameObject.FindGameObjectWithTag("Minigame");
         gameH = gh.GetComponent<GameHandler>();
         
         if(gameH != null)

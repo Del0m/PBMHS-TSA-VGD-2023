@@ -23,6 +23,16 @@ public class RunningScaper : GameHandler
     public int playerJumpPower = 5;
     public double jumpCooldown = 1.5;
 
+    [Header("Minigame Map params")]
+    [Header("Minigame 4 Player Prefabs")]
+    public GameObject[] mapPrefabs_4; //4 player grid maps
+    [Header("Minigame 3 Player Prefabs")]
+    public GameObject[] mapPrefabs_3; //3 player grid maps
+    [Header("Minigame 2 Player Prefabs")]
+    public GameObject[] mapPrefabs_2; //2 player grid maps
+    [Header("Minigame 1 Player Prefabs")]
+    public GameObject[] mapPrefabs_1; //1 player grid maps
+
     [Header("DEBUG")]
     [SerializeField]
     private bool _timer = false; //used for debug
@@ -30,12 +40,19 @@ public class RunningScaper : GameHandler
     private float miniGameStartUpTime = 4f;
     [SerializeField]
     private bool playerDir = true;
+    [SerializeField]
+    protected GameObject[] gridMapSpawnPoints;
+    [SerializeField]
+    protected GameObject[,] allMapPrefabs;
 
     // Start is called before the first frame update
     void Start()
     {
+        //Set 2d array
+        //allMapPrefabs = new GameObject[mapPrefabs_1, mapPrefabs_2, mapPrefabs_3, mapPrefabs_4];
+
         //Call to teleport player's to their positions
-        StartCoroutine(TeleportPlayers(false, true, false));
+        StartCoroutine(TeleportPlayers(false, false, false));
         StartCoroutine(StartGame(miniGameStartUpTime));
     }
 
@@ -43,6 +60,21 @@ public class RunningScaper : GameHandler
     {
         yield return new WaitForSeconds(delay);
         //Call main game methods
+        //Find all grid map spawn points
+        FindSpawnPoints();
+
+        yield return new WaitForSeconds(1.5f);
+
+        //Spawn the grid maps randomly
+        if (gridMapSpawnPoints.Length > 0)
+        {
+            //int playerAmount = allMapPrefabs.GetLength(0);
+            for (int i = 0; i < gridMapSpawnPoints.Length; i++)
+            {
+                
+            }
+        }
+
         if (!setStaticDir())
             Debug.LogError("Players not found");
 
@@ -54,6 +86,20 @@ public class RunningScaper : GameHandler
         }
 
         yield return null;
+    }
+
+    bool FindSpawnPoints()
+    {
+        gridMapSpawnPoints = GameObject.FindGameObjectsWithTag("Minigame Element");
+
+        if(gridMapSpawnPoints.Length > 0)
+        {
+            Debug.Log("Found at least more than one spawn point for grid maps, total grid maps: " + gridMapSpawnPoints.Length);
+            return true;
+        }
+
+        Debug.LogError("No grid map spawn points found!");
+        return false;
     }
 
     bool setStaticDir()

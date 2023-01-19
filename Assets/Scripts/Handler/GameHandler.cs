@@ -23,7 +23,6 @@ public class GameHandler : MonoBehaviour
 
     private void Start()
     {
-        
         teleport = GameObject.FindGameObjectsWithTag("Teleport");
     }
     public IEnumerator TeleportPlayers(bool topDown, bool pick, bool allowMovement) // teleports players into minigame
