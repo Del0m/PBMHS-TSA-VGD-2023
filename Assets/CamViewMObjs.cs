@@ -54,7 +54,7 @@ public class CamViewMObjs : MonoBehaviour
     {
         if(targets.Count == 1)
         {
-            return.targets[0].position;
+            return targets[0].position;
         }
 
         var bounds = new Bounds(targets[0].position, Vector3.zero);
