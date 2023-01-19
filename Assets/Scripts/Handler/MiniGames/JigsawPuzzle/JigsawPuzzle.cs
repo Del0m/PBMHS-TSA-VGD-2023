@@ -31,7 +31,7 @@ public class JigsawPuzzle : GameHandler
     {
         if(correctPieceCount >= 9)
         {
-            StartCoroutine(EndGame()); // end the game from GameHandler
+            StartCoroutine(EndGame(boardPrefab.GetComponent<Jigsaw_Board>().pieceID)); // end the game from GameHandler
         }
     }
     void RandomizePosition() // this runs to randomize the position in the arena
@@ -68,6 +68,7 @@ public class JigsawPuzzle : GameHandler
             var plrBoard = Instantiate(boardPrefab, puzzleLocation[i].position, new Quaternion(0, 0, 0, 0));
             plrBoard.SetActive(true); // initalize the board onto the game
             plrBoard.transform.position = new Vector3(plrBoard.transform.position.x, plrBoard.transform.position.y, 0f);
+            plrBoard.GetComponent<Jigsaw_Board>().pieceID = i;
 
             // for loop to initalize all the jigsaw holes
             for(int j = 0; j < plrBoard.GetComponent<Jigsaw_Board>().slot.Length; j++)

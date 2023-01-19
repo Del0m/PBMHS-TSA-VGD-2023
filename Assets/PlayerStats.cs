@@ -19,6 +19,7 @@ public class PlayerStats : MonoBehaviour
     //cool down for player actions
     public double cooldown = 0.5;
 
+    public int wins;
    
     
 

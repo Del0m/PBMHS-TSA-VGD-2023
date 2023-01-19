@@ -73,8 +73,7 @@ public class PotatoObject : MonoBehaviour
         {
             hasRan = true;
             Debug.Log("Exploded.");
-            parentScript.ScorePlayer(holdingPlayer, -1); // penalize player for dying with the potato
-            StartCoroutine(parentScript.EndGame());
+            StartCoroutine(parentScript.EndGame(holdingPlayer, true));
 
             Destroy(highlightInstance, 1f); // destroy the instance of highlight
 

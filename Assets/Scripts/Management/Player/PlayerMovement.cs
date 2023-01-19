@@ -3,12 +3,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Security;
-using System.Security.Cryptography.X509Certificates;
 using UnityEditor;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -229,7 +224,7 @@ public class PlayerMovement : MonoBehaviour
         playInstance = dashSound;
         playSound.PlayOneShot(playInstance, (settings.soundVolume * settings.masterVolume));
 
-        SetParticle(SetDirection());
+        SetParticle(SetDirection(), false);
         var originalSpeed = stat.speed;
         stat.speed *= 3;
         yield return new WaitForSeconds(0.25f);
@@ -298,6 +293,10 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("Jumping!");
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + stat.jumpPower);
+            // animating particles here
+            SetParticle(new Quaternion(0, 0, -90, 0), true);
+            particle.transform.rotation = Quaternion.Euler(new Vector3(0,0,-90));
+
             canJump = false; // turn off jumping to prevent them from jumping again.
         }
     }
@@ -393,17 +392,21 @@ public class PlayerMovement : MonoBehaviour
         }
         return new Quaternion(0, 0, direction, 0);
     }
-    void SetParticle(Quaternion rot)
+    void SetParticle(Quaternion rot, bool hasParent)
     {
-        var particleObject = Instantiate(particlePrefab, this.gameObject.transform.position, this.transform.rotation);
+        var particleObject = Instantiate(particlePrefab, this.gameObject.transform.position, rot);
+        if (hasParent) { particleObject.transform.SetParent(this.transform); } // give parent, usually only neededd for jump
+        particleObject.transform.rotation = rot;
         particle = particleObject.GetComponent<ParticleSystem>();
 
         particle.gameObject.transform.rotation = rot;
 
     }
-    void SetParticle(Quaternion rot, Vector2 pos) // play particle in specific position
+    void SetParticle(Quaternion rot, Vector2 pos, bool hasParent) // play particle in specific position
     {
         var particleObject = Instantiate(particlePrefab, this.gameObject.transform.position, this.transform.rotation);
+
+        if(hasParent) { particleObject.transform.SetParent(this.transform); } // give parent, usually only neededd for jump
         particle = particleObject.GetComponent<ParticleSystem>();
 
         particle.gameObject.transform.position = pos;

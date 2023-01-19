@@ -5,13 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/StartMenu.unity
     guid: 59c52caebb4ab2c4b8efc1ef2bd3b1d1
-  - enabled: 1
-    path: Assets/Scenes/Level01.unity
-    guid: 2ccc4a4aecdc9ac4ca4207a46bc4af81
-  - enabled: 1
-    path: Assets/Scenes/EndScreen.unity
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: Assets/Scenes/EndSCreen.unity
     guid: a75e22149255aa543acfe457931adc33
+  - enabled: 1
+    path: Assets/Scenes/Minigame Testing/Pummel The Pinata.unity
+    guid: 26ba49b4f7eb7764481c4980ba276aae
   m_configObjects: {}

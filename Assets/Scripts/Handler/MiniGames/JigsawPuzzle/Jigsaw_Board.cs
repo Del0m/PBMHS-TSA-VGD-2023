@@ -10,7 +10,7 @@ public class Jigsaw_Board : MonoBehaviour
 {
     public JigsawPuzzle puzzleScript; // parent script; calls functions
     public int pieceCount = 9;
-    public string pieceID; // to find if piece is correct; transfers to puzzle piece
+    public int pieceID; // to find if piece is correct; transfers to puzzle piece
     public GameObject[] slot;
 
     public int piecesCorrect; // amount of pieces correct for user

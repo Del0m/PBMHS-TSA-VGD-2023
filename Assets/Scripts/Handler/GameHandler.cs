@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
 using UnityEngine.VFX;
+using UnityEngine.WSA;
 
 public class GameHandler : MonoBehaviour
 {
@@ -50,9 +51,34 @@ public class GameHandler : MonoBehaviour
         }
 
     }
-    public virtual IEnumerator EndGame() // coroutine to end the game as a player has won.
+    public virtual IEnumerator EndGame(int winner) // coroutine to end the game as a player has won.
     {
+        for(int i = 0; i < player.Length; i++)
+        {
+            var playerStat = player[i].GetComponent<PlayerStats>();
+            if(playerStat.turnOrder == winner)
+            {
+                playerStat.wins++;
+            }
+        }
         Debug.Log("Game has ended.");
+        yield return null;
+    }
+    public virtual IEnumerator EndGame(int loser, bool winnersWin)
+    {
+        for(int i = 0; i < player.Length; i++) // for loop, loser loses point, everyone wins!
+        {
+            var playerStat = player[i].GetComponent<PlayerStats>();
+            if(playerStat.turnOrder == loser)
+            {
+                playerStat.wins--;
+            }
+            else if(winnersWin)
+            {
+                playerStat.wins++;
+            }
+        }
+        Debug.Log("Game has ended");
         yield return null;
     }
 }

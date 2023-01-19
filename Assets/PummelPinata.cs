@@ -13,18 +13,13 @@ public class PummelPinata : GameHandler
     public GameObject pinataPrefab;
     public GameObject pinataSpawn;
 
+    public GameObject killer;
+
     private void Start()
     {
         StartCoroutine(TeleportPlayers(false, false, true)); // teleport to game
 
         StartCoroutine(SpawnObject());
-    }
-    private void Update()
-    {
-        if(pinataPrefab == null)
-        {
-            StartCoroutine(EndGame());
-        }
     }
     IEnumerator SpawnObject() // spawn objects for the game to begin
     {
@@ -41,9 +36,9 @@ public class PummelPinata : GameHandler
         }
         yield return null;
     }
-    public override IEnumerator EndGame()
+    public override IEnumerator EndGame(int player)
     {
-        gameScore[winner]++;
-        return base.EndGame();
+        var winner = killer.GetComponent<PlayerStats>();
+        return base.EndGame(winner.turnOrder);
     }
 }
