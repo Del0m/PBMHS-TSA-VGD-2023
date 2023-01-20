@@ -1348,7 +1348,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1483914979
 Transform:
   m_ObjectHideFlags: 0
@@ -1875,7 +1875,7 @@ GameObject:
   - component: {fileID: 1711368154}
   - component: {fileID: 1711368153}
   m_Layer: 0
-  m_Name: Arena Wall (2)
+  m_Name: Arena Wall
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1986,7 +1986,7 @@ GameObject:
   - component: {fileID: 1727791922}
   - component: {fileID: 1727791921}
   m_Layer: 0
-  m_Name: Arena Wall (1)
+  m_Name: 'Arena Wall '
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2333,7 +2333,7 @@ GameObject:
   - component: {fileID: 2041424143}
   - component: {fileID: 2041424142}
   m_Layer: 0
-  m_Name: Arena Wall (3)
+  m_Name: Arena Wall
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2441,7 +2441,7 @@ RectTransform:
   m_GameObject: {fileID: 1270168434171563391}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.2}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1270168434313925224}
