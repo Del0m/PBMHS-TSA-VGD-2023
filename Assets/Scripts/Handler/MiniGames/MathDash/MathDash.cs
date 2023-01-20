@@ -109,6 +109,7 @@ public class MathDash : GameHandler
         RandomizePosition();
         var rightCard = Instantiate(cardPrefab, randPos, new Quaternion()); // spawning new card.
         rightCard.GetComponentInChildren<Card>().value = answer;
+        rightCard.SetActive(true); // allow card to be seen in game
 
         for (int i = 0; i < cardAmount; i++) // for loop to spawn in cards with random values
         {
@@ -140,6 +141,7 @@ public class MathDash : GameHandler
             //spawn in object in random area in minigame arena.
             RandomizePosition(); // randomizing position and spawning card
             var newCard = Instantiate(cardPrefab, randPos, new Quaternion()); // spawning new card.
+            newCard.SetActive(true); // allow to be seen in the scene
             newCard.GetComponentInChildren<Card>().value = cardDisplay; // setting what is on the card
             print("Instantiating card!");
             newCard.tag = "Minigame Element"; // the card prefab won't have the tag to not be deleted.
@@ -150,7 +152,7 @@ public class MathDash : GameHandler
         //update ui
         text.text = "What is: " + number[0] + " " + problemType + " " + number[1] + "?";
     }
-    public void CheckAnswer(GameObject player, int guess) // award player with points if correctly slammed right card
+    public bool CheckAnswer(GameObject player, int guess) // award player with points if correctly slammed right card
     {
         print(player);
         
@@ -159,9 +161,11 @@ public class MathDash : GameHandler
             text.text = "Correct! The Answer is: " + answer; // changes text to show they got it correct.
             gameScore[player.GetComponent<PlayerStats>().turnOrder]++; // player position in score array is awarded a point
             this.StartCoroutine(NewProblem()); // making new problem for player
+            return true;
         }
         else
         {
+            return false;
             //update UI on player.
         }
     }

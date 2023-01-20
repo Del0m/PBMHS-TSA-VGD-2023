@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
+[RequireComponent(typeof(EntityStats))]
 public class Card : MonoBehaviour
 {
-    //card calling variables that are important to game
     public int value;
     public TextMeshProUGUI text;
 
@@ -15,14 +16,20 @@ public class Card : MonoBehaviour
     //rigidbody to send in direction
     public Rigidbody2D rb;
 
-    private bool hasClicked; // to prevent multiple runs of game
+    // stats to kill card and award to clicker
+    public EntityStats stat;
+
+    bool onGoing; // to prevent multiple runs of CheckAnswer()
+
+    // for modifying health bar
+    public GameObject healthUI; 
     private void Update()
     {
-        //having card move
-        //use rigidbody addforce in one direction super fast and just let it bounce over time.
-
-
-
+        if(stat.killer != null)
+        {
+            StartCoroutine(CheckAnswer(stat.killer));
+        }
+        HealthBar();
     }
     private void Start()
     {
@@ -42,6 +49,11 @@ public class Card : MonoBehaviour
         //making angle it will shoot at
         StartCoroutine(SwitchDirection(10,10));
     }
+    void HealthBar() // modify health bar on answer card
+    {
+        var healthPercent = stat.health * .1;
+        healthUI.transform.localScale = new Vector3(((float)healthPercent), 1, 1);
+    }
 
     Vector2 ChooseVectorDirection() // calculates random vector to shoot card at
     {
@@ -51,24 +63,22 @@ public class Card : MonoBehaviour
         var randVect = new Vector2(Mathf.Cos(radAngle), Mathf.Sin(radAngle)); //some weird trig shit, dunno what it means.
         return randVect;
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    IEnumerator CheckAnswer(GameObject clicker)
     {
-        if (collision.tag == "Player" && hasClicked == false) // check statement to not repeat runs
-        {
-            Debug.Log("Player has entered.");
-            //check to see if they're acting.
-            if (collision.GetComponent<PlayerMovement>().acting == true && hasClicked == false)
-            {
-                hasClicked = true;
-                var clicker = collision.gameObject;
-                print(clicker);
-                Debug.Log("Checking!");
-                //checking answer, and deleting card if its correct.
-                minigame.CheckAnswer(clicker, value); // collision = player, value = card value
+        // check to see if already running
+        if(onGoing == true) { yield break; } 
+        onGoing = true;
 
-                Destroy(transform.parent.gameObject, 1f); // destroy whole object after checking for the answer.
-            }
+        //checking answer, and deleting card if its correct.
+        if(minigame.CheckAnswer(clicker, value) == true) // clicker = player, value = card value
+        {
+            text.text = "Right!"; // tell user 
         }
+        else
+        {
+            text.text = "Wrong!"; // tell user
+        }
+        yield break;
     }
     IEnumerator SwitchDirection(int second, int i)
     {

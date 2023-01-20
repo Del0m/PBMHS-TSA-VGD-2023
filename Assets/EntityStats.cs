@@ -23,6 +23,9 @@ public class EntityStats : MonoBehaviour
     public AudioClip hit;
     public AudioSource soundPlayer;
     public Settings settings;
+
+
+    public GameObject objectToKill; // for the purposes of some objects being children
     private void Start()
     {
         if(soundPlayer == null)
@@ -57,7 +60,7 @@ public class EntityStats : MonoBehaviour
             // flash red to indicate damage has been dealt
             StartCoroutine(DamageFlash());
 
-            DeathCheck();
+            DeathCheck(obj);
 
             yield return new WaitForSeconds(iFrame);
             invulnerable = false;
@@ -65,11 +68,14 @@ public class EntityStats : MonoBehaviour
 
 
     }
-    public void DeathCheck() // check to see if entity is dead
+    public void DeathCheck(GameObject kill) // check to see if entity is dead
     {
-        if(health < 0)
+        if(health <= 0)
         {
             isDead = true;
+            killer = kill;
+
+            Destroy(objectToKill, 1f);
         }
     }
     // triggers to find player
@@ -81,12 +87,6 @@ public class EntityStats : MonoBehaviour
             if (collision.GetComponent<PlayerMovement>().isAttacking == true) // plr atk?
             {
                 StartCoroutine(TakeDamage(plrStat.damage, collision.gameObject));
-
-                if (isDead == true)
-                {
-                    Destroy(this.gameObject, 1f); // kill pinata
-                    killer = collision.gameObject;
-                }
             }
         }
     }

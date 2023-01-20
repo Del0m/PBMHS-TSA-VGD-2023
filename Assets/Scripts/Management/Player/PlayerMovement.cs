@@ -224,7 +224,8 @@ public class PlayerMovement : MonoBehaviour
         playInstance = dashSound;
         playSound.PlayOneShot(playInstance, (settings.soundVolume * settings.masterVolume));
 
-        SetParticle(SetDirection(), false);
+        if(canJump == true) { SetParticle(SetDirection(), false); } // if they're on the floor
+
         var originalSpeed = stat.speed;
         stat.speed *= 3;
         yield return new WaitForSeconds(0.25f);
@@ -291,10 +292,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if(context.performed && canJump == true && canEverJump == true) // ensures its only ran once
         {
-            Debug.Log("Jumping!");
+
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + stat.jumpPower);
             // animating particles here
-            SetParticle(new Quaternion(0, 0, -90, 0), true);
+            SetParticle(new Quaternion(0, 0, -90, 0), false);
             particle.transform.rotation = Quaternion.Euler(new Vector3(0,0,-90));
 
             canJump = false; // turn off jumping to prevent them from jumping again.
