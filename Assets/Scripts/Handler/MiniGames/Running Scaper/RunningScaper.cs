@@ -2,8 +2,8 @@
  * Purpose:
  * 
  * @author Yahir Bonilla
- * @version January 14, 2023
- * @os Win11
+ * @version January 19, 2023
+ * @os Arch Linux
  * @editor VS 2022
  *
  */
@@ -24,14 +24,19 @@ public class RunningScaper : GameHandler
     public double jumpCooldown = 1.5;
 
     [Header("Minigame Map params")]
+
     [Header("Minigame 4 Player Prefabs")]
     public GameObject[] mapPrefabs_4; //4 player grid maps
+
     [Header("Minigame 3 Player Prefabs")]
     public GameObject[] mapPrefabs_3; //3 player grid maps
+
     [Header("Minigame 2 Player Prefabs")]
     public GameObject[] mapPrefabs_2; //2 player grid maps
+
     [Header("Minigame 1 Player Prefabs")]
     public GameObject[] mapPrefabs_1; //1 player grid maps
+
 
     [Header("DEBUG")]
     [SerializeField]
@@ -43,17 +48,32 @@ public class RunningScaper : GameHandler
     [SerializeField]
     protected GameObject[] gridMapSpawnPoints;
     [SerializeField]
-    protected GameObject[,] allMapPrefabs;
-
+    private GameObject[] gridMaps;
+    
     // Start is called before the first frame update
     void Start()
     {
-        //Set 2d array
-        //allMapPrefabs = new GameObject[mapPrefabs_1, mapPrefabs_2, mapPrefabs_3, mapPrefabs_4];
-
         //Call to teleport player's to their positions
         StartCoroutine(TeleportPlayers(false, false, false));
         StartCoroutine(StartGame(miniGameStartUpTime));
+    }
+
+    GameObject[] setMapArray(){
+        //Checks the amount of players and return a grid map array
+        switch(player.Length){
+            case 0:
+                return null;
+            case 1:
+                return mapPrefabs_1;
+            case 2:
+                return mapPrefabs_2;
+            case 3:
+                return mapPrefabs_3;
+            case 4:
+                return mapPrefabs_4;
+        }
+
+        return null;
     }
 
     IEnumerator StartGame(float delay)
@@ -62,17 +82,24 @@ public class RunningScaper : GameHandler
         //Call main game methods
         //Find all grid map spawn points
         FindSpawnPoints();
+        //Set default map array to use
+        gridMaps = setMapArray();
+        if(gridMaps == null)
+            Debug.LogError("No players were found!");
+            yield return null;
 
         yield return new WaitForSeconds(1.5f);
-
         //Spawn the grid maps randomly
         if (gridMapSpawnPoints.Length > 0)
         {
-            //int playerAmount = allMapPrefabs.GetLength(0);
             for (int i = 0; i < gridMapSpawnPoints.Length; i++)
             {
-                
+                int randM = Random.Range(0, gridMaps.Length);
+                GameObject map = Instantiate(gridMaps[randM], gridMapSpawnPoints[i].transform.position, gridMapSpawnPoints[i].transform.rotation);
             }
+        }else{
+            Debug.LogError("No grid map spawn points found");
+            yield return null;
         }
 
         if (!setStaticDir())
@@ -87,7 +114,6 @@ public class RunningScaper : GameHandler
 
         yield return null;
     }
-
     bool FindSpawnPoints()
     {
         gridMapSpawnPoints = GameObject.FindGameObjectsWithTag("Minigame Element");

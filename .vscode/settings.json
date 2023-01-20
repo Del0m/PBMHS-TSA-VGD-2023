@@ -1,4 +1,4 @@
-﻿{
+{
     "files.exclude":
     {
         "**/.DS_Store":true,
@@ -51,5 +51,7 @@
         "ProjectSettings/":true,
         "temp/":true,
         "Temp/":true
-    }
+    },
+    "omnisharp.path": "latest",
+    "omnisharp.useGlobalMono": "always" // a result of / another way to do step 3.
 }

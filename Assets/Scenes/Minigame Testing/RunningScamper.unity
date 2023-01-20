@@ -410,6 +410,13 @@ MonoBehaviour:
   - {fileID: 3066816299502137671, guid: 2e216c4cc68f80546a4d6ebcb0c7866d, type: 3}
   - {fileID: 197705600863617496, guid: d49b898c8b5d2d146b367710c9a3f8a2, type: 3}
   - {fileID: 4841595610185478959, guid: 5fdbef5de5c6dcd4986648ccccaf259b, type: 3}
+  mapPrefabs_3: []
+  mapPrefabs_2: []
+  mapPrefabs_1:
+  - {fileID: 8154121760517404275, guid: fbc09844bfd83324a8106cf58c4c6d6f, type: 3}
+  - {fileID: 8372999981332433496, guid: 24ccce0ad3f726afdb4eca999871ebda, type: 3}
+  - {fileID: 5692077919442234414, guid: 37612533637ec0f6fb0b55b5ca89eb6a, type: 3}
+  - {fileID: 9153165716067131248, guid: 29f15ca73dfc00f8ea1184bf1281aa3c, type: 3}
   _timer: 1
   miniGameStartUpTime: 10
   playerDir: 1
