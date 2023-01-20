@@ -411,7 +411,11 @@ MonoBehaviour:
   - {fileID: 197705600863617496, guid: d49b898c8b5d2d146b367710c9a3f8a2, type: 3}
   - {fileID: 4841595610185478959, guid: 5fdbef5de5c6dcd4986648ccccaf259b, type: 3}
   mapPrefabs_3: []
-  mapPrefabs_2: []
+  mapPrefabs_2:
+  - {fileID: 3429280767401847405, guid: 90ebd80e4f03807c88cdd6a454a0a3bd, type: 3}
+  - {fileID: 5101675484134237546, guid: 3b3af2d06cdb15f0f8f8b8d6e90844e6, type: 3}
+  - {fileID: 1806737351126907408, guid: e03567221ed2dc90f8205051245da2d4, type: 3}
+  - {fileID: 8510387951128280248, guid: ff0247f785cc97525bedf0019ccfe0ed, type: 3}
   mapPrefabs_1:
   - {fileID: 8154121760517404275, guid: fbc09844bfd83324a8106cf58c4c6d6f, type: 3}
   - {fileID: 8372999981332433496, guid: 24ccce0ad3f726afdb4eca999871ebda, type: 3}
@@ -421,6 +425,7 @@ MonoBehaviour:
   miniGameStartUpTime: 10
   playerDir: 1
   gridMapSpawnPoints: []
+  gridMaps: []
 --- !u!1 &1090392338
 GameObject:
   m_ObjectHideFlags: 0
