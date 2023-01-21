@@ -7,19 +7,18 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
+
 public class PlayerControls : MonoBehaviour
 {
     //stats will remain here for the time being...
     [Header("Stats")]
-    public int position;
+    public PlayerStats stat;
 
     //script to be called for player management
-    [SerializeField]
     public GameObject managerObject;
     public TurnManager turnScript;
     private MovementManager moveManage;
-    //turns and controls
-    public int turnOrder;
 
     [Header("Controls")]
     public PlayerInput gameplayInput;
@@ -29,19 +28,27 @@ public class PlayerControls : MonoBehaviour
 
     private void Start() // run methods on start
     {
-        if (moveManage == null) // check if hasn't been publicly assigned already.
+        try
         {
-            moveManage = GameObject.FindGameObjectWithTag("Movement Manager").GetComponent<MovementManager>(); // grab movement manager
+            if (moveManage == null) // check if hasn't been publicly assigned already.
+            {
+                moveManage = GameObject.FindGameObjectWithTag("Movement Manager").GetComponent<MovementManager>(); // grab movement manager
+            }
+            if (turnScript == null) // check if hasn't been publicly assigned already.
+            {
+                turnScript = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>(); // grabs turnManager off of PlayerManager
+            }
         }
-        if (turnScript == null) // check if hasn't been publicly assigned already.
+        catch (System.Exception)
         {
-            turnScript = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>(); // grabs turnManager off of PlayerManager
+            Debug.LogError("Movement Manager or TurnManager is not present!");
         }
+
 
         gameplayInput = this.gameObject.GetComponent<PlayerInput>(); // grabbing player controls to turn on/off and change inputmaps
         this.gameObject.tag = "Player"; //set player tag to "Player"
 
-        turnOrder = GameObject.FindGameObjectsWithTag("Player").Length; //giving player turn order
+        stat.turnOrder = GameObject.FindGameObjectsWithTag("Player").Length; //giving player turn order
 
         //initalize controls class
         controls = new Controls();
@@ -68,7 +75,7 @@ public class PlayerControls : MonoBehaviour
     {
         if (context.performed && hasRan == false) // makes sure its only ran once
         {
-            if (turnScript.RunTurn(this.gameObject, turnOrder) == true) //check to see if conditions are met on TurnManager
+            if (turnScript.RunTurn(this.gameObject, stat.turnOrder) == true) //check to see if conditions are met on TurnManager
             {
                 StartCoroutine(Moving(2)); // begin moving player
             }
@@ -84,9 +91,9 @@ public class PlayerControls : MonoBehaviour
                 if (movesRemaining > 0) // check statement so program doesn't die.
                 {
                     Debug.Log("Moving.");
-                    newTile = moveManage.CallTile(position, 1); // moving one tile at a time
+                    newTile = moveManage.CallTile(stat.position, 1); // moving one tile at a time
 
-                    position++; // moving position ahead
+                    stat.position++; // moving position ahead
                     
                     movesRemaining--; // decrease movement till they are out of moves left.
                     yield return new WaitForSeconds(wait); // give time to move to position.

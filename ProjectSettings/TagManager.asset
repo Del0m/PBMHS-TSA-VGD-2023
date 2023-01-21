@@ -13,6 +13,9 @@ TagManager:
   - Movement Manager
   - Tile
   - Teleport
+  - Pause
+  - Minigame Element
+  - Settings
   layers:
   - Default
   - TransparentFX
@@ -22,8 +25,8 @@ TagManager:
   - UI
   - dir
   - Entity
-  - 
-  - 
+  - PlayerPassable
+  - Platform
   - 
   - 
   - 

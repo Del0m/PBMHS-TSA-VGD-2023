@@ -1,41 +1,84 @@
 //armin delmo, 11/13/22. Purpose of script is to handle minigame startup, grabbing players, starting game, etc.
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
 using UnityEngine.VFX;
+using UnityEngine.WSA;
 
 public class GameHandler : MonoBehaviour
 {
     //player array to modify rigidbodies and teleport
-    private GameObject[] player;
+    public GameObject[] player;
 
     //array of spawns
-    private GameObject[] teleport;
+    public GameObject[] teleport;
+
+    //score
+    public int[] gameScore = { 0,0,0,0 };
+
+    public int winner; // if need be 
+
+    public Transform[] border; // array holding the borders
 
     private void Start()
     {
-        //grab teleports.
+        
         teleport = GameObject.FindGameObjectsWithTag("Teleport");
-        StartCoroutine(TeleportPlayers());
     }
-    public IEnumerator TeleportPlayers() // teleports players into minigame
+    public IEnumerator TeleportPlayers(bool topDown, bool pick, bool allowMovement) // teleports players into minigame
     {
         Debug.Log("Waiting...");
-        yield return new WaitForSeconds(5);
+        //grab teleports.
+        teleport = GameObject.FindGameObjectsWithTag("Teleport"); // ran here b/c start doesn't operate on derivatives.
+        
+        yield return new WaitForSeconds(3);
 
         player = GameObject.FindGameObjectsWithTag("Player");
+        yield return new WaitForSeconds(2);
         for (int i = 0; i < player.Length; i++) // for loop to spawn players
         {
-            Debug.Log("Teleporting and enabling player " + i);
 
+            Debug.Log("Teleporting and enabling player " + i);
+            Debug.Log(player[i]);
             player[i].transform.position = teleport[i].transform.position; // set position for player in minigame
-            player[i].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic; //turn on player movement by allowing rigidbody to take movement
+            player[i].GetComponent<PlayerMovement>().GameSwitch(allowMovement,topDown, pick); //turn on player movement by allowing rigidbody to take movement
 
             yield return new WaitForSeconds(1); // wait for each player to be fully teleported in.
         }
 
+    }
+    public virtual IEnumerator EndGame(int winner) // coroutine to end the game as a player has won.
+    {
+        for(int i = 0; i < player.Length; i++)
+        {
+            var playerStat = player[i].GetComponent<PlayerStats>();
+            if(playerStat.turnOrder == winner)
+            {
+                playerStat.wins++;
+            }
+        }
+        Debug.Log("Game has ended.");
+        yield return null;
+    }
+    public virtual IEnumerator EndGame(int loser, bool winnersWin)
+    {
+        for(int i = 0; i < player.Length; i++) // for loop, loser loses point, everyone wins!
+        {
+            var playerStat = player[i].GetComponent<PlayerStats>();
+            if(playerStat.turnOrder == loser)
+            {
+                playerStat.wins--;
+            }
+            else if(winnersWin)
+            {
+                playerStat.wins++;
+            }
+        }
+        Debug.Log("Game has ended");
+        yield return null;
     }
 }
