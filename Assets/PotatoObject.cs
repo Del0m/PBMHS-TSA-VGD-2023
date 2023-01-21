@@ -14,12 +14,13 @@ public class PotatoObject : MonoBehaviour
     // who will be passed the potato
     public int potentialPass; // integer to select player in array it will be thrown to
 
+    [Header("Highlight Objects")]
     // game object to highlight who it will be thrown to; hold onto object to delete later
     public GameObject highlight; // player highlighted
     public GameObject highlightObject; // highlight under player
     public GameObject highlightInstance; // instantiation as a variable to later delete
 
-
+    public SpriteRenderer sprite; // sprite called to change the colors
     void Update()
     {
         Explode();
@@ -49,6 +50,10 @@ public class PotatoObject : MonoBehaviour
                 (scaleModifier,
                 scaleModifier,
                 scaleModifier);
+
+            // change the color of the sprite closer to red to indicate explosion!
+            sprite.color = new Color(255, sprite.color.g - .01f, sprite.color.b - .01f);
+
         }
         else if (explodeAnim == false) // slowly scale down to come back up
         {
@@ -56,6 +61,7 @@ public class PotatoObject : MonoBehaviour
                 (this.gameObject.transform.localScale.x - Time.deltaTime, 
                 this.gameObject.transform.localScale.y - Time.deltaTime,
                 1f);
+
         }
         if(explodeAnim == true)
         {
@@ -75,9 +81,9 @@ public class PotatoObject : MonoBehaviour
             Debug.Log("Exploded.");
             StartCoroutine(parentScript.EndGame(holdingPlayer, true));
 
-            Destroy(highlightInstance, 1f); // destroy the instance of highlight
+            Destroy(highlightInstance); // destroy the instance of highlight
 
-            Destroy(this.gameObject, 1f); // destroy game object as it isn't needed
+            Destroy(this.gameObject, 1.5f); // destroy game object as it isn't needed
         }
         else
         {

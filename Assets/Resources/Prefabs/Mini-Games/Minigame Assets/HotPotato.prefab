@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8dda242db2e24ca4387de25ad9f34138, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104,3 +104,4 @@ MonoBehaviour:
   highlight: {fileID: 0}
   highlightObject: {fileID: 4550605110297469377, guid: 9c210cbaa268a7b48bc2f77bc3b852b1, type: 3}
   highlightInstance: {fileID: 0}
+  sprite: {fileID: 7068721754681193649}
