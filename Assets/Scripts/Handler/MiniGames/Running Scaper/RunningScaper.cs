@@ -164,7 +164,7 @@ public class RunningScaper : GameHandler
         }
 
         //Call game end
-        EndGame();
+        //EndGame();
     }
 
     int checkScore()
