@@ -137,7 +137,7 @@ public class RunningScaper : GameHandler
         {
             for (int i = 0; i < player.Length; i++)
             {
-                player[i].GetComponent<PlayerMovement>().setStaticDir(playerDir, playerBaseSpeed,playerJumpPower, playerMovementIncrement, playerIncrementCooldown, jumpCooldown);
+                //player[i].GetComponent<PlayerMovement>().setStaticDir(playerDir, playerBaseSpeed,playerJumpPower, playerMovementIncrement, playerIncrementCooldown, jumpCooldown);
                 Debug.Log(player[i].name + "'s movement was set to static movement");
             }
             return true;
@@ -164,7 +164,7 @@ public class RunningScaper : GameHandler
         }
 
         //Call game end
-        EndGame();
+        //EndGame();
     }
 
     int checkScore()
