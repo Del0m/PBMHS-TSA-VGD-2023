@@ -32,6 +32,11 @@ public class UIFade : MonoBehaviour
         if (time < waitTime) { return; } // prevent overruning of this script
         fadeColor.a -= (Time.deltaTime / fadeTime);
         canvas.color = new Color(canvas.color.r, canvas.color.g, canvas.color.b, fadeColor.a);
+
+        if (fadeColor.a < 0) // allow buttons to be pressed
+        {
+            canvas.gameObject.SetActive(false);
+        }
         print(canvas.color.a);
         try
         {
