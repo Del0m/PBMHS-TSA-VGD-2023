@@ -1,9 +1,6 @@
 //armin delmo PlayerMovement.cs
 //the purpose of this program is to allow xy movement for the player during minigames.
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -33,6 +30,10 @@ public class PlayerMovement : MonoBehaviour
     private bool canAct = false;
     private bool canYMovement = false;
     public bool acting;
+    private bool canMoveFreely = true;
+    //cool down for player actions
+    private double _cooldown = 0.5; // base cooldown for player
+    private double _jumpCooldown = 1;
 
     //attacking variables
     public bool isAttacking;
@@ -80,13 +81,31 @@ public class PlayerMovement : MonoBehaviour
     {
         ActCooldown(stat.cooldown);
         DashCooldown(stat.cooldown * 2);
+        jumpCooldown(_jumpCooldown);
         // for movement
-        rb.velocity = new Vector2((xMovementInput * stat.speed), rb.velocity.y); // move x
-        if(canYMovement)
+        if (canMoveFreely)
         {
-            rb.velocity = new Vector2(rb.velocity.x, (yMovementInput * stat.speed)); // move y
+            rb.velocity = new Vector2((xMovementInput * stat.speed), rb.velocity.y); // move x
+            if (canYMovement)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, (yMovementInput * stat.speed)); // move y
+            }
         }
-
+        else
+        {
+            if (staticMovementSet)
+            {
+                //Move statically in one direction
+                if (myDir)
+                {
+                    rb.velocity = new Vector2((staticSpeed * currentIncrement), rb.velocity.y);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, (staticSpeed * currentIncrement));
+                }
+            }
+        }
         // if statement to keep held object in hand
         if (holding != null)
         {
@@ -94,6 +113,29 @@ public class PlayerMovement : MonoBehaviour
         }
         StartCoroutine(Footstep());
     }
+    //Private vars for static movement
+    private bool myDir;
+    private float staticSpeed;
+    private float incrementAmount;
+    private float currentIncrement = 1;
+    private float defaultIncrement = 1;
+    private bool staticMovementSet = false;
+
+    //Note: dir: true is left or right and false is up or down
+    public void setStaticDir(bool dir, float baseSpeed,int jumpP, float increment, float timeToResetSpeed, double jumpTimer)
+    {
+        canMoveFreely = false;
+        staticMovementSet = true;
+        myDir = dir;
+        staticSpeed = baseSpeed;
+        incrementAmount = increment;
+        _cooldown = timeToResetSpeed;
+        stat.jumpPower = jumpP;
+        _jumpCooldown = jumpTimer;
+        //Unlock player
+        GameSwitch(true, false, false);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision) // for the purposes of holding new objects
     {
         if(collision.tag == "Minigame Element")
@@ -261,6 +303,21 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+    private double jumpTimer;
+    private void jumpCooldown(double downtime) //Prevents from player being able to spam jump
+    {
+        if(!canJump && canEverJump)
+        {
+            //Run timer
+            jumpTimer += Time.deltaTime;
+            if(jumpTimer > downtime)  // when timer exceeds the cooldown
+            {
+                // Allow jumping to happen again
+                jumpTimer = 0;
+                canJump = true;
+            }
+        }
+    }
     IEnumerator ActRoutine() // coroutine to enable - disable temp vars
     {
         acting = true;
@@ -414,5 +471,19 @@ public class PlayerMovement : MonoBehaviour
         particle.gameObject.transform.rotation = rot;
 
     }
+    public void TapToIncrement(InputAction.CallbackContext context)
+    {
+        if (context.performed && canAct == true)
+        {
+            //Call a couroutine to increment
+            StartCoroutine(incrementMovement());
+        }
+    }
 
+    IEnumerator incrementMovement()
+    {
+        currentIncrement += incrementAmount;
+        yield return new WaitForSeconds((float)_cooldown);
+        currentIncrement = defaultIncrement;
+    }
 }

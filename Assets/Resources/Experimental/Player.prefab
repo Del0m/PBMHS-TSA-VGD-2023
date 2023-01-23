@@ -56,7 +56,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 3
-  m_Material: {fileID: 6200000, guid: 810e3ee32e7537e4e9c363d3aa02c8a3, type: 2}
+  m_Material: {fileID: 6200000, guid: e747b4fa4c4d15e2d969ade740744a6d, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -73,6 +73,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152bb9dae49c4ac47b0939f53fd3c210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 2
+  jumpPower: 10
   canJump: 0
   canEverJump: 0
   fallThrough: 0
@@ -97,7 +99,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2609490234402768870}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e747b4fa4c4d15e2d969ade740744a6d, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -235,6 +237,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 4b9ba64f-f4a4-44f9-b95f-588063a51e25
     m_ActionName: Gameplay/Dash[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2609490234402768869}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: TapToIncrement
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ad25a645-3b42-4312-bf12-0b0e90a64743
+    m_ActionName: Gameplay/Increment[/Keyboard/x]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
