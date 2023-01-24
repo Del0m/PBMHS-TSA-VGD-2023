@@ -11,7 +11,7 @@ public class ImageScript : MonoBehaviour
     public Sprite[] ImageSelection() // returns the texture2d array that is selected via switch
     {
 
-        switch (randomNum) // switch with all random imagery.
+        switch (ChangeRepeat()) // switch with all random imagery.
         {
             case 0:
                 return knightIcon;

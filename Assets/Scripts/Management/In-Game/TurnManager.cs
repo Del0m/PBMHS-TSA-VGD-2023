@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class TurnManager : MonoBehaviour
 {
     static int currentTurn = 0;
-    public int turnsElapsed = 0;
+    public int roundsElapsed = 0;
 
 
     //manage the minigames
@@ -18,12 +18,12 @@ public class TurnManager : MonoBehaviour
     //modify scores of players
     public ScoreManager scoreScript;
 
-    public Sprite[] diceImage;
+    public PlayerUIManager uiManager;
+
     // ui to update players on current turn
     [Header("UI")]
     public TextMeshProUGUI roundUI; // tells the round for the players
     public GameObject[] playerUI; // to be highlighted by the game to tell players its their turn!
-    public GameObject diceSprite; // to show player how many moves they have left on the board
 
 
     private void Awake()
@@ -48,15 +48,18 @@ public class TurnManager : MonoBehaviour
         }
 
 
+
     }
     public void RoundCheck() // compares currentTurn with player count, exceeds, start minigame
     {
+        // [] add a highlight player during turn here...
+
         Debug.Log("Checking new round! Advancing Turn!");
         var playerCount = GameObject.FindGameObjectsWithTag("Player").Length;
         currentTurn++;
 
         // run ui update
-        RoundUIUpdate(); 
+        uiManager.UpdateRound(roundsElapsed);
         if(playerCount < currentTurn) // turn on el minigame
         {
             miniGameScript.MinigameStartup(); // running minigame coroutine to advise players, and spawn game.
@@ -75,43 +78,5 @@ public class TurnManager : MonoBehaviour
         }
         Debug.Log("Turn failed, " + currentTurn + " does not equal " + playerTurn);
         return false;
-    }
-    public void RoundUIUpdate() // update the UI on the turn counter in the UI Canvas
-    {
-        roundUI.text = turnsElapsed.ToString();
-
-        // highlight the current player here [ ]
-    }
-    public void PlayDiceUI() // plays animation on diceSprite
-    {
-        diceSprite.GetComponent<Animator>().Play("Dice");
-    }
-    public void DiceUIUpdate(int dice)
-    {
-        switch(dice) // switch to change moves left for board via UI
-        {
-            case 0:
-                diceSprite.GetComponent<Image>().sprite = diceImage[0];
-                diceSprite.GetComponent<Animator>().playbackTime = 0; // reset dice back to middle
-                break;
-            case 1:
-                diceSprite.GetComponent<Image>().sprite = diceImage[1];
-                break;
-            case 2:
-                diceSprite.GetComponent<Image>().sprite = diceImage[2];
-                break;
-            case 3:
-                diceSprite.GetComponent<Image>().sprite = diceImage[3];
-                break;
-            case 4:
-                diceSprite.GetComponent<Image>().sprite = diceImage[4];
-                break;
-            case 5:
-                diceSprite.GetComponent<Image>().sprite = diceImage[5];
-                break;
-            case 6:
-                diceSprite.GetComponent<Image>().sprite = diceImage[6];
-                break;
-        }
     }
 }

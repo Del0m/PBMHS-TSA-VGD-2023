@@ -101,7 +101,7 @@ public class MiniGameManager : MonoBehaviour
         turnScript.SetTurn(1);
 
         //elapse the turns; once reaches end amount, game will end.
-        turnScript.turnsElapsed++;
+        turnScript.roundsElapsed++;
     }
     private void KillGamesFromFile() // remove minigame instance.
     {

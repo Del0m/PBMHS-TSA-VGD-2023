@@ -88,13 +88,13 @@ public class PlayerControls : MonoBehaviour
             var movesRemaining = diceRoll;
 
             //UI update
-            turnScript.PlayDiceUI();
+            turnScript.uiManager.UpdateDiceUI(movesRemaining);
 
             while (movesRemaining > 0) // keep moving player to next tile until no more moves
             {
                 if (movesRemaining > 0) // check statement so program doesn't die.
                 {
-                    turnScript.DiceUIUpdate(movesRemaining); // update ui for end-user
+                    turnScript.uiManager.UpdateDiceUI(movesRemaining); // update ui for end-user
 
                     Debug.Log("Moving.");
                     newTile = moveManage.CallTile(stat.position, 1); // moving one tile at a time
@@ -105,7 +105,7 @@ public class PlayerControls : MonoBehaviour
                     yield return new WaitForSeconds(wait); // give time to move to position.
                 }
             }
-            turnScript.DiceUIUpdate(movesRemaining);
+            turnScript.uiManager.UpdateDiceUI(movesRemaining);
             turnScript.RoundCheck(); // advance turn, see if new turn is in order.
             hasRan = false; // allow player to roll again, but their turn has moved, so they won't be able to.
         }
