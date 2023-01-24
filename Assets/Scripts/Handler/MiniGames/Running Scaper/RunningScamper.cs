@@ -13,7 +13,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RunningScaper : GameHandler
+public class RunningScamper : GameHandler
 {
     [Header("Minigame Parameters")]
     public int timerLength = 10;
@@ -137,7 +137,7 @@ public class RunningScaper : GameHandler
         {
             for (int i = 0; i < player.Length; i++)
             {
-                //player[i].GetComponent<PlayerMovement>().setStaticDir(playerDir, playerBaseSpeed,playerJumpPower, playerMovementIncrement, playerIncrementCooldown, jumpCooldown);
+                player[i].GetComponent<PlayerMovement>().setStaticDir(playerDir, playerBaseSpeed,playerJumpPower, playerMovementIncrement, playerIncrementCooldown, jumpCooldown);
                 Debug.Log(player[i].name + "'s movement was set to static movement");
             }
             return true;

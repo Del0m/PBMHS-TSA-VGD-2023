@@ -14,23 +14,26 @@ public class Coin : MonoBehaviour
     public int scoreAmount = 1;
 
     //Take reference of the minigame script
-    private RunningScaper minigame;
+    private RunningScamper minigame;
 
     // Start is called before the first frame update
     void Start()
     {
+        grabMinigame();
+    }
+
+    void grabMinigame(){
         //Grab minigame script from scene
         GameObject miniObj = GameObject.FindGameObjectWithTag("Minigame");
         if(miniObj != null )
         {
-            minigame = miniObj.GetComponent<RunningScaper>();
+            minigame = miniObj.GetComponent<RunningScamper>();
         }
         else
         {
             Debug.LogError("Minigame not found!");
         }
     }
-
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -68,6 +71,7 @@ public class Coin : MonoBehaviour
         else
         {
             Debug.LogError("Minigame not found!");
+            grabMinigame();
             return -1;
         }
 
