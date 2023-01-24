@@ -7,7 +7,7 @@ public class CamViewMObjs : MonoBehaviour
     [Header("Cam View params")]
     public List<Transform> targets;
     public float delay = 10f;
-    public Vector3 offSet;
+    public Vector3 offSet = new Vector3(0, 0, -25);
 
     private GameHandler gameH;
 
