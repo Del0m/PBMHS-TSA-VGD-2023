@@ -465,12 +465,13 @@ MonoBehaviour:
   gameScore: 00000000000000000000000000000000
   winner: 0
   border: []
-  timerLength: 60
+  timerLength: 40
   playerBaseSpeed: 1
-  playerMovementIncrement: 1.8
+  playerMovementIncrement: 1.85
   playerIncrementCooldown: 0.05
   playerJumpPower: 13
   jumpCooldown: 1.2
+  timerForGridMaps: 10.5
   mapPrefabs_4:
   - {fileID: 8039339658390375376, guid: e9d895d480d52e64bb2c6b9d596e66b4, type: 3}
   - {fileID: 3066816299502137671, guid: 2e216c4cc68f80546a4d6ebcb0c7866d, type: 3}
@@ -961,6 +962,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9035641883467450784}
+  - component: {fileID: 9035641883467450786}
   m_Layer: 0
   m_Name: Grid0_scaper_4
   m_TagString: Untagged
@@ -968,6 +970,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &9035641883467450786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9035641883467450785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 379a35552ef6595dea787454d8d0e6bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  timer: 30
 --- !u!4 &9035641883979349552
 Transform:
   m_ObjectHideFlags: 0
