@@ -10,6 +10,7 @@ public class EntityStats : MonoBehaviour
 {
     [Header("Stats")]
     public int health;
+
     public int speed;
     public float iFrame; // to prevent several hits from the same object.
     //public int jumpPower; // I don't know if this will be needed, ever...
@@ -26,8 +27,14 @@ public class EntityStats : MonoBehaviour
 
 
     public GameObject objectToKill; // for the purposes of some objects being children
+    private int totalHeath; // just for reading
+
+    [Header("Special Stuff")]
+    public GameObject healthBar; // for the purposes of updating the health
     private void Start()
     {
+        totalHeath = health; // initalizing max health
+
         if(soundPlayer == null)
         {
             this.GetComponent<AudioSource>(); // to prevent audio error
@@ -57,6 +64,11 @@ public class EntityStats : MonoBehaviour
             invulnerable = true;
             health -= damage;
 
+            //modding healthbar to match health
+            if(healthBar)
+            {
+                healthBar.transform.localScale = new Vector2((health / totalHeath) * 100, 1); // getting percentage
+            }
             // flash red to indicate damage has been dealt
             StartCoroutine(DamageFlash());
 
