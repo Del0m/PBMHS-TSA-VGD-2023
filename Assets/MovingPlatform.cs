@@ -7,6 +7,8 @@ public class MovingPlatform : Platform
     public Transform[] point; // to deduct where the platform will go
     public float speed; // to see how fast the platform will go
 
+    public Transform[] pointStorage; // storing points for minigames, not needed
+
     int index;
     private void Update()
     {

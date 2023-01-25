@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     bool canDash = true;
 
     //things needed to move player
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
 
     private Controls controls;
 

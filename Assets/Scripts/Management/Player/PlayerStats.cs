@@ -14,7 +14,7 @@ public class PlayerStats : MonoBehaviour
     //stats for player movement
     [Header("Minigame Stats")]
     public float speed = 15;
-    public int jumpPower = 20;
+    public float jumpPower = 20;
     public int damage = 5;
     //cool down for player actions
     public double cooldown = 0.5;

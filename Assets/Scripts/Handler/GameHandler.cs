@@ -24,17 +24,15 @@ public class GameHandler : MonoBehaviour
 
     public Transform[] border; // array holding the borders
 
-    private void Start()
-    {
-        teleport = GameObject.FindGameObjectsWithTag("Teleport");
-    }
     public void TeleportPlayers() // void to collect all players on the map, and place them in the according location in minigame
     {
+        Debug.Log("Attempting to teleport players");
         player = GameObject.FindGameObjectsWithTag("Player");
-        teleport??= GameObject.FindGameObjectsWithTag("Teleport"); // check if null, replace spawns
+        teleport = GameObject.FindGameObjectsWithTag("Teleport"); // replace spawns
 
         for(int i = 0; i < player.Length; i++) // for loop to set all players in correct position for game
         {
+            Debug.Log("Teleporting Player " + i + 1);
             player[i].transform.position = teleport[i].transform.position; // set position for player in minigame
         }
     }
@@ -44,6 +42,7 @@ public class GameHandler : MonoBehaviour
     }
     public IEnumerator StartGame(bool enable) // teleports players into minigame
     {
+        yield return new WaitForSeconds(3); // wait before collecting all players
         TeleportPlayers(); // teleport players into the game
 
         // for loop to allow all players controls
