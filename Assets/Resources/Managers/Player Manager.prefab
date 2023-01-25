@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8197119641342339077}
   - component: {fileID: 8197119641342339076}
-  - component: {fileID: 8285492406540067531}
   m_Layer: 0
   m_Name: Player Manager
   m_TagString: Player Manager
@@ -52,7 +51,7 @@ MonoBehaviour:
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8285492406540067531}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
         m_MethodName: SpawnPlayer
         m_Mode: 0
@@ -89,16 +88,3 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &8285492406540067531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8197119641342339079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92e87fe67ca9caa4fa6a21c62933998c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawn: []
