@@ -31,7 +31,7 @@ public class GameHandler : MonoBehaviour
     public void TeleportPlayers() // void to collect all players on the map, and place them in the according location in minigame
     {
         player = GameObject.FindGameObjectsWithTag("Player");
-        teleport??= GameObject.FindGameObjectsWithTag("Teleport"); // check if null, replace spawns
+        teleport = GameObject.FindGameObjectsWithTag("Teleport"); // check if null, replace spawns
 
         for(int i = 0; i < player.Length; i++) // for loop to set all players in correct position for game
         {
@@ -44,6 +44,7 @@ public class GameHandler : MonoBehaviour
     }
     public IEnumerator StartGame(bool enable) // teleports players into minigame
     {
+        yield return new WaitForSeconds(3); // Temporary during debug for minigames
         TeleportPlayers(); // teleport players into the game
 
         // for loop to allow all players controls
@@ -61,6 +62,7 @@ public class GameHandler : MonoBehaviour
 
     public IEnumerator StartGame(bool enable, bool topDown) // teleports players into minigame; allow topdown
     {
+        yield return new WaitForSeconds(3); // Temporary during debug for minigames
         TeleportPlayers(); // teleport players into the game
 
         // for loop to allow all players controls
@@ -77,6 +79,7 @@ public class GameHandler : MonoBehaviour
     }
     public IEnumerator StartGame(bool enable, bool topDown, bool pick) // teleports players into minigame; allow topdown
     {
+        yield return new WaitForSeconds(3); // Temporary during debug for minigames
         TeleportPlayers(); // teleport players into the game
 
         // for loop to allow all players controls

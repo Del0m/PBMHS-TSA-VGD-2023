@@ -753,6 +753,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 8285492406540067531, guid: 68bf2936e131abb4990f2e44dc3f3d07, type: 3}
+      propertyPath: spawn.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285492406540067531, guid: 68bf2936e131abb4990f2e44dc3f3d07, type: 3}
+      propertyPath: spawn.Array.data[0]
+      value: 
+      objectReference: {fileID: 482442975}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 68bf2936e131abb4990f2e44dc3f3d07, type: 3}
 --- !u!1 &1812885476

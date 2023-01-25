@@ -56,8 +56,8 @@ public class RunningScamper : GameHandler
     void Start()
     {
         //Call to teleport player's to their positions
-        StartCoroutine(StartGame(false));
-        StartCoroutine(StartGame(miniGameStartUpTime));
+        StartCoroutine(StartGame(true));
+        StartCoroutine(StartGame());
     }
 
     GameObject[] setMapArray(){
@@ -78,9 +78,9 @@ public class RunningScamper : GameHandler
         return null;
     }
 
-    IEnumerator StartGame(float delay)
+    IEnumerator StartGame()
     {
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(miniGameStartUpTime);
         //Call main game methods
         //Find all grid map spawn points
         FindSpawnPoints();
@@ -88,7 +88,7 @@ public class RunningScamper : GameHandler
         gridMaps = setMapArray();
         if(gridMaps == null)
             Debug.LogError("No players were found!");
-            yield return null;
+            StopCoroutine(StartGame());
 
         yield return new WaitForSeconds(1.5f);
         //Spawn the grid maps randomly
@@ -107,7 +107,7 @@ public class RunningScamper : GameHandler
             }
         }else{
             Debug.LogError("No grid map spawn points found");
-            yield return null;
+            StopCoroutine(StartGame());
         }
 
         if (!setStaticDir())
@@ -120,7 +120,7 @@ public class RunningScamper : GameHandler
             Invoke("timerEnd", timerLength);
         }
 
-        yield return null;
+        StopCoroutine(StartGame());
     }
     bool FindSpawnPoints()
     {
