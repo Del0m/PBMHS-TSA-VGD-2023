@@ -182,50 +182,41 @@ public class PlayerMovement : MonoBehaviour
         
         yield return null;
     }
-    public void GameSwitch(bool enable, bool topDown, bool pick) // start game for the player using switch.
+    public void GameSwitch(bool enable) // basic overload for games that don't need topdown or grabbing
     {
-        switch(enable)
+        canAct = enable;
+        canJump = enable;
+        canEverJump = enable;
+        if(enable)
         {
-            case true:
-                canAct = true;
-                canJump = true;
-                canEverJump = true;
-                rb.bodyType = RigidbodyType2D.Dynamic;
-                break;
-            case false:
-                canAct = false;
-                canJump = false;
-                canEverJump = false;
-                rb.bodyType = RigidbodyType2D.Static;
-                break;
+            rb.bodyType = RigidbodyType2D.Dynamic;
         }
-        switch(topDown) // for games to enable yMovement
+        else
         {
-            case true:
-                canEverJump = false;
-                canYMovement = true;
+            rb.bodyType = RigidbodyType2D.Static;
 
-                rb.gravityScale = 0; // prevents slow-fall of player
-
-                break;
-            case false:
-                canEverJump = true;
-                canYMovement = false;
-
-                rb.gravityScale = 3; // allows fall of player
-
-                break;
-                
         }
-        switch(pick)
+    }
+    public void GameSwitch(bool enable, bool topDown) // overload for topdown games
+    {
+        GameSwitch(enable); // running base statement
+        canEverJump = !topDown;
+        canYMovement = topDown;
+        
+        if(topDown)
         {
-            case true:
-                canPick = true;
-                break;
-            default:
-                canPick = false;
-                break;
-        }    
+            rb.gravityScale = 0;
+        }
+        else
+        {
+            rb.gravityScale = 3;
+        }
+    }
+    public void GameSwitch(bool enable, bool topDown, bool pick) // overloadstart game for the player using switch.
+    {
+        GameSwitch(enable, topDown); // run base statement 
+        canPick = pick;
+    
     }
     public double ReadMoveValues(char ch) // to read move values of the player to use them for minigame purposes
     {
@@ -358,7 +349,7 @@ public class PlayerMovement : MonoBehaviour
             canJump = false; // turn off jumping to prevent them from jumping again.
         }
     }
-
+    [Header("Audio")]
     AudioClip playInstance;
     AudioSource playSound;
     bool isPlaying;
@@ -453,7 +444,9 @@ public class PlayerMovement : MonoBehaviour
     void SetParticle(Quaternion rot, bool hasParent)
     {
         var particleObject = Instantiate(particlePrefab, this.gameObject.transform.position, rot);
+
         if (hasParent) { particleObject.transform.SetParent(this.transform); } // give parent, usually only neededd for jump
+
         particleObject.transform.rotation = rot;
         particle = particleObject.GetComponent<ParticleSystem>();
 

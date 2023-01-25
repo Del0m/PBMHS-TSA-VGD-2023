@@ -11,13 +11,23 @@ public class PlayerManager : MonoBehaviour
 
     private PlayerInputManager manager; // disable joining mechanics
     private TurnManager turn; // start up turns
+
+    [Header("Player")]
+    public Transform[] spawn; // spawn player in correct spot
     private void Start()
     {
         manager = GetComponent<PlayerInputManager>();
         turn = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>();
     }
+    public void SpawnPlayer(PlayerInput input) // Move player in select location
+    {
+        // get player turn order to spawn them in correct location
+        var playerOrder = input.gameObject.GetComponent<PlayerStats>().turnOrder;
+        
+        input.gameObject.transform.position = spawn[playerOrder].position;
+    }
 
-    IEnumerator StartGame() // start the game, run DisableJoin
+    public IEnumerator StartGame() // start the game, run DisableJoin
     {
         yield return new WaitForSeconds(2);
         DisableJoin(); // turn off players from being able to join the game

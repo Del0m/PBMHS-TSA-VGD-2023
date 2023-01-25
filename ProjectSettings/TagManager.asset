@@ -16,7 +16,7 @@ TagManager:
   - Pause
   - Minigame Element
   - Settings
-  - DiceUI
+  - PlayerUIManager
   layers:
   - Default
   - TransparentFX

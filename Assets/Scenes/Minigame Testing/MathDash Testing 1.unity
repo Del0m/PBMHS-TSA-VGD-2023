@@ -529,10 +529,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8197119641342339076, guid: 68bf2936e131abb4990f2e44dc3f3d07, type: 3}
-      propertyPath: m_PlayerPrefab
-      value: 
-      objectReference: {fileID: 2609490234402768870, guid: 7f2b7fcce545bd74fb5d12b0940d6aa5, type: 3}
     - target: {fileID: 8197119641342339077, guid: 68bf2936e131abb4990f2e44dc3f3d07, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2825,6 +2821,7 @@ MonoBehaviour:
   soundPlayer: {fileID: 1270168435248259281}
   settings: {fileID: 959108679}
   objectToKill: {fileID: 1483914978}
+  healthBar: {fileID: 0}
 --- !u!82 &1270168435248259281
 AudioSource:
   m_ObjectHideFlags: 0
