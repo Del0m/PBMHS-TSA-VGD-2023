@@ -2,7 +2,7 @@
  * Purpose:
  * 
  * @author Yahir Bonilla
- * @version January 19, 2023
+ * @version January 23, 2023
  * @os Arch Linux
  * @editor VS 2022
  *
@@ -13,7 +13,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RunningScaper : GameHandler
+public class RunningScamper : GameHandler
 {
     [Header("Minigame Parameters")]
     public int timerLength = 10;
@@ -22,6 +22,8 @@ public class RunningScaper : GameHandler
     public float playerIncrementCooldown = 0.5f;
     public int playerJumpPower = 5;
     public double jumpCooldown = 1.5;
+
+    public float timerForGridMaps = 8f;
 
     [Header("Minigame Map params")]
 
@@ -54,8 +56,8 @@ public class RunningScaper : GameHandler
     void Start()
     {
         //Call to teleport player's to their positions
-        StartCoroutine(StartGame(false));
-        StartCoroutine(StartGame(miniGameStartUpTime));
+        StartCoroutine(StartGame(true));
+        StartCoroutine(StartGame());
     }
 
     GameObject[] setMapArray(){
@@ -76,9 +78,9 @@ public class RunningScaper : GameHandler
         return null;
     }
 
-    IEnumerator StartGame(float delay)
+    IEnumerator StartGame()
     {
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSeconds(miniGameStartUpTime);
         //Call main game methods
         //Find all grid map spawn points
         FindSpawnPoints();
@@ -86,20 +88,26 @@ public class RunningScaper : GameHandler
         gridMaps = setMapArray();
         if(gridMaps == null)
             Debug.LogError("No players were found!");
-            yield return null;
+            StopCoroutine(StartGame());
 
         yield return new WaitForSeconds(1.5f);
         //Spawn the grid maps randomly
         if (gridMapSpawnPoints.Length > 0)
         {
+            var multiplier = timerForGridMaps;
             for (int i = 0; i < gridMapSpawnPoints.Length; i++)
             {
                 int randM = Random.Range(0, gridMaps.Length);
                 GameObject map = Instantiate(gridMaps[randM], gridMapSpawnPoints[i].transform.position, gridMapSpawnPoints[i].transform.rotation);
+                Scamper_GridMap scam = map.GetComponent<Scamper_GridMap>();
+                if(scam != null){
+                    scam.timer += multiplier;
+                    multiplier += timerForGridMaps;
+                }
             }
         }else{
             Debug.LogError("No grid map spawn points found");
-            yield return null;
+            StopCoroutine(StartGame());
         }
 
         if (!setStaticDir())
@@ -112,7 +120,7 @@ public class RunningScaper : GameHandler
             Invoke("timerEnd", timerLength);
         }
 
-        yield return null;
+        StopCoroutine(StartGame());
     }
     bool FindSpawnPoints()
     {
@@ -137,7 +145,7 @@ public class RunningScaper : GameHandler
         {
             for (int i = 0; i < player.Length; i++)
             {
-                //player[i].GetComponent<PlayerMovement>().setStaticDir(playerDir, playerBaseSpeed,playerJumpPower, playerMovementIncrement, playerIncrementCooldown, jumpCooldown);
+                player[i].GetComponent<PlayerMovement>().setStaticDir(playerDir, playerBaseSpeed,playerJumpPower, playerMovementIncrement, playerIncrementCooldown, jumpCooldown);
                 Debug.Log(player[i].name + "'s movement was set to static movement");
             }
             return true;
