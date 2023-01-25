@@ -294,21 +294,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-    private double jumpTimer;
-    private void jumpCooldown(double downtime) //Prevents from player being able to spam jump
-    {
-        if(!canJump && canEverJump)
-        {
-            //Run timer
-            jumpTimer += Time.deltaTime;
-            if(jumpTimer > downtime)  // when timer exceeds the cooldown
-            {
-                // Allow jumping to happen again
-                jumpTimer = 0;
-                canJump = true;
-            }
-        }
-    }
     IEnumerator ActRoutine() // coroutine to enable - disable temp vars
     {
         acting = true;
