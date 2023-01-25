@@ -17,7 +17,7 @@ public class PummelPinata : GameHandler
 
     private void Start()
     {
-        StartCoroutine(TeleportPlayers(false, false, true)); // teleport to game
+        StartCoroutine(StartGame(true)); // teleport to game
 
         StartCoroutine(SpawnObject());
     }

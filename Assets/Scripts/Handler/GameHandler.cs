@@ -28,27 +28,68 @@ public class GameHandler : MonoBehaviour
     {
         teleport = GameObject.FindGameObjectsWithTag("Teleport");
     }
-    public IEnumerator TeleportPlayers(bool topDown, bool pick, bool allowMovement) // teleports players into minigame
+    public void TeleportPlayers() // void to collect all players on the map, and place them in the according location in minigame
     {
-        Debug.Log("Waiting...");
-        //grab teleports.
-        teleport = GameObject.FindGameObjectsWithTag("Teleport"); // ran here b/c start doesn't operate on derivatives.
-        
-        yield return new WaitForSeconds(3);
-
         player = GameObject.FindGameObjectsWithTag("Player");
-        yield return new WaitForSeconds(2);
-        for (int i = 0; i < player.Length; i++) // for loop to spawn players
+        teleport??= GameObject.FindGameObjectsWithTag("Teleport"); // check if null, replace spawns
+
+        for(int i = 0; i < player.Length; i++) // for loop to set all players in correct position for game
         {
-
-            Debug.Log("Teleporting and enabling player " + i);
-            Debug.Log(player[i]);
             player[i].transform.position = teleport[i].transform.position; // set position for player in minigame
-            player[i].GetComponent<PlayerMovement>().GameSwitch(allowMovement,topDown, pick); //turn on player movement by allowing rigidbody to take movement
-
-            yield return new WaitForSeconds(1); // wait for each player to be fully teleported in.
         }
+    }
+    public void TutorialUI()
+    {
+        // nothing here, Yahir, this is your spot 
+    }
+    public IEnumerator StartGame(bool enable) // teleports players into minigame
+    {
+        TeleportPlayers(); // teleport players into the game
 
+        // for loop to allow all players controls
+        for(int i = 0; i < player.Length; i++)
+        {
+            var playerMovement = player[i].GetComponent<PlayerMovement>();
+
+            playerMovement.GameSwitch(enable);
+        }
+        // add UI pause here []
+        TutorialUI(); // Yahir
+
+        yield return new WaitForSeconds(3);
+    }
+
+    public IEnumerator StartGame(bool enable, bool topDown) // teleports players into minigame; allow topdown
+    {
+        TeleportPlayers(); // teleport players into the game
+
+        // for loop to allow all players controls
+        for (int i = 0; i < player.Length; i++)
+        {
+            var playerMovement = player[i].GetComponent<PlayerMovement>();
+
+            playerMovement.GameSwitch(enable, topDown);
+        }
+        // add UI pause here []
+        TutorialUI(); // Yahir
+
+        yield return new WaitForSeconds(3);
+    }
+    public IEnumerator StartGame(bool enable, bool topDown, bool pick) // teleports players into minigame; allow topdown
+    {
+        TeleportPlayers(); // teleport players into the game
+
+        // for loop to allow all players controls
+        for (int i = 0; i < player.Length; i++)
+        {
+            var playerMovement = player[i].GetComponent<PlayerMovement>();
+
+            playerMovement.GameSwitch(enable, topDown, pick);
+        }
+        // add UI pause here []
+        TutorialUI(); // Yahir
+
+        yield return new WaitForSeconds(3);
     }
     public virtual IEnumerator EndGame(int winner) // coroutine to end the game as a player has won.
     {
