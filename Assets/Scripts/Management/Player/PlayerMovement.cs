@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     bool canDash = true;
 
     //things needed to move player
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
 
     private Controls controls;
 
@@ -373,7 +373,7 @@ public class PlayerMovement : MonoBehaviour
 
             playInstance = footstep[UnityEngine.Random.Range(0, footstep.Length)];
             playSound.PlayOneShot(playInstance, (settings.soundVolume * settings.masterVolume));
-            yield return new WaitForSeconds(playInstance.length + 0.15f); // prevent overlapping sounds
+            yield return new WaitForSeconds(playInstance.length + 0.12f); // prevent overlapping sounds
 
             isPlaying = false; // allow sounds to play again
         }
