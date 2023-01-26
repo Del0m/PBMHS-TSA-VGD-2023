@@ -112,5 +112,13 @@ public class ColorMatch : GameHandler
         }
         ModifyPlayerStats(false); // increase player speed oncemore!
     }
-
+    public IEnumerator LoseGame() // when all players have lost
+    {
+        uiManager.ChangeUI(true, uiManager.loseUI);
+        yield return new WaitForSeconds(5);
+        for(int i = 0; i < player.Length; i++)
+        {
+            player[i].GetComponent<PlayerStats>().wins -= 1;
+        }
+    }
 }

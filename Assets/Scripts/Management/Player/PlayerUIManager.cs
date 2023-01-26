@@ -18,7 +18,9 @@ public class PlayerUIManager : MonoBehaviour
     public GameObject diceSprite;
     public Sprite[] diceImage;
 
+    [Header("Game Specific UI")]
     public GameObject healthBarUI; // health bar for pinata minigame
+    public GameObject loseUI; // to be enabled when all players lose the game
 
     // this will be ran in the PlayerManager
     public void InitalizeUI() // this is to hide UI that won't be used in the game due to a lack of plrs
@@ -55,9 +57,9 @@ public class PlayerUIManager : MonoBehaviour
         minigameUI.SetActive(minigame);
 
     }
-    public void ChangeUI(bool minigame, bool healthBar) // same as ChangeUI, just overload to add health bar if needed
+    public void ChangeUI(bool minigame, GameObject obj) // same as ChangeUI, just overload to add extraUI if needed
     {
         ChangeUI(minigame); // default settings from previous
-        healthBarUI.SetActive(healthBar); // setting healthbar
+        obj.SetActive(minigame); // setting object active
     }
 }

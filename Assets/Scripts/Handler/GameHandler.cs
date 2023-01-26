@@ -12,6 +12,7 @@ using UnityEngine.WSA;
 public class GameHandler : MonoBehaviour
 {
     //player array to modify rigidbodies and teleport
+    [Header("Player Important Variables")]
     public GameObject[] player;
 
     //array of spawns
@@ -22,10 +23,15 @@ public class GameHandler : MonoBehaviour
 
     public int winner; // if need be 
 
+    //useless in every game that doesn't spawn something
     public Transform[] border; // array holding the borders
+
+    //[HideInInspector] // don't need to see it, clutter
+    public PlayerUIManager uiManager;
 
     private void Start()
     {
+        uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
         teleport = GameObject.FindGameObjectsWithTag("Teleport");
     }
     public void TeleportPlayers() // void to collect all players on the map, and place them in the according location in minigame

@@ -81,7 +81,6 @@ public class PlayerMovement : MonoBehaviour
     {
         ActCooldown(stat.cooldown);
         DashCooldown(stat.cooldown * 2);
-        jumpCooldown(_jumpCooldown);
         // for movement
         if (canMoveFreely)
         {
