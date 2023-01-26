@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0bedc72b6a9da5c43ae971d7a25d3110
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - killer: {instanceID: 0}
+  - hit: {fileID: 8300000, guid: ec05997e6bd8a904b9d59f84d05d3930, type: 3}
+  - soundPlayer: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
