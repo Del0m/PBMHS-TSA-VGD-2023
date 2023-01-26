@@ -20,6 +20,9 @@ public class PlayerStats : MonoBehaviour
     public double cooldown = 0.5;
 
     public int wins;
+
+    [Header("Minigame Points")]
+    public bool lost;
    
     
 

@@ -45,6 +45,9 @@ public class Losezone : MonoBehaviour
             var rbPlayer = collision.gameObject.GetComponent<PlayerMovement>().rb;
             rbPlayer.bodyType = RigidbodyType2D.Static; // prevent any more movement
 
+            // set player's stat to lost for the end of the game
+            collision.GetComponent<PlayerStats>().lost = true;
+
             Array.Resize(ref heldPlayer, heldPlayer.Length + 1); // resize array to use in losing function
             heldPlayer[spotOpen] = collision.gameObject; // put in loser array to be moved in
 

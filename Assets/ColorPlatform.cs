@@ -24,7 +24,6 @@ public class ColorPlatform : MonoBehaviour
     {
         if(dropPlatform)
         {
-            Debug.Log("Moving down!");
             transform.position = Vector2.MoveTowards(this.transform.position, dropPos.position, 8 * Time.deltaTime);
         }
         else

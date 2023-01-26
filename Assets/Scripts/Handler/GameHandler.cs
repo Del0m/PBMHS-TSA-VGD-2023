@@ -29,7 +29,7 @@ public class GameHandler : MonoBehaviour
     //[HideInInspector] // don't need to see it, clutter
     public PlayerUIManager uiManager;
 
-    private void Start()
+    void Start()
     {
         uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
         teleport = GameObject.FindGameObjectsWithTag("Teleport");
@@ -99,6 +99,11 @@ public class GameHandler : MonoBehaviour
         TutorialUI(); // Yahir
 
         yield return new WaitForSeconds(3);
+    }
+    public virtual IEnumerator EndGame() // left blank to modify in games
+    {
+        Debug.Log("Game has ended.");
+        yield return null;
     }
     public virtual IEnumerator EndGame(int winner) // coroutine to end the game as a player has won.
     {

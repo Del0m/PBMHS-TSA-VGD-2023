@@ -25,6 +25,8 @@ public class ColorMatch : GameHandler
     private float originalJumpPower;
     void Start()
     {
+        uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
+
         StartCoroutine(StartGame(true)); // starting game and bringing players into the game
         StartCoroutine(DropColors()); 
     }
@@ -58,6 +60,7 @@ public class ColorMatch : GameHandler
         {
             for(int i = 0; i < player.Length; i++)
             {
+                Debug.Log("Restting stats!");
                 var playerStat = player[i].GetComponent<PlayerStats>();
 
                 playerStat.speed = originalSpeed;
@@ -107,10 +110,11 @@ public class ColorMatch : GameHandler
                 var colorScript = colorPlatform[k].GetComponent<ColorPlatform>();
                 colorScript.dropPlatform = false;
             }
-            dropTime -= (dropTime / 10); // reduce drop time to up the stakes
+            dropTime -= (dropTime / 8); // reduce drop time to up the stakes
             yield return new WaitForSeconds(5);
         }
         ModifyPlayerStats(false); // increase player speed oncemore!
+        StartCoroutine(EndGame());
     }
     public IEnumerator LoseGame() // when all players have lost
     {
@@ -120,5 +124,21 @@ public class ColorMatch : GameHandler
         {
             player[i].GetComponent<PlayerStats>().wins -= 1;
         }
+    }
+    public override IEnumerator EndGame() // award all winners with points
+    {
+        // for loop to examine who lost, and award them points accordingly
+        for(int i = 0; i < player.Length; i++)
+        {
+            var playerStat = player[i].GetComponent<PlayerStats>();
+
+            if(!playerStat.lost) // check to see if player didn't fall
+            {
+                Debug.Log("Awarding a win!");
+                playerStat.wins++;
+            }
+            playerStat.lost = false;
+        }
+        return base.EndGame();
     }
 }

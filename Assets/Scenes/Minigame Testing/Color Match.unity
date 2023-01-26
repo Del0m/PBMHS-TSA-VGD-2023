@@ -173,7 +173,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 46025f928a1fd9a4687bad1ea9dbcebf, type: 3}
   - {fileID: 21300000, guid: 55b8a1c00cce72845a863a753a183739, type: 3}
   healthBarUI: {fileID: 168277624}
-  loseUI: {fileID: 0}
+  loseUI: {fileID: 1329445971}
 --- !u!114 &14240533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1592,7 +1592,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556381004}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -16.667732, y: 4.5089016, z: 100}
+  m_LocalPosition: {x: -9.6, y: 4.5089016, z: 100}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4791,7 +4791,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1711368151}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.5, y: 23.508902, z: 100}
+  m_LocalPosition: {x: 27.567734, y: 23.508902, z: 100}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4937,7 +4937,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1727791919}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 57.332268, y: 4.5089016, z: 100}
+  m_LocalPosition: {x: 64.4, y: 4.5089016, z: 100}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5209,6 +5209,7 @@ MonoBehaviour:
   - {fileID: 40147797}
   - {fileID: 923731437}
   spotOpen: 0
+  minigame: {fileID: 3103446913912287523}
 --- !u!61 &1866963227
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5877,7 +5878,7 @@ MonoBehaviour:
   gameScore: 00000000000000000000000000000000
   winner: 0
   border: []
-  uiManager: {fileID: 0}
+  uiManager: {fileID: 14240532}
   colorString:
   - blue
   - red
@@ -5896,7 +5897,7 @@ MonoBehaviour:
   - {fileID: 1443616919}
   flagPlatform: {fileID: 1200474299}
   dropTime: 5
-  dropAmount: 5
+  dropAmount: 2
 --- !u!4 &3103446913914412222
 Transform:
   m_ObjectHideFlags: 0
