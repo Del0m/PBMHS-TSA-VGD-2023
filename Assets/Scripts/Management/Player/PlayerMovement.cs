@@ -121,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Ground")
+        if(collision.gameObject.tag == "Ground" && canEverJump)
         {
             //When the player hits a object with this tag it will set jump to true
             canJump = true;
@@ -131,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
     //Prevent player from jumping mid air
     private void OnCollisionExit(Collision collision)
     {
-        if(collision.gameObject.tag != "Ground")
+        if(collision.gameObject.tag != "Ground" && canEverJump)
         {
             canJump = false;
         }
@@ -149,6 +149,11 @@ public class PlayerMovement : MonoBehaviour
         stat.jumpPower = jumpP;
         //Unlock player
         GameSwitch(true, false, false);
+    }
+    //Another way to acccess a private variable and setting it to either true or false
+    public void setStaticMovement(bool enalble)
+    {
+        staticMovementSet = enalble;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) // for the purposes of holding new objects

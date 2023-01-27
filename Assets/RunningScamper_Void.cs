@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class RunningScamper_Void : MonoBehaviour
 {
-    private GameObject cageObj;
-
+    public GameObject cageObj;
+    public GameObject cam;
+    
     private void Start()
     {
-        cageObj = GameObject.Find("Cage");
+        //cageObj = GameObject.Find("Cage");
+        cam = GameObject.FindGameObjectWithTag("MainCamera");
         if(cageObj == null)
         {
             Debug.LogError("Couldn't find Cage!");
@@ -17,12 +19,29 @@ public class RunningScamper_Void : MonoBehaviour
             Debug.Log("Found the cage!");
         }
     }
+    
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
-            collision.gameObject.transform.position = cageObj.transform.position;
+            PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
+            if(player != null)
+            {
+                //turn off camera
+                CamViewMObjs cm = cam.GetComponent<CamViewMObjs>();
+                if(cm != null)
+                {
+                    //remove this player from list
+                    cm.targets.Remove(collision.gameObject.transform);
+
+                }
+
+                //Turn off static dir
+                player.setStaticMovement(false);
+                player.GameSwitch(true);
+                collision.gameObject.transform.position = new Vector3(cageObj.transform.position.x, cageObj.transform.position.y, cageObj.transform.position.z);
+            }
             Debug.Log("Player got sent to the cage!"); // Insert kinky thought here
         }
     }
