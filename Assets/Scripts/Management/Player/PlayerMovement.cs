@@ -33,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
     private bool canMoveFreely = true;
     //cool down for player actions
     private double _cooldown = 0.5; // base cooldown for player
-    private double _jumpCooldown = 1;
 
     //attacking variables
     public bool isAttacking;
@@ -120,8 +119,26 @@ public class PlayerMovement : MonoBehaviour
     private float defaultIncrement = 1;
     private bool staticMovementSet = false;
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Ground")
+        {
+            //When the player hits a object with this tag it will set jump to true
+            canJump = true;
+        }
+    }
+
+    //Prevent player from jumping mid air
+    private void OnCollisionExit(Collision collision)
+    {
+        if(collision.gameObject.tag != "Ground")
+        {
+            canJump = false;
+        }
+    }
+
     //Note: dir: true is left or right and false is up or down
-    public void setStaticDir(bool dir, float baseSpeed,int jumpP, float increment, float timeToResetSpeed, double jumpTimer)
+    public void setStaticDir(bool dir, float baseSpeed,int jumpP, float increment, float timeToResetSpeed)
     {
         canMoveFreely = false;
         staticMovementSet = true;
@@ -130,7 +147,6 @@ public class PlayerMovement : MonoBehaviour
         incrementAmount = increment;
         _cooldown = timeToResetSpeed;
         stat.jumpPower = jumpP;
-        _jumpCooldown = jumpTimer;
         //Unlock player
         GameSwitch(true, false, false);
     }

@@ -21,7 +21,6 @@ public class RunningScamper : GameHandler
     public float playerMovementIncrement = 1.1f;
     public float playerIncrementCooldown = 0.5f;
     public int playerJumpPower = 5;
-    public double jumpCooldown = 1.5;
 
     public float timerForGridMaps = 8f;
 
@@ -145,7 +144,7 @@ public class RunningScamper : GameHandler
         {
             for (int i = 0; i < player.Length; i++)
             {
-                player[i].GetComponent<PlayerMovement>().setStaticDir(playerDir, playerBaseSpeed,playerJumpPower, playerMovementIncrement, playerIncrementCooldown, jumpCooldown);
+                player[i].GetComponent<PlayerMovement>().setStaticDir(playerDir, playerBaseSpeed,playerJumpPower, playerMovementIncrement, playerIncrementCooldown);
                 Debug.Log(player[i].name + "'s movement was set to static movement");
             }
             return true;

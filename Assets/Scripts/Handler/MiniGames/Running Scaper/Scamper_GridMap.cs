@@ -6,6 +6,17 @@ public class Scamper_GridMap : MonoBehaviour
     public float speed = 2f;
     public float timer = 25f;
 
+    //Flip the map randomly on start
+    private void Start()
+    {
+        int i = Random.Range(0, 2);
+        if (i == 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+            Debug.Log("Flipped");
+        } //Flip when i is zero
+    }
+
     // Update is called once per frame
     void Update()
     {
