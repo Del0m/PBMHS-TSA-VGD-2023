@@ -119,9 +119,9 @@ public class PlayerMovement : MonoBehaviour
     private float defaultIncrement = 1;
     private bool staticMovementSet = false;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Ground" && canEverJump)
+        if(collision.gameObject.tag == "Ground" && canEverJump && !canJump)
         {
             //When the player hits a object with this tag it will set jump to true
             canJump = true;
@@ -129,9 +129,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     //Prevent player from jumping mid air
-    private void OnCollisionExit(Collision collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        if(collision.gameObject.tag != "Ground" && canEverJump)
+        if(collision.gameObject.tag == "Ground" && canEverJump)
         {
             canJump = false;
         }

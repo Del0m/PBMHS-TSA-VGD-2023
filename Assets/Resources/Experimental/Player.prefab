@@ -76,6 +76,7 @@ MonoBehaviour:
   canJump: 0
   canEverJump: 0
   fallThrough: 0
+  rb: {fileID: 0}
   acting: 0
   isAttacking: 0
   stat: {fileID: 4021387965015513840}
@@ -343,6 +344,7 @@ MonoBehaviour:
   damage: 5
   cooldown: 0.5
   wins: 0
+  lost: 0
 --- !u!82 &5025792139998733991
 AudioSource:
   m_ObjectHideFlags: 0

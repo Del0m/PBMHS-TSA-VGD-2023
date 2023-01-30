@@ -55,7 +55,7 @@ public class RunningScamper : GameHandler
     void Start()
     {
         //Call to teleport player's to their positions
-        StartCoroutine(StartGame(true));
+        StartCoroutine(StartGame(true, false, false));
         StartCoroutine(StartGame());
     }
 

@@ -46,8 +46,12 @@ public class RunningScamper_Void : MonoBehaviour
                     rb.sharedMaterial = pm;
                 }
 
-                //Turn off static dir
+                //Teleport
                 collision.gameObject.transform.position = new Vector3(cageObj.transform.position.x, cageObj.transform.position.y, cageObj.transform.position.z);
+                //Set player as child of location
+                collision.gameObject.transform.parent = cageObj.transform;
+                
+                //Modify player
                 player.setStaticMovement(false);
                 player.GameSwitch(true);
                 player.setFreeMovement(true);
