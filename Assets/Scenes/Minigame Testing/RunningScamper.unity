@@ -421,6 +421,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cageObj: {fileID: 6565401}
+  cam: {fileID: 0}
+  pm: {fileID: 6200000, guid: 5a2fbc0f3e62f8f4392784f0dd3cee9e, type: 2}
 --- !u!50 &780774972
 Rigidbody2D:
   serializedVersion: 4

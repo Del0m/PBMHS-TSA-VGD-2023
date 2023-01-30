@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class RunningScamper_Void : MonoBehaviour
 {
+    [Header("Params")]
     public GameObject cageObj;
     public GameObject cam;
-    
+    public PhysicsMaterial2D pm;
     private void Start()
     {
         //cageObj = GameObject.Find("Cage");
@@ -23,7 +24,7 @@ public class RunningScamper_Void : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player" && pm != null)
         {
             PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
             if(player != null)
@@ -37,10 +38,22 @@ public class RunningScamper_Void : MonoBehaviour
 
                 }
 
+                BoxCollider2D pBox = collision.gameObject.GetComponent<BoxCollider2D>();
+                Rigidbody2D rb = collision.gameObject.GetComponent<Rigidbody2D>();
+                if(pBox != null && rb != null){
+                    //Replace physics material
+                    pBox.sharedMaterial = pm;
+                    rb.sharedMaterial = pm;
+                }
+
                 //Turn off static dir
+                collision.gameObject.transform.position = new Vector3(cageObj.transform.position.x, cageObj.transform.position.y, cageObj.transform.position.z);
                 player.setStaticMovement(false);
                 player.GameSwitch(true);
-                collision.gameObject.transform.position = new Vector3(cageObj.transform.position.x, cageObj.transform.position.y, cageObj.transform.position.z);
+                player.setFreeMovement(true);
+            }else if(pm == null){
+                Debug.Log("No Physic Material 2D set to add to players");
+                return;
             }
             Debug.Log("Player got sent to the cage!"); // Insert kinky thought here
         }

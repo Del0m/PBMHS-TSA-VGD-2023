@@ -151,9 +151,13 @@ public class PlayerMovement : MonoBehaviour
         GameSwitch(true, false, false);
     }
     //Another way to acccess a private variable and setting it to either true or false
-    public void setStaticMovement(bool enalble)
+    public void setStaticMovement(bool enable)
     {
-        staticMovementSet = enalble;
+        staticMovementSet = enable;
+    }
+
+    public void setFreeMovement(bool enable){
+        canMoveFreely = enable;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) // for the purposes of holding new objects
