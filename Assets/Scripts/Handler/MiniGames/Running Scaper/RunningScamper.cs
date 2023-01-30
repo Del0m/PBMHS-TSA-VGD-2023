@@ -2,9 +2,9 @@
  * Purpose:
  * 
  * @author Yahir Bonilla
- * @version January 23, 2023
- * @os Arch Linux
- * @editor VS 2022
+ * @version January 30, 2023
+ * @os Win 11
+ * @editor VS-Code
  *
  */
 
@@ -56,6 +56,8 @@ public class RunningScamper : GameHandler
     {
         //Call to teleport player's to their positions
         StartCoroutine(StartGame(true, false, false));
+        //Spawn the grid maps randomly
+        spawnMap();
         StartCoroutine(StartGame());
     }
 
@@ -77,20 +79,7 @@ public class RunningScamper : GameHandler
         return null;
     }
 
-    IEnumerator StartGame()
-    {
-        yield return new WaitForSeconds(miniGameStartUpTime);
-        //Call main game methods
-        //Find all grid map spawn points
-        FindSpawnPoints();
-        //Set default map array to use
-        gridMaps = setMapArray();
-        if(gridMaps == null)
-            Debug.LogError("No players were found!");
-            StopCoroutine(StartGame());
-
-        yield return new WaitForSeconds(1.5f);
-        //Spawn the grid maps randomly
+    bool spawnMap(){
         if (gridMapSpawnPoints.Length > 0)
         {
             var multiplier = timerForGridMaps;
@@ -104,10 +93,24 @@ public class RunningScamper : GameHandler
                     multiplier += timerForGridMaps;
                 }
             }
+            return true;
         }else{
             Debug.LogError("No grid map spawn points found");
-            StopCoroutine(StartGame());
+            return false;
         }
+    }
+
+    IEnumerator StartGame()
+    {
+        yield return new WaitForSeconds(miniGameStartUpTime);
+        //Call main game methods
+        //Find all grid map spawn points
+        FindSpawnPoints();
+        //Set default map array to use
+        gridMaps = setMapArray();
+        if(gridMaps == null)
+            Debug.LogError("No players were found!");
+            StopCoroutine(StartGame());
 
         if (!setStaticDir())
             Debug.LogError("Players not found");
@@ -153,25 +156,38 @@ public class RunningScamper : GameHandler
         return false;
     }
 
+    int getWinner(){
+        int dist = checkScore();
+
+        Debug.Log(player[dist].name + "" + (dist) + " got top in score");
+
+        int coin = checkDistanceScore();
+
+        Debug.Log(player[coin].name + "" + coin + " got the farthest");
+
+        //Decide the winner by score and how far they went
+        if(dist > coin || dist < coin){ //Check if distance is a different player from coin then make the player with the highest coin win 
+            return coin;
+        }else if(dist == coin){ //Check if the one with the highest distance and got the most coin is the same player
+            return dist;
+        }
+
+        return -1;
+    }
+
     void timerEnd()
     {
         //Debug
         Debug.Log("Timer ended");
-        //Decide the winner by score and how far they went
+        winner = getWinner();
 
-        if(player.Length > 0)
-        {
-            int i = checkScore();
-
-            Debug.Log(player[i].name + "" + (i) + " got top in score");
-
-            i = checkDistanceScore();
-
-            Debug.Log(player[i].name + "" + i + " got the farthest");
+        if(winner < 0){
+            Debug.LogError("Couldn't decide winner!");
+            return;
         }
 
         //Call game end
-        //EndGame();
+        EndGame(winner);
     }
 
     int checkScore()

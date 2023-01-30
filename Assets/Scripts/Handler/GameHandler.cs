@@ -6,8 +6,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
-using UnityEngine.VFX;
-using UnityEngine.WSA;
 
 public class GameHandler : MonoBehaviour
 {
