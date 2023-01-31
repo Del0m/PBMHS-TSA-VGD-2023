@@ -6,9 +6,19 @@ public class RunningScamper_Void : MonoBehaviour
     public GameObject cageObj;
     public GameObject cam;
     public PhysicsMaterial2D pm;
+
+    private RunningScamper minigame;
+
     private void Start()
     {
         //cageObj = GameObject.Find("Cage");
+        GameObject mini = GameObject.FindGameObjectWithTag("Minigame");
+        minigame = mini.GetComponent<RunningScamper>();
+        if(minigame == null){
+            Debug.LogError("Couldn't find running scamper minigame!");
+            return;
+        }
+
         cam = GameObject.FindGameObjectWithTag("MainCamera");
         if(cageObj == null)
         {
@@ -29,13 +39,16 @@ public class RunningScamper_Void : MonoBehaviour
             PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
             if(player != null)
             {
+                //Add player to minigame list
+                minigame.addCagedPlayer(collision.gameObject);
+
                 //turn off camera
                 CamViewMObjs cm = cam.GetComponent<CamViewMObjs>();
                 if(cm != null)
                 {
                     //remove this player from list
+                    cm.forgottenTargets.Add(collision.gameObject);
                     cm.targets.Remove(collision.gameObject.transform);
-
                 }
 
                 BoxCollider2D pBox = collision.gameObject.GetComponent<BoxCollider2D>();

@@ -11,43 +11,55 @@ public class CamViewMObjs : MonoBehaviour
 
     private GameHandler gameH;
 
+    public List<GameObject> forgottenTargets; //used to not track a player again
+
     private void Start()
     {
         //Get players and define as targets
         GameObject gh = GameObject.FindGameObjectWithTag("Minigame");
         gameH = gh.GetComponent<GameHandler>();
         
-        if(gameH != null)
-        {
-            StartCoroutine(findPlayers());
-        }
+        findPlayers();
     }
 
-    IEnumerator findPlayers()
-    {
-        yield return new WaitForSeconds(delay);
-        if(gameH.player.Length> 0 )
-        {
-            for(int i = 0; i < gameH.player.Length; i++)
-            {
-                targets.Add(gameH.player[i].transform);
+    bool findPlayers(){
+        if(gameH != null){
+            if(gameH.player.Length > 0 && gameH.allowCameraFollow == true){
+                for(int i = 0; i < gameH.player.Length; i++)
+                {
+                    //Check if player is not out of the game
+                    if(forgottenTargets.Count > 0){
+                        if(forgottenTargets[i] != gameH.player[i]){
+                            targets.Add(gameH.player[i].transform);
+                        }
+                    }else{
+                        targets.Add(gameH.player[i].transform);
+                    }
+                }
+                Debug.Log("finished adding players");
+                return true;
             }
-            Debug.Log("finished adding players");
+            return false;
         }
+        return false;
     }
+
 
     private void LateUpdate()
     {
         if(targets.Count == 0)
         {
+            findPlayers();
             return;
         }
 
+        
         Vector3 centerPoint = GetCenterPoint();
 
         Vector3 newPosition = centerPoint + offSet;
 
         transform.position = newPosition;
+        
     }
 
     Vector3 GetCenterPoint()

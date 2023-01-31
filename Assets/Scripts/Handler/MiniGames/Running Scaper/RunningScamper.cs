@@ -50,14 +50,21 @@ public class RunningScamper : GameHandler
     protected GameObject[] gridMapSpawnPoints;
     [SerializeField]
     private GameObject[] gridMaps;
+
+    [SerializeField]
+    protected List<GameObject> cagedPlayers;
+
+    bool isAllLosers = false;
+
     
     // Start is called before the first frame update
     void Start()
     {
+        allowCameraFollow = true;
         //Call to teleport player's to their positions
-        StartCoroutine(StartGame(true, false, false));
-        //Spawn the grid maps randomly
-        spawnMap();
+        StartCoroutine(StartGame(false, false, false));
+        //Find all grid map spawn points
+        FindSpawnPoints();
         StartCoroutine(StartGame());
     }
 
@@ -77,6 +84,39 @@ public class RunningScamper : GameHandler
         }
 
         return null;
+    }
+
+    public void addCagedPlayer(GameObject playerObj){
+        cagedPlayers.Add(playerObj);
+        isAllLosers = checkLosers();
+        if(isAllLosers){
+            timerEnd();
+        }
+    }
+
+    bool checkLosers(){
+        //Check if caged players is zero
+        if(cagedPlayers.Count > 0){
+            int playersCaged = 0;
+            for(int i = 0; i < cagedPlayers.Count; i++){
+                for(int b = 0; b < player.Length; b++){
+                    if(cagedPlayers[i] == player[b]){
+                        playersCaged++;
+                    }
+                }
+            }
+
+            //Check if the amount of caged players is the same as the player list
+            if(playersCaged == player.Length){
+                return true;
+            }else{
+                //Debug.LogError("Missing player or player not added properly to player lists");
+                return false;
+            }
+        }else{
+            Debug.LogWarning("No caged players yet!");
+            return false;
+        }
     }
 
     bool spawnMap(){
@@ -104,8 +144,6 @@ public class RunningScamper : GameHandler
     {
         yield return new WaitForSeconds(miniGameStartUpTime);
         //Call main game methods
-        //Find all grid map spawn points
-        FindSpawnPoints();
         //Set default map array to use
         gridMaps = setMapArray();
         if(gridMaps == null)
@@ -114,6 +152,9 @@ public class RunningScamper : GameHandler
 
         if (!setStaticDir())
             Debug.LogError("Players not found");
+
+        //Spawn the grid maps randomly
+        spawnMap();
 
         //Game timer
         if (_timer)
@@ -157,12 +198,11 @@ public class RunningScamper : GameHandler
     }
 
     int getWinner(){
-        int dist = checkScore();
+        int coin = checkScore();
+
+        int dist = checkDistanceScore();
 
         Debug.Log(player[dist].name + "" + (dist) + " got top in score");
-
-        int coin = checkDistanceScore();
-
         Debug.Log(player[coin].name + "" + coin + " got the farthest");
 
         //Decide the winner by score and how far they went
@@ -179,6 +219,13 @@ public class RunningScamper : GameHandler
     {
         //Debug
         Debug.Log("Timer ended");
+        
+        if(isAllLosers){
+            StartCoroutine(EndGame(5));
+            Debug.Log("All players are losers!");
+            return;
+        }
+
         winner = getWinner();
 
         if(winner < 0){
@@ -187,7 +234,8 @@ public class RunningScamper : GameHandler
         }
 
         //Call game end
-        EndGame(winner);
+        Debug.Log("Winner is player " + winner);
+        StartCoroutine(EndGame(winner));
     }
 
     int checkScore()

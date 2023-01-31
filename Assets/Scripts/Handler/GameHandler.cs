@@ -27,6 +27,9 @@ public class GameHandler : MonoBehaviour
     //[HideInInspector] // don't need to see it, clutter
     public PlayerUIManager uiManager;
 
+    [HideInInspector]
+    public bool allowCameraFollow = false; //Used to tell the camera to follow the players, by default it's turned off (Set true only on minigame script if needed)
+
     void Start()
     {
         uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
@@ -111,6 +114,8 @@ public class GameHandler : MonoBehaviour
             if(playerStat.turnOrder == winner)
             {
                 playerStat.wins++;
+                //debug
+                Debug.Log("Player[" + i +"] won");
             }
         }
         Debug.Log("Game has ended.");
@@ -128,6 +133,8 @@ public class GameHandler : MonoBehaviour
             else if(winnersWin)
             {
                 playerStat.wins++;
+                //debug
+                Debug.Log("Player[" + i +"] won");
             }
         }
         Debug.Log("Game has ended");
