@@ -28,15 +28,20 @@ public class JigsawPuzzle : GameHandler
         StartCoroutine(StartGame(true,true,true)); // teleport players to game; topdown game
         StartCoroutine(FormBoard());
     }
+    public override IEnumerator EndGame(int winner)
+    {
+
+        for (int i = 0; i < player.Length; i++) // for loop to bring players back to normal movement
+        {
+            player[i].GetComponent<PlayerMovement>().GameSwitch(false, false, false);
+        }
+        return base.EndGame(winner);
+    }
     public void CheckEnd(int correctPieceCount) // check to see if user has correctly solved the puzzle
     {
         if(correctPieceCount >= 9)
         {
             StartCoroutine(EndGame(boardPrefab.GetComponent<Jigsaw_Board>().pieceID)); // end the game from GameHandler
-            for (int i = 0; i < player.Length; i++) // for loop to bring players back to normal movement
-            {
-                player[i].GetComponent<PlayerMovement>().GameSwitch(false, false, false);
-            }
         }
     }
     void RandomizePosition() // this runs to randomize the position in the arena
