@@ -1,8 +1,10 @@
 //armin delmo
 //the purpose of this script is to disable players joining the game once the game has begun.
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,10 +16,17 @@ public class PlayerManager : MonoBehaviour
 
     [Header("Player")]
     public Transform[] spawn; // spawn player in correct spot
+    public GameObject[] player; // player append variable
     private void Start()
     {
         manager = GetComponent<PlayerInputManager>();
         turn = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>();
+    }
+    public void PlayerArray(PlayerInput input) // adds to player array for minigames
+    {
+        Debug.Log("Appending Player");
+        player = player.Append(input.gameObject).ToArray();
+
     }
     public void SinglePlayer(PlayerInput input)
     {
@@ -34,7 +43,7 @@ public class PlayerManager : MonoBehaviour
         movement.rb = input.gameObject.GetComponent<Rigidbody2D>();
         movement.GameSwitch(false);
     }
-    public void SpawnPlayer(PlayerInput input) // Move player in select location
+    public void MultiPlayer(PlayerInput input) // Move player in select location
     {
         // get player turn order to spawn them in correct location
         var playerOrder = input.gameObject.GetComponent<PlayerStats>().turnOrder;

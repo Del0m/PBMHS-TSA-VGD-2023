@@ -8,7 +8,7 @@ public class GameHandler : MonoBehaviour
     //player array to modify rigidbodies and teleport
     [Header("Player Important Variables")]
     public GameObject[] player;
-
+    public PlayerManager plrManage; // to import player array
     //array of spawns
     public GameObject[] teleport;
 
@@ -54,10 +54,11 @@ public class GameHandler : MonoBehaviour
     }
     public void TeleportPlayers() // void to collect all players on the map, and place them in the according location in minigame
     {
+        plrManage = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>();
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControl>();
         cam.TeleportCamera(camPos, fov); // change camera into minigame spot
 
-        player = GameObject.FindGameObjectsWithTag("Player");
+        player = plrManage.player;
         teleport = GameObject.FindGameObjectsWithTag("Teleport"); // check if null, replace spawns
 
         for(int i = 0; i < player.Length; i++) // for loop to set all players in correct position for game
@@ -132,7 +133,7 @@ public class GameHandler : MonoBehaviour
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControl>();
         cam.TeleportCamera(camPos, fov); // change camera into minigame spot
 
-        player = GameObject.FindGameObjectsWithTag("Player");
+        player = plrManage.player;
         teleport = GameObject.FindGameObjectsWithTag("Teleport"); // check if null, replace spawns
 
         for (int i = 0; i < player.Length; i++) // for loop to set all players in correct position for game
