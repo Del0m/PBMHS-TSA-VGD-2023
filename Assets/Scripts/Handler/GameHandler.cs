@@ -37,6 +37,9 @@ public class GameHandler : MonoBehaviour
     // multipliers to make game harder
     public SinglePlayerManager spManage;
     public double multi;
+
+    [HideInInspector]
+    public bool allowCameraFollow = false; //Used to tell the camera to follow the players, by default it's turned off (Set true only on minigame script if needea
     void Start()
     {
         uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
