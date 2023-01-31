@@ -233,6 +233,9 @@ public class RunningScamper : GameHandler
             return;
         }
 
+        //set camera follow to false
+        allowCameraFollow = false;
+
         //Call game end
         Debug.Log("Winner is player " + winner);
         StartCoroutine(EndGame(winner));

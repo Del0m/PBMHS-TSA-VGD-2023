@@ -52,7 +52,7 @@ public class CameraControl : MonoBehaviour
     }
 
 
-
+    /*
     // Update is called once per frame; moves camera to intended location
     void Update()
     {
@@ -62,6 +62,7 @@ public class CameraControl : MonoBehaviour
             ZoomCamera(toZoom, fov, multiplier); // zoom camera.
         }
     }
+    */
     private void TranslateCamera(int factor) // move camera through x-y axis.
     {
         Debug.Log("Moving!");
