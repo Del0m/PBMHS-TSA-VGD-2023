@@ -5,7 +5,6 @@ public class Scamper_GridMap : MonoBehaviour
     [Header("Params")]
     public float timer = 25f;
 
-    [HideInInspector]
     public float speed = 2f;
 
     //Flip the map randomly on start
