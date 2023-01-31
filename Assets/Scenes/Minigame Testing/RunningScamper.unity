@@ -716,10 +716,11 @@ MonoBehaviour:
   allowCameraFollow: 0
   timerLength: 40
   playerBaseSpeed: 1
-  playerMovementIncrement: 1.85
+  playerMovementIncrement: 3.1
   playerIncrementCooldown: 0.05
   playerJumpPower: 13
-  timerForGridMaps: 10.5
+  gridMapDisappearSpeed: 5
+  timerForGridMaps: 8
   mapPrefabs_4:
   - {fileID: 8039339658390375376, guid: e9d895d480d52e64bb2c6b9d596e66b4, type: 3}
   - {fileID: 3066816299502137671, guid: 2e216c4cc68f80546a4d6ebcb0c7866d, type: 3}
@@ -1154,10 +1155,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 937392873, guid: f0ed4670217d6af4ca8b3f6e2a97ad87, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 4381191769780162215, guid: f0ed4670217d6af4ca8b3f6e2a97ad87, type: 3}
       propertyPath: objToFollow
       value: 
       objectReference: {fileID: 1090392338}
+    - target: {fileID: 4381191770034694662, guid: f0ed4670217d6af4ca8b3f6e2a97ad87, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4381191770864642770, guid: f0ed4670217d6af4ca8b3f6e2a97ad87, type: 3}
       propertyPath: m_Name
       value: Cage
@@ -1331,8 +1340,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 379a35552ef6595dea787454d8d0e6bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
   timer: 30
+  speed: 2
 --- !u!4 &9035641883979349552
 Transform:
   m_ObjectHideFlags: 0

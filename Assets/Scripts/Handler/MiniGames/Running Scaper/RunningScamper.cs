@@ -21,6 +21,7 @@ public class RunningScamper : GameHandler
     public float playerMovementIncrement = 1.1f;
     public float playerIncrementCooldown = 0.5f;
     public int playerJumpPower = 5;
+    public float gridMapDisappearSpeed = 2f;
 
     public float timerForGridMaps = 8f;
 
@@ -129,6 +130,7 @@ public class RunningScamper : GameHandler
                 GameObject map = Instantiate(gridMaps[randM], gridMapSpawnPoints[i].transform.position, gridMapSpawnPoints[i].transform.rotation);
                 Scamper_GridMap scam = map.GetComponent<Scamper_GridMap>();
                 if(scam != null){
+                    scam.speed = gridMapDisappearSpeed;
                     scam.timer += multiplier;
                     multiplier += timerForGridMaps;
                 }
