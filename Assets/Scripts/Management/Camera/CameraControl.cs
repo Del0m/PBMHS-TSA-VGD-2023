@@ -17,16 +17,18 @@ public class CameraControl : MonoBehaviour
     private int outerFov; //what to zoom the camera out to.
     private int innerFov; // what to zoom the camera in to.
     private int fov; // what the fov should currently be at
+
+    [Header("Game Mode")]
+    public bool singlePlayer; // disables translate camera update.
     private void Awake() // set camera to itself
     {
         cam = this.gameObject.GetComponent<Camera>();
     }
-
-    private void Start()
+    public void TeleportCamera(Transform dest, int camSize) // teleport camera into the game
     {
-        StartCoroutine(ModifyCamera(GameObject.Find("Banana").transform, 10, 5, 30));
+        cam.gameObject.transform.position = dest.position;
+        cam.orthographicSize = camSize;
     }
-
     public IEnumerator ModifyCamera(Transform newDest, int m, int i, int o) // move camera to new location
     {
         destination = newDest; // only reason why this exists is b/c i want to keep this var private.
@@ -54,9 +56,11 @@ public class CameraControl : MonoBehaviour
     // Update is called once per frame; moves camera to intended location
     void Update()
     {
-        TranslateCamera(multiplier); // shift camera
-        ZoomCamera(toZoom, fov, multiplier); // zoom camera.
-
+        if(!singlePlayer) // not needed in single player
+        {
+            TranslateCamera(multiplier); // shift camera
+            ZoomCamera(toZoom, fov, multiplier); // zoom camera.
+        }
     }
     private void TranslateCamera(int factor) // move camera through x-y axis.
     {

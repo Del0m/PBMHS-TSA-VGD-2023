@@ -165,6 +165,15 @@ MonoBehaviour:
   - {fileID: 569429966}
   - {fileID: 178574743}
   - {fileID: 1495350850}
+  uiManager: {fileID: 0}
+  cam: {fileID: 0}
+  camPos: {fileID: 0}
+  fov: 0
+  level: {fileID: 0}
+  singlePlayer: 0
+  spSpawn: {fileID: 0}
+  spManage: {fileID: 0}
+  multi: 0
   puzzleLocation:
   - {fileID: 2129680178}
   - {fileID: 1208587370}

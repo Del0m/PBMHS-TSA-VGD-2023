@@ -15,11 +15,38 @@ public class PummelPinata : GameHandler
 
     public GameObject killer;
 
+    [Header("Single Player Variables")]
+    public int health;
+    public int time = 45; // always 45s
+
     private void Start()
     {
+        uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
         StartCoroutine(StartGame(true)); // teleport to game
 
         StartCoroutine(SpawnObject());
+
+        if(singlePlayer) // give time limit to players
+        {
+            IncreaseDifficulty(); // make game harder for single player
+            StartCoroutine(uiManager.UpdateClock(time)); // set clock for player
+        }
+    }
+    bool runningEnd; // prevent end routine being ran multiple times
+    private void Update()
+    {
+        if(killer != null && !runningEnd) // end game when killer is found
+        {
+            runningEnd = true;
+            var killerNum = killer.GetComponent<PlayerStats>().turnOrder;
+            StartCoroutine(EndGame(killerNum));
+            uiManager.ChangeUI(false, uiManager.timeLeftUI.gameObject);
+        }
+    }
+    public override void IncreaseDifficulty()
+    {
+        multi = spManage.multiplier;
+        health = (int)(health * multi);
     }
     IEnumerator SpawnObject() // spawn objects for the game to begin
     {
@@ -27,6 +54,12 @@ public class PummelPinata : GameHandler
         try
         {
             pinataPrefab = Instantiate(pinata, pinataSpawn.transform.position, new Quaternion(0, 0, 0, 0));
+            // check if sp, if sp then increase pinata health
+            if(singlePlayer)
+            {
+                pinataPrefab.GetComponent<PinataObject>().stat.health = health;
+
+            }
             pinataPrefab.GetComponent<PinataObject>().minigame = this;
         }
         catch (System.Exception)
@@ -36,7 +69,7 @@ public class PummelPinata : GameHandler
         }
         yield return null;
     }
-    public override IEnumerator EndGame(int player)
+    public override IEnumerator EndGame(int player) // end the game, grab player that won
     {
         var winner = killer.GetComponent<PlayerStats>();
         return base.EndGame(winner.turnOrder);

@@ -75,6 +75,12 @@ public class PlayerMovement : MonoBehaviour
 
         // setting audiosource for player
         playSound = this.GetComponent<AudioSource>();
+
+        //seeing if the player is doing singleplayer
+        if(stat.singlePlayer)
+        {
+            rb.bodyType = RigidbodyType2D.Dynamic;
+        }
     }
     private void FixedUpdate()
     {
@@ -210,7 +216,8 @@ public class PlayerMovement : MonoBehaviour
     {
         canAct = enable;
         canJump = enable;
-        canEverJump = enable;
+        if(stat.singlePlayer) { canEverJump = true; }
+        else { canEverJump = enable; }
         if(enable)
         {
             rb.bodyType = RigidbodyType2D.Dynamic;
@@ -218,16 +225,20 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             rb.bodyType = RigidbodyType2D.Static;
+        }
+
+        // check single player
+        if(stat.singlePlayer)
+        {
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            rb.gravityScale = 3;
 
         }
     }
     public void GameSwitch(bool enable, bool topDown) // overload for topdown games
     {
         GameSwitch(enable); // running base statement
-        canEverJump = !topDown;
-        canYMovement = topDown;
-        
-        if(topDown)
+        if (topDown)
         {
             rb.gravityScale = 0;
         }
@@ -235,6 +246,9 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.gravityScale = 3;
         }
+        canEverJump = !topDown;
+        canYMovement = topDown;
+        
     }
     public void GameSwitch(bool enable, bool topDown, bool pick) // overloadstart game for the player using switch.
     {
@@ -347,6 +361,7 @@ public class PlayerMovement : MonoBehaviour
     }
     public void Jump(InputAction.CallbackContext context) // input action to increase the players velocity up
     {
+        Debug.Log("Jumping!");
         if(context.performed && canJump == true && canEverJump == true) // ensures its only ran once
         {
 
@@ -366,7 +381,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if(rb.velocity.x != 0 && isPlaying == false && canJump == true) // to check if x movement
         {
-            Debug.Log("Attempting to play!");
             isPlaying = true; // prevent multiple sounds from playing
 
             playInstance = footstep[UnityEngine.Random.Range(0, footstep.Length)];
@@ -390,7 +404,6 @@ public class PlayerMovement : MonoBehaviour
     public void DropSound()
     {
         playInstance = dropSound;
-        Debug.Log(settings.soundVolume * settings.masterVolume);
         playSound.PlayOneShot(playInstance, (settings.soundVolume * settings.masterVolume));
     }
     public Quaternion SetDirection() // set direction for particle

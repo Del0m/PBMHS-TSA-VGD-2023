@@ -36,12 +36,13 @@ public class TurnManager : MonoBehaviour
     void Start()
     {
         //putting these in if statements because they should be publicly listed and added.
- 
+ /*
         if(scoreScript == null)
         {
             scoreScript = GameObject.FindGameObjectWithTag("Score Manager").GetComponent<ScoreManager>();
 
         }
+ */
         if(miniGameScript == null)
         {
             miniGameScript = GameObject.FindGameObjectWithTag("Mini Game Manager").GetComponent<MiniGameManager>(); // call manager to start / end / bring players to games.

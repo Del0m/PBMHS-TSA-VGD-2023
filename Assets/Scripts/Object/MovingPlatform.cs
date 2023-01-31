@@ -20,6 +20,7 @@ public class MovingPlatform : Platform
     }
     void MovePlatform() // move platform between all points
     {
+        if (point == null) { return; } // stop error spam
         if(point.Length == 0) { return; } // stop error spam
         if(Vector2.Distance(transform.position, point[index].position) < 0.02f)
         {

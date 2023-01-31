@@ -17,16 +17,18 @@ public class JigsawHole : MonoBehaviour
     {
         if(collision.tag == "Minigame Element" && collision.gameObject == holding)
         {
-            taking = true;
             collision.GetComponent<HoldableItem>().slotted = false;
 
             // check if the piece was correct.
-            if(holding.GetComponent<JigsawPiece>().pieceID == pieceID)
+            if(holding.GetComponent<JigsawPiece>().pieceID == pieceID && taking == false)
             {
+                taking = true; // to prevent glitching
                 GetComponentInParent<Jigsaw_Board>().ChangeCorrect(-1); // reduce correct pieces by 1
             }
+            taking = true;
+
         }
-        
+
     }
     private IEnumerator Wait(float time)
     {
