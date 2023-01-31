@@ -38,6 +38,9 @@ public class CamViewMObjs : MonoBehaviour
                 }
                 Debug.Log("finished adding players");
                 return true;
+            }else if(gameH.allowCameraFollow == false){
+                targets.Clear();
+                return false;
             }
             return false;
         }
