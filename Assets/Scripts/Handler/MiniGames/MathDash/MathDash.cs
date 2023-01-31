@@ -17,17 +17,62 @@ public class MathDash : GameHandler
 
     private Vector2 randPos;
 
-
-
     //ui
     public TextMeshProUGUI text; // prompt for players to solve
+
+    [Header("Math Dash Variables")]
+    public int time;
+
+    // for single player
+    public int scoreRequired;
+
     // Start is called before the first frame update
     void Start()
     {
+        uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
+
         StartCoroutine(StartGame(true)); // teleport players to the minigame.
         StartCoroutine(NewProblem()); // makes new problem to have player solve.
+
+
+        StartCoroutine(uiManager.UpdateClock(time)); // clock to input in game
+
+        if(singlePlayer)
+        {
+            IncreaseDifficulty(); // make game harder for single player
+            scoreRequired = (int)(scoreRequired * multi);
+        }
     }
 
+    private void Update()
+    {
+        if(uiManager.timesUp == true)
+        {
+            if(singlePlayer && gameScore[0] >= scoreRequired)
+            {
+                StartCoroutine(EndGame(true)); // win in single player
+            }
+            else if(singlePlayer)
+            {
+                StartCoroutine(EndGame(false)); // lose in single player
+            }
+            else
+            {
+                var highScore = gameScore[0];
+                for(int i = 0; i < gameScore.Length; i++) // check to see who has the higher score
+                {
+                    if(highScore < gameScore[i])
+                    {
+                        highScore = gameScore[i]; // changing high score from one player to another
+                    }
+                }
+                StartCoroutine(EndGame(highScore));
+
+            }
+            uiManager.timesUp = false;
+        }
+
+    }
     void MakeProblem() // making the problem that the players have to solve
     {
         var randomProblem = Random.Range(0, 4);

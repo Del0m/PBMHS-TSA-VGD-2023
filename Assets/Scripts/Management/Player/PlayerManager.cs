@@ -19,6 +19,21 @@ public class PlayerManager : MonoBehaviour
         manager = GetComponent<PlayerInputManager>();
         turn = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>();
     }
+    public void SinglePlayer(PlayerInput input)
+    {
+        var stat = input.gameObject.GetComponent<PlayerStats>();
+
+        stat.singlePlayer = true;
+        
+        input.gameObject.transform.position = new Vector3(input.gameObject.transform.position.x, input.gameObject.transform.position.y, 5);
+
+        // gameswitch to make jumps exists
+
+        var movement = input.gameObject.GetComponent<PlayerMovement>();
+
+        movement.rb = input.gameObject.GetComponent<Rigidbody2D>();
+        movement.GameSwitch(false);
+    }
     public void SpawnPlayer(PlayerInput input) // Move player in select location
     {
         // get player turn order to spawn them in correct location
@@ -39,5 +54,12 @@ public class PlayerManager : MonoBehaviour
     private void DisableJoin() // disable players joining the game.
     {
         manager.DisableJoining(); // disables joining from the players end
+    }
+    public void GameOver()
+    {
+        // siginify in single player that player has lost
+        var uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
+
+        uiManager.gameOverUI.SetActive(true);
     }
 }

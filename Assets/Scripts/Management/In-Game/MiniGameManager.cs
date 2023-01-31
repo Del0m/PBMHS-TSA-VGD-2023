@@ -17,7 +17,7 @@ public class MiniGameManager : MonoBehaviour
     public bool hasStarted = false;
 
     //array for all available minigames
-    private GameObject[] minigame;
+    public GameObject[] minigame;
 
     //randomizer to randomly select minigames
     private Randomizer rand;
@@ -32,10 +32,6 @@ public class MiniGameManager : MonoBehaviour
 
     private void Start() // collect TurnManager
     {
-        if(turnScript == null)
-        {
-            turnScript = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>();
-        }
     }
 
     private void SpawnMinigame() // randomly selects a minigame from public gameobject list
@@ -49,22 +45,27 @@ public class MiniGameManager : MonoBehaviour
             }
             else
             {
-                var pick = rand.DiceRoll(0, minigame.Length); // randomly selects a minigame using the length of minigame array
-                Instantiate(minigame[pick]); // spawns minigame
+                var pick = Random.Range(0, minigame.Length); // randomly selects a minigame using the length of minigame array
+
+                Debug.Log(minigame[pick].name);
+                var minigameInstance = Instantiate(minigame[pick]); // spawns minigame
+
+                minigameInstance.SetActive(true); // make minigame exist in-game
             }
         }
-        catch (System.Exception e)
+        catch (System.Exception)
         {
-            Debug.LogError(e);
+            Debug.LogError("Warning, no minigames found!");
         }
         
 
     }
     public void MinigameStartup()
     {
+        Debug.Log("running coroutine StartMiniGame");
         StartCoroutine(StartMiniGame());
     }
-    IEnumerator StartMiniGame()
+    public IEnumerator StartMiniGame()
     {
         Debug.Log("Starting new minigame!");
         /*

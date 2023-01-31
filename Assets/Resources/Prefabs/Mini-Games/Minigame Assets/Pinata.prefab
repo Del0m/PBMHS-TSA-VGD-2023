@@ -109,6 +109,9 @@ MonoBehaviour:
   killer: {fileID: 0}
   hit: {fileID: 8300000, guid: ec05997e6bd8a904b9d59f84d05d3930, type: 3}
   soundPlayer: {fileID: 7224995517028514344}
+  settings: {fileID: 0}
+  objectToKill: {fileID: 3780490054035052878}
+  healthBar: {fileID: 0}
 --- !u!114 &3780490054035052875
 MonoBehaviour:
   m_ObjectHideFlags: 0

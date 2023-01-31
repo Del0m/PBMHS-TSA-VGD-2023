@@ -22,7 +22,17 @@ public class PlayerUIManager : MonoBehaviour
     public GameObject healthBarUI; // health bar for pinata minigame
     public GameObject loseUI; // to be enabled when all players lose the game
 
+    public TextMeshProUGUI timeLeftUI; // to tick down
+    public bool timesUp;
+
+    [Header("Single Player UI")]
+    public GameObject gameOverUI;
+
     // this will be ran in the PlayerManager
+    private void Start()
+    {
+        this.gameObject.tag = "PlayerUIManager";
+    }
     public void InitalizeUI() // this is to hide UI that won't be used in the game due to a lack of plrs
     {
         var playerCount = GameObject.FindGameObjectsWithTag("Player").Length; // grabbing the amount of players in the game
@@ -61,5 +71,21 @@ public class PlayerUIManager : MonoBehaviour
     {
         ChangeUI(minigame); // default settings from previous
         obj.SetActive(minigame); // setting object active
+    }
+    public IEnumerator UpdateClock(int time)
+    {
+        ChangeUI(true, timeLeftUI.gameObject); // enable ui
+
+        timesUp = false;
+        for(int i = 0; i < time; i++)
+        {
+            yield return new WaitForSeconds(1f);
+            timeLeftUI.text = "Time Left: " + (time - i); // do math to show time left.
+        }
+        timesUp = true;
+        yield return new WaitForSeconds(1);
+        timesUp = false;
+
+        ChangeUI(false, timeLeftUI.gameObject); // disable ui
     }
 }

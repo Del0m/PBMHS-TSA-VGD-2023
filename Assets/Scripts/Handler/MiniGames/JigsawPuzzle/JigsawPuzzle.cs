@@ -4,6 +4,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.UI;
 
 public class JigsawPuzzle : GameHandler
@@ -32,6 +33,10 @@ public class JigsawPuzzle : GameHandler
         if(correctPieceCount >= 9)
         {
             StartCoroutine(EndGame(boardPrefab.GetComponent<Jigsaw_Board>().pieceID)); // end the game from GameHandler
+            for (int i = 0; i < player.Length; i++) // for loop to bring players back to normal movement
+            {
+                player[i].GetComponent<PlayerMovement>().GameSwitch(false, false, false);
+            }
         }
     }
     void RandomizePosition() // this runs to randomize the position in the arena

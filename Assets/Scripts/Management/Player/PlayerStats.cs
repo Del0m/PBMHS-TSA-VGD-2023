@@ -23,9 +23,11 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Minigame Points")]
     public bool lost;
-   
-    
 
+
+    [Header("Player Modes")]
+    public bool singlePlayer;
+   
     public void UpdateStat(double stat, int multiplier) // upgrades or downgrades stats permanently
     {
         // upgrade the stat by the multiplier 

@@ -52,4 +52,8 @@ public class MovementManager : MonoBehaviour
 
         return tile[newPosition];
     }
+    public Transform CallTile(int position) // to be called when leaving a game
+    {
+        return tile[position];
+    }
 }
