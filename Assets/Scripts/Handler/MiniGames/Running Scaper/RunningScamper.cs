@@ -217,6 +217,7 @@ public class RunningScamper : GameHandler
         return -1;
     }
 
+    //This can also be called as the end game check
     void timerEnd()
     {
         //Debug
@@ -240,6 +241,12 @@ public class RunningScamper : GameHandler
 
         //Call game end
         Debug.Log("Winner is player " + winner);
+        
+        //loop through all players to set their gameswitch to all false
+        for(int i = 0; i < player.Length; i++){
+            player[i].GetComponent<PlayerMovement>().GameSwitch(false);
+        }
+
         StartCoroutine(EndGame(winner));
     }
 
