@@ -9,9 +9,15 @@ public class UIFade : MonoBehaviour
 {
     public Image canvas;
     public int fadeTime; // time to fade the UI
-    public TextMeshProUGUI text; // optional fade
+    public TextMeshProUGUI[] text; // optional fade
 
     public bool hasText; // to fade the text as well
+
+    [Header("Pause Variables")]
+    private PlayerManager plrManage;
+    private GameObject[] player;
+    public bool pauseGame; // to pause the game for the UI before fading
+    private bool hasActed; // once player clicks, fade function starts
 
     Color fadeColor;
     float time;
@@ -23,11 +29,17 @@ public class UIFade : MonoBehaviour
         canvas = this.GetComponent<Image>();
         if(hasText)
         {
-            text = GetComponentInChildren<TextMeshProUGUI>();
+        }
+        if(pauseGame)
+        {
+            plrManage = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>();
+            player = plrManage.player; // grab player array from the ui fade.
         }
     }
     void FadeUI() // fades things over time
     {
+        if(!hasActed && pauseGame) { return;  } // prevent running when its supposed to pause normally.
+
         time += Time.deltaTime;
         if (time < waitTime) { return; } // prevent overruning of this script
         fadeColor.a -= (Time.deltaTime / fadeTime);
@@ -42,7 +54,11 @@ public class UIFade : MonoBehaviour
         {
             if(hasText)
             {
-                text.color = fadeColor;
+                for(int i = 0; i < text.Length; i++)
+                {
+                    text[i].color = fadeColor;
+
+                }
             }
         }
         catch (System.Exception)
@@ -52,5 +68,17 @@ public class UIFade : MonoBehaviour
     void Update()
     {
         FadeUI();
+
+        if(pauseGame && player.Length != 0)
+        {
+            if(player[0].GetComponent<PlayerMovement>().acting == true)
+            {
+                hasActed = true;
+            }
+        }
+        else if(pauseGame && player.Length == 0)
+        {
+            player = plrManage.player; // grab players until one is gotten
+        }
     }
 }

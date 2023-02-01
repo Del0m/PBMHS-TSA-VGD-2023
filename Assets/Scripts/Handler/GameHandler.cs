@@ -23,6 +23,7 @@ public class GameHandler : MonoBehaviour
     //[HideInInspector] // don't need to see it, clutter
     [Header("UI")]
     public PlayerUIManager uiManager;
+    public GameObject tutorialScreen; // to be individually selected depending on what minigame
 
     [Header("Camera + Settings")] // to proeperly position the camera in a minigame
     public CameraControl cam;
@@ -69,13 +70,32 @@ public class GameHandler : MonoBehaviour
             player[i].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static; // prevent movement until necessary
         }
     }
-    public void TutorialUI()
+    public IEnumerator TutorialUI()
     {
-        // nothing here, Yahir, this is your spot 
+        tutorialScreen.SetActive(true);
+        var isntActing = true;
+
+        // slow down time to allow game to not go on
+        Time.timeScale = 0.0001f; // go REALLY slow
+        while (isntActing)
+        {
+            Debug.Log("running loop");
+            // don't do anything besides check
+            if(player[0].GetComponent<PlayerMovement>().acting == true)
+            {
+                Debug.Log("Acting found!");
+                isntActing = false;
+                tutorialScreen.SetActive(false); // bring down UI
+                Time.timeScale = 1f; // go REALLY slow
+
+                break;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+
     }
     public IEnumerator StartGame(bool enable) // teleports players into minigame
     {
-        TutorialUI();
         TeleportPlayers(); // teleport players into the game
         yield return new WaitForSeconds(3); // Temporary during debug for minigames
 
@@ -87,7 +107,7 @@ public class GameHandler : MonoBehaviour
             playerMovement.GameSwitch(enable);
         }
         // add UI pause here []
-        TutorialUI(); // Yahir
+        StartCoroutine(TutorialUI());
 
         yield return new WaitForSeconds(3);
     }
@@ -97,7 +117,7 @@ public class GameHandler : MonoBehaviour
         //setting up the game score length
         var scoreArray = new int[player.Length];
         gameScore = scoreArray;
- 
+
         yield return new WaitForSeconds(3); // Temporary during debug for minigames
         TeleportPlayers(); // teleport players into the game
 
@@ -109,7 +129,7 @@ public class GameHandler : MonoBehaviour
             playerMovement.GameSwitch(enable, topDown);
         }
         // add UI pause here []
-        TutorialUI(); // Yahir
+        StartCoroutine(TutorialUI());
 
         yield return new WaitForSeconds(3);
     }
@@ -126,7 +146,7 @@ public class GameHandler : MonoBehaviour
             playerMovement.GameSwitch(enable, topDown, pick);
         }
         // add UI pause here []
-        TutorialUI(); // Yahir
+        StartCoroutine(TutorialUI());
 
         yield return new WaitForSeconds(3);
     }
@@ -188,6 +208,8 @@ public class GameHandler : MonoBehaviour
             plrManage.GameOver();
         }
         Debug.Log("Game has ended.");
+        Destroy(gameObject, 1f);
+
         yield return null;
     }
     public virtual IEnumerator EndGame(int winner) // coroutine to end the game as a player has won.
@@ -203,6 +225,7 @@ public class GameHandler : MonoBehaviour
         }
         Debug.Log("Game has ended.");
         StartCoroutine(EndGame());
+        Destroy(gameObject, 1f);
 
         yield return null;
     }

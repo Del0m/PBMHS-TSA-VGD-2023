@@ -75,7 +75,7 @@ public class JigsawPuzzle : GameHandler
         for(int i = 0; i < playerCount; i++)
         {
             Debug.Log("spawning board");
-            var plrBoard = Instantiate(boardPrefab, puzzleLocation[i].position, new Quaternion(0, 0, 0, 0));
+            var plrBoard = Instantiate(boardPrefab, puzzleLocation[i].position, new Quaternion(0, 0, 0, 0), this.gameObject.transform);
             plrBoard.SetActive(true); // initalize the board onto the game
             plrBoard.transform.position = new Vector3(plrBoard.transform.position.x, plrBoard.transform.position.y, 0f);
             plrBoard.GetComponent<Jigsaw_Board>().pieceID = i;
@@ -96,7 +96,7 @@ public class JigsawPuzzle : GameHandler
     public void SpawnPuzzle(GameObject parent, int plrOrder, Transform firstPiece) // spawns puzzle pieces, uses parent to define puzzle images
     {
         //slotting in first puzzle piece to let players know which one they're making.
-        var jigsawPiece = Instantiate(piecePrefab, new Vector3(firstPiece.position.x, firstPiece.position.y), new Quaternion(0, 0, 0, 0)); // make jigsaw piece spawn on map
+        var jigsawPiece = Instantiate(piecePrefab, new Vector3(firstPiece.position.x, firstPiece.position.y), new Quaternion(0, 0, 0, 0), this.gameObject.transform); // make jigsaw piece spawn on map
         jigsawPiece.SetActive(true); // show to game
         // mod jigsaw piece to have image
         jigsawPiece.GetComponent<SpriteRenderer>().sprite = jigsawImage[0];
@@ -109,7 +109,7 @@ public class JigsawPuzzle : GameHandler
         for (int i = 1; i < 9; i++)
         {
             RandomizePosition(); // randpos to put jigsaw puzzle around
-            jigsawPiece = Instantiate(piecePrefab, randPos, new Quaternion(0, 0, 0, 0)); // make jigsaw piece spawn on map
+            jigsawPiece = Instantiate(piecePrefab, randPos, new Quaternion(0, 0, 0, 0), this.gameObject.transform); // make jigsaw piece spawn on map
             jigsawPiece.SetActive(true); // show to game
             // mod jigsaw piece to have image
             jigsawPiece.GetComponent<SpriteRenderer>().sprite = jigsawImage[i];
