@@ -174,6 +174,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 55b8a1c00cce72845a863a753a183739, type: 3}
   healthBarUI: {fileID: 168277624}
   loseUI: {fileID: 1329445971}
+  timeLeftUI: {fileID: 0}
+  timesUp: 0
+  gameOverUI: {fileID: 0}
 --- !u!114 &14240533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1684,6 +1687,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8197119641342339076, guid: 68bf2936e131abb4990f2e44dc3f3d07, type: 3}
+      propertyPath: m_PlayerPrefab
+      value: 
+      objectReference: {fileID: 2609490234402768870, guid: 45576ad1b59d78f4ea594a4a69e656c2, type: 3}
     - target: {fileID: 8197119641342339077, guid: 68bf2936e131abb4990f2e44dc3f3d07, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -5871,6 +5878,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: []
+  plrManage: {fileID: 0}
   teleport:
   - {fileID: 0}
   - {fileID: 0}
@@ -5880,6 +5888,15 @@ MonoBehaviour:
   winner: 0
   border: []
   uiManager: {fileID: 14240532}
+  cam: {fileID: 0}
+  camPos: {fileID: 0}
+  fov: 0
+  level: {fileID: 0}
+  singlePlayer: 0
+  spSpawn: {fileID: 0}
+  spManage: {fileID: 0}
+  multi: 0
+  allowCameraFollow: 0
   colorString:
   - blue
   - red

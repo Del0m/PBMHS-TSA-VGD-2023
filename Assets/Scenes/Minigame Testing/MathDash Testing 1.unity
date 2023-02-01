@@ -529,6 +529,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8197119641342339076, guid: 68bf2936e131abb4990f2e44dc3f3d07, type: 3}
+      propertyPath: m_PlayerPrefab
+      value: 
+      objectReference: {fileID: 2609490234402768870, guid: 45576ad1b59d78f4ea594a4a69e656c2, type: 3}
     - target: {fileID: 8197119641342339077, guid: 68bf2936e131abb4990f2e44dc3f3d07, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2965,6 +2969,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: []
+  plrManage: {fileID: 0}
   teleport: []
   gameScore: 00000000000000000000000000000000
   winner: 0
@@ -2973,12 +2978,24 @@ MonoBehaviour:
   - {fileID: 1128430362}
   - {fileID: 1592387659}
   - {fileID: 850821897}
+  uiManager: {fileID: 0}
+  cam: {fileID: 0}
+  camPos: {fileID: 0}
+  fov: 0
+  level: {fileID: 0}
+  singlePlayer: 0
+  spSpawn: {fileID: 0}
+  spManage: {fileID: 0}
+  multi: 0
+  allowCameraFollow: 0
   number: 0000000000000000
   problemType: 0
   answer: 0
   cardPrefab: {fileID: 1483914978}
   card: []
   text: {fileID: 1730118687}
+  time: 0
+  scoreRequired: 0
 --- !u!4 &3103446913914412222
 Transform:
   m_ObjectHideFlags: 0

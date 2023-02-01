@@ -127,7 +127,7 @@ public class RunningScamper : GameHandler
             for (int i = 0; i < gridMapSpawnPoints.Length; i++)
             {
                 int randM = Random.Range(0, gridMaps.Length);
-                GameObject map = Instantiate(gridMaps[randM], gridMapSpawnPoints[i].transform.position, gridMapSpawnPoints[i].transform.rotation);
+                GameObject map = Instantiate(gridMaps[randM], gridMapSpawnPoints[i].transform.position, gridMapSpawnPoints[i].transform.rotation, gridMapSpawnPoints[i].transform);
                 Scamper_GridMap scam = map.GetComponent<Scamper_GridMap>();
                 if(scam != null){
                     scam.speed = gridMapDisappearSpeed;
