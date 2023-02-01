@@ -68,6 +68,7 @@ public class GameHandler : MonoBehaviour
 
         for(int i = 0; i < player.Length; i++) // for loop to set all players in correct position for game
         {
+            Debug.Log("moving player to scene");
             player[i].transform.position = teleport[i].transform.position; // set position for player in minigame
             player[i].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static; // prevent movement until necessary
         }
