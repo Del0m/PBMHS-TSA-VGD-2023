@@ -60,8 +60,11 @@ public class GameHandler : MonoBehaviour
     public void TeleportPlayers() // void to collect all players on the map, and place them in the according location in minigame
     {
         plrManage = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>();
-        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControl>();
-        cam.TeleportCamera(camPos, fov); // change camera into minigame spot
+        if (!allowCameraFollow)
+        {
+            cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControl>();
+            cam.TeleportCamera(camPos, fov); // change camera into minigame spot
+        }
 
         player = plrManage.player;
         teleport = GameObject.FindGameObjectsWithTag("Teleport"); // check if null, replace spawns

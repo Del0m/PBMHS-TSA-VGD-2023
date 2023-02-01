@@ -21,6 +21,7 @@ public class RunningScamper : GameHandler
     public float playerMovementIncrement = 1.1f;
     public float playerIncrementCooldown = 0.5f;
     public int playerJumpPower = 5;
+    public float gridMapDisappearSpeed = 2f;
 
     public float timerForGridMaps = 8f;
 
@@ -126,9 +127,10 @@ public class RunningScamper : GameHandler
             for (int i = 0; i < gridMapSpawnPoints.Length; i++)
             {
                 int randM = Random.Range(0, gridMaps.Length);
-                GameObject map = Instantiate(gridMaps[randM], gridMapSpawnPoints[i].transform.position, gridMapSpawnPoints[i].transform.rotation);
+                GameObject map = Instantiate(gridMaps[randM], gridMapSpawnPoints[i].transform.position, gridMapSpawnPoints[i].transform.rotation, gridMapSpawnPoints[i].transform);
                 Scamper_GridMap scam = map.GetComponent<Scamper_GridMap>();
                 if(scam != null){
+                    scam.speed = gridMapDisappearSpeed;
                     scam.timer += multiplier;
                     multiplier += timerForGridMaps;
                 }
@@ -215,6 +217,7 @@ public class RunningScamper : GameHandler
         return -1;
     }
 
+    //This can also be called as the end game check
     void timerEnd()
     {
         //Debug
@@ -238,6 +241,12 @@ public class RunningScamper : GameHandler
 
         //Call game end
         Debug.Log("Winner is player " + winner);
+        
+        //loop through all players to set their gameswitch to all false
+        for(int i = 0; i < player.Length; i++){
+            player[i].GetComponent<PlayerMovement>().GameSwitch(false);
+        }
+
         StartCoroutine(EndGame(winner));
     }
 

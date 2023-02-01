@@ -483,7 +483,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9015730655771266162}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.38, z: 0}
+  m_LocalPosition: {x: 0, y: -2.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -536,7 +536,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 2, y: 1.5}
+  m_Size: {x: 2, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -584,19 +584,19 @@ CompositeCollider2D:
   - m_Collider: {fileID: 7536926047022670225}
     m_ColliderPaths:
     - - X: 10000000
-        Y: 7500000
+        Y: 5000000
       - X: -10000000
-        Y: 7500000
+        Y: 5000000
       - X: -10000000
-        Y: -7500000
+        Y: -5000000
       - X: 10000000
-        Y: -7500000
+        Y: -5000000
   m_CompositePaths:
     m_Paths:
-    - - {x: 0.99997073, y: -0.75}
-      - {x: 0.99997073, y: 0.75}
-      - {x: -1, y: 0.74997073}
-      - {x: -0.99997073, y: -0.75}
+    - - {x: 0.99997073, y: -0.5}
+      - {x: 0.99997073, y: 0.5}
+      - {x: -1, y: 0.4999707}
+      - {x: -0.99997073, y: -0.5}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!61 &7536926047022670225
@@ -617,7 +617,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 2, y: 1.5}
+    newSize: {x: 2, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
@@ -653,7 +653,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9015730656081356342}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.54, z: 0}
+  m_LocalPosition: {x: 0, y: 2.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -706,7 +706,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 2, y: 1.5}
+  m_Size: {x: 2, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -754,19 +754,19 @@ CompositeCollider2D:
   - m_Collider: {fileID: 975532301380392149}
     m_ColliderPaths:
     - - X: 10000000
-        Y: 7500000
+        Y: 5000000
       - X: -10000000
-        Y: 7500000
+        Y: 5000000
       - X: -10000000
-        Y: -7500000
+        Y: -5000000
       - X: 10000000
-        Y: -7500000
+        Y: -5000000
   m_CompositePaths:
     m_Paths:
-    - - {x: 0.99997073, y: -0.75}
-      - {x: 0.99997073, y: 0.75}
-      - {x: -1, y: 0.74997073}
-      - {x: -0.99997073, y: -0.75}
+    - - {x: 0.99997073, y: -0.5}
+      - {x: 0.99997073, y: 0.5}
+      - {x: -1, y: 0.4999707}
+      - {x: -0.99997073, y: -0.5}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!61 &975532301380392149
@@ -787,7 +787,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 2, y: 1.5}
+    newSize: {x: 2, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
