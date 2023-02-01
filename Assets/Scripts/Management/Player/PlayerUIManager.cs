@@ -13,6 +13,7 @@ public class PlayerUIManager : MonoBehaviour
     [Header("UI Types")] // to be en/disabled through ChangeUI() and overloads
     public GameObject boardUI;
     public GameObject minigameUI;
+    public TextMeshProUGUI countdownUI; // to be counting down before every minigame to show the player when it starts!
 
     [Header("DiceUI Elements")]
     public GameObject diceSprite;
@@ -27,6 +28,7 @@ public class PlayerUIManager : MonoBehaviour
 
     [Header("Single Player UI")]
     public GameObject gameOverUI;
+    public TextMeshProUGUI level; // updated at the end of every game
 
     // this will be ran in the PlayerManager
     private void Start()
@@ -49,6 +51,10 @@ public class PlayerUIManager : MonoBehaviour
             playerUI[i].SetActive(true);
         }
     }
+    public void UpdateLevel(int lvl)
+    {
+        level.text = lvl.ToString(); // sets level in function
+    }
     public void UpdateRound(int round)
     {
         roundCounter.GetComponent<TextMeshProUGUI>().text = round + " / 10";
@@ -65,14 +71,15 @@ public class PlayerUIManager : MonoBehaviour
     {
         boardUI.SetActive(!minigame);
         minigameUI.SetActive(minigame);
-
     }
     public void ChangeUI(bool minigame, GameObject obj) // same as ChangeUI, just overload to add extraUI if needed
     {
         ChangeUI(minigame); // default settings from previous
         obj.SetActive(minigame); // setting object active
+
+        Debug.Log("object being changed is:" + obj);
     }
-    public IEnumerator UpdateClock(int time)
+    public IEnumerator UpdateClock(int time) // runs the countdown in addition to the time that will be left in the minigame
     {
         ChangeUI(true, timeLeftUI.gameObject); // enable ui
 
@@ -87,5 +94,20 @@ public class PlayerUIManager : MonoBehaviour
         timesUp = false;
 
         ChangeUI(false, timeLeftUI.gameObject); // disable ui
+    }
+    public IEnumerator CountDown(int time, TextMeshProUGUI obj)
+    {
+        obj.gameObject.SetActive(true);
+
+        for(int i = 0; i < time; i++)
+        {
+            obj.text = (time - i).ToString(); // show time left
+            yield return new WaitForSeconds(1f);
+        }
+
+        obj.text = "Go!";
+        yield return new WaitForSeconds(1f);
+
+        obj.gameObject.SetActive(false);
     }
 }

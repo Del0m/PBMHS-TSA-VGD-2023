@@ -21,15 +21,52 @@ public class JigsawPuzzle : GameHandler
     public GameObject imageCollection; // gameobject that will store all, will be instantiated and removed.
     private Sprite[] jigsawImage;
 
+    [Header("Single Player Variables")]
+    public int time; // time to solve the puzzle
 
 
     private void Start()
     {
+        // calling manager for UI updates
+        uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
+        
+        if(singlePlayer)
+        {
+            IncreaseDifficulty();
+        }
+
         StartCoroutine(StartGame(true,true,true)); // teleport players to game; topdown game
         StartCoroutine(FormBoard());
     }
+    private void Update()
+    {
+        // check to see if time has elapsed in single player
+        if (singlePlayer)
+        {
+            if (uiManager.timesUp)
+            {
+                StartCoroutine(EndGame(false));
+            }
+        }
+    }
+    public override IEnumerator PreGameRoutine() // adding a timer to the minigame in singleplayer
+    {
+        yield return StartCoroutine(base.PreGameRoutine());
+        if(singlePlayer)
+        {
+            yield return new WaitForSeconds(3);
+            yield return StartCoroutine(uiManager.UpdateClock(time)); // running the timer
+        }
+    }
+    public override void IncreaseDifficulty() // less time for player to solve puzzle
+    {
+        multi = spManage.multiplier;
+        Debug.Log(multi);
+        time = ((int)(time / multi));
+    }
     public override IEnumerator EndGame(int winner)
     {
+        uiManager.ChangeUI(false); // bring UI back to normal
 
         for (int i = 0; i < player.Length; i++) // for loop to bring players back to normal movement
         {

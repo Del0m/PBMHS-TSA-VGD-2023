@@ -35,14 +35,12 @@ public class MathDash : GameHandler
         StartCoroutine(NewProblem()); // makes new problem to have player solve.
 
 
-        StartCoroutine(uiManager.UpdateClock(time)); // clock to input in game
-
         if(singlePlayer)
         {
             IncreaseDifficulty(); // make game harder for single player
-            scoreRequired = (int)(scoreRequired * multi);
         }
     }
+
 
     private void Update()
     {
@@ -72,6 +70,20 @@ public class MathDash : GameHandler
             uiManager.timesUp = false;
         }
 
+    }
+    public override IEnumerator PreGameRoutine() // adding a timer to the minigame in singleplayer
+    {
+        yield return StartCoroutine(base.PreGameRoutine());
+        if (singlePlayer)
+        {
+            yield return new WaitForSeconds(3);
+            yield return StartCoroutine(uiManager.UpdateClock(time)); // running the timer
+        }
+    }
+    public override void IncreaseDifficulty()
+    {
+        multi = spManage.multiplier;
+        scoreRequired = (int)(scoreRequired * multi);
     }
     void MakeProblem() // making the problem that the players have to solve
     {
@@ -197,14 +209,14 @@ public class MathDash : GameHandler
         //update ui
         text.text = "What is: " + number[0] + " " + problemType + " " + number[1] + "?";
     }
-    public bool CheckAnswer(GameObject player, int guess) // award player with points if correctly slammed right card
+    public bool CheckAnswer(GameObject plr, int guess) // award player with points if correctly slammed right card
     {
-        print(player);
+        print(plr);
         
         if(guess == answer)
         {
             text.text = "Correct! The Answer is: " + answer; // changes text to show they got it correct.
-            gameScore[player.GetComponent<PlayerStats>().turnOrder]++; // player position in score array is awarded a point
+            gameScore[plr.GetComponent<PlayerStats>().turnOrder]++; // player position in score array is awarded a point
             this.StartCoroutine(NewProblem()); // making new problem for player
             return true;
         }

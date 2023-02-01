@@ -48,21 +48,16 @@ public class PlayerControls : MonoBehaviour
         gameplayInput = this.gameObject.GetComponent<PlayerInput>(); // grabbing player controls to turn on/off and change inputmaps
         this.gameObject.tag = "Player"; //set player tag to "Player"
 
-        stat.turnOrder = GameObject.FindGameObjectsWithTag("Player").Length; //giving player turn order
-
         //initalize controls class
         controls = new Controls();
 
-        //make area to set start position. (this shouldn't be done here)
-
-        //turnui initaliation
-        //turnUI = GameObject.Find("Moves Left");
-        // useless for the time being..
+        // grabbing player controls to differentiate when its time to move or not
 
     }
     Transform newTile; // for the purpose of updating the player to a new position!
     private void Update()
     {
+
         if(newTile != null)
         {
             transform.position = Vector2.MoveTowards(this.transform.position, newTile.position, 5 * Time.deltaTime); // move to new position using DeltaTime
@@ -107,6 +102,8 @@ public class PlayerControls : MonoBehaviour
             }
             turnScript.uiManager.UpdateDiceUI(movesRemaining);
             turnScript.RoundCheck(); // advance turn, see if new turn is in order.
+            newTile = null; // to prevent the player from moving towards the tile in the middle of the game
+
             hasRan = false; // allow player to roll again, but their turn has moved, so they won't be able to.
         }
     }

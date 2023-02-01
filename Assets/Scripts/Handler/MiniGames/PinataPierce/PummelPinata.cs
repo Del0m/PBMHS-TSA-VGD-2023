@@ -29,7 +29,6 @@ public class PummelPinata : GameHandler
         if(singlePlayer) // give time limit to players
         {
             IncreaseDifficulty(); // make game harder for single player
-            StartCoroutine(uiManager.UpdateClock(time)); // set clock for player
         }
     }
     bool runningEnd; // prevent end routine being ran multiple times
@@ -41,6 +40,15 @@ public class PummelPinata : GameHandler
             var killerNum = killer.GetComponent<PlayerStats>().turnOrder;
             StartCoroutine(EndGame(killerNum));
             uiManager.ChangeUI(false, uiManager.timeLeftUI.gameObject);
+        }
+    }
+    public override IEnumerator PreGameRoutine() // adding a timer to the minigame in singleplayer
+    {
+        yield return StartCoroutine(base.PreGameRoutine());
+        if (singlePlayer)
+        {
+            yield return new WaitForSeconds(3);
+            yield return StartCoroutine(uiManager.UpdateClock(time)); // running the timer
         }
     }
     public override void IncreaseDifficulty()
