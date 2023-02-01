@@ -9,7 +9,7 @@ public class MovingPlatform : Platform
 
     public Transform[] pointStorage; // storing points for minigames, not needed
 
-    int index;
+    int index = 0;
     private void Update()
     {
         MovePlatform();
@@ -20,18 +20,26 @@ public class MovingPlatform : Platform
     }
     void MovePlatform() // move platform between all points
     {
-        if (point == null) { return; } // stop error spam
-        if(point.Length == 0) { return; } // stop error spam
-        if(Vector2.Distance(transform.position, point[index].position) < 0.02f)
+       // if (point == null) { return; } // stop error spam
+        //if(point.Length == 0) { return; } // stop error spam
+        
+        if(point != null && point.Length > 0 && point[index] != null) //Check the point before updating the transform
         {
-            index++;
-            if(index >= point.Length)
+            if (Vector2.Distance(transform.position, point[index].position) < 0.02f)
             {
-                index = 0;
+                index++;
+                if (index >= point.Length)
+                {
+                    index = 0;
+                }
             }
-        }
 
-        transform.position = Vector2.MoveTowards(transform.position, point[index].position, speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, point[index].position, speed * Time.deltaTime);
+        }
+        else
+        {
+            return;
+        }
     }
 
 }

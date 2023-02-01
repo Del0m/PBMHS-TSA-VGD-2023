@@ -53,7 +53,15 @@ public class PlayerUIManager : MonoBehaviour
     }
     public void UpdateLevel(int lvl)
     {
-        level.text = lvl.ToString(); // sets level in function
+        if(level != null)
+        {
+            level.text = lvl.ToString(); // sets level in function
+        }
+        else
+        {
+            Debug.LogError("Can't find Single Player UI Level text!");
+            return;
+        }
     }
     public void UpdateRound(int round)
     {
