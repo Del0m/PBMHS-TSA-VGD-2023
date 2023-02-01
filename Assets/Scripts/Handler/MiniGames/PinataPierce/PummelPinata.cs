@@ -45,6 +45,8 @@ public class PummelPinata : GameHandler
     public override IEnumerator PreGameRoutine() // adding a timer to the minigame in singleplayer
     {
         yield return StartCoroutine(base.PreGameRoutine());
+        // turning on the health bar
+        uiManager.ChangeUI(true, uiManager.healthBarUI);
         if (singlePlayer)
         {
             yield return new WaitForSeconds(3);

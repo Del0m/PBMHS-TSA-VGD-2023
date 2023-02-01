@@ -13,8 +13,6 @@ public class PinataObject : MonoBehaviour
     public Rigidbody2D rb; // rigid body to add bouncy material and move pinata
     public PummelPinata minigame; // minigame to reference back to
 
-    [Header("UI")]
-    private PlayerUIManager uiManage;
     private void Start()
     {
         if(stat == null)
@@ -22,6 +20,9 @@ public class PinataObject : MonoBehaviour
             stat = GetComponent<EntityStats>();
         }
         rb.velocity = ChooseVectorDirection() * 3; // set random direction for pinata.
+
+        stat.healthBar = GameObject.FindGameObjectWithTag("Health Bar");
+
     }
     private void Update()
     {
@@ -29,8 +30,6 @@ public class PinataObject : MonoBehaviour
         {
             minigame.killer = stat.killer;
         }
-        uiManage.UpdateHealth(stat.health);
-
     }
     Vector2 ChooseVectorDirection() // calculates random vector to shoot pinata at
     {

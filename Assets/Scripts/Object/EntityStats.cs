@@ -9,7 +9,7 @@ using UnityEngine;
 public class EntityStats : MonoBehaviour
 {
     [Header("Stats")]
-    public int health;
+    public float health;
 
     public int speed;
     public float iFrame; // to prevent several hits from the same object.
@@ -27,13 +27,13 @@ public class EntityStats : MonoBehaviour
 
 
     public GameObject objectToKill; // for the purposes of some objects being children
-    private int totalHeath; // just for reading
+    private float totalHealth; // just for reading
 
     [Header("Special Stuff")]
     public GameObject healthBar; // for the purposes of updating the health
     private void Start()
     {
-        totalHeath = health; // initalizing max health
+        totalHealth = health; // initalizing max health
 
         if(soundPlayer == null)
         {
@@ -67,7 +67,9 @@ public class EntityStats : MonoBehaviour
             //modding healthbar to match health
             if(healthBar)
             {
-                healthBar.transform.localScale = new Vector2((health / totalHeath) * 100, 1); // getting percentage
+                var healthBarRect = healthBar.GetComponent<RectTransform>();
+
+                healthBarRect.sizeDelta = new Vector2((health / totalHealth) * 100, 10);
             }
             // flash red to indicate damage has been dealt
             StartCoroutine(DamageFlash());
@@ -86,6 +88,13 @@ public class EntityStats : MonoBehaviour
         {
             isDead = true;
             killer = kill;
+
+            if (healthBar) // reset health bar to max
+            {
+                var healthBarRect = healthBar.GetComponent<RectTransform>();
+
+                healthBarRect.sizeDelta = new Vector2(100, 10);
+            }
 
             Destroy(objectToKill, 1f);
         }

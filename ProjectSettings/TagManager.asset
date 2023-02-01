@@ -17,6 +17,7 @@ TagManager:
   - Minigame Element
   - Settings
   - PlayerUIManager
+  - Health Bar
   layers:
   - Default
   - TransparentFX
