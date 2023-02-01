@@ -237,6 +237,7 @@ public class GameHandler : MonoBehaviour
         }
         Debug.Log("Game has ended.");
         StartCoroutine(EndGame());
+        Destroy(gameObject, 1f);
 
         yield return null;
     }
@@ -256,6 +257,8 @@ public class GameHandler : MonoBehaviour
         }
         Debug.Log("Game has ended");
         StartCoroutine(EndGame());
+        Destroy(gameObject, 1f);
+
         yield return null;
     }
 }

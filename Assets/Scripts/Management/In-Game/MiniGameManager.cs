@@ -73,7 +73,7 @@ public class MiniGameManager : MonoBehaviour
          */
 
 
-        yield return new WaitForSeconds(2); // wait 5 seconds before putting player into game.
+        yield return new WaitForSeconds(5); // wait 5 seconds before putting player into game.
         SpawnMinigame();
     }
     /*public IEnumerator UIEndGame() // ui to show users the minigame is ending
