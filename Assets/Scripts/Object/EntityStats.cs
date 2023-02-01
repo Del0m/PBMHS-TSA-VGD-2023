@@ -89,6 +89,13 @@ public class EntityStats : MonoBehaviour
             isDead = true;
             killer = kill;
 
+            //modding healthbar to reset health
+            if (healthBar)
+            {
+                var healthBarRect = healthBar.GetComponent<RectTransform>();
+
+                healthBarRect.sizeDelta = new Vector2(100, 10);
+            }
             Destroy(objectToKill, 1f);
         }
     }

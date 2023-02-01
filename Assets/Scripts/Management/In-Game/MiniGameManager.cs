@@ -25,6 +25,8 @@ public class MiniGameManager : MonoBehaviour
     //defining the TurnManager
     public TurnManager turnScript;
 
+    public string lastMinigamePlayed; // to prevent same games from playing one after another
+
     private void Awake() // to set tag so other manager can collect on Start()
     {
         this.gameObject.tag = "Mini Game Manager";
@@ -51,6 +53,7 @@ public class MiniGameManager : MonoBehaviour
                 var minigameInstance = Instantiate(minigame[pick]); // spawns minigame
 
                 minigameInstance.SetActive(true); // make minigame exist in-game
+                lastMinigamePlayed = minigameInstance.name; // set last game to this
             }
         }
         catch (System.Exception)

@@ -1,8 +1,5 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
-using UnityEditor.SearchService;
-using UnityEngine.EventSystems;
-using UnityEngine.WSA;
 using UnityEditor;
 
 public class PlayButton : MonoBehaviour

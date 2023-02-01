@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Security.Cryptography;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class PotatoObject : MonoBehaviour
