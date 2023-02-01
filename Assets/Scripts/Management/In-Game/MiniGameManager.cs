@@ -73,10 +73,10 @@ public class MiniGameManager : MonoBehaviour
          */
 
 
-        yield return new WaitForSeconds(5); // wait 5 seconds before putting player into game.
+        yield return new WaitForSeconds(2); // wait 5 seconds before putting player into game.
         SpawnMinigame();
     }
-    public IEnumerator UIEndGame() // ui to show users the minigame is ending
+    /*public IEnumerator UIEndGame() // ui to show users the minigame is ending
     {
         //show UI
         yield return new WaitForSeconds(5); // wait 5 seconds before deleting board.
@@ -104,6 +104,7 @@ public class MiniGameManager : MonoBehaviour
         //elapse the turns; once reaches end amount, game will end.
         turnScript.roundsElapsed++;
     }
+    */
     private void KillGamesFromFile() // remove minigame instance.
     {
         var gameOut = GameObject.FindGameObjectWithTag("Minigame"); // find object with "minigame" tag

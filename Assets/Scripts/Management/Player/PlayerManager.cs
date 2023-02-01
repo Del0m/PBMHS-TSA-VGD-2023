@@ -27,6 +27,9 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("Appending Player");
         player = player.Append(input.gameObject).ToArray();
 
+        // add their correct turn order as well
+        Debug.Log("Player Length is:" + (player.Length - 1).ToString());
+        input.gameObject.GetComponent<PlayerStats>().turnOrder = player.Length - 1; 
     }
     public void SinglePlayer(PlayerInput input)
     {
@@ -57,7 +60,7 @@ public class PlayerManager : MonoBehaviour
         DisableJoin(); // turn off players from being able to join the game
         yield return new WaitForSeconds(5); // wait 5 seconds before going on
 
-        turn.SetTurn(1); //allow players to begin doing their turns
+        turn.SetTurn(0); //allow players to begin doing their turns
         // ^ to be changed to after cutscene overlooking map
     }
     private void DisableJoin() // disable players joining the game.

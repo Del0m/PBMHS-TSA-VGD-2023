@@ -12,6 +12,9 @@ public class PinataObject : MonoBehaviour
     public EntityStats stat; // stat page to use triggers, etc.
     public Rigidbody2D rb; // rigid body to add bouncy material and move pinata
     public PummelPinata minigame; // minigame to reference back to
+
+    [Header("UI")]
+    private PlayerUIManager uiManage;
     private void Start()
     {
         if(stat == null)
@@ -26,6 +29,8 @@ public class PinataObject : MonoBehaviour
         {
             minigame.killer = stat.killer;
         }
+        uiManage.UpdateHealth(stat.health);
+
     }
     Vector2 ChooseVectorDirection() // calculates random vector to shoot pinata at
     {

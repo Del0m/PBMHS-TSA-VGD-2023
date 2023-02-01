@@ -20,6 +20,8 @@ public class GameHandler : MonoBehaviour
     //useless in every game that doesn't spawn something
     public Transform[] border; // array holding the borders
 
+    [Header("Basic Settings")]
+    public bool timeLimit;
     //[HideInInspector] // don't need to see it, clutter
     [Header("UI")]
     public PlayerUIManager uiManager;
@@ -94,32 +96,41 @@ public class GameHandler : MonoBehaviour
         }
 
     }
-    public IEnumerator StartGame(bool enable) // teleports players into minigame
+    public virtual IEnumerator PreGameRoutine() // routine to run when before the minigame to see if anything needs to be added to the game.
     {
         TeleportPlayers(); // teleport players into the game
-        yield return new WaitForSeconds(3); // Temporary during debug for minigames
+
+        var scoreArray = new int[player.Length];
+        gameScore = scoreArray;
+
+        StartCoroutine(TutorialUI());
+
+        StartCoroutine(uiManager.CountDown(3, uiManager.countdownUI));
+        yield return null;
+    }
+    public IEnumerator StartGame(bool enable) // teleports players into minigame
+    {
+
+        StartCoroutine(PreGameRoutine());
+
+        yield return new WaitForSeconds(3.1f);
 
         // for loop to allow all players controls
-        for(int i = 0; i < player.Length; i++)
+        for (int i = 0; i < player.Length; i++)
         {
             var playerMovement = player[i].GetComponent<PlayerMovement>();
 
             playerMovement.GameSwitch(enable);
         }
-        // add UI pause here []
-        StartCoroutine(TutorialUI());
-
-        yield return new WaitForSeconds(3);
+        yield return null;
     }
 
     public IEnumerator StartGame(bool enable, bool topDown) // teleports players into minigame; allow topdown
     {
-        //setting up the game score length
-        var scoreArray = new int[player.Length];
-        gameScore = scoreArray;
 
-        yield return new WaitForSeconds(3); // Temporary during debug for minigames
-        TeleportPlayers(); // teleport players into the game
+        StartCoroutine(PreGameRoutine());
+
+        yield return new WaitForSeconds(3.1f);
 
         // for loop to allow all players controls
         for (int i = 0; i < player.Length; i++)
@@ -128,15 +139,14 @@ public class GameHandler : MonoBehaviour
 
             playerMovement.GameSwitch(enable, topDown);
         }
-        // add UI pause here []
-        StartCoroutine(TutorialUI());
-
-        yield return new WaitForSeconds(3);
+        yield return null;
     }
     public IEnumerator StartGame(bool enable, bool topDown, bool pick) // teleports players into minigame; allow topdown
     {
-        yield return new WaitForSeconds(3); // Temporary during debug for minigames
-        TeleportPlayers(); // teleport players into the game
+
+        StartCoroutine(PreGameRoutine());
+
+        yield return new WaitForSeconds(3.1f);
 
         // for loop to allow all players controls
         for (int i = 0; i < player.Length; i++)
@@ -145,10 +155,7 @@ public class GameHandler : MonoBehaviour
 
             playerMovement.GameSwitch(enable, topDown, pick);
         }
-        // add UI pause here []
-        StartCoroutine(TutorialUI());
-
-        yield return new WaitForSeconds(3);
+        yield return null;
     }
     public void TeleportBack() // bring players back to their spawn point
     {
@@ -208,6 +215,11 @@ public class GameHandler : MonoBehaviour
             plrManage.GameOver();
         }
         Debug.Log("Game has ended.");
+        // adding level update
+        if(singlePlayer)
+        {
+            uiManager.UpdateLevel(spManage.level); // updating the player's level in the game
+        }
         Destroy(gameObject, 1f);
 
         yield return null;
@@ -225,7 +237,6 @@ public class GameHandler : MonoBehaviour
         }
         Debug.Log("Game has ended.");
         StartCoroutine(EndGame());
-        Destroy(gameObject, 1f);
 
         yield return null;
     }
