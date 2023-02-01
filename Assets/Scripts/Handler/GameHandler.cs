@@ -60,14 +60,18 @@ public class GameHandler : MonoBehaviour
     public void TeleportPlayers() // void to collect all players on the map, and place them in the according location in minigame
     {
         plrManage = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>();
-        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControl>();
-        cam.TeleportCamera(camPos, fov); // change camera into minigame spot
+        if (!allowCameraFollow)
+        {
+            cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControl>();
+            cam.TeleportCamera(camPos, fov); // change camera into minigame spot
+        }
 
         player = plrManage.player;
         teleport = GameObject.FindGameObjectsWithTag("Teleport"); // check if null, replace spawns
 
         for(int i = 0; i < player.Length; i++) // for loop to set all players in correct position for game
         {
+            Debug.Log("moving player to scene");
             player[i].transform.position = teleport[i].transform.position; // set position for player in minigame
             player[i].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static; // prevent movement until necessary
         }
@@ -237,6 +241,7 @@ public class GameHandler : MonoBehaviour
         }
         Debug.Log("Game has ended.");
         StartCoroutine(EndGame());
+        Destroy(gameObject, 1f);
 
         yield return null;
     }
@@ -256,6 +261,8 @@ public class GameHandler : MonoBehaviour
         }
         Debug.Log("Game has ended");
         StartCoroutine(EndGame());
+        Destroy(gameObject, 1f);
+
         yield return null;
     }
 }

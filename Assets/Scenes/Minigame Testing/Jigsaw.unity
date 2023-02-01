@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: []
+  plrManage: {fileID: 0}
   teleport:
   - {fileID: 840324002}
   - {fileID: 130613171}
@@ -174,6 +175,7 @@ MonoBehaviour:
   spSpawn: {fileID: 0}
   spManage: {fileID: 0}
   multi: 0
+  allowCameraFollow: 0
   puzzleLocation:
   - {fileID: 2129680178}
   - {fileID: 1208587370}
@@ -2366,7 +2368,7 @@ PrefabInstance:
     - target: {fileID: 8197119641342339076, guid: 68bf2936e131abb4990f2e44dc3f3d07, type: 3}
       propertyPath: m_PlayerPrefab
       value: 
-      objectReference: {fileID: 2609490234402768870, guid: 7f2b7fcce545bd74fb5d12b0940d6aa5, type: 3}
+      objectReference: {fileID: 2609490234402768870, guid: 45576ad1b59d78f4ea594a4a69e656c2, type: 3}
     - target: {fileID: 8197119641342339077, guid: 68bf2936e131abb4990f2e44dc3f3d07, type: 3}
       propertyPath: m_RootOrder
       value: 0
