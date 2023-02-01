@@ -82,6 +82,7 @@ public class PummelPinata : GameHandler
     public override IEnumerator EndGame(int player) // end the game, grab player that won
     {
         var winner = killer.GetComponent<PlayerStats>();
+        
         return base.EndGame(winner.turnOrder);
     }
 }

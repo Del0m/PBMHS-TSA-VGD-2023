@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SinglePlayerManager : MonoBehaviour
 {
@@ -19,10 +20,16 @@ public class SinglePlayerManager : MonoBehaviour
         }
         multiplier = Math.Pow(multiplier, (1+level/3));
     }
-    public void IncreaseLevel()
+    public void IncreaseLevel() // make single player game progressively more difficult
     {
         level++;
         levelGUI.text = "Level: " + level.ToString();
         UpdateDifficulty(); 
     }
+    public void LoadScene(string sceneString)
+    {
+        Debug.Log("Moving to scene: " + sceneString);
+        SceneManager.LoadScene(sceneString);
+    }
+    
 }

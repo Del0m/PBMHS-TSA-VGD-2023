@@ -29,6 +29,7 @@ public class PinataObject : MonoBehaviour
         if(stat.killer != null)
         {
             minigame.killer = stat.killer;
+            stat.healthBar.SetActive(false); // disappear health bar?
         }
     }
     Vector2 ChooseVectorDirection() // calculates random vector to shoot pinata at

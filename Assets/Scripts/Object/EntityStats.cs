@@ -89,13 +89,6 @@ public class EntityStats : MonoBehaviour
             isDead = true;
             killer = kill;
 
-            if (healthBar) // reset health bar to max
-            {
-                var healthBarRect = healthBar.GetComponent<RectTransform>();
-
-                healthBarRect.sizeDelta = new Vector2(100, 10);
-            }
-
             Destroy(objectToKill, 1f);
         }
     }

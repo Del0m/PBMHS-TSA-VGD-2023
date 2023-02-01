@@ -76,15 +76,22 @@ public class GameHandler : MonoBehaviour
             player[i].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static; // prevent movement until necessary
         }
     }
+    bool isntActing;
     public IEnumerator TutorialUI()
     {
+        uiManager.ChangeUI(true); // enable the minigame ui
         tutorialScreen.SetActive(true);
-        var isntActing = true;
+        isntActing = true;
 
         // slow down time to allow game to not go on
         Time.timeScale = 0.0001f; // go REALLY slow
+
         while (isntActing)
         {
+            if(!tutorialScreen.activeInHierarchy) // enable UI when it is not on correctly
+            {
+                tutorialScreen.SetActive(true);
+            }
             Debug.Log("running loop");
             // don't do anything besides check
             if(player[0].GetComponent<PlayerMovement>().acting == true)
@@ -202,7 +209,7 @@ public class GameHandler : MonoBehaviour
             //increase level
             spManage.IncreaseLevel();
         }
-
+        uiManager.ChangeUI(false); // reset the UI
         Destroy(gameObject, 1f);
         yield return null;
     }

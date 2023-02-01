@@ -21,6 +21,11 @@ public class PlayerManager : MonoBehaviour
     {
         manager = GetComponent<PlayerInputManager>();
         turn = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>();
+
+        if(manager.playerPrefab == null)
+        {
+            manager.playerPrefab = Resources.Load("Experimental/Player") as GameObject;
+        }
     }
     public void PlayerArray(PlayerInput input) // adds to player array for minigames
     {

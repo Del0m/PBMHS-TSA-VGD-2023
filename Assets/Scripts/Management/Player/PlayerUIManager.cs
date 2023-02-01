@@ -75,10 +75,20 @@ public class PlayerUIManager : MonoBehaviour
             diceSprite.GetComponent<Animator>().playbackTime = 0; // reset dice back to middle
         }
     }
+
+    private void ResetUI() // reset ui to default values
+    {
+        timeLeftUI.text = "Time Left: ";
+
+        var healthBarRect = healthBarUI.GetComponent<RectTransform>();
+
+        healthBarRect.sizeDelta = new Vector2(100, 10);
+    }
     public void ChangeUI(bool minigame) // changes the UI from minigame to board, vice versa
     {
         boardUI.SetActive(!minigame);
         minigameUI.SetActive(minigame);
+        ResetUI();
     }
     public void ChangeUI(bool minigame, GameObject obj) // same as ChangeUI, just overload to add extraUI if needed
     {
@@ -86,6 +96,9 @@ public class PlayerUIManager : MonoBehaviour
         obj.SetActive(minigame); // setting object active
 
         Debug.Log("object being changed is:" + obj);
+
+        // if statement to check if it is a clock
+
     }
     public IEnumerator UpdateClock(int time) // runs the countdown in addition to the time that will be left in the minigame
     {
@@ -102,6 +115,7 @@ public class PlayerUIManager : MonoBehaviour
         timesUp = false;
 
         ChangeUI(false, timeLeftUI.gameObject); // disable ui
+        timeLeftUI.text = "Time Left: ";
     }
     public IEnumerator CountDown(int time, TextMeshProUGUI obj)
     {

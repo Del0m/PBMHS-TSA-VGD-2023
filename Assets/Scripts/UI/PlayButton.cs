@@ -12,9 +12,9 @@ public class PlayButton : MonoBehaviour
     [Header("Menu")]
     public GameObject playChoice; // UI to see where player would like to go
     public GameObject title; // title of game
-    public void PlayGame() // to bring player into game scene
+    public void PlayGame(string sceneString) // to bring player into game scene
     {
-        SceneManager.LoadScene(gameScene);
+        SceneManager.LoadScene(sceneString);
     }
     public void BringUI(bool setUI) // this brings the multiplayer or single player ui for the player to choose what to play
     {
