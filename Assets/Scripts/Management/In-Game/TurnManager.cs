@@ -88,10 +88,12 @@ public class TurnManager : MonoBehaviour
 
             miniGameScript.MinigameStartup(); // running minigame coroutine to advise players, and spawn game.
 
-            currentTurn = 0;
+            //currentTurn = 0;
 
             roundsElapsed++;
         }
+
+        //currentTurn++;
         
     }
     public void SetTurn(int integer) { currentTurn = integer; } // sets turn back to normal

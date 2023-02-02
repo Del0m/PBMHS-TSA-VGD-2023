@@ -27,6 +27,8 @@ public class GameHandler : MonoBehaviour
     public PlayerUIManager uiManager;
     public GameObject tutorialScreen; // to be individually selected depending on what minigame
 
+    //public MiniGameManager mg;
+
     [Header("Camera + Settings")] // to proeperly position the camera in a minigame
     public CameraControl cam;
     public Transform camPos;
@@ -45,6 +47,7 @@ public class GameHandler : MonoBehaviour
     void Start()
     {
         uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
+        //mg = GameObject.FindGameObjectWithTag("Mini Game Manager").GetComponent<MiniGameManager>();
         teleport = GameObject.FindGameObjectsWithTag("Teleport");
 
         // function to increase difficulty for players
@@ -109,22 +112,26 @@ public class GameHandler : MonoBehaviour
     }
     public virtual IEnumerator PreGameRoutine() // routine to run when before the minigame to see if anything needs to be added to the game.
     {
+        yield return new WaitForEndOfFrame();
         TeleportPlayers(); // teleport players into the game
 
         var scoreArray = new int[player.Length];
         gameScore = scoreArray;
+        uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
 
         StartCoroutine(MinigameUI(true, tutorialScreen));
 
         StartCoroutine(uiManager.CountDown(3, uiManager.countdownUI));
-        yield return null;
+        yield return new WaitForEndOfFrame();
     }
     public IEnumerator StartGame(bool enable) // teleports players into minigame
     {
-
+        yield return new WaitForEndOfFrame();
         StartCoroutine(PreGameRoutine());
 
         yield return new WaitForSeconds(3.1f);
+
+        //StartCoroutine(PreGameRoutine());
 
         // for loop to allow all players controls
         for (int i = 0; i < player.Length; i++)

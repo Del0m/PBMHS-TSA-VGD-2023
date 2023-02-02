@@ -67,6 +67,8 @@ public class PlayerControls : MonoBehaviour
             //check distance from the new tile
             if(Vector2.Distance(newTile.position, this.transform.position) > 0){
                 transform.position = Vector2.MoveTowards(this.transform.position, newTile.position, 5 * Time.deltaTime); // move to new position using DeltaTime
+            }else{
+                newTile = null;
             }
         }
     }
@@ -110,7 +112,7 @@ public class PlayerControls : MonoBehaviour
             }
             turnScript.uiManager.UpdateDiceUI(movesRemaining);
             turnScript.RoundCheck(); // advance turn, see if new turn is in order.
-            newTile = null; // to prevent the player from moving towards the tile in the middle of the game
+            //newTile = null; // to prevent the player from moving towards the tile in the middle of the game
 
             hasRan = false; // allow player to roll again, but their turn has moved, so they won't be able to.
         }

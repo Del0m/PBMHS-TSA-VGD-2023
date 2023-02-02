@@ -33,7 +33,7 @@ public class ColorMatch : GameHandler
             IncreaseDifficulty(); // make game harder for single player
         }
         uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
-
+        
         StartCoroutine(StartGame(true)); // starting game and bringing players into the game
         StartCoroutine(DropColors()); 
     }
