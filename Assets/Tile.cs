@@ -46,6 +46,12 @@ public class Tile : MonoBehaviour
             StopAllCoroutines();
         }
 
+        if(buffAmount <= 0)
+        {
+            Debug.Log(this.name + " doesn't have a buff to add!");
+            StopAllCoroutines();
+        }
+
         //Check enum from tile settings
         switch((int)tType){
             case 0: // free Win to that player
@@ -65,6 +71,8 @@ public class Tile : MonoBehaviour
                 }
                 break;
         }
+
+        Debug.Log("Tile Choise is [" + tType + "," + bType + "]");
 
         //Stop coroutine
         StopAllCoroutines();

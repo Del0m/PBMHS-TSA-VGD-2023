@@ -293,7 +293,9 @@ public class PlayerMovement : MonoBehaviour
     public IEnumerator DashRoutine()
     {
         playInstance = dashSound;
-        playSound.PlayOneShot(playInstance, (settings.soundVolume * settings.masterVolume));
+
+        //Check if the sound obj exists
+        playSound.PlayOneShot(playInstance, (settings.soundVolume * settings.masterVolume)); //fix this
 
         if(canJump == true) { SetParticle(SetDirection(), false); } // if they're on the floor
 

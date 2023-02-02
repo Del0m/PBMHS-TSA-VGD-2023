@@ -74,7 +74,9 @@ public class PlayerUIManager : MonoBehaviour
         diceSprite.GetComponent<Image>().sprite = diceImage[num];
         if(num == 0)
         {
-            diceSprite.GetComponent<Animator>().playbackTime = 0; // reset dice back to middle
+            //diceSprite.GetComponent<Animator>().playbackTime = 0; // reset dice back to middle
+            //diceSprite.GetComponent<Animation>().
+            diceSprite.GetComponent<Animator>().SetTrigger("DO");
         }
     }
 

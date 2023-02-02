@@ -26,6 +26,9 @@ public class PlayerControls : MonoBehaviour
 
     private GameObject turnUI;
 
+    [Header("Debug")]
+    public float movementCooldown = 2.5f;
+
     private void Start() // run methods on start
     {
         try
@@ -95,7 +98,7 @@ public class PlayerControls : MonoBehaviour
                 {
                     turnScript.uiManager.UpdateDiceUI(movesRemaining); // update ui for end-user
 
-                    yield return new WaitForSeconds(5);
+                    yield return new WaitForSeconds(movementCooldown);
                     Debug.Log("Moving.");
                     newTile = moveManage.CallTile(stat.position, 1); // moving one tile at a time
 

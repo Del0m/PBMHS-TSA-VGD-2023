@@ -1,19 +1,23 @@
 /*armindelmo turnmanager.cs
  * the purpose of this program is to seperate all the users into their respective turns.
 */
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour
 {
-    static int currentTurn = 0;
+    private int currentTurn = 0;
     public int roundsElapsed = 0;
 
 
     //manage the minigames
 
     static MiniGameManager miniGameScript;
+
+    //Get player manager
+    public PlayerManager pm;
 
     //modify scores of players
     public ScoreManager scoreScript;
@@ -25,6 +29,7 @@ public class TurnManager : MonoBehaviour
     public TextMeshProUGUI roundUI; // tells the round for the players
     public GameObject[] playerUI; // to be highlighted by the game to tell players its their turn!
 
+    private int playerCount;
 
     private void Awake()
     {
@@ -48,22 +53,44 @@ public class TurnManager : MonoBehaviour
             miniGameScript = GameObject.FindGameObjectWithTag("Mini Game Manager").GetComponent<MiniGameManager>(); // call manager to start / end / bring players to games.
         }
 
+        if(pm == null)
+        {
+            pm = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>();
+            //Get player list length
+            StartCoroutine(getPlayers());
+        }
 
+        //call UI update
+        uiManager.UpdateRound(roundsElapsed);
 
     }
+
+    IEnumerator getPlayers()
+    {
+        yield return new WaitForSeconds(5);
+        playerCount = pm.player.Length;
+        StopCoroutine(getPlayers());
+    }
+
     public void RoundCheck() // compares currentTurn with player count, exceeds, start minigame
     {
         // [] add a highlight player during turn here...
 
         Debug.Log("Checking new round! Advancing Turn!");
-        var playerCount = GameObject.FindGameObjectsWithTag("Player").Length;
         currentTurn++;
 
         // run ui update
         uiManager.UpdateRound(roundsElapsed);
-        if(playerCount < currentTurn) // turn on el minigame
+        if(playerCount == currentTurn) // turn on el minigame
         {
+            //debug
+            Debug.Log("starting the minigame");
+
             miniGameScript.MinigameStartup(); // running minigame coroutine to advise players, and spawn game.
+
+            currentTurn = 0;
+
+            roundsElapsed++;
         }
         
     }
