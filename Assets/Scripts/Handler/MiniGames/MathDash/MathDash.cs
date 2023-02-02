@@ -25,6 +25,8 @@ public class MathDash : GameHandler
 
     // for single player
     public int scoreRequired;
+    public int questionsCorrect;
+    public GameObject scoreLeft; // to track the score the player needs to get for the game
 
     // Start is called before the first frame update
     void Start()
@@ -71,11 +73,17 @@ public class MathDash : GameHandler
         }
 
     }
+    public override IEnumerator EndGame()
+    {
+        uiManager.ChangeUI(false, uiManager.scoreLeftUI);
+        return base.EndGame();
+    }
     public override IEnumerator PreGameRoutine() // adding a timer to the minigame in singleplayer
     {
         yield return StartCoroutine(base.PreGameRoutine());
         if (singlePlayer)
         {
+            uiManager.ChangeUI(true, uiManager.scoreLeftUI);
             yield return new WaitForSeconds(3);
             yield return StartCoroutine(uiManager.UpdateClock(time)); // running the timer
         }
@@ -164,7 +172,7 @@ public class MathDash : GameHandler
 
         //instantiating card with correct answer
         RandomizePosition();
-        var rightCard = Instantiate(cardPrefab, randPos, new Quaternion()); // spawning new card.
+        var rightCard = Instantiate(cardPrefab, randPos, new Quaternion(), this.gameObject.transform); // spawning new card.
         rightCard.GetComponentInChildren<Card>().value = answer;
         rightCard.SetActive(true); // allow card to be seen in game
 
@@ -197,7 +205,7 @@ public class MathDash : GameHandler
             }
             //spawn in object in random area in minigame arena.
             RandomizePosition(); // randomizing position and spawning card
-            var newCard = Instantiate(cardPrefab, randPos, new Quaternion()); // spawning new card.
+            var newCard = Instantiate(cardPrefab, randPos, new Quaternion(), this.gameObject.transform); // spawning new card.
             newCard.SetActive(true); // allow to be seen in the scene
             newCard.GetComponentInChildren<Card>().value = cardDisplay; // setting what is on the card
             print("Instantiating card!");
@@ -218,6 +226,9 @@ public class MathDash : GameHandler
             text.text = "Correct! The Answer is: " + answer; // changes text to show they got it correct.
             gameScore[plr.GetComponent<PlayerStats>().turnOrder]++; // player position in score array is awarded a point
             this.StartCoroutine(NewProblem()); // making new problem for player
+
+            questionsCorrect++; // for singleplayer
+
             return true;
         }
         else
@@ -228,8 +239,20 @@ public class MathDash : GameHandler
     }
     IEnumerator NewProblem() // procedure to put new problem on the board.
     {
+        if(singlePlayer)
+        {
+            if(questionsCorrect >= scoreRequired)
+            {
+                uiManager.scoreLeftUI.GetComponent<TextMeshProUGUI>().text = "You've passed the requirement!";
+
+            }
+            else
+            {
+                uiManager.scoreLeftUI.GetComponent<TextMeshProUGUI>().text = "Questions Left to Pass: " + (scoreRequired - gameScore[0]);
+            }
+        }
         //delete all current cards
-        for(int i = 0; i < card.Length; i++)
+        for (int i = 0; i < card.Length; i++)
         {
             Destroy(card[i].gameObject); // destroy card in array
         }

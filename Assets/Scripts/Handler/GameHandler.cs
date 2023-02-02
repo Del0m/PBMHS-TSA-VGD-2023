@@ -77,10 +77,10 @@ public class GameHandler : MonoBehaviour
         }
     }
     bool isntActing;
-    public IEnumerator TutorialUI()
+    public IEnumerator MinigameUI(bool enter, GameObject screen)
     {
-        uiManager.ChangeUI(true); // enable the minigame ui
-        tutorialScreen.SetActive(true);
+        uiManager.ChangeUI(enter); // enable the minigame ui
+        screen.SetActive(true);
         isntActing = true;
 
         // slow down time to allow game to not go on
@@ -88,9 +88,9 @@ public class GameHandler : MonoBehaviour
 
         while (isntActing)
         {
-            if(!tutorialScreen.activeInHierarchy) // enable UI when it is not on correctly
+            if(!screen.activeInHierarchy) // enable UI when it is not on correctly
             {
-                tutorialScreen.SetActive(true);
+                screen.SetActive(true);
             }
             Debug.Log("running loop");
             // don't do anything besides check
@@ -98,8 +98,8 @@ public class GameHandler : MonoBehaviour
             {
                 Debug.Log("Acting found!");
                 isntActing = false;
-                tutorialScreen.SetActive(false); // bring down UI
-                Time.timeScale = 1f; // go REALLY slow
+                screen.SetActive(false); // bring down UI
+                Time.timeScale = 1f; // go back to speed
 
                 break;
             }
@@ -114,7 +114,7 @@ public class GameHandler : MonoBehaviour
         var scoreArray = new int[player.Length];
         gameScore = scoreArray;
 
-        StartCoroutine(TutorialUI());
+        StartCoroutine(MinigameUI(true, tutorialScreen));
 
         StartCoroutine(uiManager.CountDown(3, uiManager.countdownUI));
         yield return null;

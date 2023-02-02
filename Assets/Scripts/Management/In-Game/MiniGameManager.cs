@@ -47,11 +47,10 @@ public class MiniGameManager : MonoBehaviour
             }
             else
             {
-                var pick = Random.Range(0, minigame.Length); // randomly selects a minigame using the length of minigame array
+                var rand = Random.Range(0, minigame.Length); // randomly selects a minigame using the length of minigame array
 
-                Debug.Log(minigame[pick].name);
-                var minigameInstance = Instantiate(minigame[pick]); // spawns minigame
-
+                var gameData = minigame[rand]; // used in name of minigame
+                var minigameInstance = Instantiate(gameData); // spawns minigame
                 minigameInstance.SetActive(true); // make minigame exist in-game
                 lastMinigamePlayed = minigameInstance.name; // set last game to this
             }

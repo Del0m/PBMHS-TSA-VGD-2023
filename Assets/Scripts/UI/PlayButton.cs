@@ -9,6 +9,15 @@ public class PlayButton : MonoBehaviour
     [Header("Menu")]
     public GameObject playChoice; // UI to see where player would like to go
     public GameObject title; // title of game
+    public AudioSource aud;
+    private void Update()
+    {
+        if(!aud.isPlaying)
+        {
+            // play music
+            aud.Play();
+        }
+    }
     public void PlayGame(string sceneString) // to bring player into game scene
     {
         SceneManager.LoadScene(sceneString);
