@@ -17,10 +17,14 @@ public class PlayerManager : MonoBehaviour
     [Header("Player")]
     public Transform[] spawn; // spawn player in correct spot
     public GameObject[] player; // player append variable
+    [Header("Debug")]
+    public bool miniGameTesting = false;
     private void Start()
     {
         manager = GetComponent<PlayerInputManager>();
-        turn = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>();
+        if(!miniGameTesting){
+            turn = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>();
+        }
 
         if(manager.playerPrefab == null)
         {

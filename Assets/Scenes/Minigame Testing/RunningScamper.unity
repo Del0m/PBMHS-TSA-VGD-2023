@@ -410,6 +410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawn: []
   player: []
+  miniGameTesting: 1
 --- !u!1 &780774968
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,7 +797,9 @@ MonoBehaviour:
   gameScore: 00000000000000000000000000000000
   winner: 0
   border: []
+  timeLimit: 0
   uiManager: {fileID: 0}
+  tutorialScreen: {fileID: 0}
   cam: {fileID: 0}
   camPos: {fileID: 0}
   fov: 0
@@ -806,6 +809,8 @@ MonoBehaviour:
   spManage: {fileID: 0}
   multi: 0
   allowCameraFollow: 0
+  isUIManagerPresent: 0
+  isStandaloneMinigame: 1
   timerLength: 45
   playerBaseSpeed: 1
   playerMovementIncrement: 4.7

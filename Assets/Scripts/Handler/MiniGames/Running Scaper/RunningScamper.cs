@@ -44,7 +44,7 @@ public class RunningScamper : GameHandler
     [SerializeField]
     private bool _timer = false; //used for debug
     [SerializeField]
-    private float miniGameStartUpTime = 4f;
+    private int miniGameStartUpTime = 4;
     [SerializeField]
     private bool playerDir = true;
     [SerializeField]
@@ -63,10 +63,12 @@ public class RunningScamper : GameHandler
     {
         allowCameraFollow = true;
         //Call to teleport player's to their positions
-        StartCoroutine(StartGame(false, false, false));
+        //Get UI manager
+        //uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
+        StartCoroutine(StartGame(false));
         //Find all grid map spawn points
         FindSpawnPoints();
-        StartCoroutine(StartGame());
+        StartCoroutine(setUp());
     }
 
     GameObject[] setMapArray(){
@@ -142,19 +144,30 @@ public class RunningScamper : GameHandler
         }
     }
 
-    IEnumerator StartGame()
+    public override IEnumerator PreGameRoutine(){
+        yield return StartCoroutine(base.PreGameRoutine());
+        if(singlePlayer){
+            yield return new WaitForSeconds(3);
+            yield return StartCoroutine(uiManager.UpdateClock(miniGameStartUpTime));
+        }
+
+    }
+
+    IEnumerator setUp()
     {
-        yield return new WaitForSeconds(miniGameStartUpTime);
+        yield return new WaitForSeconds(5);
         //Call main game methods
         //Set default map array to use
         gridMaps = setMapArray();
         if(gridMaps == null)
             Debug.LogError("No players were found!");
-            StopCoroutine(StartGame());
+            StopCoroutine(setUp());
 
+        //Set player to go statically in one direction
         if (!setStaticDir())
             Debug.LogError("Players not found");
 
+        //yield return new WaitForSeconds(1); //Wait for everything to set up
         //Spawn the grid maps randomly
         spawnMap();
 
@@ -165,7 +178,7 @@ public class RunningScamper : GameHandler
             Invoke("timerEnd", timerLength);
         }
 
-        StopCoroutine(StartGame());
+        StopCoroutine(setUp());
     }
     bool FindSpawnPoints()
     {

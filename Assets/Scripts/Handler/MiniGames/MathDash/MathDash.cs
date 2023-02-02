@@ -31,7 +31,7 @@ public class MathDash : GameHandler
     // Start is called before the first frame update
     void Start()
     {
-        uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
+        //uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
 
         StartCoroutine(StartGame(true)); // teleport players to the minigame.
         StartCoroutine(NewProblem()); // makes new problem to have player solve.
