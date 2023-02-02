@@ -9,12 +9,13 @@ using UnityEngine;
 public class MovementManager : MonoBehaviour
 {
     //tile and tile related goods
-    private Transform[] tile;
+    [Header("Debug")]
+    public Transform[] tile;
 
-    private TurnManager turnManage;
+    public TurnManager turnManage;
 
     //player array
-    private GameObject[] players;
+    //public GameObject[] players;
 
     private void Awake() // for manager initalization
     {

@@ -54,18 +54,22 @@ public class PlayerControls : MonoBehaviour
         // grabbing player controls to differentiate when its time to move or not
 
     }
-    Transform newTile; // for the purpose of updating the player to a new position!
+    [HideInInspector]
+    public Transform newTile; // for the purpose of updating the player to a new position!
     private void Update()
     {
 
         if(newTile != null)
         {
-            transform.position = Vector2.MoveTowards(this.transform.position, newTile.position, 5 * Time.deltaTime); // move to new position using DeltaTime
-
+            //check distance from the new tile
+            if(Vector2.Distance(newTile.position, this.transform.position) > 0){
+                transform.position = Vector2.MoveTowards(this.transform.position, newTile.position, 5 * Time.deltaTime); // move to new position using DeltaTime
+            }
         }
     }
     //variable for the purpose of moving
-    bool hasRan = false; // start off with all players being able to move.
+    [HideInInspector]
+    public bool hasRan = false; // start off with all players being able to move.
     public void DiceRoll(InputAction.CallbackContext context) // run when player rolls dice on board
     {
         if (context.performed && hasRan == false) // makes sure its only ran once

@@ -42,9 +42,15 @@ public class GameHandler : MonoBehaviour
     public double multi;
     [HideInInspector]
     public bool allowCameraFollow = false; //Used to tell the camera to follow the players, by default it's turned off (Set true only on minigame script if needea
+    [Header("Debug")]
+    public bool isUIManagerPresent= true;
+    public bool isStandaloneMinigame = false;
+
     void Start()
     {
-        uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
+        if(isUIManagerPresent)
+            uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
+        
         teleport = GameObject.FindGameObjectsWithTag("Teleport");
 
         // function to increase difficulty for players
@@ -58,7 +64,7 @@ public class GameHandler : MonoBehaviour
         // put stuff in here in other programs idk
     }
     public void TeleportPlayers() // void to collect all players on the map, and place them in the according location in minigame
-    {
+    {   
         plrManage = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>();
         if (!allowCameraFollow)
         {
@@ -66,14 +72,25 @@ public class GameHandler : MonoBehaviour
             cam.TeleportCamera(camPos, fov); // change camera into minigame spot
         }
 
-        player = plrManage.player;
-        teleport = GameObject.FindGameObjectsWithTag("Teleport"); // check if null, replace spawns
+        if(plrManage != null){
+            player = plrManage.player;
 
-        for(int i = 0; i < player.Length; i++) // for loop to set all players in correct position for game
-        {
-            Debug.Log("moving player to scene");
-            player[i].transform.position = teleport[i].transform.position; // set position for player in minigame
-            player[i].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static; // prevent movement until necessary
+            if(player.Length == 0 || player.Length < 0){
+                Debug.LogError("couldn't get player manager's player list!");
+                return;
+            }
+
+            teleport = GameObject.FindGameObjectsWithTag("Teleport"); // check if null, replace spawns
+
+            for(int i = 0; i < player.Length; i++) // for loop to set all players in correct position for game
+            {
+                Debug.Log("moving player to scene");
+                player[i].transform.position = teleport[i].transform.position; // set position for player in minigame
+                player[i].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static; // prevent movement until necessary
+            }
+        }else{
+            Debug.LogError("Can't teleport player because can't find PlayerManager.cs in scene");
+            return;
         }
     }
     bool isntActing;
@@ -114,17 +131,24 @@ public class GameHandler : MonoBehaviour
         var scoreArray = new int[player.Length];
         gameScore = scoreArray;
 
-        StartCoroutine(TutorialUI());
+        if(isUIManagerPresent){
+            StartCoroutine(TutorialUI());
 
-        StartCoroutine(uiManager.CountDown(3, uiManager.countdownUI));
+            StartCoroutine(uiManager.CountDown(3, uiManager.countdownUI));
+        }
         yield return null;
     }
     public IEnumerator StartGame(bool enable) // teleports players into minigame
     {
 
-        StartCoroutine(PreGameRoutine());
+        if(!isStandaloneMinigame){
+            StartCoroutine(PreGameRoutine());
+        }
 
         yield return new WaitForSeconds(3.1f);
+
+        if(isStandaloneMinigame)
+            TeleportPlayers();
 
         // for loop to allow all players controls
         for (int i = 0; i < player.Length; i++)
@@ -139,9 +163,14 @@ public class GameHandler : MonoBehaviour
     public IEnumerator StartGame(bool enable, bool topDown) // teleports players into minigame; allow topdown
     {
 
-        StartCoroutine(PreGameRoutine());
+        if(!isStandaloneMinigame){
+            StartCoroutine(PreGameRoutine());
+        }
 
         yield return new WaitForSeconds(3.1f);
+
+        if(isStandaloneMinigame)
+            TeleportPlayers();
 
         // for loop to allow all players controls
         for (int i = 0; i < player.Length; i++)
@@ -155,9 +184,14 @@ public class GameHandler : MonoBehaviour
     public IEnumerator StartGame(bool enable, bool topDown, bool pick) // teleports players into minigame; allow topdown
     {
 
-        StartCoroutine(PreGameRoutine());
+        if(!isStandaloneMinigame){
+            StartCoroutine(PreGameRoutine());
+        }
 
         yield return new WaitForSeconds(3.1f);
+
+        if(isStandaloneMinigame)
+            TeleportPlayers();
 
         // for loop to allow all players controls
         for (int i = 0; i < player.Length; i++)
