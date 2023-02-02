@@ -72,7 +72,9 @@ public class Tile : MonoBehaviour
 
     bool checkPlayer(GameObject player){
 
-        if(player != null && pm != null){
+        if(pm != null && player != null){
+
+            playerIndex = -1;
 
             for(int i = 0; i < pm.player.Length; i++){
                 if(pm.player[i] == player){
@@ -82,10 +84,13 @@ public class Tile : MonoBehaviour
                 }
             }
 
-            Debug.LogError("Player doesn't exist in player manager!");
-            return false;
+            if(playerIndex == -1){
+                Debug.LogError("Player doesn't exist in player manager!");
+                return false;
+            }
         }
 
+        Debug.Log("can't find Player or the player manager");
         return false;
     }
 
@@ -95,13 +100,15 @@ public class Tile : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider){
         //Check if it's a player
         if(collider.gameObject.tag == "Player"){
+            Debug.Log("FOUND PLAYER");
             //sort player to spot
-            if(checkPlayer(collider.gameObject)){
+            if(checkPlayer(collider.gameObject) == true){
                 PlayerControls pc = collider.gameObject.GetComponent<PlayerControls>();
                 //depending on the index move that player to the corresponding spot inside the tile
                 for(int i = 0; i < playerPositions.Length; i++){
                     if(i == playerIndex){
                         //Move player to that new position
+                        Debug.Log("Moving to tile");
                         pc.newTile = playerPositions[i];
                         pc.hasRan = false;
                     }

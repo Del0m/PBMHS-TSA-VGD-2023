@@ -95,6 +95,7 @@ public class PlayerControls : MonoBehaviour
                 {
                     turnScript.uiManager.UpdateDiceUI(movesRemaining); // update ui for end-user
 
+                    yield return new WaitForSeconds(5);
                     Debug.Log("Moving.");
                     newTile = moveManage.CallTile(stat.position, 1); // moving one tile at a time
 
