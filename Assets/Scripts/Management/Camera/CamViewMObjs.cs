@@ -9,20 +9,27 @@ public class CamViewMObjs : MonoBehaviour
     public float delay = 10f;
     public Vector3 offSet = new Vector3(0, 0, -25);
 
-    private GameHandler gameH;
+    private RunningScamper gameH;
 
     public List<GameObject> forgottenTargets; //used to not track a player again
 
     private void Start()
     {
-        //Get players and define as targets
-        GameObject gh = GameObject.FindGameObjectWithTag("Minigame");
-        gameH = gh.GetComponent<GameHandler>();
-        
-        findPlayers();
+        findPlayersMinigame();
     }
 
-    bool findPlayers(){
+    public void setCamToMinigame(){
+        //Get players and define as targets
+        GameObject gh = GameObject.FindGameObjectWithTag("Minigame");
+        gameH = gh.GetComponent<RunningScamper>();
+    }
+
+    public void disableCamToMinigame(){
+        gameH = null;
+        targets.Clear();
+    }
+
+    bool findPlayersMinigame(){
         if(gameH != null){
             if(gameH.player.Length > 0 && gameH.allowCameraFollow == true){
                 for(int i = 0; i < gameH.player.Length; i++)
@@ -52,7 +59,7 @@ public class CamViewMObjs : MonoBehaviour
     {
         if(targets.Count == 0)
         {
-            findPlayers();
+            findPlayersMinigame();
             return;
         }
 

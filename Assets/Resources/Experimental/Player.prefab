@@ -182,6 +182,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: -3255879220076682217}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: DiceRoll
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 304ef7ee-0fe5-4c29-9f8a-be666494c794
     m_ActionName: Gameplay/Action[/Keyboard/enter]
   - m_PersistentCalls:
@@ -273,6 +285,8 @@ MonoBehaviour:
   managerObject: {fileID: 0}
   turnScript: {fileID: 0}
   gameplayInput: {fileID: 0}
+  newTile: {fileID: 0}
+  hasRan: 0
 --- !u!212 &-8695361002692835325
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -345,6 +359,7 @@ MonoBehaviour:
   cooldown: 0.5
   wins: 0
   lost: 0
+  singlePlayer: 0
 --- !u!82 &5025792139998733991
 AudioSource:
   m_ObjectHideFlags: 0

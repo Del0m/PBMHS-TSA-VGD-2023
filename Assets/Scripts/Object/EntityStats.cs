@@ -31,6 +31,8 @@ public class EntityStats : MonoBehaviour
 
     [Header("Special Stuff")]
     public GameObject healthBar; // for the purposes of updating the health
+    public bool bossBar;
+    public PlayerUIManager uiManager;
     private void Start()
     {
         totalHealth = health; // initalizing max health
@@ -42,6 +44,10 @@ public class EntityStats : MonoBehaviour
         if (settings == null)
         {
             settings = GameObject.FindGameObjectWithTag("Settings").GetComponent<Settings>();
+        }
+        if(uiManager == null)
+        {
+            uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>(); // grabbing the player manager to mod event bar
         }
 
     }
@@ -65,9 +71,9 @@ public class EntityStats : MonoBehaviour
             health -= damage;
 
             //modding healthbar to match health
-            if(healthBar)
+            if(bossBar)
             {
-                var healthBarRect = healthBar.GetComponent<RectTransform>();
+                var healthBarRect = uiManager.healthBar.GetComponent<RectTransform>();
 
                 healthBarRect.sizeDelta = new Vector2((health / totalHealth) * 100, 10);
             }
@@ -92,7 +98,7 @@ public class EntityStats : MonoBehaviour
             //modding healthbar to reset health
             if (healthBar)
             {
-                var healthBarRect = healthBar.GetComponent<RectTransform>();
+                var healthBarRect = uiManager.healthBar.GetComponent<RectTransform>();
 
                 healthBarRect.sizeDelta = new Vector2(100, 10);
             }

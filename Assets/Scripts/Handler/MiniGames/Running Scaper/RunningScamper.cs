@@ -57,11 +57,18 @@ public class RunningScamper : GameHandler
 
     bool isAllLosers = false;
 
+    private CamViewMObjs cameraV;
     
     // Start is called before the first frame update
     void Start()
     {
         allowCameraFollow = true;
+
+        //Get the cam for this minigame
+        GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
+        cameraV = cam.GetComponent<CamViewMObjs>();
+        cameraV.setCamToMinigame();
+
         //Call to teleport player's to their positions
         //Get UI manager
         //uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
@@ -156,6 +163,7 @@ public class RunningScamper : GameHandler
     IEnumerator setUp()
     {
         yield return new WaitForSeconds(5);
+
         //Call main game methods
         //Set default map array to use
         gridMaps = setMapArray();
@@ -260,6 +268,8 @@ public class RunningScamper : GameHandler
             player[i].GetComponent<PlayerMovement>().GameSwitch(false);
         }
 
+        //Reset cam
+        cameraV.disableCamToMinigame();
         StartCoroutine(EndGame(winner));
     }
 

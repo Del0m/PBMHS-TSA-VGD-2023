@@ -14,6 +14,7 @@ public class PlayerUIManager : MonoBehaviour
     public GameObject boardUI;
     public GameObject minigameUI;
     public TextMeshProUGUI countdownUI; // to be counting down before every minigame to show the player when it starts!
+    public GameObject successUI; // ui to be played at the end of a game
 
     [Header("DiceUI Elements")]
     public GameObject diceSprite;
@@ -21,8 +22,9 @@ public class PlayerUIManager : MonoBehaviour
 
     [Header("Game Specific UI")]
     public GameObject healthBarUI; // health bar for pinata minigame
+    public GameObject healthBar; // bar itself
     public GameObject loseUI; // to be enabled when all players lose the game
-
+    public GameObject scoreLeftUI; // single player mathdash to show end-user how many more they need right.
     public TextMeshProUGUI timeLeftUI; // to tick down
     public bool timesUp;
 

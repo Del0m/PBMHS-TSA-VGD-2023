@@ -79,7 +79,7 @@ public class PlayerControls : MonoBehaviour
                 StartCoroutine(Moving(2)); // begin moving player
             }
         }
-    IEnumerator Moving(int wait) // coroutine to move around the board.
+        IEnumerator Moving(int wait) // coroutine to move around the board.
         {
             hasRan = true; // prevent player from running coroutine again
             var diceRoll = Random.Range(1, 7); // pick a number from one to six
