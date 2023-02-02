@@ -243,7 +243,7 @@ public class GameHandler : MonoBehaviour
             //increase level
             spManage.IncreaseLevel();
         }
-        uiManager.ChangeUI(false); // reset the UI
+        uiManager.ChangeUI(false, uiManager.healthBarUI); // reset the UI
         Destroy(gameObject, 1f);
         yield return null;
     }
