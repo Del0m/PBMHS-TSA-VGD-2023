@@ -42,7 +42,7 @@ public class JigsawHole : MonoBehaviour
             if (collision.GetComponent<HoldableItem>().beingHeld == false && taking == true)
             {
                 StartCoroutine(Wait(0.5f));
-                if(collision.GetComponent<HoldableItem>().slotted == false)
+                if(collision.GetComponent<HoldableItem>().slotted == false && collision.GetComponent<JigsawPiece>().imageID == imageID)
                 {
                     Debug.Log("Slotting..");
                     collision.GetComponent<HoldableItem>().slotted = true;

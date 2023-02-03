@@ -51,18 +51,28 @@ public class CameraControl : MonoBehaviour
         fov = innerFov; // set fov to zoom in.
     }
 
+    public void setCamUpdate(bool enable){
+        camMovement = enable;
+        Debug.Log("Setting cam update to " + camMovement);
+    }
 
-    /*
+    public void forgetDestination(){
+        destination = null;
+        Debug.Log("Forgetting last destination");
+    }
+
+    private bool camMovement = false;
+    
     // Update is called once per frame; moves camera to intended location
     void Update()
     {
-        if(!singlePlayer) // not needed in single player
+        if(!singlePlayer && camMovement && destination != null) // not needed in single player
         {
             TranslateCamera(multiplier); // shift camera
             ZoomCamera(toZoom, fov, multiplier); // zoom camera.
         }
     }
-    */
+    
     private void TranslateCamera(int factor) // move camera through x-y axis.
     {
         Debug.Log("Moving!");
@@ -72,14 +82,14 @@ public class CameraControl : MonoBehaviour
     private void ZoomCamera(bool zoom, int view, int factor) // changes field of view on the camera.
     {
         print(zoom);
-        if(zoom == true && cam.fieldOfView < view) // for zooming out
+        if(zoom == true && cam.orthographicSize < view) // for zooming out
         {
-            cam.fieldOfView += Time.deltaTime * factor;
+            cam.orthographicSize += Time.deltaTime * factor;
             Debug.Log("Zooming out!");
         }
-        else if(zoom == false && cam.fieldOfView > view) // zooming back in
+        else if(zoom == false && cam.orthographicSize > view) // zooming back in
         {
-            cam.fieldOfView -= Time.deltaTime * factor;
+            cam.orthographicSize -= Time.deltaTime * factor;
             Debug.Log("Zooming in!");
         }
     }

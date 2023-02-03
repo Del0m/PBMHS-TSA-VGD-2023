@@ -184,28 +184,28 @@ public class GameHandler : MonoBehaviour
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControl>();
         cam.TeleportCamera(camPos, fov); // change camera into minigame spot
 
-        player = plrManage.player;
+        var plr = GameObject.FindGameObjectsWithTag("Player");
         teleport = GameObject.FindGameObjectsWithTag("Teleport"); // check if null, replace spawns
 
-        for (int i = 0; i < player.Length; i++) // for loop to set all players in correct position for game
+        for (int i = 0; i < plr.Length; i++) // for loop to set all players in correct position for game
         {
             if(!singlePlayer)
             {
-                var playerStat = player[i].GetComponent<PlayerStats>(); // calling player's position
+                var playerStat = plr[i].GetComponent<PlayerStats>(); // calling player's position
                 var movementManager = GameObject.FindGameObjectWithTag("Movement Manager").GetComponent<MovementManager>();
 
                 // moving player back to tile
                 var tile = movementManager.CallTile(playerStat.position);
-                player[i].transform.position = tile.transform.position; // set position for player in board
-                player[i].GetComponent<PlayerMovement>().GameSwitch(false);
+                plr[i].transform.position = tile.transform.position; // set position for player in board
+                plr[i].GetComponent<PlayerMovement>().GameSwitch(false);
 
                 trnManage = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>();
                 trnManage.SetTurn(0);
             }
             else
             {
-                player[i].transform.position = new Vector2(spSpawn.position.x,spSpawn.position.y); // bring player back to map
-                player[i].GetComponent<PlayerMovement>().GameSwitch(false);
+                plr[i].transform.position = new Vector2(spSpawn.position.x,spSpawn.position.y); // bring player back to map
+                plr[i].GetComponent<PlayerMovement>().GameSwitch(false);
                 cam.TeleportCamera(spSpawn, 20); // set position of camera 
                 
             }

@@ -282,9 +282,10 @@ MonoBehaviour:
   turnScript: {fileID: 0}
   gameplayInput: {fileID: 0}
   pauseMenu: {fileID: 0}
-  movementCooldown: 2.5
+  movementCooldown: 0.1
   newTile: {fileID: 0}
   hasRan: 0
+  hasReachedDestination: 0
 --- !u!212 &-8695361002692835325
 SpriteRenderer:
   m_ObjectHideFlags: 0

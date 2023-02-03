@@ -9,10 +9,29 @@ public class DoorMultiplayer : MonoBehaviour
     public PlayerManager manager;
     public TextMeshProUGUI text; 
 
-    private void Update()
-    {
-        
+    public CameraControl cam;
+
+    public GameObject blankScreen;
+
+    [Header("cam params")]
+    public Transform initialDestination;
+    public int inZoom;
+    public int outZoom;
+    public int followingSpeed;
+
+    public float timer = 5f;
+
+    void Start(){
+        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControl>();
+        if(blankScreen == null){
+            Debug.LogError("Blank Screen is not set to " + this.name);
+            return;
+        }
+
+        //Either way turn off the blank screen
+        blankScreen.SetActive(false);
     }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && !starting)
@@ -34,7 +53,34 @@ public class DoorMultiplayer : MonoBehaviour
                 manager.StartMultiplayer();
                 text.text = "Please wait, loading map!";
 
+                StartCoroutine(transitionToMap());
+
             }
         }
+    }
+
+    IEnumerator transitionToMap(){
+
+        //Enable blank screen 
+        blankScreen.SetActive(true);
+
+        //Set camera params
+        StartCoroutine(cam.ModifyCamera(initialDestination, followingSpeed, inZoom, outZoom));
+
+        //Call camera to go to a specified position
+        cam.setCamUpdate(true);
+
+        
+        yield return new WaitForSeconds(timer); // debug the time before release
+
+        //Disable blank screen
+        blankScreen.SetActive(false);
+
+        yield return new WaitForSeconds(2f);
+        //The camera should be on the players
+        cam.setCamUpdate(false);
+
+        Debug.Log("Stoppped the Cam");
+
     }
 }
