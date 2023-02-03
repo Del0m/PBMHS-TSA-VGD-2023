@@ -35,6 +35,8 @@ public class ColorMatch : GameHandler
         uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
 
         StartCoroutine(StartGame(true)); // starting game and bringing players into the game
+        ModifyPlayerStats(true); // decrease player speed
+
         StartCoroutine(DropColors()); 
     }
     public override void IncreaseDifficulty()
@@ -96,7 +98,10 @@ public class ColorMatch : GameHandler
 
     IEnumerator DropColors() // drop colors that ain't the chosen one
     {
-        ModifyPlayerStats(true); // decrease player speed
+        if (player[0].GetComponent<PlayerStats>().speed == originalSpeed)
+        {
+            ModifyPlayerStats(true); // to run again if it hasn't changed yet
+        }
         yield return new WaitForSeconds(5);
 
         var platScript = flagPlatform.GetComponent<MovingPlatform>(); // platform script to move platform above color

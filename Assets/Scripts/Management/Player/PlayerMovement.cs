@@ -52,6 +52,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Particles")]
     public GameObject particlePrefab;
     ParticleSystem particle;
+    [Header("Animation")]
+    public Animator animate;
 
     private void Awake()
     {
@@ -59,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Start()
     {
+        animate = this.GetComponent<Animator>(); // grab animator from player
         // finding settings object
         if(settings == null)
         {
@@ -86,6 +89,10 @@ public class PlayerMovement : MonoBehaviour
     {
         ActCooldown(stat.cooldown);
         DashCooldown(stat.cooldown * 2);
+
+        // animationt stuff
+        AnimationUpdate();
+
         // for movement
         if (canMoveFreely)
         {
@@ -142,7 +149,21 @@ public class PlayerMovement : MonoBehaviour
             canJump = false;
         }
     }
+    public void AnimationUpdate() // update animations for player
+    {
+        animate.SetBool("isAttacking", isAttacking);
+        animate.SetInteger("Movement", (int)xMovementInput);
 
+        if(rb.velocity.x < 0)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if (rb.velocity.x > 0)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+
+        }
+    }
     //Note: dir: true is left or right and false is up or down
     public void setStaticDir(bool dir, float baseSpeed,int jumpP, float increment, float timeToResetSpeed)
     {
@@ -364,7 +385,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Jumping!");
         if(context.performed && canJump == true && canEverJump == true) // ensures its only ran once
         {
-
+            StartCoroutine(JumpRoutine());
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + stat.jumpPower);
             // animating particles here
             SetParticle(new Quaternion(0, 0, -90, 0), false);
@@ -372,6 +393,12 @@ public class PlayerMovement : MonoBehaviour
 
             canJump = false; // turn off jumping to prevent them from jumping again.
         }
+    }
+    public IEnumerator JumpRoutine() // simple routine for the jump animnation
+    {
+        animate.SetBool("Jumping", true);
+        yield return new WaitForSeconds(.5f);
+        animate.SetBool("Jumping", false);
     }
     [Header("Audio")]
     AudioClip playInstance;

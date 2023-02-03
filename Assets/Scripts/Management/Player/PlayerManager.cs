@@ -78,6 +78,7 @@ public class PlayerManager : MonoBehaviour
     }
     public void GameOver()
     {
+
         // siginify in single player that player has lost
         var uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
 

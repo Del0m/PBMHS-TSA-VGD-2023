@@ -55,6 +55,7 @@ public class GameHandler : MonoBehaviour
     }
     public virtual void IncreaseDifficulty() // increase the difficulty of the game in single player
     {
+        multi = spManage.multiplier;
         // put stuff in here in other programs idk
     }
     public void TeleportPlayers() // void to collect all players on the map, and place them in the according location in minigame
@@ -109,6 +110,7 @@ public class GameHandler : MonoBehaviour
     }
     public virtual IEnumerator PreGameRoutine() // routine to run when before the minigame to see if anything needs to be added to the game.
     {
+        uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
         TeleportPlayers(); // teleport players into the game
 
         var scoreArray = new int[player.Length];
@@ -210,7 +212,10 @@ public class GameHandler : MonoBehaviour
             spManage.IncreaseLevel();
         }
         uiManager.ChangeUI(false, uiManager.healthBarUI); // reset the UI
+
+        uiManager.UIPopUpWrapper(uiManager.successUI);
         Destroy(gameObject, 1f);
+
         yield return null;
     }
     public virtual IEnumerator EndGame(bool won) // single player endgame routine
@@ -219,6 +224,7 @@ public class GameHandler : MonoBehaviour
         {
             // increase level values; bring back player
             StartCoroutine(EndGame());
+            StartCoroutine(uiManager.UIPopUp(uiManager.successUI));
         }
         else
         {
@@ -232,7 +238,6 @@ public class GameHandler : MonoBehaviour
             uiManager.UpdateLevel(spManage.level); // updating the player's level in the game
         }
         Destroy(gameObject, 1f);
-
         yield return null;
     }
     public virtual IEnumerator EndGame(int winner) // coroutine to end the game as a player has won.
@@ -271,5 +276,17 @@ public class GameHandler : MonoBehaviour
         Destroy(gameObject, 1f);
 
         yield return null;
+    }
+    public int CheckWinner() // returns the player who got the most points
+    {
+        var highestScore = -9; 
+        for(int i = 0; i < player.Length; i++)
+        {
+            if(highestScore < gameScore[i])
+            {
+                highestScore = gameScore[i];
+            }
+        }
+        return highestScore;
     }
 }

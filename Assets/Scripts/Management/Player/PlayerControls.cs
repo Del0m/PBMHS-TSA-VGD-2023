@@ -72,7 +72,7 @@ public class PlayerControls : MonoBehaviour
     public bool hasRan = false; // start off with all players being able to move.
     public void DiceRoll(InputAction.CallbackContext context) // run when player rolls dice on board
     {
-        if (context.performed && hasRan == false) // makes sure its only ran once
+        if (context.performed && hasRan == false && !stat.singlePlayer) // makes sure its only ran once
         {
             if (turnScript.RunTurn(this.gameObject, stat.turnOrder) == true) //check to see if conditions are met on TurnManager
             {
