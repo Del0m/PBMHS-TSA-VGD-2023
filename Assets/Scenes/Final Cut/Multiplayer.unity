@@ -4590,7 +4590,7 @@ Transform:
   - {fileID: 239173540}
   - {fileID: 635757815}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &278056249
 GameObject:
@@ -4965,7 +4965,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 291681410}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1038, y: -5.940442, z: -100.13915}
+  m_LocalPosition: {x: 38, y: -1005.9404, z: -110.13915}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4975,8 +4975,8 @@ Transform:
   - {fileID: 847979305}
   - {fileID: 1236011154}
   - {fileID: 1736958545}
-  m_Father: {fileID: 1130578517}
-  m_RootOrder: 2
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &296683892
 GameObject:
@@ -12090,7 +12090,7 @@ Transform:
   - {fileID: 748828930}
   - {fileID: 1966404309}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &793855427
 GameObject:
@@ -15573,7 +15573,7 @@ Transform:
   - {fileID: 643650451}
   - {fileID: 849587998}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &966250748
 GameObject:
@@ -17722,9 +17722,8 @@ Transform:
   m_Children:
   - {fileID: 120549237}
   - {fileID: 1797915086}
-  - {fileID: 291681412}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1137608035
 GameObject:
@@ -18364,7 +18363,6 @@ GameObject:
   - component: {fileID: 1167235288}
   - component: {fileID: 1167235287}
   - component: {fileID: 1167235286}
-  - component: {fileID: 1167235289}
   - component: {fileID: 1167235290}
   m_Layer: 5
   m_Name: Dice
@@ -18431,26 +18429,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &1167235289
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1167235284}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 413a37e6b9e83e04480376e097362588, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!111 &1167235290
 Animation:
   m_ObjectHideFlags: 0
@@ -18463,7 +18441,7 @@ Animation:
   m_Animation: {fileID: 7400000, guid: 8a5761ca5aed23c4d9d4efb80501c0fe, type: 2}
   m_Animations: []
   m_WrapMode: 0
-  m_PlayAutomatically: 0
+  m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
 --- !u!1 &1169074448

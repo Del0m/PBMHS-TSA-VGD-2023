@@ -94,6 +94,7 @@ public class PlayerControls : MonoBehaviour
             var movesRemaining = diceRoll;
 
             //UI update
+            turnScript.uiManager.diceSprite.gameObject.GetComponent<Animation>().Play();
             turnScript.uiManager.UpdateDiceUI(movesRemaining);
 
             while (movesRemaining > 0) // keep moving player to next tile until no more moves
