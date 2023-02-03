@@ -69,26 +69,29 @@ public class PlayerControls : MonoBehaviour
             //check distance from the new tile
             if(Vector2.Distance(newTile.position, this.transform.position) > 0){
                 transform.position = Vector2.MoveTowards(this.transform.position, newTile.position, 5 * Time.deltaTime); // move to new position using DeltaTime
+                //hasReachedDestination = false;
             }else{
                 newTile = null;
+                //hasReachedDestination = true;
             }
         }
     }
     //variable for the purpose of moving
     [HideInInspector]
     public bool hasRan = false; // start off with all players being able to move.
+    [HideInInspector]
+    public bool hasReachedDestination = false; // Used to check when 
     public void DiceRoll(InputAction.CallbackContext context) // run when player rolls dice on board
     {
-        if (context.performed && !hasRan && !stat.singlePlayer) // makes sure its only ran once
+        if (context.performed && hasRan == false && !stat.singlePlayer) // makes sure its only ran once
         {
             if (turnScript.RunTurn(this.gameObject, stat.turnOrder) == true) //check to see if conditions are met on TurnManager
             {
-                StartCoroutine(Moving(1)); // begin moving player
+                StartCoroutine(Moving(2)); // begin moving player
             }
         }
         IEnumerator Moving(int wait) // coroutine to move around the board.
         {
-            if(hasRan) { yield break; } // prevent player from making several moves
             hasRan = true; // prevent player from running coroutine again
             var diceRoll = Random.Range(1, 7); // pick a number from one to six
 

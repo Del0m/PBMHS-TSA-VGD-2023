@@ -19,6 +19,7 @@ public class Tile : MonoBehaviour
     public PlayerManager pm;
     public int timeToloadSettings = 3;
     // Start is called before the first frame update
+    private PlayerControls player;
     void Start()
     {
         this.gameObject.tag = "Tile";
@@ -88,6 +89,7 @@ public class Tile : MonoBehaviour
                 if(pm.player[i] == player){
                     Debug.Log("Found player in player manager!");
                     playerIndex = i;
+                    player = null;
                     return true;
                 }
             }
@@ -105,26 +107,35 @@ public class Tile : MonoBehaviour
     //local use only
     int playerIndex;
 
+    IEnumerator waitToBuff(GameObject p){
+        yield return new WaitForSeconds(2f);
+
+        //Give buff and stop
+        if(player.hasReachedDestination){ //has reached should be true if player stays on the tile
+            StartCoroutine(checkSettingParam(p));
+        }
+    }
     void OnTriggerEnter2D(Collider2D collider){
         //Check if it's a player
         if(collider.gameObject.tag == "Player"){
             Debug.Log("FOUND PLAYER");
             //sort player to spot
             if(checkPlayer(collider.gameObject) == true){
-                PlayerControls pc = collider.gameObject.GetComponent<PlayerControls>();
+                player = collider.gameObject.GetComponent<PlayerControls>();
                 //depending on the index move that player to the corresponding spot inside the tile
                 for(int i = 0; i < playerPositions.Length; i++){
                     if(i == playerIndex){
                         //Move player to that new position
                         Debug.Log("Moving to tile");
-                        pc.newTile = playerPositions[i];
-                        pc.hasRan = false;
+                        player.newTile = playerPositions[i];
+                        player.hasRan = false;
                     }
                 }
             }
 
-            //Do something
-            StartCoroutine(checkSettingParam(collider.gameObject));
+            //Start a delay to then give player buff
+            StartCoroutine(waitToBuff(collider.gameObject));
+            
         }
     }
 }
