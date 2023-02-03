@@ -17,11 +17,17 @@ public class DoorMultiplayer : MonoBehaviour
     {
         if (collision.CompareTag("Player") && !starting)
         {
+
             // checking for player input
             var isActing = collision.GetComponent<PlayerMovement>().acting;
             Debug.Log(isActing);
             if (isActing)
             {
+                if (manager.player.Length < 2)
+                {
+                    text.text = "You must have more than one player to start!";
+                    return;
+                }
                 starting = true; // start searching for minigames
 
                 // start the player game

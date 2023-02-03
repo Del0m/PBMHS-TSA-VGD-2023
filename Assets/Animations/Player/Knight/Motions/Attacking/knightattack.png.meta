@@ -43,11 +43,11 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 0
-  spriteMeshType: 0
+  spriteExtrude: 1
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 4
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -120,18 +120,30 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1500
-        width: 500
-        height: 500
+        y: 4342
+        width: 305
+        height: 334
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -15.932836, y: -161.618}
+        - {x: -9.104478, y: -159.3348}
+        - {x: 27.313433, y: -113.67074}
+        - {x: 27.313433, y: 130.63199}
+        - {x: -104.70149, y: 130.63199}
+        - {x: -152.5, y: 110.08317}
+        - {x: -152.5, y: -129.65315}
+        - {x: -129.7388, y: -166.1844}
+        - {x: -72.83582, y: -166.1844}
+        - {x: -70.5597, y: -163.9012}
+        - {x: -70.5597, y: -152.48518}
+        - {x: -66.00746, y: -161.618}
       tessellationDetail: 0
       bones: []
-      spriteID: 19eed5db0d592a54ba89d3d1c33d07d4
-      internalID: -345922650
+      spriteID: 097f221c0e52ff546ae5f4782284b288
+      internalID: 966895228
       vertices: []
       indices: 
       edges: []
@@ -140,19 +152,42 @@ TextureImporter:
       name: knightattack_1
       rect:
         serializedVersion: 2
-        x: 500
-        y: 1500
-        width: 500
-        height: 500
+        x: 0
+        y: 4008
+        width: 305
+        height: 334
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -63.731342, y: -164.55367}
+        - {x: -56.902985, y: -166.83687}
+        - {x: 40.97015, y: -166.83687}
+        - {x: 40.97015, y: 164.22757}
+        - {x: -54.626865, y: 164.22757}
+        - {x: -102.42538, y: 145.96194}
+        - {x: -152.5, y: 45.501015}
+        - {x: -152.5, y: -150.85445}
+        - {x: -143.39552, y: -166.83687}
+        - {x: -75.11194, y: -166.83687}
+        - {x: -72.83582, y: -164.55367}
+        - {x: -72.83582, y: -150.85445}
+        - {x: -72.83582, y: -159.98726}
+      - - {x: -27.313433, y: 13.536172}
+        - {x: -29.589552, y: 15.819375}
+        - {x: -34.141792, y: 15.819375}
+        - {x: -38.69403, y: 20.385782}
+        - {x: -40.97015, y: 18.10258}
+        - {x: -36.41791, y: 20.385782}
+        - {x: -27.313433, y: 11.25297}
+        - {x: -18.208956, y: 13.536172}
+        - {x: -20.485075, y: 11.25297}
+        - {x: -22.761194, y: 13.536172}
       tessellationDetail: 0
       bones: []
-      spriteID: e16ba84bd534da14ba2d18047f4bf58e
-      internalID: -1984933805
+      spriteID: ec7cb1dc68982a2458ab85004c7cd289
+      internalID: -1665912203
       vertices: []
       indices: 
       edges: []
@@ -161,19 +196,32 @@ TextureImporter:
       name: knightattack_2
       rect:
         serializedVersion: 2
-        x: 1000
-        y: 1500
-        width: 500
-        height: 500
+        x: 0
+        y: 3674
+        width: 305
+        height: 334
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -70.5597, y: -151.50664}
+        - {x: -70.5597, y: -158.35625}
+        - {x: -63.731342, y: -165.20586}
+        - {x: -27.313433, y: -167}
+        - {x: -15.932836, y: -167}
+        - {x: -6.828358, y: -149.22343}
+        - {x: 50.074627, y: -21.364058}
+        - {x: 50.074627, y: 156.72578}
+        - {x: -152.5, y: 156.72578}
+        - {x: -152.5, y: -167}
+        - {x: -70.5597, y: -167}
+        - {x: -70.5597, y: -156.07304}
+        - {x: -75.11194, y: -151.50664}
       tessellationDetail: 0
       bones: []
-      spriteID: 4bc7abf94cf3ebd4d8a6529e4623156e
-      internalID: 1732725485
+      spriteID: 896c174f2278f214398c5af53285728f
+      internalID: -19199762
       vertices: []
       indices: 
       edges: []
@@ -182,19 +230,38 @@ TextureImporter:
       name: knightattack_3
       rect:
         serializedVersion: 2
-        x: 1500
-        y: 1500
-        width: 500
-        height: 500
+        x: 0
+        y: 3340
+        width: 305
+        height: 334
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -70.5597, y: -151.0175}
+        - {x: -70.5597, y: -155.58391}
+        - {x: -66.00746, y: -164.71672}
+        - {x: -34.141792, y: -166.99992}
+        - {x: -13.656716, y: -166.99992}
+        - {x: -9.104478, y: -146.4511}
+        - {x: 81.9403, y: -14.0253105}
+        - {x: 81.9403, y: 143.5157}
+        - {x: -152.5, y: 143.5157}
+        - {x: -152.5, y: -166.99992}
+        - {x: -75.11194, y: -166.99992}
+        - {x: -70.5597, y: -162.43352}
+        - {x: -70.5597, y: -153.3007}
+        - {x: -75.11194, y: -148.7343}
+      - - {x: -120.63433, y: 167}
+        - {x: -118.35821, y: 164.06453}
+        - {x: -79.66418, y: 164.06453}
+        - {x: -75.11194, y: 167}
+        - {x: -75.11194, y: 167}
       tessellationDetail: 0
       bones: []
-      spriteID: 5c49cda6e05e1594eaeb6e415d60db87
-      internalID: -1283496228
+      spriteID: 16d6aad9f7569e94798862da6700b9e0
+      internalID: 1800520367
       vertices: []
       indices: 
       edges: []
@@ -203,19 +270,35 @@ TextureImporter:
       name: knightattack_4
       rect:
         serializedVersion: 2
-        x: 2000
-        y: 1500
-        width: 500
-        height: 500
+        x: 0
+        y: 3006
+        width: 305
+        height: 334
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -70.5597, y: -155.09476}
+        - {x: -63.731342, y: -161.94437}
+        - {x: -54.626865, y: -164.22757}
+        - {x: -18.208956, y: -164.22757}
+        - {x: -11.380597, y: -157.37796}
+        - {x: -9.104478, y: -145.96194}
+        - {x: 100.149254, y: 25.27828}
+        - {x: 100.149254, y: 130.30562}
+        - {x: -152.5, y: 130.30562}
+        - {x: -152.5, y: -127.69633}
+        - {x: -145.67165, y: -161.94437}
+        - {x: -129.7388, y: -166.51077}
+        - {x: -70.5597, y: -166.51077}
+        - {x: -70.5597, y: -155.09476}
+        - {x: -79.66418, y: -145.96194}
+        - {x: -68.283585, y: -132.26273}
       tessellationDetail: 0
       bones: []
-      spriteID: 973b2a6dbb118864f8aa4a812ff14475
-      internalID: 794320647
+      spriteID: e211af312c9570c458f0a540ee8394fd
+      internalID: -1238579613
       vertices: []
       indices: 
       edges: []
@@ -225,18 +308,33 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1000
-        width: 500
-        height: 500
+        y: 2672
+        width: 305
+        height: 334
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -75.11194, y: -114.64929}
+        - {x: -70.5597, y: -160.31335}
+        - {x: -61.455223, y: -164.87976}
+        - {x: -4.552239, y: -164.87976}
+        - {x: 111.529854, y: 31.475704}
+        - {x: 118.35821, y: 70.29015}
+        - {x: 118.35821, y: 127.37023}
+        - {x: -118.35821, y: 127.37023}
+        - {x: -152.5, y: 63.440548}
+        - {x: -152.5, y: -105.51648}
+        - {x: -134.29105, y: -167}
+        - {x: -72.83582, y: -167}
+        - {x: -70.5597, y: -164.87976}
+        - {x: -70.5597, y: -155.74695}
+        - {x: -77.38806, y: -148.89734}
       tessellationDetail: 0
       bones: []
-      spriteID: 516a4e4027c8f2b4d9a1804aac7576bd
-      internalID: 1201445144
+      spriteID: 51d24f679c1f1a24ba1af01c8c66153e
+      internalID: -1637821697
       vertices: []
       indices: 
       edges: []
@@ -245,19 +343,33 @@ TextureImporter:
       name: knightattack_6
       rect:
         serializedVersion: 2
-        x: 500
-        y: 1000
-        width: 500
-        height: 500
+        x: 0
+        y: 2338
+        width: 305
+        height: 334
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -13.656716, y: -167}
+        - {x: 29.589552, y: -160.96582}
+        - {x: 141.1194, y: 51.37207}
+        - {x: 141.1194, y: 113.018555}
+        - {x: 81.9403, y: 126.71777}
+        - {x: -106.977615, y: 126.71777}
+        - {x: -125.18657, y: 122.15137}
+        - {x: -152.5, y: 65.07129}
+        - {x: -152.5, y: -133.56738}
+        - {x: -147.94777, y: -167}
+        - {x: -70.5597, y: -167}
+        - {x: -68.283585, y: -163.24902}
+        - {x: -68.283585, y: -158.68262}
+        - {x: -68.283585, y: -167}
       tessellationDetail: 0
       bones: []
-      spriteID: 5af336bf963f0d94c9b51c28149928c0
-      internalID: -776126811
+      spriteID: 2db2260d6a2911b4bbc06bffe0ed5b1f
+      internalID: -1169701259
       vertices: []
       indices: 
       edges: []
@@ -266,19 +378,30 @@ TextureImporter:
       name: knightattack_7
       rect:
         serializedVersion: 2
-        x: 1000
-        y: 1000
-        width: 500
-        height: 500
+        x: 0
+        y: 2004
+        width: 305
+        height: 334
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -59.179104, y: -161.61815}
+        - {x: -47.798508, y: -166.18456}
+        - {x: 13.656716, y: -166.18456}
+        - {x: 152.5, y: 9.62209}
+        - {x: 152.5, y: 53.00295}
+        - {x: 29.589552, y: 130.63185}
+        - {x: -106.977615, y: 130.63185}
+        - {x: -152.5, y: 100.95021}
+        - {x: -152.5, y: -166.18456}
+        - {x: -68.283585, y: -166.18456}
+        - {x: -68.283585, y: -154.76854}
       tessellationDetail: 0
       bones: []
-      spriteID: 77472d339aa410d47adfdf4fc7f53a53
-      internalID: -590376827
+      spriteID: e5418a492fb6bf343b4508878903fe3d
+      internalID: 1178152243
       vertices: []
       indices: 
       edges: []
@@ -287,19 +410,32 @@ TextureImporter:
       name: knightattack_8
       rect:
         serializedVersion: 2
-        x: 1500
-        y: 1000
-        width: 500
-        height: 500
+        x: 0
+        y: 1670
+        width: 305
+        height: 334
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -72.83582, y: -109.7568}
+        - {x: -68.283585, y: -157.70406}
+        - {x: -59.179104, y: -166.83687}
+        - {x: -29.589552, y: -166.83687}
+        - {x: 2.2761195, y: -159.98726}
+        - {x: 152.5, y: 24.952188}
+        - {x: 152.5, y: 84.31547}
+        - {x: 120.63433, y: 129.97952}
+        - {x: -152.5, y: 129.97952}
+        - {x: -152.5, y: -166.83687}
+        - {x: -68.283585, y: -166.83687}
+        - {x: -68.283585, y: -155.42085}
+        - {x: -77.38806, y: -146.28804}
       tessellationDetail: 0
       bones: []
-      spriteID: 6a67aaff3177cbd48b634650eb568ab1
-      internalID: -1343271725
+      spriteID: 66693e7e7dcba87498d53a4414810c79
+      internalID: 1146701309
       vertices: []
       indices: 
       edges: []
@@ -308,19 +444,34 @@ TextureImporter:
       name: knightattack_9
       rect:
         serializedVersion: 2
-        x: 2000
-        y: 1000
-        width: 500
-        height: 500
+        x: 0
+        y: 1336
+        width: 305
+        height: 334
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -72.83582, y: -128.67474}
+        - {x: -66.00746, y: -167}
+        - {x: 13.656716, y: -167}
+        - {x: 138.84329, y: 47.131893}
+        - {x: 138.84329, y: 74.530334}
+        - {x: 127.462685, y: 79.09674}
+        - {x: 106.977615, y: 79.09674}
+        - {x: -20.485075, y: 127.04401}
+        - {x: -129.7388, y: 127.04401}
+        - {x: -152.5, y: 120.1944}
+        - {x: -152.5, y: -167}
+        - {x: -72.83582, y: -167}
+        - {x: -68.283585, y: -162.92279}
+        - {x: -68.283585, y: -158.35638}
+        - {x: -75.11194, y: -149.22357}
       tessellationDetail: 0
       bones: []
-      spriteID: d2ccc6d1e435e92418fc9f065f2d784f
-      internalID: -900021017
+      spriteID: 544c92dcac4331e42abcb71b0d800016
+      internalID: -1471861799
       vertices: []
       indices: 
       edges: []
@@ -330,18 +481,33 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 500
-        width: 500
-        height: 500
+        y: 1002
+        width: 305
+        height: 334
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -63.731342, y: -166.99998}
+        - {x: 18.208956, y: -166.99998}
+        - {x: 113.80597, y: -4.892568}
+        - {x: 113.80597, y: 129.81642}
+        - {x: -102.42538, y: 129.81642}
+        - {x: -152.5, y: 45.3379}
+        - {x: -152.5, y: -166.99998}
+        - {x: -70.5597, y: -166.99998}
+        - {x: -70.5597, y: -153.30077}
+        - {x: -70.5597, y: -160.15038}
+      - - {x: -116.08209, y: 167}
+        - {x: -113.80597, y: 164.06445}
+        - {x: -77.38806, y: 164.06445}
+        - {x: -72.83582, y: 167}
+        - {x: -72.83582, y: 167}
       tessellationDetail: 0
       bones: []
-      spriteID: 8d4a941863d717745b5d87dbc05a3ea0
-      internalID: 1424649323
+      spriteID: cc76514ed18faca408329213fe8f07c7
+      internalID: 112251782
       vertices: []
       indices: 
       edges: []
@@ -350,19 +516,32 @@ TextureImporter:
       name: knightattack_11
       rect:
         serializedVersion: 2
-        x: 500
-        y: 500
-        width: 500
-        height: 500
+        x: 0
+        y: 668
+        width: 305
+        height: 334
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -70.5597, y: -155.0947}
+        - {x: -66.00746, y: -164.22751}
+        - {x: -15.932836, y: -166.51071}
+        - {x: -11.380597, y: -155.0947}
+        - {x: -9.104478, y: -145.96188}
+        - {x: 56.902985, y: -34.08493}
+        - {x: 56.902985, y: 157.70413}
+        - {x: -152.5, y: 157.70413}
+        - {x: -152.5, y: -166.51071}
+        - {x: -70.5597, y: -166.51071}
+        - {x: -70.5597, y: -155.0947}
+        - {x: -77.38806, y: -148.24509}
+        - {x: -75.11194, y: -111.71384}
       tessellationDetail: 0
       bones: []
-      spriteID: 19bbc72f5909d904c95fa2cfab768183
-      internalID: 1523731486
+      spriteID: 5d27d1647e6c51d469a2a4d55508675c
+      internalID: 1603705565
       vertices: []
       indices: 
       edges: []
@@ -371,19 +550,53 @@ TextureImporter:
       name: knightattack_12
       rect:
         serializedVersion: 2
-        x: 1000
-        y: 500
-        width: 500
-        height: 500
+        x: 0
+        y: 334
+        width: 305
+        height: 334
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -70.5597, y: -151.18065}
+        - {x: -70.5597, y: -158.03026}
+        - {x: -66.00746, y: -164.87987}
+        - {x: -36.41791, y: -167}
+        - {x: -13.656716, y: -167}
+        - {x: 4.552239, y: -164.87987}
+        - {x: 43.24627, y: -7.338852}
+        - {x: 43.24627, y: 70.290054}
+        - {x: 27.313433, y: 115.95412}
+        - {x: 9.104478, y: 167}
+        - {x: -6.828358, y: 167}
+        - {x: -9.104478, y: 166.18459}
+        - {x: -18.208956, y: 145.63576}
+        - {x: -18.208956, y: 86.27248}
+        - {x: -15.932836, y: 72.57326}
+        - {x: -18.208956, y: 70.290054}
+        - {x: -18.208956, y: 113.67091}
+        - {x: -38.69403, y: 127.37013}
+        - {x: -100.149254, y: 131.93654}
+        - {x: -152.5, y: 56.590836}
+        - {x: -152.5, y: -167}
+        - {x: -72.83582, y: -167}
+        - {x: -70.5597, y: -164.87987}
+        - {x: -70.5597, y: -155.74706}
+        - {x: -77.38806, y: -148.89745}
+      - - {x: -40.97015, y: 17.776382}
+        - {x: -34.141792, y: 17.776382}
+        - {x: -31.865671, y: 22.342789}
+        - {x: -25.037313, y: 15.493178}
+        - {x: -20.485075, y: 15.493178}
+        - {x: -15.932836, y: 17.776382}
+        - {x: -20.485075, y: 13.209975}
+        - {x: -29.589552, y: 13.209975}
+        - {x: -29.589552, y: 15.493178}
       tessellationDetail: 0
       bones: []
-      spriteID: e428d7a8457eb864092f8d3cd8a0bd41
-      internalID: -201291985
+      spriteID: 1e539d659b7e25745b9bfb29910e2d64
+      internalID: 1250184868
       vertices: []
       indices: 
       edges: []
@@ -392,145 +605,36 @@ TextureImporter:
       name: knightattack_13
       rect:
         serializedVersion: 2
-        x: 1500
-        y: 500
-        width: 500
-        height: 500
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cb40e2b49356f6144b7874e5a41b4b9c
-      internalID: 1836636555
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: knightattack_14
-      rect:
-        serializedVersion: 2
-        x: 2000
-        y: 500
-        width: 500
-        height: 500
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f366d7b9b9e040a4991a72764addb24b
-      internalID: 1835540345
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: knightattack_15
-      rect:
-        serializedVersion: 2
         x: 0
         y: 0
-        width: 500
-        height: 500
+        width: 305
+        height: 334
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -75.11194, y: -115.30176}
+        - {x: -70.5597, y: -160.96582}
+        - {x: -59.179104, y: -167}
+        - {x: -15.932836, y: -167}
+        - {x: -6.828358, y: -147.2666}
+        - {x: 27.313433, y: -49.088867}
+        - {x: 27.313433, y: 14.84082}
+        - {x: -9.104478, y: 117.58496}
+        - {x: -34.141792, y: 124.43457}
+        - {x: -52.350746, y: 126.71777}
+        - {x: -104.70149, y: 126.71777}
+        - {x: -152.5, y: 78.77051}
+        - {x: -152.5, y: -167}
+        - {x: -72.83582, y: -167}
+        - {x: -70.5597, y: -165.53223}
+        - {x: -70.5597, y: -156.39941}
+        - {x: -77.38806, y: -149.5498}
       tessellationDetail: 0
       bones: []
-      spriteID: 71203f546d3c46d499ba722fa341acac
-      internalID: -2089292934
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: knightattack_16
-      rect:
-        serializedVersion: 2
-        x: 500
-        y: 0
-        width: 500
-        height: 500
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 167d709d20a85f543a3ec76faec7f644
-      internalID: -217529750
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: knightattack_17
-      rect:
-        serializedVersion: 2
-        x: 1000
-        y: 0
-        width: 500
-        height: 500
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 10b170f6c538bcc4fbf6a4401ea43810
-      internalID: 15271387
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: knightattack_18
-      rect:
-        serializedVersion: 2
-        x: 1500
-        y: 0
-        width: 500
-        height: 500
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4857fdbe648a34b4eb89905f7f90a379
-      internalID: -195345517
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: knightattack_19
-      rect:
-        serializedVersion: 2
-        x: 2000
-        y: 0
-        width: 500
-        height: 500
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 74ba7f379581044438145766a71a6f35
-      internalID: 1591107583
+      spriteID: b6e2d8f3094a6a84cae0573008a4f160
+      internalID: -1801645357
       vertices: []
       indices: 
       edges: []
@@ -546,26 +650,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      knightattack_7: -590376827
-      knightattack_11: 1523731486
-      knightattack_3: -1283496228
-      knightattack_16: -217529750
-      knightattack_10: 1424649323
-      knightattack_1: -1984933805
-      knightattack_14: 1835540345
-      knightattack_0: -345922650
-      knightattack_6: -776126811
-      knightattack_2: 1732725485
-      knightattack_15: -2089292934
-      knightattack_9: -900021017
-      knightattack_17: 15271387
-      knightattack_13: 1836636555
-      knightattack_12: -201291985
-      knightattack_5: 1201445144
-      knightattack_4: 794320647
-      knightattack_8: -1343271725
-      knightattack_18: -195345517
-      knightattack_19: 1591107583
+      knightattack_7: 1178152243
+      knightattack_11: 1603705565
+      knightattack_3: 1800520367
+      knightattack_10: 112251782
+      knightattack_1: -1665912203
+      knightattack_0: 966895228
+      knightattack_6: -1169701259
+      knightattack_2: -19199762
+      knightattack_9: -1471861799
+      knightattack_13: -1801645357
+      knightattack_12: 1250184868
+      knightattack_5: -1637821697
+      knightattack_4: -1238579613
+      knightattack_8: 1146701309
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4021387965015513840}
   - component: {fileID: 5025792139998733991}
   - component: {fileID: 401201732200751557}
-  - component: {fileID: 5746664718902076547}
+  - component: {fileID: 5677695743363287365}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -34,7 +34,7 @@ Transform:
   m_GameObject: {fileID: 2609490234402768870}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6087907061578244499}
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canJump: 0
-  canEverJump: 0
+  canEverJump: 1
   fallThrough: 0
   rb: {fileID: 0}
   acting: 0
@@ -240,6 +240,26 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: ad25a645-3b42-4312-bf12-0b0e90a64743
     m_ActionName: Gameplay/Increment[/Keyboard/x]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b59557f9-d72d-4d36-af30-1577caf14c40
+    m_ActionName: Gameplay/Join[/Keyboard/space,/DualShock4GamepadHID/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -3255879220076682217}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: PauseGame
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: eecb444e-871e-4709-beb9-16ecd03c0d67
+    m_ActionName: Gameplay/Pause[/DualShock4GamepadHID/start,/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -261,6 +281,7 @@ MonoBehaviour:
   managerObject: {fileID: 0}
   turnScript: {fileID: 0}
   gameplayInput: {fileID: 0}
+  movementCooldown: 2.5
   newTile: {fileID: 0}
   hasRan: 0
 --- !u!212 &-8695361002692835325
@@ -304,12 +325,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b3b6f6140811f7a408e52f89ce189bc6, type: 3}
+  m_Sprite: {fileID: 966895228, guid: 7987a8d212981714bb666f9d79d62776, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 3, y: 4.5}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -452,7 +473,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!61 &5746664718902076547
+--- !u!61 &5677695743363287365
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -465,18 +486,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.20423669, y: -0.061227962}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.78, y: 4.7}
-    newSize: {x: 3, y: 4.5}
+    oldSize: {x: 3.059492, y: 3.3400002}
+    newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3, y: 4.5}
+  m_Size: {x: 0.5675684, y: 0.87754405}
   m_EdgeRadius: 0
 --- !u!1 &2723512089463554615
 GameObject:
@@ -504,7 +525,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2723512089463554615}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.991, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -524,7 +545,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -2}
+  m_Offset: {x: -0.23637995, y: -1.4390495}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -535,7 +556,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 1}
+  m_Size: {x: 0.3787325, y: 0.17377996}
   m_EdgeRadius: 0
 --- !u!114 &2007044718087343452
 MonoBehaviour:

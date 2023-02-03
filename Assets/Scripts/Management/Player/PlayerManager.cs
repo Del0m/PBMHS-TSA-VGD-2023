@@ -18,6 +18,9 @@ public class PlayerManager : MonoBehaviour
     public Transform[] spawn; // spawn player in correct spot
     public Transform waitSpawn; // spawn player in waiting room
     public GameObject[] player; // player append variable
+
+    [Header("Player Passdowns")] // pass down variables to players
+    public GameObject pauseMenu;
     [Header("Debug")]
     public bool miniGameTesting = false;
     private void Start()
@@ -39,7 +42,9 @@ public class PlayerManager : MonoBehaviour
 
         // add their correct turn order as well
         Debug.Log("Player Length is:" + (player.Length - 1).ToString());
-        input.gameObject.GetComponent<PlayerStats>().turnOrder = player.Length - 1; 
+        input.gameObject.GetComponent<PlayerStats>().turnOrder = player.Length - 1;
+
+        input.gameObject.GetComponent<PlayerControls>().pauseMenu = pauseMenu; // pass to player
     }
     public void SinglePlayer(PlayerInput input)
     {
@@ -65,6 +70,7 @@ public class PlayerManager : MonoBehaviour
 
             plr.transform.position = spawn[playerSpawn].position; // move players to map
         }
+        turn.SetTurn(0);
     }
     public void MultiPlayer(PlayerInput input)
     {

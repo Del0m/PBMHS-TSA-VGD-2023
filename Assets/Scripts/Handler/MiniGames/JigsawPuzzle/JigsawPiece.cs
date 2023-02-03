@@ -15,6 +15,10 @@ public class JigsawPiece : HoldableItem
     {
         if(collision.tag == "Player")
         {
+            if(collision.GetComponent<PlayerStats>().turnOrder != imageID) // prevent players from holding other ppl's puzzles
+            {
+                return;
+            }
             if(collision.GetComponent<PlayerMovement>().holding == null && collision.GetComponent<PlayerMovement>().acting == true)
             {
                 Debug.Log("Attempting to run coroutine!");

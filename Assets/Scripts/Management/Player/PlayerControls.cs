@@ -26,6 +26,8 @@ public class PlayerControls : MonoBehaviour
 
     private GameObject turnUI;
 
+    public GameObject pauseMenu; // to be passed from player maanger
+
     [Header("Debug")]
     public float movementCooldown = 2.5f;
 
@@ -62,7 +64,7 @@ public class PlayerControls : MonoBehaviour
     private void Update()
     {
 
-        if(newTile != null)
+        if(newTile != null && turnScript.RunTurn(this.gameObject, stat.turnOrder))
         {
             //check distance from the new tile
             if(Vector2.Distance(newTile.position, this.transform.position) > 0){
@@ -115,6 +117,15 @@ public class PlayerControls : MonoBehaviour
             //newTile = null; // to prevent the player from moving towards the tile in the middle of the game
 
             hasRan = false; // allow player to roll again, but their turn has moved, so they won't be able to.
+        }
+    }
+    public void PauseGame(InputAction.CallbackContext ctx)
+    {
+        if(ctx.performed)
+        {
+            var pause = pauseMenu.GetComponent<PauseMenu>();
+
+            pause.PauseGame();
         }
     }
 }

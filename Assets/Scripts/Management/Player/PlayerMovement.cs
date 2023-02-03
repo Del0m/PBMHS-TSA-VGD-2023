@@ -156,11 +156,11 @@ public class PlayerMovement : MonoBehaviour
 
         if(rb.velocity.x < 0)
         {
-            this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            this.gameObject.transform.localScale = new Vector3(-Mathf.Abs(gameObject.transform.localScale.x), gameObject.transform.localScale.y, 1);
         }
         else if (rb.velocity.x > 0)
         {
-            this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            this.gameObject.transform.localScale = new Vector3(Mathf.Abs(gameObject.transform.localScale.x), gameObject.transform.localScale.y, 1);
 
         }
     }

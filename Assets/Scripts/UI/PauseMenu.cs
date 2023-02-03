@@ -2,68 +2,51 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static PauseMenu instance;
-
     public GameObject pause;
     private bool isPaused;
 
-    void Start()
-    {
-        if (instance != this)
-        {
-            instance = this;
-        }
+    public Settings setting;
 
-        //find pause menu, close pause menu, print pause menu
-        pause = GameObject.FindGameObjectWithTag("Pause");
-        if (pause != null)
-        {
-            pause.SetActive(false);
-        }
-        else
-        {
-            pause = GameObject.FindGameObjectWithTag("Pause");
-            pause.SetActive(false);
-        }
-        isPaused = false;
-        Debug.Log(pause);
-    }
-    private void Update()
+    public Slider[] slides;
+
+    private void Start()
     {
-        if (instance != this)
-        {
-            instance = this;
-            Debug.Log("Reset Instance!");
-            return;
-        }
-        else if (pause == null)
-        {
-            pause = GameObject.FindGameObjectWithTag("Pause");
-            pause.SetActive(false);
-        }
+        pause = this.gameObject;
+        setting = GameObject.FindGameObjectWithTag("Settings").GetComponent<Settings>();
+
+        SetSliders();
+
     }
-    public void restartLevel()
+    public void SetSliders() // on start up set slides to proper locales
     {
-        // Is called to show a game over    
-        SceneManager.LoadScene(2);
+        slides[0].value = setting.masterVolume * 100;
+        slides[1].value = setting.musicVolume * 100;
+        slides[2].value = setting.soundVolume * 100;
     }
 
-    public void EndOfGame()
+    public void ChangeMaster(Slider slide)
     {
-        // Called to show a end screen
-        StartCoroutine(ChangeScene());
+        var volume = slide.value;
+        setting.ModifyVolume("masterVolume", (volume / 10));
+    }
+    public void ChangeMusic(Slider slide)
+    {
+        var volume = slide.value;
+        setting.ModifyVolume("musicVolume", (volume / 10));
+    }
+    public void ChangeSoundEffect(Slider slide)
+    {
+        var volume = slide.value;
+        setting.ModifyVolume("soundVolume", (volume / 10));
     }
 
-    IEnumerator ChangeScene()
-    {
-        yield return new WaitForSeconds(1.2f);
-        SceneManager.LoadScene(1);
-    }
     //following is for pausemenu
-    public void PauseGame(InputAction.CallbackContext context)
+    public void PauseGame()
     {
         //stops all time dependent variables in the game
 
@@ -73,6 +56,10 @@ public class PauseMenu : MonoBehaviour
             pause.gameObject.SetActive(true);
             Time.timeScale = 0.0000001f;
             print("pausing!");
+
+            // put eventsystem onto master volume
+            var _event = EventSystem.current;
+            _event.SetSelectedGameObject(slides[0].gameObject);
         }
         else
         {
@@ -80,10 +67,5 @@ public class PauseMenu : MonoBehaviour
             Time.timeScale = 1f;
         }
 
-    }
-    public void QuitGame()
-    {
-        Debug.Log("Disabling the Application!");
-        Application.Quit();
     }
 }

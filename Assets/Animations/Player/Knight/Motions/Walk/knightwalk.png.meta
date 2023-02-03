@@ -1,0 +1,512 @@
+fileFormatVersion: 2
+guid: c14400fbf416b62489e43d144865e868
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: knightwalk_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 4000
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -96.49123, y: -242.91989}
+        - {x: -26.31579, y: -245.11716}
+        - {x: -19.736841, y: -238.52536}
+        - {x: -15.350877, y: -227.53903}
+        - {x: -21.929825, y: -216.5527}
+        - {x: 37.2807, y: -25.390594}
+        - {x: 37.2807, y: 14.160186}
+        - {x: 2.1929824, y: 66.89456}
+        - {x: -17.54386, y: 178.95511}
+        - {x: -57.017544, y: 192.1387}
+        - {x: -179.82455, y: 192.1387}
+        - {x: -232.45615, y: 119.62894}
+        - {x: -232.45615, y: -249.51169}
+        - {x: -98.68421, y: -249.51169}
+        - {x: -105.26316, y: -234.13083}
+        - {x: -116.22807, y: -223.1445}
+      - - {x: -54.824562, y: 11.96292}
+        - {x: -50.438595, y: 5.3711233}
+        - {x: -48.245613, y: 5.3711233}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 415318ff34a80e443bd0f014c599b495
+      internalID: 1452684500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knightwalk_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3500
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -192.98245, y: 194.21393}
+        - {x: -221.49123, y: 123.90143}
+        - {x: -221.49123, y: -249.63373}
+        - {x: 46.05263, y: -249.63373}
+        - {x: 46.05263, y: 66.77252}
+        - {x: -6.5789475, y: 194.21393}
+      - - {x: -188.5965, y: -47.48529}
+        - {x: -188.5965, y: -36.498962}
+        - {x: -186.4035, y: -34.301697}
+        - {x: -188.5965, y: -29.907167}
+        - {x: -188.5965, y: -51.87982}
+        - {x: -186.4035, y: -49.682556}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8087075dd097bb4db45a2d877afe5d9
+      internalID: -1277708280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knightwalk_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3000
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -6.5789475, y: 66.65048}
+        - {x: 6.5789475, y: 128.17392}
+        - {x: 0, y: 169.92197}
+        - {x: -76.75439, y: 194.09189}
+        - {x: -111.8421, y: 194.09189}
+        - {x: -199.5614, y: 130.37119}
+        - {x: -195.17545, y: 119.38486}
+        - {x: -177.63158, y: 82.03134}
+        - {x: -221.49123, y: 20.507902}
+        - {x: -221.49123, y: -249.75577}
+        - {x: 46.05263, y: -249.75577}
+        - {x: 46.05263, y: 9.521574}
+        - {x: 8.77193, y: 73.24228}
+      - - {x: -188.5965, y: -41.015533}
+        - {x: -186.4035, y: -56.396393}
+        - {x: -184.21053, y: -54.199127}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 049877e9a9bd49c4b951e6dedc2eca7f
+      internalID: 441201336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knightwalk_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2500
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 39.473682, y: -245.48328}
+        - {x: 46.05263, y: -107.05554}
+        - {x: 46.05263, y: 7.2022676}
+        - {x: 17.54386, y: 103.88195}
+        - {x: -13.157895, y: 196.16711}
+        - {x: -122.807014, y: 196.16711}
+        - {x: -197.36842, y: 132.44641}
+        - {x: -201.75438, y: 114.86828}
+        - {x: -219.29825, y: 53.344845}
+        - {x: -219.29825, y: -186.1571}
+        - {x: -186.4035, y: -249.8778}
+        - {x: -94.29825, y: -249.8778}
+        - {x: -89.91228, y: -238.89148}
+        - {x: -61.403507, y: -249.8778}
+        - {x: 26.31579, y: -249.8778}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 783f283ffd0da464ba7e86c8790482f8
+      internalID: 944215940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knightwalk_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2000
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -138.1579, y: 193.84767}
+        - {x: -219.29825, y: 136.71877}
+        - {x: -219.29825, y: 134.5215}
+        - {x: -186.4035, y: 79.58986}
+        - {x: -155.70175, y: 57.617203}
+        - {x: -217.10527, y: 62.011734}
+        - {x: -219.29825, y: 53.22267}
+        - {x: -219.29825, y: -186.27928}
+        - {x: -192.98245, y: -243.40819}
+        - {x: -188.5965, y: -249.99998}
+        - {x: 46.05263, y: -249.99998}
+        - {x: 46.05263, y: 156.49416}
+        - {x: 8.77193, y: 193.84767}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55a5f08f9eb502e46b4db338ea8f05b6
+      internalID: 792173112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knightwalk_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1500
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -138.1579, y: 193.72563}
+        - {x: -206.14035, y: 116.821335}
+        - {x: -201.75438, y: 101.440475}
+        - {x: -184.21053, y: 75.07329}
+        - {x: -221.49123, y: 0.36625564}
+        - {x: -221.49123, y: -131.46968}
+        - {x: -151.3158, y: -250}
+        - {x: 17.54386, y: -250}
+        - {x: 46.05263, y: -171.02046}
+        - {x: 46.05263, y: 97.045944}
+        - {x: 8.77193, y: 193.72563}
+      - - {x: -89.91228, y: -208.37398}
+        - {x: -78.947365, y: -186.40132}
+        - {x: -81.14035, y: -179.80952}
+        - {x: -83.333336, y: -188.59859}
+        - {x: -81.14035, y: -190.79585}
+        - {x: -81.14035, y: -219.3603}
+        - {x: -83.333336, y: -217.16304}
+      - - {x: -43.85965, y: 6.9580526}
+        - {x: -41.666668, y: 2.5635211}
+        - {x: -39.473682, y: 2.5635211}
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc8bf682b78441a4bade68a94c7c47c6
+      internalID: -1633991596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knightwalk_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1000
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -28.508772, y: 191.40625}
+        - {x: -162.2807, y: 191.40625}
+        - {x: -221.49123, y: 116.69923}
+        - {x: -221.49123, y: -103.027336}
+        - {x: -214.91228, y: -107.42187}
+        - {x: -171.05263, y: -120.60546}
+        - {x: -155.70175, y: -109.61913}
+        - {x: -151.3158, y: -107.42187}
+        - {x: -153.50877, y: -109.61913}
+        - {x: -162.2807, y: -116.21093}
+        - {x: -160.08772, y: -228.27147}
+        - {x: -133.77193, y: -248.04686}
+        - {x: -125, y: -250}
+        - {x: 21.929825, y: -250}
+        - {x: 46.05263, y: -164.55077}
+        - {x: 46.05263, y: 44.18946}
+        - {x: -2.1929824, y: 184.81445}
+      - - {x: -92.10526, y: -212.89061}
+        - {x: -83.333336, y: -197.50975}
+        - {x: -83.333336, y: -193.11522}
+        - {x: -78.947365, y: -186.52342}
+        - {x: -81.14035, y: -179.93163}
+        - {x: -83.333336, y: -188.72069}
+        - {x: -81.14035, y: -190.91795}
+        - {x: -81.14035, y: -219.4824}
+        - {x: -85.52631, y: -219.4824}
+        - {x: -85.52631, y: -217.28514}
+      - - {x: -188.5965, y: -41.5039}
+        - {x: -188.5965, y: -50.29296}
+        - {x: -186.4035, y: -50.29296}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 421720fef27ded64fb761d3fbd65dd01
+      internalID: 1434854235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knightwalk_7
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 500
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -146.92982, y: 195.67871}
+        - {x: -210.52632, y: 131.95801}
+        - {x: -219.29825, y: 109.98535}
+        - {x: -219.29825, y: -234.98535}
+        - {x: -212.7193, y: -250}
+        - {x: 10.964912, y: -250}
+        - {x: 48.245613, y: -140.50293}
+        - {x: 48.245613, y: 48.461918}
+        - {x: -10.964912, y: 195.67871}
+      - - {x: -98.68421, y: -219.60449}
+        - {x: -98.68421, y: -210.81543}
+        - {x: -92.10526, y: -199.8291}
+        - {x: -92.10526, y: -195.43457}
+        - {x: -87.7193, y: -186.64551}
+        - {x: -87.7193, y: -166.87012}
+        - {x: -89.91228, y: -169.06738}
+        - {x: -87.7193, y: -171.26465}
+        - {x: -87.7193, y: -175.65918}
+        - {x: -83.333336, y: -180.05371}
+        - {x: -83.333336, y: -188.84277}
+        - {x: -81.14035, y: -191.04004}
+        - {x: -81.14035, y: -221.80176}
+        - {x: -83.333336, y: -223.99902}
+        - {x: -83.333336, y: -226.19629}
+        - {x: -85.52631, y: -223.99902}
+      - - {x: -186.4035, y: -32.83691}
+        - {x: -188.5965, y: -41.625973}
+        - {x: -184.21053, y: -54.809566}
+      - - {x: -70.17544, y: 250}
+        - {x: -67.98245, y: 246.21582}
+        - {x: -8.77193, y: 246.21582}
+        - {x: -4.385965, y: 250}
+        - {x: -4.385965, y: 250}
+      tessellationDetail: 0
+      bones: []
+      spriteID: c031331222c38d549948f2046aeb155e
+      internalID: 992126485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: knightwalk_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -30.701754, y: -248.29102}
+        - {x: 2.1929824, y: -239.50195}
+        - {x: 37.2807, y: -52.734375}
+        - {x: 37.2807, y: 15.380859}
+        - {x: 6.5789475, y: 72.509766}
+        - {x: -17.54386, y: 70.3125}
+        - {x: -26.31579, y: 171.38672}
+        - {x: -48.245613, y: 191.16211}
+        - {x: -162.2807, y: 191.16211}
+        - {x: -217.10527, y: 107.666016}
+        - {x: -217.10527, y: 103.271484}
+        - {x: -232.45615, y: 54.93164}
+        - {x: -232.45615, y: -182.37305}
+        - {x: -221.49123, y: -250}
+        - {x: -98.68421, y: -250}
+        - {x: -109.649124, y: -228.51562}
+        - {x: -94.29825, y: -246.09375}
+      - - {x: -50.438595, y: 6.591797}
+        - {x: -54.824562, y: 10.986328}
+        - {x: -54.824562, y: 8.7890625}
+        - {x: -50.438595, y: 4.3945312}
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd139d49c3b5a184e85b63b9be1b9bc9
+      internalID: 2057590829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      knightwalk_8: 2057590829
+      knightwalk_0: 1452684500
+      knightwalk_6: 1434854235
+      knightwalk_7: 992126485
+      knightwalk_2: 441201336
+      knightwalk_5: -1633991596
+      knightwalk_1: -1277708280
+      knightwalk_3: 944215940
+      knightwalk_4: 792173112
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
