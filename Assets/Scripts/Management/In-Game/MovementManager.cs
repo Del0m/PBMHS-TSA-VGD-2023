@@ -36,7 +36,6 @@ public class MovementManager : MonoBehaviour
             {
                 Debug.LogError("Issue in finding tile " + i);
             }
-            Debug.Log("collecting tile " + i);
            localTile[i] = GameObject.Find(i.ToString()).transform;
         }
         //Debug.LogError(localTile[1]);

@@ -8,13 +8,13 @@ using UnityEngine.UI;
 
 public class TurnManager : MonoBehaviour
 {
-    private int currentTurn = 0;
+    public int currentTurn = 0;
     public int roundsElapsed = 0;
 
 
     //manage the minigames
 
-    static MiniGameManager miniGameScript;
+    public MiniGameManager miniGameScript;
 
     //Get player manager
     public PlayerManager pm;

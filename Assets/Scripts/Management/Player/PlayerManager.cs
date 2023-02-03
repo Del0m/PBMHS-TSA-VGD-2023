@@ -16,6 +16,7 @@ public class PlayerManager : MonoBehaviour
 
     [Header("Player")]
     public Transform[] spawn; // spawn player in correct spot
+    public Transform waitSpawn; // spawn player in waiting room
     public GameObject[] player; // player append variable
     [Header("Debug")]
     public bool miniGameTesting = false;
@@ -55,12 +56,25 @@ public class PlayerManager : MonoBehaviour
         movement.rb = input.gameObject.GetComponent<Rigidbody2D>();
         movement.GameSwitch(false);
     }
-    public void MultiPlayer(PlayerInput input) // Move player in select location
+    public void StartMultiplayer() // Move player in select location
     {
-        // get player turn order to spawn them in correct location
-        var playerOrder = input.gameObject.GetComponent<PlayerStats>().turnOrder;
-        
-        input.gameObject.transform.position = spawn[playerOrder].position;
+        for(int i = 0; i < player.Length; i++)
+        {
+            var plr = player[i].gameObject;
+            var playerSpawn = plr.GetComponent<PlayerStats>().turnOrder;
+
+            plr.transform.position = spawn[playerSpawn].position; // move players to map
+        }
+    }
+    public void MultiPlayer(PlayerInput input)
+    {
+        input.gameObject.transform.position = waitSpawn.transform.position;
+
+        // allowing player movement
+        var movement = input.gameObject.GetComponent<PlayerMovement>();
+
+        movement.rb = input.gameObject.GetComponent<Rigidbody2D>();
+        movement.GameSwitch(true);
     }
 
     public IEnumerator StartGame() // start the game, run DisableJoin
@@ -71,12 +85,16 @@ public class PlayerManager : MonoBehaviour
 
         turn.SetTurn(0); //allow players to begin doing their turns
         // ^ to be changed to after cutscene overlooking map
+
+        // multiplayer procedure begins here
+        StartMultiplayer();
+
     }
     private void DisableJoin() // disable players joining the game.
     {
         manager.DisableJoining(); // disables joining from the players end
     }
-    public void GameOver()
+    public void GameOver() // for single player
     {
         //Reset turn order
         turn.SetTurn(0);
