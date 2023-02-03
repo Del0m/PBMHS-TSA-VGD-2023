@@ -9,20 +9,33 @@ public class CamViewMObjs : MonoBehaviour
     public float delay = 10f;
     public Vector3 offSet = new Vector3(0, 0, -25);
 
-    private GameHandler gameH;
+    private RunningScamper gameH;
+    private PlayerManager pm;
 
     public List<GameObject> forgottenTargets; //used to not track a player again
 
+    bool isBoard = true;
+
     private void Start()
     {
-        //Get players and define as targets
-        GameObject gh = GameObject.FindGameObjectWithTag("Minigame");
-        gameH = gh.GetComponent<GameHandler>();
-        
-        findPlayers();
+        findPlayersMinigame();
     }
 
-    bool findPlayers(){
+    public void setCamToMinigame(){
+        isBoard = false;
+        //Get players and define as targets
+        GameObject gh = GameObject.FindGameObjectWithTag("Minigame");
+        gameH = gh.GetComponent<RunningScamper>();
+    }
+
+    public void disableCamToMinigame(){
+        isBoard = true;
+        pm = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>();
+        gameH = null;
+        targets.Clear();
+    }
+
+    bool findPlayersMinigame(){
         if(gameH != null){
             if(gameH.player.Length > 0 && gameH.allowCameraFollow == true){
                 for(int i = 0; i < gameH.player.Length; i++)
@@ -47,12 +60,34 @@ public class CamViewMObjs : MonoBehaviour
         return false;
     }
 
+    bool findPlayers(){
+
+        if(pm != null){
+            if(pm.player.Length > 0){
+                for(int i = 0; i < pm.player.Length; i++){
+                    //Add players from pm to be as targets
+                    targets.Add(pm.player[i].transform);
+                }
+
+                return true;
+            }
+
+            Debug.LogError("No player found in player manager!");
+            return false;
+        }
+
+        return false;
+    }
+
 
     private void LateUpdate()
     {
         if(targets.Count == 0)
         {
-            findPlayers();
+            if(isBoard)
+                findPlayers();
+            else
+                findPlayersMinigame();
             return;
         }
 

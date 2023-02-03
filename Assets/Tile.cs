@@ -19,11 +19,11 @@ public class Tile : MonoBehaviour
     public PlayerManager pm;
     public int timeToloadSettings = 3;
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         this.gameObject.tag = "Tile";
         mgm = GameObject.FindGameObjectWithTag("Mini Game Manager").GetComponent<MiniGameManager>();
-        pm = GameObject.FindGameObjectWithTag("PlayerManager").GetComponent<PlayerManager>();
+        pm = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>();
         if(mgm == null){
             Debug.LogError("Can't find mini game manager in scene!");  
             return;     
@@ -46,15 +46,18 @@ public class Tile : MonoBehaviour
             StopAllCoroutines();
         }
 
+        if(buffAmount <= 0)
+        {
+            Debug.Log(this.name + " doesn't have a buff to add!");
+            StopAllCoroutines();
+        }
+
         //Check enum from tile settings
         switch((int)tType){
             case 0: // free Win to that player
                 ps.wins++;
                 break;
-            case 1: //Call to start a minigame
-                StartCoroutine(mgm.StartMiniGame());
-                break;
-            case 2: //Give a buff to the player
+            case 1: //Give a buff to the player
                 switch((int)bType){
                     case 0: //
                         ps.speed += buffAmount;
@@ -69,13 +72,17 @@ public class Tile : MonoBehaviour
                 break;
         }
 
+        Debug.Log("Tile Choise is [" + tType + "," + bType + "]");
+
         //Stop coroutine
         StopAllCoroutines();
     }
 
     bool checkPlayer(GameObject player){
 
-        if(player != null && pm != null){
+        if(pm != null && player != null){
+
+            playerIndex = -1;
 
             for(int i = 0; i < pm.player.Length; i++){
                 if(pm.player[i] == player){
@@ -85,11 +92,13 @@ public class Tile : MonoBehaviour
                 }
             }
 
-            Debug.LogError("Player doesn't exist in player manager!");
-            return false;
-
+            if(playerIndex == -1){
+                Debug.LogError("Player doesn't exist in player manager!");
+                return false;
+            }
         }
 
+        Debug.Log("can't find Player or the player manager");
         return false;
     }
 
@@ -99,13 +108,15 @@ public class Tile : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider){
         //Check if it's a player
         if(collider.gameObject.tag == "Player"){
+            Debug.Log("FOUND PLAYER");
             //sort player to spot
-            if(checkPlayer(collider.gameObject)){
+            if(checkPlayer(collider.gameObject) == true){
                 PlayerControls pc = collider.gameObject.GetComponent<PlayerControls>();
                 //depending on the index move that player to the corresponding spot inside the tile
                 for(int i = 0; i < playerPositions.Length; i++){
                     if(i == playerIndex){
                         //Move player to that new position
+                        Debug.Log("Moving to tile");
                         pc.newTile = playerPositions[i];
                         pc.hasRan = false;
                     }
@@ -118,5 +129,5 @@ public class Tile : MonoBehaviour
     }
 }
 
-public enum tileType { freeWin, miniGame, buff}
+public enum tileType { freeWin, buff}
 public enum buffType {jumpBuff, speedBuff, damageBuff}

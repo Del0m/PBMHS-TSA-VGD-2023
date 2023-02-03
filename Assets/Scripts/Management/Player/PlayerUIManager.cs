@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class PlayerUIManager : MonoBehaviour
 {
+    [Header("Managers")]
+    public PlayerManager manager; // to grab the player.length and other variables
+    
     public GameObject[] playerUI; // the UI that shows the player's wins, icon and buffs
     public GameObject roundCounter; // the UI that shows the current round the game is on
 
@@ -36,7 +39,9 @@ public class PlayerUIManager : MonoBehaviour
     private void Start()
     {
         this.gameObject.tag = "PlayerUIManager";
+        manager = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>();
     }
+
     public void InitalizeUI() // this is to hide UI that won't be used in the game due to a lack of plrs
     {
         var playerCount = GameObject.FindGameObjectsWithTag("Player").Length; // grabbing the amount of players in the game
@@ -74,7 +79,9 @@ public class PlayerUIManager : MonoBehaviour
         diceSprite.GetComponent<Image>().sprite = diceImage[num];
         if(num == 0)
         {
-            diceSprite.GetComponent<Animator>().playbackTime = 0; // reset dice back to middle
+            //diceSprite.GetComponent<Animator>().playbackTime = 0; // reset dice back to middle
+            //diceSprite.GetComponent<Animation>().
+            diceSprite.GetComponent<Animator>().SetTrigger("DO");
         }
     }
 
@@ -133,5 +140,43 @@ public class PlayerUIManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         obj.gameObject.SetActive(false);
+    }
+    public void UIPopUpWrapper(GameObject target)
+    {
+        StartCoroutine(UIPopUp(target));
+    }
+    bool isntActing; // to put down the UI
+    public IEnumerator UIPopUp(GameObject target) // pops up UI to show player
+    {
+        isntActing = true; // to put down the UI
+
+        target.SetActive(true);
+        for(int i = 0; i < manager.player.Length; i++)
+        {
+            var rb = manager.player[i].GetComponent<Rigidbody2D>();
+            rb.bodyType = RigidbodyType2D.Static;
+        }
+        while(isntActing)
+        {
+            if(!target.activeInHierarchy)
+            {
+                target.SetActive(true);
+            }
+
+            if (manager.player[0].GetComponent<PlayerMovement>().acting == true)
+            {
+                isntActing = false;
+                target.SetActive(false);
+
+                break;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+        for (int i = 0; i < manager.player.Length; i++)
+        {
+            var rb = manager.player[i].GetComponent<Rigidbody2D>();
+            rb.bodyType = RigidbodyType2D.Dynamic;
+        }
+
     }
 }

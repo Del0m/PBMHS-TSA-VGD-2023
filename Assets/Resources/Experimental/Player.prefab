@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 2609490234402768865}
   - component: {fileID: 2609490234402768868}
   - component: {fileID: 2609490234402768869}
-  - component: {fileID: 2609490234402768864}
   - component: {fileID: 2609490234402768879}
   - component: {fileID: -3255879220076682217}
   - component: {fileID: -8695361002692835325}
   - component: {fileID: 4021387965015513840}
   - component: {fileID: 5025792139998733991}
+  - component: {fileID: 401201732200751557}
+  - component: {fileID: 5746664718902076547}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -89,32 +90,7 @@ MonoBehaviour:
   dropSound: {fileID: 8300000, guid: 94f890f15f2e34241b6b1786109369df, type: 3}
   dashSound: {fileID: 8300000, guid: 180b5f8f162d8b642931f15e11e47f4c, type: 3}
   particlePrefab: {fileID: 2045440048820027072, guid: 30897cfe76aa67144b09a26df0c9a172, type: 3}
---- !u!61 &2609490234402768864
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2609490234402768870}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: e747b4fa4c4d15e2d969ade740744a6d, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  animate: {fileID: 0}
 --- !u!114 &2609490234402768879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +149,18 @@ MonoBehaviour:
       - m_Target: {fileID: 2609490234402768869}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: Act
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: -3255879220076682217}
+        m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+        m_MethodName: DiceRoll
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -273,6 +261,8 @@ MonoBehaviour:
   managerObject: {fileID: 0}
   turnScript: {fileID: 0}
   gameplayInput: {fileID: 0}
+  newTile: {fileID: 0}
+  hasRan: 0
 --- !u!212 &-8695361002692835325
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -314,12 +304,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  m_Color: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 1}
+  m_Sprite: {fileID: 21300000, guid: b3b6f6140811f7a408e52f89ce189bc6, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 3, y: 4.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -345,6 +335,7 @@ MonoBehaviour:
   cooldown: 0.5
   wins: 0
   lost: 0
+  singlePlayer: 0
 --- !u!82 &5025792139998733991
 AudioSource:
   m_ObjectHideFlags: 0
@@ -441,6 +432,52 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &401201732200751557
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2609490234402768870}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8609c3258e176f94b99a994e8510bd7c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!61 &5746664718902076547
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2609490234402768870}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.78, y: 4.7}
+    newSize: {x: 3, y: 4.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 1
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3, y: 4.5}
+  m_EdgeRadius: 0
 --- !u!1 &2723512089463554615
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,7 +524,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.003168106, y: -0.41505718}
+  m_Offset: {x: 0, y: -2}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -498,7 +535,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9429703, y: 0.23325157}
+  m_Size: {x: 2, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &2007044718087343452
 MonoBehaviour:
