@@ -9,6 +9,7 @@ public class GameHandler : MonoBehaviour
     [Header("Player Important Variables")]
     public GameObject[] player;
     public PlayerManager plrManage; // to import player array
+    public TurnManager trnManage;
     //array of spawns
     public GameObject[] teleport;
 
@@ -42,6 +43,8 @@ public class GameHandler : MonoBehaviour
     // multipliers to make game harder
     public SinglePlayerManager spManage;
     public double multi;
+
+    private bool ended; // changes, prevents end game from being ran several times
     [HideInInspector]
     public bool allowCameraFollow = false; //Used to tell the camera to follow the players, by default it's turned off (Set true only on minigame script if needea
     void Start()
@@ -196,7 +199,8 @@ public class GameHandler : MonoBehaviour
                 player[i].transform.position = tile.transform.position; // set position for player in board
                 player[i].GetComponent<PlayerMovement>().GameSwitch(false);
 
-
+                trnManage = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>();
+                trnManage.SetTurn(0);
             }
             else
             {
@@ -220,17 +224,31 @@ public class GameHandler : MonoBehaviour
         uiManager.ChangeUI(false, uiManager.healthBarUI); // reset the UI
 
         uiManager.UIPopUpWrapper(uiManager.successUI);
+
+        // set players back to their tiles
+        if(!singlePlayer)
+        {
+            var plr = GameObject.FindGameObjectsWithTag("Player");
+            for(int i = 0; i < plr.Length; i++) // teleport players back to their tiles
+            {
+                var pos = plr[i].GetComponent<PlayerStats>().position;
+                var moveManage = GameObject.FindGameObjectWithTag("Movement Manager").GetComponent<MovementManager>();
+
+                plr[i].gameObject.transform.position = moveManage.CallTile(pos).position;
+            }
+        }
         Destroy(gameObject, 1f);
 
         yield return null;
     }
     public virtual IEnumerator EndGame(bool won) // single player endgame routine
     {
-        if(won)
+        if (ended) { yield break; }
+        ended = true;
+        if (won)
         {
             // increase level values; bring back player
             StartCoroutine(EndGame());
-            StartCoroutine(uiManager.UIPopUp(uiManager.successUI));
         }
         else
         {
@@ -248,13 +266,21 @@ public class GameHandler : MonoBehaviour
     }
     public virtual IEnumerator EndGame(int winner) // coroutine to end the game as a player has won.
     {
+        if (ended) { yield break; }
+        ended = true;
+
         yield return new WaitForSeconds(2); 
         for(int i = 0; i < player.Length; i++)
         {
             var playerStat = player[i].GetComponent<PlayerStats>();
             if(playerStat.turnOrder == winner)
             {
+                Debug.Log(playerStat.turnOrder + " has won!");
                 playerStat.wins++;
+            }
+            else
+            {
+                // do nothing
             }
         }
         Debug.Log("Game has ended.");
@@ -265,7 +291,9 @@ public class GameHandler : MonoBehaviour
     }
     public virtual IEnumerator EndGame(int loser, bool winnersWin)
     {
-        for(int i = 0; i < player.Length; i++) // for loop, loser loses point, everyone wins!
+        if (ended) { yield break; }
+        ended = true;
+        for (int i = 0; i < player.Length; i++) // for loop, loser loses point, everyone wins!
         {
             var playerStat = player[i].GetComponent<PlayerStats>();
             if(playerStat.turnOrder == loser)

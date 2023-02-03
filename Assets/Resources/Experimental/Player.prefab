@@ -281,6 +281,7 @@ MonoBehaviour:
   managerObject: {fileID: 0}
   turnScript: {fileID: 0}
   gameplayInput: {fileID: 0}
+  pauseMenu: {fileID: 0}
   movementCooldown: 2.5
   newTile: {fileID: 0}
   hasRan: 0
@@ -351,7 +352,7 @@ MonoBehaviour:
   position: 0
   turnOrder: 0
   speed: 15
-  jumpPower: 30
+  jumpPower: 20
   damage: 5
   cooldown: 0.5
   wins: 0

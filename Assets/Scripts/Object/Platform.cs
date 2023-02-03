@@ -6,10 +6,6 @@ public class Platform : MonoBehaviour
 {
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if(collision.collider.CompareTag("Player"))
-        {
-            collision.collider.transform.SetParent(this.transform);
-        }
         //checking if player and if they want to fall through
         if (collision.collider.tag == "Player" && collision.collider.GetComponent<PlayerMovement>().fallThrough == true)
         {

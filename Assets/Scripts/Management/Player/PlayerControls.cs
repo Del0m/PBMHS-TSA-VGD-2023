@@ -79,15 +79,16 @@ public class PlayerControls : MonoBehaviour
     public bool hasRan = false; // start off with all players being able to move.
     public void DiceRoll(InputAction.CallbackContext context) // run when player rolls dice on board
     {
-        if (context.performed && hasRan == false && !stat.singlePlayer) // makes sure its only ran once
+        if (context.performed && !hasRan && !stat.singlePlayer) // makes sure its only ran once
         {
             if (turnScript.RunTurn(this.gameObject, stat.turnOrder) == true) //check to see if conditions are met on TurnManager
             {
-                StartCoroutine(Moving(2)); // begin moving player
+                StartCoroutine(Moving(1)); // begin moving player
             }
         }
         IEnumerator Moving(int wait) // coroutine to move around the board.
         {
+            if(hasRan) { yield break; } // prevent player from making several moves
             hasRan = true; // prevent player from running coroutine again
             var diceRoll = Random.Range(1, 7); // pick a number from one to six
 

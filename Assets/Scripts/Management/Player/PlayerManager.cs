@@ -69,6 +69,7 @@ public class PlayerManager : MonoBehaviour
             var playerSpawn = plr.GetComponent<PlayerStats>().turnOrder;
 
             plr.transform.position = spawn[playerSpawn].position; // move players to map
+            plr.GetComponent<PlayerMovement>().GameSwitch(false); // prevent player moving
         }
         turn.SetTurn(0);
     }

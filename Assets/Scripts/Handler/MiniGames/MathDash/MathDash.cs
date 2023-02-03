@@ -84,9 +84,9 @@ public class MathDash : GameHandler
         if (singlePlayer)
         {
             uiManager.ChangeUI(true, uiManager.scoreLeftUI);
-            yield return new WaitForSeconds(3);
-            yield return StartCoroutine(uiManager.UpdateClock(time)); // running the timer
         }
+        yield return new WaitForSeconds(3);
+        yield return StartCoroutine(uiManager.UpdateClock(time)); // running the timer
     }
     public override void IncreaseDifficulty()
     {

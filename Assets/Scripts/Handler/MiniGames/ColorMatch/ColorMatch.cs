@@ -24,8 +24,8 @@ public class ColorMatch : GameHandler
     public float dropTime; // time till they drop
     public int dropAmount; // amount the platforms will drop
 
-    private float originalSpeed;
-    private float originalJumpPower;
+    public float originalSpeed;
+    public float originalJumpPower;
     void Start()
     {
         if(singlePlayer)
@@ -66,29 +66,27 @@ public class ColorMatch : GameHandler
     }
     void ModifyPlayerStats(bool decrease)
     {
+        var plr = GameObject.FindGameObjectsWithTag("Player");
         // coroutine to lower players speed
         if(decrease)
         {
-            for(int i = 0; i < player.Length; i++)
+            for (int i = 0; i < plr.Length; i++)
             {
                 // grab stats from players
+                Debug.Log(i + " Player's stats are being changed!");
 
-                var statGrab = player[0].GetComponent<PlayerStats>();
-                originalSpeed = statGrab.speed;
-                originalJumpPower = statGrab.jumpPower;
 
-                var playerStat = player[i].GetComponent<PlayerStats>();
+                var playerStat = plr[i].GetComponent<PlayerStats>();
 
                 playerStat.speed /=  2;
-                playerStat.jumpPower /= 1.5f;
             }
         }
         else
         {
-            for(int i = 0; i < player.Length; i++)
+            for(int i = 0; i < plr.Length; i++)
             {
                 Debug.Log("Restting stats!");
-                var playerStat = player[i].GetComponent<PlayerStats>();
+                var playerStat = plr[i].GetComponent<PlayerStats>();
 
                 playerStat.speed = originalSpeed;
                 playerStat.jumpPower = originalJumpPower;
@@ -97,11 +95,7 @@ public class ColorMatch : GameHandler
     }
 
     IEnumerator DropColors() // drop colors that ain't the chosen one
-    {
-        if (player[0].GetComponent<PlayerStats>().speed == originalSpeed)
-        {
-            ModifyPlayerStats(true); // to run again if it hasn't changed yet
-        }
+    {                            
         yield return new WaitForSeconds(5);
 
         var platScript = flagPlatform.GetComponent<MovingPlatform>(); // platform script to move platform above color
@@ -154,6 +148,7 @@ public class ColorMatch : GameHandler
         if (singlePlayer)
         {
             StartCoroutine(EndGame(false)); // game over for single player
+            yield break;
         }
 
         yield return new WaitForSeconds(5);
@@ -161,6 +156,9 @@ public class ColorMatch : GameHandler
         {
             player[i].GetComponent<PlayerStats>().wins -= 1;
         }
+        StartCoroutine(EndGame()); // game over for single player
+
+
     }
     public override IEnumerator EndGame() // award all winners with points
     {
