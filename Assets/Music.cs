@@ -14,6 +14,6 @@ public class Music : MonoBehaviour
     }
     void Update()
     {
-        _audio.volume = setting.musicVolume; // constantly update music volume
+        _audio.volume = setting.musicVolume * setting.masterVolume; // constantly update music volume
     }
 }
