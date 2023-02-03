@@ -78,6 +78,8 @@ public class PlayerManager : MonoBehaviour
     }
     public void GameOver()
     {
+        //Reset turn order
+        turn.SetTurn(0);
 
         // siginify in single player that player has lost
         var uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();

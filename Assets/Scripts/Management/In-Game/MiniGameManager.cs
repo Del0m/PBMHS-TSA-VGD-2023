@@ -23,7 +23,7 @@ public class MiniGameManager : MonoBehaviour
     private Randomizer rand;
 
     //defining the TurnManager
-    public TurnManager turnScript;
+    //public TurnManager turnScript;
 
     public string lastMinigamePlayed; // to prevent same games from playing one after another
 

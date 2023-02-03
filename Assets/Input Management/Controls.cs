@@ -80,6 +80,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Join"",
+                    ""type"": ""Button"",
+                    ""id"": ""b59557f9-d72d-4d36-af30-1577caf14c40"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -346,6 +355,28 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Increment"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e5c91ffc-06a3-4064-a129-b8b07b432100"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Join"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d63213cf-e579-46eb-8b2b-6c6b6644609a"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller;Linux Controller"",
+                    ""action"": ""Join"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -427,6 +458,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Gameplay_Drop = m_Gameplay.FindAction("Drop", throwIfNotFound: true);
         m_Gameplay_Dash = m_Gameplay.FindAction("Dash", throwIfNotFound: true);
         m_Gameplay_Increment = m_Gameplay.FindAction("Increment", throwIfNotFound: true);
+        m_Gameplay_Join = m_Gameplay.FindAction("Join", throwIfNotFound: true);
         // Pre-Game
         m_PreGame = asset.FindActionMap("Pre-Game", throwIfNotFound: true);
         m_PreGame_Newaction = m_PreGame.FindAction("New action", throwIfNotFound: true);
@@ -495,6 +527,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Drop;
     private readonly InputAction m_Gameplay_Dash;
     private readonly InputAction m_Gameplay_Increment;
+    private readonly InputAction m_Gameplay_Join;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
@@ -505,6 +538,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Drop => m_Wrapper.m_Gameplay_Drop;
         public InputAction @Dash => m_Wrapper.m_Gameplay_Dash;
         public InputAction @Increment => m_Wrapper.m_Gameplay_Increment;
+        public InputAction @Join => m_Wrapper.m_Gameplay_Join;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -532,6 +566,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Increment.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnIncrement;
                 @Increment.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnIncrement;
                 @Increment.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnIncrement;
+                @Join.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJoin;
+                @Join.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJoin;
+                @Join.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJoin;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -554,6 +591,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Increment.started += instance.OnIncrement;
                 @Increment.performed += instance.OnIncrement;
                 @Increment.canceled += instance.OnIncrement;
+                @Join.started += instance.OnJoin;
+                @Join.performed += instance.OnJoin;
+                @Join.canceled += instance.OnJoin;
             }
         }
     }
@@ -626,6 +666,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnDrop(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnIncrement(InputAction.CallbackContext context);
+        void OnJoin(InputAction.CallbackContext context);
     }
     public interface IPreGameActions
     {

@@ -10,8 +10,11 @@ public class CamViewMObjs : MonoBehaviour
     public Vector3 offSet = new Vector3(0, 0, -25);
 
     private RunningScamper gameH;
+    private PlayerManager pm;
 
     public List<GameObject> forgottenTargets; //used to not track a player again
+
+    bool isBoard = true;
 
     private void Start()
     {
@@ -19,12 +22,15 @@ public class CamViewMObjs : MonoBehaviour
     }
 
     public void setCamToMinigame(){
+        isBoard = false;
         //Get players and define as targets
         GameObject gh = GameObject.FindGameObjectWithTag("Minigame");
         gameH = gh.GetComponent<RunningScamper>();
     }
 
     public void disableCamToMinigame(){
+        isBoard = true;
+        pm = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>();
         gameH = null;
         targets.Clear();
     }
@@ -54,12 +60,34 @@ public class CamViewMObjs : MonoBehaviour
         return false;
     }
 
+    bool findPlayers(){
+
+        if(pm != null){
+            if(pm.player.Length > 0){
+                for(int i = 0; i < pm.player.Length; i++){
+                    //Add players from pm to be as targets
+                    targets.Add(pm.player[i].transform);
+                }
+
+                return true;
+            }
+
+            Debug.LogError("No player found in player manager!");
+            return false;
+        }
+
+        return false;
+    }
+
 
     private void LateUpdate()
     {
         if(targets.Count == 0)
         {
-            findPlayersMinigame();
+            if(isBoard)
+                findPlayers();
+            else
+                findPlayersMinigame();
             return;
         }
 
