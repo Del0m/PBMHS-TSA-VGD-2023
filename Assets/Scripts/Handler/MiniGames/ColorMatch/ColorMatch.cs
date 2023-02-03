@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ColorMatch : GameHandler
@@ -16,6 +17,8 @@ public class ColorMatch : GameHandler
     public SpriteRenderer flagObject;
     public GameObject[] colorPlatform; // colored platforms that'll be dropped
     public GameObject flagPlatform;
+    [Header("UI")]
+    public TextMeshProUGUI dropleft; // drops left to show to player
 
     private int previousColor; // previous color used in minigame randomization
 
@@ -104,6 +107,7 @@ public class ColorMatch : GameHandler
 
         for (int i = 0; i < dropAmount; i++)
         {
+            dropleft.text = "Drops Left: " + (dropAmount - i).ToString();
             var colorChosen = ChooseColor(); // color they will have to go onto
             // show color to player
             Debug.Log(colorString[colorChosen]); // show in testing 

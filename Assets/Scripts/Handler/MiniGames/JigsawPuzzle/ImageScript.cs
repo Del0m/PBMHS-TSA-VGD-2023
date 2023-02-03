@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class ImageScript : MonoBehaviour
@@ -7,7 +8,8 @@ public class ImageScript : MonoBehaviour
     public Sprite[] knightIcon; // playable knight character in game; detail
     public Sprite[] wizardIcon; // playable wizard character in game; detail
 
-    public int[] pictureChosen; // to prevent multiple runs
+    static int[] pictureChosen = new int[4] {99,99,99,99}; // to prevent multiple runs
+    static int increment = 0; // increments every time a player chooses a photo
     public Sprite[] ImageSelection() // returns the texture2d array that is selected via switch
     {
 
@@ -24,17 +26,27 @@ public class ImageScript : MonoBehaviour
     }
     public int ChangeRepeat() // change repeat drawings of the images
     {
-        var randNum = Random.Range(0, 2); // 0 - 1 atm b/c of one image only atm
-
-        for (int i = 0; i < pictureChosen.Length; i++) // for loop to change repeats
+        var randNum = Random.Range(0, 2); // max two pictures
+        var repeat = true;
+        while(repeat)
         {
-            if(randNum == pictureChosen[i]) { randNum = Random.Range(0, 2); }
+            for(int i = 0; i < pictureChosen.Length;)
+            {
+                if(randNum == pictureChosen[i])
+                {
+                    randNum = Random.Range(0, 2); // change number
+                    i = 0;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+            repeat = false;
         }
-        for (int i = 0; i < pictureChosen.Length; i++)
-        {
-            if (randNum == pictureChosen[i]) { ChangeRepeat(); break; } // recurse function until no repeat
-        }
-
+        Debug.Log(increment);
+        pictureChosen[increment] = randNum;
+        increment++;
         return randNum;
     }
 }

@@ -64,4 +64,5 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9f81515d10022dd4d944ec7274a14ace, type: 3}
   - {fileID: 21300000, guid: ac79f475b83a1954e95ba338cc1cfc5e, type: 3}
   - {fileID: 21300000, guid: 81590c24358f6344e845009f019d084d, type: 3}
-  pictureChosen: 
+  pictureChosen: 00000000000000000000000000000000
+  increment: 0
