@@ -1367,7 +1367,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &88871611
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7321,6 +7321,7 @@ MonoBehaviour:
   eg: {fileID: 0}
   scoreScript: {fileID: 0}
   uiManager: {fileID: 793855428}
+  cam: {fileID: 0}
   roundUI: {fileID: 0}
   playerUI: []
 --- !u!1 &507271607
@@ -9140,11 +9141,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "To Whomever Reads This,\n\n\tYour goal in this mode is to venture forth
-    through the world, completing minigames better and faster each time. If you lose
-    once, you lose everything. Play wise and play calm, adventurer. Take these dices
-    and use action to throw them to gon further in your journey. If thy need guide
-    wonder into the options menu.\n\n\n\nSincerely, \n2589\n"
+  m_text: "To Whomever Reads This,\n\n\t\t\tTo Whomever Reads This,\r\nYour goal
+    in this mode is to venture forth with your fellow adventurers, competing to do
+    better than each other. Take these die, and compete better than your peers in
+    these upcoming games to be the winner of it all. Press your options button, or
+    escape to pull your controls menu.\n\n\n\nSincerely, \n2589\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 98b47d88bd92d0a4c9e8bd52b8991e41, type: 2}
   m_sharedMaterial: {fileID: -241131914279302123, guid: 98b47d88bd92d0a4c9e8bd52b8991e41, type: 2}
@@ -13426,7 +13427,7 @@ MonoBehaviour:
   inZoom: 20
   outZoom: 40
   followingSpeed: 300
-  timer: 5
+  timer: 0
 --- !u!61 &849587996
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13555,7 +13556,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -15367,7 +15368,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -16143,8 +16144,8 @@ RectTransform:
   m_Father: {fileID: 454295584}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -18005,8 +18006,8 @@ RectTransform:
   m_Father: {fileID: 2000036373}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -28690,7 +28691,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -30471,8 +30472,8 @@ RectTransform:
   m_Father: {fileID: 1035163431}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

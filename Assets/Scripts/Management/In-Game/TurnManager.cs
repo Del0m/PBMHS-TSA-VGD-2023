@@ -90,10 +90,9 @@ public class TurnManager : MonoBehaviour
         currentTurn++;
 
         // move camera
-        if(currentTurn <= pm.player.Length)
+        if(currentTurn < pm.player.Length)
         {
             StartCoroutine(cam.ModifyCamera(pm.player[currentTurn].transform, 25, 20, 30));
-
         }
         // run ui update
         uiManager.UpdateRound(roundsElapsed);

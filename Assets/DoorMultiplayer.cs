@@ -60,10 +60,10 @@ public class DoorMultiplayer : MonoBehaviour
     }
 
     IEnumerator transitionToMap(){
-
-
+        
         //Set camera params
-        cam.TeleportCamera(initialDestination.transform.position, 20);
+        Vector3 pos = new Vector3(initialDestination.transform.position.x, initialDestination.transform.position.y, -100f);
+        cam.TeleportCamera(pos, 20);
 
         //Call camera to go to a specified position
         cam.setCamUpdate(true);
