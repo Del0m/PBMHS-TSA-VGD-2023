@@ -7315,7 +7315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentTurn: -1
   roundsElapsed: 0
-  maxRounds: 6
+  maxRounds: 2
   miniGameScript: {fileID: 0}
   pm: {fileID: 0}
   eg: {fileID: 0}
@@ -9141,11 +9141,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "To Whomever Reads This,\n\n\tYour goal in this mode is to venture forth
-    with your fellow adventurers, competing to do better than each other. Take these
-    die, and compete better than your peers in these upcoming games to be the winner
-    of it all. Press your options button, or escape to pull your controls menu.\n\nSincerely,
-    \n2589\n"
+  m_text: "To Whomever Reads This,\n\n\t\t\tTo Whomever Reads This,\r\nYour goal
+    in this mode is to venture forth with your fellow adventurers, competing to do
+    better than each other. Take these die, and compete better than your peers in
+    these upcoming games to be the winner of it all. Press your options button, or
+    escape to pull your controls menu.\n\n\n\nSincerely, \n2589\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 98b47d88bd92d0a4c9e8bd52b8991e41, type: 2}
   m_sharedMaterial: {fileID: -241131914279302123, guid: 98b47d88bd92d0a4c9e8bd52b8991e41, type: 2}
@@ -9172,8 +9172,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 74
-  m_fontSizeBase: 74
+  m_fontSize: 82
+  m_fontSizeBase: 82
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -11551,7 +11551,7 @@ MonoBehaviour:
   - {fileID: 583389012}
   - {fileID: 527288707}
   hasText: 1
-  plrManage: {fileID: 0}
+  plrManage: {fileID: 1584233325}
   pauseGame: 1
   waitTime: 0
 --- !u!114 &746128218
@@ -13427,7 +13427,7 @@ MonoBehaviour:
   inZoom: 20
   outZoom: 40
   followingSpeed: 300
-  timer: 5
+  timer: 0
 --- !u!61 &849587996
 BoxCollider2D:
   m_ObjectHideFlags: 0
