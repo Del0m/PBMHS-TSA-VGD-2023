@@ -211,6 +211,11 @@ public class GameHandler : MonoBehaviour
                 
             }
         }
+
+        if(!singlePlayer){
+            //Call camera tp
+            cam.TeleportCamera(plr[0].transform, 20);
+        }
     }
     public virtual IEnumerator EndGame()
     {
