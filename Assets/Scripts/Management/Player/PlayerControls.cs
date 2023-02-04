@@ -101,7 +101,7 @@ public class PlayerControls : MonoBehaviour
             if (turnScript.RunTurn(this.gameObject, stat.turnOrder) == true) //check to see if conditions are met on TurnManager
             {
                 //Forget cam
-                cam.forgetDestination();
+                //cam.forgetDestination();
 
                 //Set cam to follow player
                 StartCoroutine(cam.ModifyCamera(this.transform, cameraSpeed, inZoom, outZoom));
@@ -153,7 +153,7 @@ public class PlayerControls : MonoBehaviour
             }
             //Forget the player and turn off the camera from following the player
             //cam.setCamUpdate(false);
-            cam.forgetDestination();
+            //cam.forgetDestination();
 
             turnScript.uiManager.UpdateDiceUI(movesRemaining);
             turnScript.RoundCheck(); // advance turn, see if new turn is in order.

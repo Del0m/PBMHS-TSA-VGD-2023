@@ -132,23 +132,6 @@ public class PlayerMovement : MonoBehaviour
     private float defaultIncrement = 1;
     private bool staticMovementSet = false;
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "Ground" && canEverJump && !canJump)
-        {
-            //When the player hits a object with this tag it will set jump to true
-            canJump = true;
-        }
-    }
-
-    //Prevent player from jumping mid air
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "Ground" && canEverJump)
-        {
-            canJump = false;
-        }
-    }
     public void AnimationUpdate() // update animations for player
     {
         animate.SetBool("isAttacking", isAttacking);
