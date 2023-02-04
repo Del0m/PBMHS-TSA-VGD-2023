@@ -28386,6 +28386,10 @@ MonoBehaviour:
   hasStarted: 0
   minigame:
   - {fileID: 1481661852}
+  - {fileID: 661104467}
+  - {fileID: 2019262471}
+  - {fileID: 475453603}
+  - {fileID: 127172592}
   lastMinigamePlayed: 
 --- !u!4 &8160318722094343414
 Transform:
