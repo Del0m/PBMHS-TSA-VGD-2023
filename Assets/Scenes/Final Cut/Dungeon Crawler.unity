@@ -1800,6 +1800,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: []
   plrManage: {fileID: 0}
+  trnManage: {fileID: 0}
   teleport:
   - {fileID: 582470922}
   - {fileID: 1285433550}
@@ -6056,6 +6057,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: []
   plrManage: {fileID: 3396259241179664984}
+  trnManage: {fileID: 0}
   teleport: []
   gameScore: 
   winner: 0
@@ -8358,6 +8360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: []
   plrManage: {fileID: 0}
+  trnManage: {fileID: 0}
   teleport:
   - {fileID: 0}
   - {fileID: 0}
@@ -8395,8 +8398,11 @@ MonoBehaviour:
   - {fileID: 1657139910}
   - {fileID: 1348467077}
   flagPlatform: {fileID: 1448736670}
+  dropleft: {fileID: 0}
   dropTime: 5
   dropAmount: 3
+  originalSpeed: 0
+  originalJumpPower: 0
 --- !u!4 &661104469
 Transform:
   m_ObjectHideFlags: 0
@@ -17567,6 +17573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: []
   plrManage: {fileID: 0}
+  trnManage: {fileID: 0}
   teleport: []
   gameScore: 00000000000000000000000000000000
   winner: 0
@@ -20843,6 +20850,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: []
   plrManage: {fileID: 0}
+  trnManage: {fileID: 0}
   teleport: []
   gameScore: 
   winner: 0
@@ -25845,6 +25853,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: []
   plrManage: {fileID: 0}
+  trnManage: {fileID: 0}
   teleport:
   - {fileID: 1375122941}
   - {fileID: 543750189}
@@ -28026,7 +28035,7 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 2609490234402768870, guid: 7f2b7fcce545bd74fb5d12b0940d6aa5, type: 3}
+  m_PlayerPrefab: {fileID: 2609490234402768870, guid: 45576ad1b59d78f4ea594a4a69e656c2, type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1
@@ -28085,6 +28094,9 @@ MonoBehaviour:
   waitSpawn: {fileID: 0}
   player: []
   pauseMenu: {fileID: 797105277}
+  turn: {fileID: 0}
+  moveManage: {fileID: 0}
+  cam: {fileID: 0}
   miniGameTesting: 0
 --- !u!4 &7929613818234593981
 Transform:
