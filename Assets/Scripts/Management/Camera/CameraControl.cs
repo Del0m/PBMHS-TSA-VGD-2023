@@ -28,27 +28,30 @@ public class CameraControl : MonoBehaviour
     {
         cam.gameObject.transform.position = dest.position;
         cam.orthographicSize = camSize;
+        Debug.Log("TELEPORTING CAM TO PLAYERS");
     }
     public IEnumerator ModifyCamera(Transform newDest, int m, int i, int o) // move camera to new location
     {
-        destination = newDest; // only reason why this exists is b/c i want to keep this var private.
+        if(newDest != null){
+            destination = newDest; // only reason why this exists is b/c i want to keep this var private.
 
-        //following are abbrivieated varaiables to modify the camera moving.
-        multiplier = m;
-        outerFov = o;
-        innerFov = i;
+            //following are abbrivieated varaiables to modify the camera moving.
+            multiplier = m;
+            outerFov = o;
+            innerFov = i;
 
-        toZoom = true; // zoom out when not at destination
-        fov = outerFov; // set fov to zoom out
+            toZoom = true; // zoom out when not at destination
+            fov = outerFov; // set fov to zoom out
 
-        while(Vector2.Distance(this.gameObject.transform.position, destination.position) > 10) // hold until at destination
-        {
-            Debug.Log("Waiting until end destination...");
-            yield return new WaitForSeconds(1);
+            while(Vector2.Distance(this.gameObject.transform.position, destination.position) > 10) // hold until at destination
+            {
+                Debug.Log("Waiting until end destination...");
+                yield return new WaitForSeconds(1);
+            }
+            Debug.Log("Huzzah!!");
+            toZoom = false; // zoom back in once destination has been reached
+            fov = innerFov; // set fov to zoom in.
         }
-        Debug.Log("Huzzah!!");
-        toZoom = false; // zoom back in once destination has been reached
-        fov = innerFov; // set fov to zoom in.
     }
 
     public void setCamUpdate(bool enable){
