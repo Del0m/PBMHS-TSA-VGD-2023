@@ -45,11 +45,9 @@ public class Sokobot : GameHandler
     public override IEnumerator PreGameRoutine()
     {
         yield return base.PreGameRoutine();
-        if (singlePlayer)
-        {
-            yield return new WaitForSeconds(3);
-            yield return StartCoroutine(uiManager.UpdateClock(time)); // running the timer
-        }
+
+        yield return new WaitForSeconds(3);
+        yield return StartCoroutine(uiManager.UpdateClock(time)); // running the timer
     }
     public override void IncreaseDifficulty()
     {
