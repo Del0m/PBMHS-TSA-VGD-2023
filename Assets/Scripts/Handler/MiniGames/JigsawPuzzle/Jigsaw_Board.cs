@@ -29,7 +29,8 @@ public class Jigsaw_Board : MonoBehaviour
     public void ChangeCorrect(int value) // update the amount of pieces slottedd correctly in the game
     {
         piecesCorrect += value; // update value
-
+        var scorePlayer = puzzleScript.player[slot[0].GetComponent<JigsawHole>().imageID];
+        puzzleScript.gameScore[scorePlayer.[slot[0].GetComponent<JigsawHole>().imageID]] + value;
         // run the function to check to see if it is time to end the game
         if(piecesCorrect == pieceCount)
         {

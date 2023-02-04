@@ -40,23 +40,26 @@ public class JigsawPuzzle : GameHandler
     }
     private void Update()
     {
-        // check to see if time has elapsed in single player
-        if (singlePlayer)
+        if (uiManager.timesUp)
         {
-            if (uiManager.timesUp)
+            if (singlePlayer)
             {
                 StartCoroutine(EndGame(false));
             }
+            else
+            {
+                StartCoroutine(EndGame(CheckWinner()));
+            }
         }
+        // check to see if time has elapsed in single player
+        
     }
     public override IEnumerator PreGameRoutine() // adding a timer to the minigame in singleplayer
     {
         yield return StartCoroutine(base.PreGameRoutine());
-        if(singlePlayer)
-        {
-            yield return new WaitForSeconds(3);
-            yield return StartCoroutine(uiManager.UpdateClock(time)); // running the timer
-        }
+        yield return new WaitForSeconds(3);
+        yield return StartCoroutine(uiManager.UpdateClock(time)); // running the timer
+
     }
     public override void IncreaseDifficulty() // less time for player to solve puzzle
     {

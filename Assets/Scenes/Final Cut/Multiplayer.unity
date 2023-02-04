@@ -6369,8 +6369,8 @@ MonoBehaviour:
   - {fileID: 322833737}
   - {fileID: 972114746}
   - {fileID: 130231878}
-  Destination: {fileID: 0}
-  cam: {fileID: 0}
+  Destination: {fileID: 2060691575}
+  cam: {fileID: 513562143}
   pm: {fileID: 1584233325}
 --- !u!1 &356187638
 GameObject:
@@ -31429,7 +31429,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2060691574}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -69, y: 27.5, z: -15}
+  m_LocalPosition: {x: -69, y: 27.5, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
