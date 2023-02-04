@@ -10,33 +10,37 @@ public class EndGame : MonoBehaviour
     [Header("Params")]
     public Transform[] playerPositions;
 
+    public Transform Destination;
+
+    public CameraControl cam;
+
     //Scripts to get
     public PlayerManager pm;
 
     private GameObject[] players;
 
-    private PlayerStats[] plStats = new PlayerStats[4]; 
+    private PlayerStats[] plStats;
 
-    void Start(){
-        if(pm == null){
-            pm = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>();
-            players = pm.player;
-
-            int index = 0;
-            //Get players from every player
-            foreach(GameObject player in players){
-                plStats[index] = player.GetComponent<PlayerStats>();
-                index++;
-            }
-        }
-    }
+    Dictionary<GameObject, int> map = new Dictionary<GameObject, int>();
+        //List
+    List<int> wins = new List<int>();
 
     public void End(){ //To be called by turn manager
         //Sort players by from highest win to lowest
-        
-        Dictionary<GameObject, int> map = new Dictionary<GameObject, int>();
-        //List
-        List<int> wins = new List<int>();
+
+        cam.setCamUpdate(false);
+        cam.forgetDestination();
+
+        cam.TeleportCamera(Destination, 20);
+
+        players = pm.player;
+
+        plStats = new PlayerStats[players.Length];
+
+        //Get players from every player
+        for(int i = 0; i < players.Length; i++){
+            plStats[i] = players[i].GetComponent<PlayerStats>();
+        }
 
         //Loop to add keys
 
@@ -58,10 +62,10 @@ public class EndGame : MonoBehaviour
         //player index after here is the highest play
         GameObject[] pl = new GameObject[4];
 
-        int index = 0;
+        int dex = 0;
         foreach(var i in map){
-            pl[index] = i.Key;
-            index++;
+            pl[dex] = i.Key;
+            dex++;
         }
 
         //Send the players to hell
