@@ -113,7 +113,7 @@ public class PlayerUIManager : MonoBehaviour
         ChangeUI(true, timeLeftUI.gameObject); // enable ui
 
         timesUp = false;
-        for(int i = 0; i < time; i++)
+        for(int i = 0; i <= time; i++)
         {
             yield return new WaitForSeconds(1f);
             timeLeftUI.text = "Time Left: " + (time - i); // do math to show time left.
