@@ -11,6 +11,8 @@ public class TurnManager : MonoBehaviour
     public int currentTurn = 0;
     public int roundsElapsed = 0;
 
+    public int maxRounds = 6;
+
 
     //manage the minigames
 
@@ -18,6 +20,8 @@ public class TurnManager : MonoBehaviour
 
     //Get player manager
     public PlayerManager pm;
+
+    public EndGame eg;
 
     //modify scores of players
     public ScoreManager scoreScript;
@@ -60,6 +64,10 @@ public class TurnManager : MonoBehaviour
             StartCoroutine(getPlayers());
         }
 
+        if(eg == null){
+            eg = GameObject.FindGameObjectWithTag("EndGame").GetComponent<EndGame>();
+        }
+
         //call UI update
         uiManager.UpdateRound(roundsElapsed);
 
@@ -81,7 +89,7 @@ public class TurnManager : MonoBehaviour
 
         // run ui update
         uiManager.UpdateRound(roundsElapsed);
-        if(playerCount <= currentTurn) // turn on el minigame
+        if(playerCount <= currentTurn && roundsElapsed < maxRounds) // turn on el minigame
         {
             //debug
             Debug.Log("starting the minigame");
@@ -91,6 +99,13 @@ public class TurnManager : MonoBehaviour
             //currentTurn = 0;
 
             roundsElapsed++;
+        }
+
+        if(roundsElapsed >= maxRounds){
+            //End Game
+            if(eg != null){
+                eg.End();
+            }
         }
 
         //currentTurn++;
