@@ -76,7 +76,7 @@ public class DoorMultiplayer : MonoBehaviour
         //Disable blank screen
         blankScreen.SetActive(false);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
         //The camera should be on the players
         cam.setCamUpdate(false);
 
