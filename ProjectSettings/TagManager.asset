@@ -18,6 +18,7 @@ TagManager:
   - Settings
   - PlayerUIManager
   - Health Bar
+  - EndGame
   layers:
   - Default
   - TransparentFX
