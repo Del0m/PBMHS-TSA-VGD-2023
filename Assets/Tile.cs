@@ -128,7 +128,6 @@ public class Tile : MonoBehaviour
                         //Move player to that new position
                         Debug.Log("Moving to tile");
                         player.newTile = playerPositions[i];
-                        player.hasRan = false;
                     }
                 }
             }

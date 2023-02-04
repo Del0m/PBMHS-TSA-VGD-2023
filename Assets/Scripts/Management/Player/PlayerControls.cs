@@ -54,7 +54,6 @@ public class PlayerControls : MonoBehaviour
     public Transform newTile; // for the purpose of updating the player to a new position!
 
     //variable for the purpose of moving
-    [HideInInspector]
     public bool hasRan = false; // start off with all players being able to move.
     [HideInInspector]
     public bool hasReachedDestination = false; // Used to check when 
@@ -78,7 +77,8 @@ public class PlayerControls : MonoBehaviour
     }
 
     IEnumerator Moving() // coroutine to move around the board.
-        {
+    {
+        if(hasRan) { yield break; }
             hasRan = true; // prevent player from running coroutine again
             var diceRoll = Random.Range(1, 7); // pick a number from one to six
 
@@ -121,10 +121,9 @@ public class PlayerControls : MonoBehaviour
 
             turnScript.uiManager.UpdateDiceUI(movesRemaining);
             turnScript.RoundCheck(); // advance turn, see if new turn is in order.
-            //newTile = null; // to prevent the player from moving towards the tile in the middle of the game
-
-            hasRan = false; // allow player to roll again, but their turn has moved, so they won't be able to.
-        }
+                                     //newTile = null; // to prevent the player from moving towards the tile in the middle of the game
+        hasRan = true;
+    }
 
     public void PauseGame(InputAction.CallbackContext ctx)
     {
