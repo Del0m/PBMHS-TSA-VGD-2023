@@ -58,15 +58,7 @@ public class MathDash : GameHandler
             }
             else
             {
-                var highScore = gameScore[0];
-                for(int i = 0; i < gameScore.Length; i++) // check to see who has the higher score
-                {
-                    if(highScore < gameScore[i])
-                    {
-                        highScore = gameScore[i]; // changing high score from one player to another
-                    }
-                }
-                StartCoroutine(EndGame(highScore));
+                StartCoroutine(EndGame(CheckWinner()));
 
             }
             uiManager.timesUp = false;

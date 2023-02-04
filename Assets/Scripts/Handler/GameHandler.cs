@@ -224,7 +224,6 @@ public class GameHandler : MonoBehaviour
     public virtual IEnumerator EndGame()
     {
         TeleportBack();
-        Debug.Log("Game has ended.");
 
         if(singlePlayer)
         {

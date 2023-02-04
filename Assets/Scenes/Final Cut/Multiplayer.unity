@@ -4497,7 +4497,7 @@ MonoBehaviour:
   timeLimit: 0
   uiManager: {fileID: 793855428}
   tutorialScreen: {fileID: 591036514}
-  turn: {fileID: 0}
+  turn: {fileID: 488599094}
   cam: {fileID: 513562143}
   camPos: {fileID: 34068438}
   fov: 20
@@ -4882,7 +4882,7 @@ MonoBehaviour:
   timeLimit: 0
   uiManager: {fileID: 793855428}
   tutorialScreen: {fileID: 1071882729}
-  turn: {fileID: 0}
+  turn: {fileID: 488599094}
   cam: {fileID: 513562143}
   camPos: {fileID: 296683893}
   fov: 20
@@ -11243,7 +11243,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &762611153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11710,7 +11710,7 @@ MonoBehaviour:
   timeLimit: 0
   uiManager: {fileID: 793855428}
   tutorialScreen: {fileID: 2055439265}
-  turn: {fileID: 0}
+  turn: {fileID: 488599094}
   cam: {fileID: 513562143}
   camPos: {fileID: 748828930}
   fov: 20
@@ -27203,9 +27203,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasStarted: 0
   minigame:
-  - {fileID: 762611152}
-  - {fileID: 291681410}
-  - {fileID: 787203407}
   - {fileID: 276292168}
   lastMinigamePlayed: 
 --- !u!1 &1966404308
