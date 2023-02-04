@@ -306,7 +306,7 @@ MonoBehaviour:
   position: 0
   turnOrder: 0
   speed: 15
-  jumpPower: 20
+  jumpPower: 25
   damage: 5
   cooldown: 0.5
   wins: 0
