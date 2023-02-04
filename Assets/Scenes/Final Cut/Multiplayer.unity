@@ -22032,6 +22032,11 @@ MonoBehaviour:
   - {fileID: 873044039}
   waitSpawn: {fileID: 643650451}
   player: []
+  playerColor:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 0.5235849, b: 0.5235849, a: 1}
+  - {r: 0.5147516, g: 0.495283, b: 1, a: 1}
+  - {r: 0.5826477, g: 1, b: 0.514151, a: 1}
   pauseMenu: {fileID: 88871610}
   turn: {fileID: 0}
   moveManage: {fileID: 0}

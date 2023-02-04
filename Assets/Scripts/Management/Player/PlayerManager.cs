@@ -17,6 +17,7 @@ public class PlayerManager : MonoBehaviour
     public Transform[] spawn; // spawn player in correct spot
     public Transform waitSpawn; // spawn player in waiting room
     public GameObject[] player; // player append variable
+    public List<Color> playerColor; // colors for players to differentiate who they are
 
     [Header("Player Passdowns")] // pass down variables to players
     public GameObject pauseMenu;
@@ -48,21 +49,26 @@ public class PlayerManager : MonoBehaviour
     }
     public void PlayerArray(PlayerInput input) // adds to player array for minigames
     {
+        var spawnPlayer = input.gameObject; // grabbing object of player
+
         Debug.Log("Appending Player");
-        player = player.Append(input.gameObject).ToArray();
+        player = player.Append(spawnPlayer).ToArray();
 
         // add their correct turn order as well
         Debug.Log("Player Length is:" + (player.Length - 1).ToString());
-        input.gameObject.GetComponent<PlayerStats>().turnOrder = player.Length - 1;
+        spawnPlayer.GetComponent<PlayerStats>().turnOrder = player.Length - 1;
 
-        input.gameObject.GetComponent<PlayerControls>().pauseMenu = pauseMenu; // pass to player
+        spawnPlayer.GetComponent<PlayerControls>().pauseMenu = pauseMenu; // pass to player
 
         // giving players the turn manager and movement manager to call certain variables in multiplayer
-        var plrControl = input.gameObject.GetComponent<PlayerControls>();
+        var plrControl = spawnPlayer.GetComponent<PlayerControls>();
 
         plrControl.turnScript = turn;
         plrControl.moveManage = moveManage;
         plrControl.cam = cam;
+
+        // setting player's color
+        spawnPlayer.GetComponentInChildren<SpriteRenderer>().color = playerColor.ElementAt(player.Length - 1);
     }
     public void SinglePlayer(PlayerInput input)
     {
