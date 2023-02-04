@@ -21,6 +21,10 @@ public class ImageScript : MonoBehaviour
                 return knightIcon;
             case 1:
                 return wizardIcon;
+            case 2:
+                return witchIcon;
+            case 3:
+                return rogueIcon;
 
             default:
                 return null;
@@ -28,7 +32,7 @@ public class ImageScript : MonoBehaviour
     }
     public int ChangeRepeat() // change repeat drawings of the images
     {
-        var randNum = Random.Range(0, 2); // max two pictures
+        var randNum = Random.Range(0, 4); // max two pictures
         var repeat = true;
         while(repeat)
         {
