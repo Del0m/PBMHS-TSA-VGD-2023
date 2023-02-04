@@ -83,8 +83,12 @@ public class EndGame : MonoBehaviour
 
     IEnumerator restartGame()
     {
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(6f);
         SceneManager.LoadScene("StartMenu");
+    }
+
+    public void RestartGameBru(){
+        StartCoroutine(restartGame());
     }
 }
 

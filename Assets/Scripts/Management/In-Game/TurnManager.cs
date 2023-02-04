@@ -30,6 +30,8 @@ public class TurnManager : MonoBehaviour
 
     public CameraControl cam;
 
+    public GameObject musicObj;
+
     // ui to update players on current turn
     [Header("UI")]
     public TextMeshProUGUI roundUI; // tells the round for the players
@@ -92,6 +94,7 @@ public class TurnManager : MonoBehaviour
         // move camera
         if(currentTurn < pm.player.Length)
         {
+            musicObj.SetActive(true);
             StartCoroutine(cam.ModifyCamera(pm.player[currentTurn].transform, 25, 20, 30));
         }
         // run ui update
@@ -99,6 +102,8 @@ public class TurnManager : MonoBehaviour
         if(playerCount <= currentTurn && roundsElapsed != maxRounds) // turn on el minigame
         {
             //debug
+            musicObj.SetActive(false);
+
             Debug.Log("starting the minigame");
 
             miniGameScript.MinigameStartup(); // running minigame coroutine to advise players, and spawn game.

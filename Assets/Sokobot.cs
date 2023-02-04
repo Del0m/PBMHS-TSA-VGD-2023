@@ -68,6 +68,9 @@ public class Sokobot : GameHandler
 
     public void ScoreHole(GameObject pusher) // runs whenever player pushes box into hole
     {
+        if(pusher == null || pusher.GetComponent<PlayerStats>() == null){
+            return;
+        }
         var pusherOrder = pusher.GetComponent<PlayerStats>().turnOrder; // grabs their order, gives them score accordingly
         gameScore[pusherOrder]++; // scores player
 

@@ -119,10 +119,11 @@ public class PlayerControls : MonoBehaviour
             //cam.forgetDestination();
 
             turnScript.uiManager.UpdateDiceUI(movesRemaining);
+            yield return new WaitForSeconds(2);
             turnScript.RoundCheck(); // advance turn, see if new turn is in order.
                                      //newTile = null; // to prevent the player from moving towards the tile in the middle of the game
-        hasRan = true;
-        turnScript.uiManager.ValueUpdate();
+            hasRan = true;
+            turnScript.uiManager.ValueUpdate();
     }
 
     public void PauseGame(InputAction.CallbackContext ctx)
