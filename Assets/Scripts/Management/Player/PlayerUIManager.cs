@@ -59,6 +59,14 @@ public class PlayerUIManager : MonoBehaviour
             playerUI[i].SetActive(true);
         }
     }
+    public void ValueUpdate() // update all the values on the UI
+    {
+        var playerObject = manager.player;
+        for(int i = 0; i < playerObject.Length; i++)
+        {
+            playerUI[i].GetComponent<PlayerUI>().wins.GetComponent<TextMeshProUGUI>().text = playerObject[i].GetComponent<PlayerStats>().wins.ToString();
+        }
+    }
     public void UpdateLevel(int lvl)
     {
         if(level != null)
@@ -73,7 +81,7 @@ public class PlayerUIManager : MonoBehaviour
     }
     public void UpdateRound(int round)
     {
-        roundCounter.GetComponent<TextMeshProUGUI>().text = round + " / 10";
+        roundCounter.GetComponent<TextMeshProUGUI>().text = round + " / " + manager.turn.maxRounds;
     }
     public void UpdateDiceUI(int num) // updates UI for the dice for the board
     {
@@ -91,6 +99,9 @@ public class PlayerUIManager : MonoBehaviour
         var healthBarRect = healthBarUI.GetComponent<RectTransform>();
 
         healthBarRect.sizeDelta = new Vector2(100, 10);
+
+        UpdateRound(manager.turn.roundsElapsed);
+        ValueUpdate();
     }
     public void ChangeUI(bool minigame) // changes the UI from minigame to board, vice versa
     {

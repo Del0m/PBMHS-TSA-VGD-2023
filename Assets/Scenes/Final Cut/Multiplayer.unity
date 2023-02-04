@@ -7800,10 +7800,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentTurn: -1
   roundsElapsed: 0
-  maxRounds: 2
+  maxRounds: 6
   miniGameScript: {fileID: 0}
   pm: {fileID: 0}
-  eg: {fileID: 0}
+  eg: {fileID: 346127563}
   scoreScript: {fileID: 0}
   uiManager: {fileID: 793855428}
   cam: {fileID: 0}
@@ -26549,7 +26549,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4892398118192915581, guid: 560320b9e8f7c2e4c896b2983ed13117, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4892398118192915581, guid: 560320b9e8f7c2e4c896b2983ed13117, type: 3}
       propertyPath: m_LocalPosition.x

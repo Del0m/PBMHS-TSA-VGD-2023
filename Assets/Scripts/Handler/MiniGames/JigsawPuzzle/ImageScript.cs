@@ -7,6 +7,8 @@ public class ImageScript : MonoBehaviour
 {
     public Sprite[] knightIcon; // playable knight character in game; detail
     public Sprite[] wizardIcon; // playable wizard character in game; detail
+    public Sprite[] witchIcon; // witch from pinata game
+    public Sprite[] rogueIcon;
 
     static int[] pictureChosen = new int[4] {99,99,99,99}; // to prevent multiple runs
     static int increment = 0; // increments every time a player chooses a photo

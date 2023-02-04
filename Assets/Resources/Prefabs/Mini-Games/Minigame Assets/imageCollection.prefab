@@ -64,5 +64,23 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9f81515d10022dd4d944ec7274a14ace, type: 3}
   - {fileID: 21300000, guid: ac79f475b83a1954e95ba338cc1cfc5e, type: 3}
   - {fileID: 21300000, guid: 81590c24358f6344e845009f019d084d, type: 3}
-  pictureChosen: 00000000000000000000000000000000
-  increment: 0
+  witchIcon:
+  - {fileID: 21300000, guid: ff3130a8f648f9f41b4acef972c82519, type: 3}
+  - {fileID: 21300000, guid: 2292184b14d00554b98e5623ea5c7d0d, type: 3}
+  - {fileID: 21300000, guid: a9315cde10c906c43b1c201b34b6370e, type: 3}
+  - {fileID: 21300000, guid: ec221d71f9a60b84a861089fef0945ec, type: 3}
+  - {fileID: 21300000, guid: 1b34318b50e0b2e46a13c8c984b13acd, type: 3}
+  - {fileID: 21300000, guid: d945d8425ce01c6458ad0c2b18125d0d, type: 3}
+  - {fileID: 21300000, guid: 3572a80ee1100074e9bc7ea0ebde34be, type: 3}
+  - {fileID: 21300000, guid: d6103d00f908fcd49bfb53c479939164, type: 3}
+  - {fileID: 21300000, guid: b510b80cc14e7a34f8e47de1da6f67af, type: 3}
+  rogueIcon:
+  - {fileID: 21300000, guid: 6d6fb7199dab6694f889ae538f4fd132, type: 3}
+  - {fileID: 21300000, guid: 8704b9708eb58a646be20becf5c08a24, type: 3}
+  - {fileID: 21300000, guid: 8174548d803b6814783e9e696d494f53, type: 3}
+  - {fileID: 21300000, guid: c09c212876faddb4f80fde19ca18f395, type: 3}
+  - {fileID: 21300000, guid: 816f8cd2af6e15b47a89bc3834fe7ba1, type: 3}
+  - {fileID: 21300000, guid: 5382d7b3ef8070541a6d63ba94f31304, type: 3}
+  - {fileID: 21300000, guid: a89148cb2e3e05e44a11fa7f1d348b55, type: 3}
+  - {fileID: 21300000, guid: 49ba48f55fcca9749b793e54e9d579e9, type: 3}
+  - {fileID: 21300000, guid: 1f748682cc30a2e4d9ee1106297226cc, type: 3}
