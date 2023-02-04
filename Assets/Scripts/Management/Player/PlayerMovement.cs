@@ -54,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
     ParticleSystem particle;
     [Header("Animation")]
     public Animator animate;
+    public GameObject spriteChild; // child for sprite; animation
+
 
     private void Awake()
     {
@@ -61,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Start()
     {
-        animate = this.GetComponent<Animator>(); // grab animator from player
+        animate = this.GetComponentInChildren<Animator>(); // grab animator from player
         // finding settings object
         if(settings == null)
         {
@@ -139,11 +141,13 @@ public class PlayerMovement : MonoBehaviour
 
         if(rb.velocity.x < 0)
         {
-            this.gameObject.transform.localScale = new Vector3(-Mathf.Abs(gameObject.transform.localScale.x-.5f), gameObject.transform.localScale.y, 1);
+            spriteChild.transform.localScale = new Vector3(-Mathf.Abs(spriteChild.transform.localScale.x), spriteChild.transform.localScale.y, 1);
+            spriteChild.transform.localPosition = new Vector2(-0.25f, 0);
         }
         else if (rb.velocity.x > 0)
         {
-            this.gameObject.transform.localScale = new Vector3(Mathf.Abs(gameObject.transform.localScale.x-.5f), gameObject.transform.localScale.y, 1);
+            spriteChild.transform.localScale = new Vector3(Mathf.Abs(spriteChild.transform.localScale.x), spriteChild.transform.localScale.y, 1);
+            spriteChild.transform.localPosition = new Vector2(0.25f, 0);
 
         }
     }
