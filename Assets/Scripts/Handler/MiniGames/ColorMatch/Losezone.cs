@@ -31,7 +31,7 @@ public class Losezone : MonoBehaviour
     void CheckLosers()
     {
         var playerArray = GameObject.FindGameObjectsWithTag("Player");
-
+        Debug.Log("Everyone has Lost!");
         if(playerArray.Length <= heldPlayer.Length)
         {
             // run loser function

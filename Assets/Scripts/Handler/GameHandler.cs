@@ -231,7 +231,7 @@ public class GameHandler : MonoBehaviour
             spManage.IncreaseLevel();
         }
         uiManager.ChangeUI(false, uiManager.healthBarUI); // reset the UI
-
+        uiManager.ChangeUI(false, uiManager.loseUI); // reset the losing scren
         uiManager.UIPopUpWrapper(uiManager.successUI);
 
         // set players back to their tiles
@@ -286,10 +286,11 @@ public class GameHandler : MonoBehaviour
         if (ended) { yield break; }
         ended = true;
 
-        yield return new WaitForSeconds(2); 
-        for(int i = 0; i < player.Length; i++)
+        var plr = GameObject.FindGameObjectsWithTag("Player");
+
+        for (int i = 0; i < player.Length; i++)
         {
-            var playerStat = player[i].GetComponent<PlayerStats>();
+            var playerStat = plr[i].GetComponent<PlayerStats>();
             if(playerStat.turnOrder == winner)
             {
                 Debug.Log(playerStat.turnOrder + " has won!");
@@ -330,14 +331,17 @@ public class GameHandler : MonoBehaviour
     }
     public int CheckWinner() // returns the player who got the most points
     {
-        var highestScore = -9; 
+        var highestScore = -9;
+        var winner = 9;
         for(int i = 0; i < player.Length; i++)
         {
             if(highestScore < gameScore[i])
             {
                 highestScore = gameScore[i];
+                Debug.Log("Highest score is:" + highestScore);
+                winner = i;
             }
         }
-        return highestScore;
+        return winner;
     }
 }

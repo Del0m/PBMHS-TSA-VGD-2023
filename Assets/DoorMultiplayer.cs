@@ -61,11 +61,9 @@ public class DoorMultiplayer : MonoBehaviour
 
     IEnumerator transitionToMap(){
 
-        //Enable blank screen 
-        blankScreen.SetActive(true);
 
         //Set camera params
-        StartCoroutine(cam.ModifyCamera(initialDestination, followingSpeed, inZoom, outZoom));
+        cam.TeleportCamera(initialDestination.transform.position, 20);
 
         //Call camera to go to a specified position
         cam.setCamUpdate(true);
@@ -73,10 +71,6 @@ public class DoorMultiplayer : MonoBehaviour
         
         yield return new WaitForSeconds(timer); // debug the time before release
 
-        //Disable blank screen
-        blankScreen.SetActive(false);
-
-        yield return new WaitForSeconds(1.5f);
         //The camera should be on the players
         cam.setCamUpdate(false);
 

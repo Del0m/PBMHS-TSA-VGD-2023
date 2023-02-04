@@ -24,6 +24,8 @@ public class TurnManager : MonoBehaviour
 
     public PlayerUIManager uiManager;
 
+    public CameraControl cam;
+
     // ui to update players on current turn
     [Header("UI")]
     public TextMeshProUGUI roundUI; // tells the round for the players
@@ -34,7 +36,7 @@ public class TurnManager : MonoBehaviour
     private void Awake()
     {
         this.gameObject.tag = "Turn Manager";//change this object to have turn manager tag
-
+        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControl>();
     }
 
     // Start is called before the first frame update
@@ -79,6 +81,12 @@ public class TurnManager : MonoBehaviour
         Debug.Log("Checking new round! Advancing Turn!");
         currentTurn++;
 
+        // move camera
+        if(currentTurn <= pm.player.Length)
+        {
+            StartCoroutine(cam.ModifyCamera(pm.player[currentTurn].transform, 25, 20, 30));
+
+        }
         // run ui update
         uiManager.UpdateRound(roundsElapsed);
         if(playerCount <= currentTurn) // turn on el minigame

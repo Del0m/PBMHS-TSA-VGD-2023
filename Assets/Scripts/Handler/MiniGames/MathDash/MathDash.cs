@@ -58,6 +58,7 @@ public class MathDash : GameHandler
             }
             else
             {
+                Debug.Log("winner is " + CheckWinner());
                 StartCoroutine(EndGame(CheckWinner()));
 
             }
