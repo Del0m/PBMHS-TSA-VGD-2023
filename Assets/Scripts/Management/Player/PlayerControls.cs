@@ -160,6 +160,7 @@ public class PlayerControls : MonoBehaviour
             //newTile = null; // to prevent the player from moving towards the tile in the middle of the game
 
             hasRan = false; // allow player to roll again, but their turn has moved, so they won't be able to.
+            cam.forgetDestination();
         }
 
     public void PauseGame(InputAction.CallbackContext ctx)

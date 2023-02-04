@@ -282,7 +282,11 @@ MonoBehaviour:
   turnScript: {fileID: 0}
   gameplayInput: {fileID: 0}
   pauseMenu: {fileID: 0}
+  cam: {fileID: 0}
   movementCooldown: 0.1
+  inZoom: 20
+  outZoom: 30
+  cameraSpeed: 20
   newTile: {fileID: 0}
   hasRan: 0
   hasReachedDestination: 0
