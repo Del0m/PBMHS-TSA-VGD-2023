@@ -232,18 +232,27 @@ public class GameHandler : MonoBehaviour
         }
         uiManager.ChangeUI(false, uiManager.healthBarUI); // reset the UI
         uiManager.ChangeUI(false, uiManager.loseUI); // reset the losing scren
-        uiManager.UIPopUpWrapper(uiManager.successUI);
+        if(!singlePlayer)
+        {
+            uiManager.UIPopUpWrapper(uiManager.successUI, CheckWinner());
+
+        }
+        else
+        {
+            uiManager.UIPopUpWrapper(uiManager.successUI);
+        }
 
         // set players back to their tiles
-        if(!singlePlayer)
+        if (!singlePlayer)
         {
             var plr = GameObject.FindGameObjectsWithTag("Player");
             for(int i = 0; i < plr.Length; i++) // teleport players back to their tiles
             {
-                var pos = plr[i].GetComponent<PlayerStats>().position;
+                var plrStat = plr[i].GetComponent<PlayerStats>();
+                var pos = plrStat.position;
                 var moveManage = GameObject.FindGameObjectWithTag("Movement Manager").GetComponent<MovementManager>();
 
-                plr[i].gameObject.transform.position = moveManage.CallTile(pos).position;
+                plr[i].gameObject.transform.position = moveManage.CallTile(pos).gameObject.GetComponent<Tile>().playerPositions[plrStat.turnOrder].position;
             }
         }
 

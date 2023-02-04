@@ -9784,7 +9784,7 @@ Transform:
   - {fileID: 1023040735}
   - {fileID: 664677134}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &875658968
 GameObject:
@@ -12857,7 +12857,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5846914732299172457, guid: a47a348ed46f6574c9950ac88d8e6714, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5846914732299172457, guid: a47a348ed46f6574c9950ac88d8e6714, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13146,7 +13146,7 @@ Transform:
   m_Children:
   - {fileID: 1545613434}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1154594302
 BoxCollider2D:
@@ -14236,9 +14236,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "A game from the infancy of videogames, the goal of this game is to push
-    the boxes into the holes! You are tasked with pushing the boxes to their spots
-    as fast as possible! Simply move into them to make them move! \nGood Luck!"
+  m_text: 'A game from the infancy of videogames, the goal of this game is to push
+    the boxes into the holes! When you push a box into a hole, it turns green, signifiying
+    you can no longer interact with it. Whoever pushes the most boxes into the most
+    holes is the victor!
+
+    Good Luck!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 98b47d88bd92d0a4c9e8bd52b8991e41, type: 2}
   m_sharedMaterial: {fileID: -241131914279302123, guid: 98b47d88bd92d0a4c9e8bd52b8991e41, type: 2}
@@ -20734,13 +20737,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1658392751}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.995975, y: -6.853246, z: -1.182113}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 26.995972, y: -6.853241, z: -1.182113}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1663142326
 GameObject:
@@ -21209,6 +21212,7 @@ MonoBehaviour:
   - {fileID: 1537447973}
   - {fileID: 1228438208}
   hasText: 1
+  plrManage: {fileID: 0}
   pauseGame: 1
   waitTime: 0
 --- !u!1 &1710291718
@@ -26690,7 +26694,7 @@ RectTransform:
   - {fileID: 1011468514}
   - {fileID: 797105278}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -28334,6 +28338,7 @@ MonoBehaviour:
   spawn: []
   waitSpawn: {fileID: 0}
   player: []
+  playerColor: []
   pauseMenu: {fileID: 797105277}
   turn: {fileID: 0}
   moveManage: {fileID: 0}
@@ -28420,10 +28425,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentTurn: 0
   roundsElapsed: 0
+  maxRounds: 6
   miniGameScript: {fileID: 0}
   pm: {fileID: 0}
+  eg: {fileID: 0}
   scoreScript: {fileID: 0}
   uiManager: {fileID: 0}
+  cam: {fileID: 0}
   roundUI: {fileID: 0}
   playerUI: []
 --- !u!1 &8160318722094343416

@@ -142,6 +142,10 @@ public class PlayerUIManager : MonoBehaviour
     {
         StartCoroutine(UIPopUp(target));
     }
+    public void UIPopUpWrapper(GameObject target, int winner)
+    {
+        StartCoroutine(UIPopUp(target, winner));
+    }
     bool isntActing; // to put down the UI
     public IEnumerator UIPopUp(GameObject target) // pops up UI to show player
     {
@@ -178,5 +182,14 @@ public class PlayerUIManager : MonoBehaviour
             }
         }
 
+    }
+    public IEnumerator UIPopUp(GameObject target, int winner)
+    {
+        if(!isSinglePlayer)
+        {
+            successUI.GetComponent<UIFade>().text[0].text = "Player " + winner + " has won!";
+        }
+        StartCoroutine(UIPopUp(target));
+        yield break;
     }
 }
