@@ -9,7 +9,7 @@ public class GameHandler : MonoBehaviour
     [Header("Player Important Variables")]
     public GameObject[] player;
     public PlayerManager plrManage; // to import player array
-    public TurnManager trnManage;
+
     //array of spawns
     public GameObject[] teleport;
 
@@ -28,7 +28,7 @@ public class GameHandler : MonoBehaviour
     public PlayerUIManager uiManager;
     public GameObject tutorialScreen; // to be individually selected depending on what minigame
 
-    //public MiniGameManager mg;
+    public TurnManager turn;
 
     [Header("Camera + Settings")] // to proeperly position the camera in a minigame
     public CameraControl cam;
@@ -49,6 +49,7 @@ public class GameHandler : MonoBehaviour
     public bool allowCameraFollow = false; //Used to tell the camera to follow the players, by default it's turned off (Set true only on minigame script if needea
     void Start()
     {
+        turn = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>();
         uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
         //mg = GameObject.FindGameObjectWithTag("Mini Game Manager").GetComponent<MiniGameManager>();
         teleport = GameObject.FindGameObjectsWithTag("Teleport");
@@ -198,10 +199,13 @@ public class GameHandler : MonoBehaviour
                 // moving player back to tile
                 var tile = movementManager.CallTile(playerStat.position);
                 plr[i].transform.position = tile.transform.position; // set position for player in board
-                plr[i].GetComponent<PlayerMovement>().GameSwitch(false);
+                plr[i].GetComponent<PlayerMovement>().GameSwitch(false ,false, false);
 
-                trnManage = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>();
-                trnManage.SetTurn(0);
+                if(turn != null){
+                    turn.SetTurn(0);
+                }else{
+                    Debug.LogError("The turn manager is missing");
+                }
             }
             else
             {
@@ -212,11 +216,11 @@ public class GameHandler : MonoBehaviour
             }
         }
 
-        if(!singlePlayer){
-            //Call camera tp
-            cam.TeleportCamera(plr[0].transform, 20);
-        }
+        pl = plr[0];
     }
+
+    private GameObject pl = null;
+
     public virtual IEnumerator EndGame()
     {
         TeleportBack();
@@ -243,6 +247,14 @@ public class GameHandler : MonoBehaviour
                 plr[i].gameObject.transform.position = moveManage.CallTile(pos).position;
             }
         }
+
+        if(!singlePlayer && pl != null){
+            //Call camera tp
+            Vector3 pos = new Vector3(pl.transform.position.x, pl.transform.position.y, -100f);
+
+            cam.TeleportCamera(pos, 20);
+        }
+
         Destroy(gameObject, 1f);
 
         yield return null;

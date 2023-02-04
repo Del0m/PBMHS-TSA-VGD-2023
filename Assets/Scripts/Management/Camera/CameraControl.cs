@@ -30,6 +30,11 @@ public class CameraControl : MonoBehaviour
         cam.orthographicSize = camSize;
         Debug.Log("TELEPORTING CAM TO PLAYERS");
     }
+    public void TeleportCamera(Vector3 dest, int camSize){
+        cam.gameObject.transform.position = dest;
+        cam.orthographicSize = camSize;
+        Debug.Log("TELEPORTING CAM TO PLAYERS");
+    }
     public IEnumerator ModifyCamera(Transform newDest, int m, int i, int o) // move camera to new location
     {
         if(newDest != null){
