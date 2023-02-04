@@ -287,7 +287,7 @@ MonoBehaviour:
   movementCooldown: 0.1
   inZoom: 20
   outZoom: 30
-  cameraSpeed: 20
+  cameraSpeed: 25
   newTile: {fileID: 0}
   hasRan: 0
   hasReachedDestination: 0

@@ -39,8 +39,9 @@ public class EndGame : MonoBehaviour
         List<int> wins = new List<int>();
 
         //Loop to add keys
-        foreach(var i in plStats){
-            wins.Add(i.wins);
+
+        for(int i = 0; i < plStats.Length; i++){
+            wins.Add(plStats[i].wins);
         }
 
         //Sort it  
