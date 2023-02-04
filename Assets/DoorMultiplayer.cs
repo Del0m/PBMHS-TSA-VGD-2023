@@ -28,8 +28,7 @@ public class DoorMultiplayer : MonoBehaviour
             return;
         }
 
-        //Either way turn off the blank screen
-        blankScreen.SetActive(false);
+
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -61,7 +60,7 @@ public class DoorMultiplayer : MonoBehaviour
 
     IEnumerator transitionToMap(){
 
-
+        blankScreen.SetActive(false);
         //Set camera params
         cam.TeleportCamera(initialDestination.transform.position, 20);
 

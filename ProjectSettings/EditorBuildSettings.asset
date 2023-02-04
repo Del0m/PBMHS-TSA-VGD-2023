@@ -11,5 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Final Cut/Dungeon Crawler.unity
     guid: 80e2c62bf08ff4a499ee2dd4a35250c4
+  - enabled: 1
+    path: Assets/Scenes/Final Cut/Multiplayer.unity
+    guid: b4bf663d00c052648bd7dccd7e8fa7d3
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 667b4fb9f82bb17428280fd04f199458, type: 2}
