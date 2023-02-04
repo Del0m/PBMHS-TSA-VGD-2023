@@ -29902,7 +29902,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasStarted: 0
   minigame:
-  - {fileID: 0}
+  - {fileID: 762611152}
+  - {fileID: 291681410}
+  - {fileID: 276292168}
+  - {fileID: 787203407}
+  - {fileID: 1815523035}
   lastMinigamePlayed: 
 --- !u!1 &1966404308
 GameObject:
