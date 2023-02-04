@@ -50,7 +50,6 @@ public class PlayerControls : MonoBehaviour
         // grabbing player controls to differentiate when its time to move or not
 
     }
-    [HideInInspector]
     public Transform newTile; // for the purpose of updating the player to a new position!
 
     //variable for the purpose of moving

@@ -105,8 +105,6 @@ public class PlayerUIManager : MonoBehaviour
 
         Debug.Log("object being changed is:" + obj);
 
-        // if statement to check if it is a clock
-
     }
     public IEnumerator UpdateClock(int time) // runs the countdown in addition to the time that will be left in the minigame
     {
