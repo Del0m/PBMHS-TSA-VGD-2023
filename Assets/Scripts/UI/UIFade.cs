@@ -48,7 +48,6 @@ public class UIFade : MonoBehaviour
         {
             canvas.gameObject.SetActive(false);
         }
-        print(canvas.color.a);
         try
         {
             if(hasText)

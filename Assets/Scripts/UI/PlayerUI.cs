@@ -10,6 +10,7 @@ public class PlayerUI : MonoBehaviour
     public GameObject buffA;
     public GameObject buffB;
     public GameObject wins;
+    public GameObject currentTurn;
 
     // booleans to detect which buff icons are enabled
     bool[] buffIconUsed;

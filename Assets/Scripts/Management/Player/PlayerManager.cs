@@ -95,8 +95,9 @@ public class PlayerManager : MonoBehaviour
             plr.transform.position = spawn[playerSpawn].position; // move players to map
             plr.GetComponent<PlayerMovement>().GameSwitch(false); // prevent player moving
         }
-        turn.uiManager.InitalizeUI();
         turn.SetTurn(0);
+        turn.uiManager.InitalizeUI();
+
     }
     public void MultiPlayer(PlayerInput input)
     {

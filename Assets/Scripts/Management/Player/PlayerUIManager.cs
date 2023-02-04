@@ -58,14 +58,25 @@ public class PlayerUIManager : MonoBehaviour
         {
             playerUI[i].SetActive(true);
         }
+        ValueUpdate(); // show player their turn
     }
     public void ValueUpdate() // update all the values on the UI
     {
         var playerObject = manager.player;
         for(int i = 0; i < playerObject.Length; i++)
         {
-            playerUI[i].GetComponent<PlayerUI>().wins.GetComponent<TextMeshProUGUI>().text = playerObject[i].GetComponent<PlayerStats>().wins.ToString();
+            var ui = playerUI[i].GetComponent<PlayerUI>();
+            ui.wins.GetComponent<TextMeshProUGUI>().text = playerObject[i].GetComponent<PlayerStats>().wins.ToString();
+            if (playerObject[i].GetComponent<PlayerStats>().turnOrder == manager.turn.currentTurn)
+            {
+                ui.currentTurn.SetActive(true);
+            }
+            else
+            {
+                ui.currentTurn.SetActive(false);
+            }
         }
+        UpdateRound(manager.turn.roundsElapsed);
     }
     public void UpdateLevel(int lvl)
     {
@@ -81,7 +92,7 @@ public class PlayerUIManager : MonoBehaviour
     }
     public void UpdateRound(int round)
     {
-        roundCounter.GetComponent<TextMeshProUGUI>().text = round + " / " + manager.turn.maxRounds;
+        roundCounter.GetComponent<TextMeshProUGUI>().text = round + " / " + "6";
     }
     public void UpdateDiceUI(int num) // updates UI for the dice for the board
     {
