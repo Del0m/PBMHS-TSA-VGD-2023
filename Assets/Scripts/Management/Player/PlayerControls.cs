@@ -18,7 +18,7 @@ public class PlayerControls : MonoBehaviour
     //script to be called for player management
     public GameObject managerObject;
     public TurnManager turnScript;
-    private MovementManager moveManage;
+    public MovementManager moveManage;
 
     [Header("Controls")]
     public PlayerInput gameplayInput;
@@ -41,26 +41,6 @@ public class PlayerControls : MonoBehaviour
 
     private void Start() // run methods on start
     {
-        try
-        {
-            if (moveManage == null) // check if hasn't been publicly assigned already.
-            {
-                moveManage = GameObject.FindGameObjectWithTag("Movement Manager").GetComponent<MovementManager>(); // grab movement manager
-            }
-            if (turnScript == null) // check if hasn't been publicly assigned already.
-            {
-                turnScript = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>(); // grabs turnManager off of PlayerManager
-            }
-            if(cam == null){
-                cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControl>();
-            }
-        }
-        catch (System.Exception)
-        {
-            Debug.LogError("Movement Manager or TurnManager is not present!");
-        }
-
-
         gameplayInput = this.gameObject.GetComponent<PlayerInput>(); // grabbing player controls to turn on/off and change inputmaps
         this.gameObject.tag = "Player"; //set player tag to "Player"
 
@@ -72,23 +52,7 @@ public class PlayerControls : MonoBehaviour
     }
     [HideInInspector]
     public Transform newTile; // for the purpose of updating the player to a new position!
-    /*
-    private void Update()
-    {
 
-        if(newTile != null && turnScript.RunTurn(this.gameObject, stat.turnOrder))
-        {
-            //check distance from the new tile
-            if(Vector2.Distance(newTile.position, this.transform.position) > 0){
-                transform.position = Vector2.MoveTowards(this.transform.position, newTile.position, 5 * Time.deltaTime); // move to new position using DeltaTime
-                //hasReachedDestination = false;
-            }else{
-                newTile = null;
-                //hasReachedDestination = true;
-            }
-        }
-    }
-    */
     //variable for the purpose of moving
     [HideInInspector]
     public bool hasRan = false; // start off with all players being able to move.

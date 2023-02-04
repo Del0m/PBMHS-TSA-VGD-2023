@@ -12,7 +12,6 @@ public class PlayerManager : MonoBehaviour
 {
 
     private PlayerInputManager manager; // disable joining mechanics
-    private TurnManager turn; // start up turns
 
     [Header("Player")]
     public Transform[] spawn; // spawn player in correct spot
@@ -21,16 +20,28 @@ public class PlayerManager : MonoBehaviour
 
     [Header("Player Passdowns")] // pass down variables to players
     public GameObject pauseMenu;
+    public TurnManager turn; // start up turns
+    public MovementManager moveManage;
+    public CameraControl cam;
     [Header("Debug")]
     public bool miniGameTesting = false;
     private void Start()
     {
         manager = GetComponent<PlayerInputManager>();
-        if(!miniGameTesting){
+        if(!turn)
+        {
             turn = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>();
         }
+        if(!moveManage)
+        {
+            moveManage = GameObject.FindGameObjectWithTag("Movement Manager").GetComponent<MovementManager>();
+        }
+        if(!cam)
+        {
+            cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControl>();
+        }
 
-        if(manager.playerPrefab == null)
+        if (manager.playerPrefab == null)
         {
             manager.playerPrefab = Resources.Load("Experimental/Player") as GameObject;
         }
@@ -45,6 +56,13 @@ public class PlayerManager : MonoBehaviour
         input.gameObject.GetComponent<PlayerStats>().turnOrder = player.Length - 1;
 
         input.gameObject.GetComponent<PlayerControls>().pauseMenu = pauseMenu; // pass to player
+
+        // giving players the turn manager and movement manager to call certain variables in multiplayer
+        var plrControl = input.gameObject.GetComponent<PlayerControls>();
+
+        plrControl.turnScript = turn;
+        plrControl.moveManage = moveManage;
+        plrControl.cam = cam;
     }
     public void SinglePlayer(PlayerInput input)
     {
