@@ -1800,7 +1800,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: []
   plrManage: {fileID: 0}
-  trnManage: {fileID: 0}
   teleport:
   - {fileID: 582470922}
   - {fileID: 1285433550}
@@ -1816,6 +1815,7 @@ MonoBehaviour:
   timeLimit: 0
   uiManager: {fileID: 0}
   tutorialScreen: {fileID: 2002054443}
+  turn: {fileID: 0}
   cam: {fileID: 1780233334}
   camPos: {fileID: 986800431}
   fov: 20
@@ -6195,7 +6195,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: []
   plrManage: {fileID: 3396259241179664984}
-  trnManage: {fileID: 0}
   teleport: []
   gameScore: 
   winner: 0
@@ -6207,6 +6206,7 @@ MonoBehaviour:
   timeLimit: 0
   uiManager: {fileID: 2038201487}
   tutorialScreen: {fileID: 1860829095}
+  turn: {fileID: 0}
   cam: {fileID: 1780233334}
   camPos: {fileID: 1509423328}
   fov: 20
@@ -8498,7 +8498,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: []
   plrManage: {fileID: 0}
-  trnManage: {fileID: 0}
   teleport:
   - {fileID: 0}
   - {fileID: 0}
@@ -8510,6 +8509,7 @@ MonoBehaviour:
   timeLimit: 0
   uiManager: {fileID: 0}
   tutorialScreen: {fileID: 1738252141}
+  turn: {fileID: 0}
   cam: {fileID: 1780233334}
   camPos: {fileID: 2000915057}
   fov: 20
@@ -8541,6 +8541,7 @@ MonoBehaviour:
   dropAmount: 3
   originalSpeed: 0
   originalJumpPower: 0
+  hasStopped: 0
 --- !u!4 &661104469
 Transform:
   m_ObjectHideFlags: 0
@@ -17812,7 +17813,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: []
   plrManage: {fileID: 0}
-  trnManage: {fileID: 0}
   teleport: []
   gameScore: 00000000000000000000000000000000
   winner: 0
@@ -17824,6 +17824,7 @@ MonoBehaviour:
   timeLimit: 0
   uiManager: {fileID: 2038201487}
   tutorialScreen: {fileID: 971727753}
+  turn: {fileID: 0}
   cam: {fileID: 1780233334}
   camPos: {fileID: 1331192370}
   fov: 20
@@ -21089,7 +21090,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: []
   plrManage: {fileID: 0}
-  trnManage: {fileID: 0}
   teleport: []
   gameScore: 
   winner: 0
@@ -21097,6 +21097,7 @@ MonoBehaviour:
   timeLimit: 0
   uiManager: {fileID: 0}
   tutorialScreen: {fileID: 0}
+  turn: {fileID: 0}
   cam: {fileID: 0}
   camPos: {fileID: 0}
   fov: 0
@@ -26092,7 +26093,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: []
   plrManage: {fileID: 0}
-  trnManage: {fileID: 0}
   teleport:
   - {fileID: 1375122941}
   - {fileID: 543750189}
@@ -26108,6 +26108,7 @@ MonoBehaviour:
   timeLimit: 0
   uiManager: {fileID: 2038201487}
   tutorialScreen: {fileID: 1558425520}
+  turn: {fileID: 0}
   cam: {fileID: 1780233334}
   camPos: {fileID: 1942027203}
   fov: 20
@@ -26609,6 +26610,7 @@ MonoBehaviour:
   timesUp: 0
   gameOverUI: {fileID: 1518631323}
   level: {fileID: 1633806166}
+  isSinglePlayer: 1
 --- !u!114 &2038201488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28383,7 +28385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasStarted: 0
   minigame:
-  - {fileID: 2019262471}
+  - {fileID: 1481661852}
   lastMinigamePlayed: 
 --- !u!4 &8160318722094343414
 Transform:

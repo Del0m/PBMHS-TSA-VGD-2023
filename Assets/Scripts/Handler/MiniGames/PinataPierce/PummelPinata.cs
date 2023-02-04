@@ -41,6 +41,12 @@ public class PummelPinata : GameHandler
             StartCoroutine(EndGame(killerNum));
             uiManager.ChangeUI(false, uiManager.timeLeftUI.gameObject);
         }
+        if(uiManager.timesUp)
+        {if(singlePlayer)
+            {
+                StartCoroutine(EndGame(false)); // running end coroutine for singleplayer
+            }
+        }
     }
     public override IEnumerator PreGameRoutine() // adding a timer to the minigame in singleplayer
     {
