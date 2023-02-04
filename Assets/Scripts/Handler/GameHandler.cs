@@ -234,7 +234,7 @@ public class GameHandler : MonoBehaviour
         uiManager.ChangeUI(false, uiManager.loseUI); // reset the losing scren
         if(!singlePlayer)
         {
-            uiManager.UIPopUpWrapper(uiManager.successUI, CheckWinner());
+            uiManager.UIPopUpWrapper(uiManager.successUI, CheckWinner() + 1);
 
         }
         else
