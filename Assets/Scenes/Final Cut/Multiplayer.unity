@@ -3065,7 +3065,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &190570496
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4710,7 +4710,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &291681411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6313,7 +6313,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 419491087}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 38.9, y: -5.3, z: 100.13915}
+  m_LocalPosition: {x: 38.9, y: 15.81, z: 100.13915}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6442,12 +6442,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'You are testing your visual spatial skills in a time trial to finish your
-    9-piece puzzle! To grab pieces to your puzzle, press the action button. To put
-    your carried puzzle piece into its rightful slot, press the action button again.
-    Once the puzzle is correct, the game will be over!
-
-    Good Luck!'
+  m_text: You are testing your visual spatial skills in a time trial to finish your
+    9-piece puzzle! You will spawn next to your puzzle, and your goal is to grab
+    your matching pieces with the action button. You can place them in their rightful
+    spot using the action button again to slot them. First person to have their puzzle
+    complete is the victor!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 98b47d88bd92d0a4c9e8bd52b8991e41, type: 2}
   m_sharedMaterial: {fileID: -241131914279302123, guid: 98b47d88bd92d0a4c9e8bd52b8991e41, type: 2}
@@ -15770,7 +15769,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1071882730
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18468,7 +18467,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239304543}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 27.1, y: -5.3, z: 100.13915}
+  m_LocalPosition: {x: 44.86, y: -5.3, z: 100.13915}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23608,7 +23607,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1756119484}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.5, y: -5.3, z: 100.13915}
+  m_LocalPosition: {x: 5.13, y: 16.46, z: 100.13915}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -26628,7 +26627,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1985651437}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.8, y: -5.3, z: 100.13915}
+  m_LocalPosition: {x: 3.11, y: -5.3, z: 100.13915}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
