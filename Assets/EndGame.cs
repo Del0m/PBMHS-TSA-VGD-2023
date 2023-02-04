@@ -13,6 +13,8 @@ public class EndGame : MonoBehaviour
     public Transform Destination;
 
     public CameraControl cam;
+    [Header("Button")]
+    public GameObject endButton; 
 
     //Scripts to get
     public PlayerManager pm;
@@ -78,7 +80,8 @@ public class EndGame : MonoBehaviour
             }
         }
 
-        StartCoroutine(restartGame());
+        // button
+        endButton.SetActive(true);
     }
 
     IEnumerator restartGame()

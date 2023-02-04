@@ -7236,7 +7236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentTurn: -1
   roundsElapsed: 0
-  maxRounds: 0
+  maxRounds: 6
   miniGameScript: {fileID: 0}
   pm: {fileID: 0}
   eg: {fileID: 346127563}
