@@ -28,6 +28,7 @@ public class PinataObject : MonoBehaviour
     {
         if(stat.killer != null)
         {
+            stat.healthBar = GameObject.FindGameObjectWithTag("Health Bar");
             minigame.killer = stat.killer;
             stat.healthBar.SetActive(false); // disappear health bar?
         }

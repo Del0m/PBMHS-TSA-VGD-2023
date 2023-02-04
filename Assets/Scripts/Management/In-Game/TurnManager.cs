@@ -96,7 +96,7 @@ public class TurnManager : MonoBehaviour
         }
         // run ui update
         uiManager.UpdateRound(roundsElapsed);
-        if(playerCount <= currentTurn && roundsElapsed < maxRounds) // turn on el minigame
+        if(playerCount <= currentTurn && roundsElapsed != maxRounds) // turn on el minigame
         {
             //debug
             Debug.Log("starting the minigame");
