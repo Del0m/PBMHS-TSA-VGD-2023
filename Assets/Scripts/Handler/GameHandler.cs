@@ -200,7 +200,7 @@ public class GameHandler : MonoBehaviour
                 var tile = movementManager.CallTile(playerStat.position);
                 plr[i].transform.position = tile.transform.position; // set position for player in board
                 plr[i].GetComponent<PlayerMovement>().GameSwitch(false ,false, false);
-
+                plr[i].GetComponent<PlayerControls>().hasRan = false;
                 if(turn != null){
                     turn.SetTurn(0);
                 }else{
