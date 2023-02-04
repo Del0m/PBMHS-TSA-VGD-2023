@@ -4340,7 +4340,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: []
   plrManage: {fileID: 0}
-  trnManage: {fileID: 0}
   teleport:
   - {fileID: 676154141}
   - {fileID: 481161914}
@@ -4356,6 +4355,7 @@ MonoBehaviour:
   timeLimit: 0
   uiManager: {fileID: 793855428}
   tutorialScreen: {fileID: 591036514}
+  turn: {fileID: 0}
   cam: {fileID: 513562143}
   camPos: {fileID: 34068438}
   fov: 20
@@ -4725,7 +4725,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: []
   plrManage: {fileID: 0}
-  trnManage: {fileID: 0}
   teleport:
   - {fileID: 1756119484}
   - {fileID: 1985651437}
@@ -4741,6 +4740,7 @@ MonoBehaviour:
   timeLimit: 0
   uiManager: {fileID: 793855428}
   tutorialScreen: {fileID: 1071882729}
+  turn: {fileID: 0}
   cam: {fileID: 513562143}
   camPos: {fileID: 296683893}
   fov: 20
@@ -10997,7 +10997,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: []
   plrManage: {fileID: 0}
-  trnManage: {fileID: 0}
   teleport:
   - {fileID: 0}
   - {fileID: 0}
@@ -11009,6 +11008,7 @@ MonoBehaviour:
   timeLimit: 0
   uiManager: {fileID: 793855428}
   tutorialScreen: {fileID: 1901759395}
+  turn: {fileID: 488599094}
   cam: {fileID: 513562143}
   camPos: {fileID: 797983677}
   fov: 20
@@ -11040,6 +11040,7 @@ MonoBehaviour:
   dropAmount: 5
   originalSpeed: 15
   originalJumpPower: 20
+  hasStopped: 0
 --- !u!4 &762611154
 Transform:
   m_ObjectHideFlags: 0
@@ -11352,7 +11353,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: []
   plrManage: {fileID: 0}
-  trnManage: {fileID: 0}
   teleport: []
   gameScore: 00000000000000000000000000000000
   winner: 0
@@ -11364,6 +11364,7 @@ MonoBehaviour:
   timeLimit: 0
   uiManager: {fileID: 793855428}
   tutorialScreen: {fileID: 2055439265}
+  turn: {fileID: 0}
   cam: {fileID: 513562143}
   camPos: {fileID: 748828930}
   fov: 20
@@ -23287,7 +23288,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: []
   plrManage: {fileID: 0}
-  trnManage: {fileID: 0}
   teleport: []
   gameScore: 00000000000000000000000000000000
   winner: 0
@@ -23295,6 +23295,7 @@ MonoBehaviour:
   timeLimit: 0
   uiManager: {fileID: 0}
   tutorialScreen: {fileID: 0}
+  turn: {fileID: 0}
   cam: {fileID: 0}
   camPos: {fileID: 0}
   fov: 0
@@ -26385,7 +26386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasStarted: 0
   minigame:
-  - {fileID: 291681410}
+  - {fileID: 762611152}
   lastMinigamePlayed: 
 --- !u!1 &1966404308
 GameObject:

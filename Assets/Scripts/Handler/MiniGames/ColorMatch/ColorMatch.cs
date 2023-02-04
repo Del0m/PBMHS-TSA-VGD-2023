@@ -29,6 +29,9 @@ public class ColorMatch : GameHandler
 
     public float originalSpeed;
     public float originalJumpPower;
+
+    [HideInInspector]
+    public bool hasStopped = false;
     void Start()
     {
         if(singlePlayer)
@@ -146,6 +149,7 @@ public class ColorMatch : GameHandler
     }
     public IEnumerator LoseGame() // when all players have lost
     {
+        hasStopped = true;
         uiManager.ChangeUI(true, uiManager.loseUI);
         ModifyPlayerStats(false); // bring players stats back to normal
 
@@ -160,12 +164,14 @@ public class ColorMatch : GameHandler
         {
             player[i].GetComponent<PlayerStats>().wins -= 1;
         }
+
         StartCoroutine(EndGame()); // game over for single player
 
 
     }
     public override IEnumerator EndGame() // award all winners with points
     {
+        hasStopped = true;
         // for loop to examine who lost, and award them points accordingly
         for(int i = 0; i < player.Length; i++)
         {

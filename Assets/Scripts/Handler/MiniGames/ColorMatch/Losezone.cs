@@ -19,11 +19,13 @@ public class Losezone : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>(); 
     }
-    private void Update()
+    private void LateUpdate()
     {
-        for(int i = 0; i < heldPlayer.Length; i++) // keep players in the loser spot
-        {
-            heldPlayer[i].transform.position = lostSpot[i].position;
+        if(minigame.hasStopped != true){
+            for(int i = 0; i < heldPlayer.Length; i++) // keep players in the loser spot
+            {
+                heldPlayer[i].transform.position = lostSpot[i].position;
+            }
         }
     }
     void CheckLosers()

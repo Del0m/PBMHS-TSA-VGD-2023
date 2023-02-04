@@ -34,6 +34,7 @@ public class PlayerUIManager : MonoBehaviour
     [Header("Single Player UI")]
     public GameObject gameOverUI;
     public TextMeshProUGUI level; // updated at the end of every game
+    public bool isSinglePlayer;
 
     // this will be ran in the PlayerManager
     private void Start()
@@ -170,10 +171,13 @@ public class PlayerUIManager : MonoBehaviour
             }
             yield return new WaitForEndOfFrame();
         }
-        for (int i = 0; i < manager.player.Length; i++)
+        if(isSinglePlayer)
         {
-            var rb = manager.player[i].GetComponent<Rigidbody2D>();
-            rb.bodyType = RigidbodyType2D.Dynamic;
+            for (int i = 0; i < manager.player.Length; i++)
+            {
+                var rb = manager.player[i].GetComponent<Rigidbody2D>();
+                rb.bodyType = RigidbodyType2D.Dynamic;
+            }
         }
 
     }
