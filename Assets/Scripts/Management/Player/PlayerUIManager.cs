@@ -76,7 +76,10 @@ public class PlayerUIManager : MonoBehaviour
                 ui.currentTurn.SetActive(false);
             }
         }
-        UpdateRound(manager.turn.roundsElapsed);
+        if(!manager.singlePlayer)
+        {
+            UpdateRound(manager.turn.roundsElapsed);
+        }
     }
     public void UpdateLevel(int lvl)
     {
@@ -111,8 +114,12 @@ public class PlayerUIManager : MonoBehaviour
 
         healthBarRect.sizeDelta = new Vector2(100, 10);
 
-        UpdateRound(manager.turn.roundsElapsed);
-        ValueUpdate();
+        if(!manager.singlePlayer)
+        {
+            UpdateRound(manager.turn.roundsElapsed);
+            ValueUpdate();
+        }
+
     }
     public void ChangeUI(bool minigame) // changes the UI from minigame to board, vice versa
     {

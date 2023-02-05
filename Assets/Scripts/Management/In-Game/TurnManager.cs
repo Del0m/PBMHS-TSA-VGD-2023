@@ -19,9 +19,9 @@ public class TurnManager : MonoBehaviour
     public MiniGameManager miniGameScript;
 
     //Get player manager
-    public PlayerManager pm;
+    public PlayerManager plrManager;
 
-    public EndGame eg;
+    public EndGame endGame;
 
     //modify scores of players
     public ScoreManager scoreScript;
@@ -61,26 +61,29 @@ public class TurnManager : MonoBehaviour
             miniGameScript = GameObject.FindGameObjectWithTag("Mini Game Manager").GetComponent<MiniGameManager>(); // call manager to start / end / bring players to games.
         }
 
-        if(pm == null)
+        if(plrManager == null)
         {
-            pm = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>();
+            plrManager = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>();
             //Get player list length
             StartCoroutine(getPlayers());
         }
 
-        if(eg == null){
-            eg = GameObject.FindGameObjectWithTag("EndGame").GetComponent<EndGame>();
+        if(endGame == null && !plrManager.singlePlayer){
+            endGame = GameObject.FindGameObjectWithTag("EndGame").GetComponent<EndGame>();
         }
 
         //call UI update
-        uiManager.UpdateRound(roundsElapsed);
+        if (!plrManager.singlePlayer)
+        {
+            uiManager.UpdateRound(roundsElapsed);
 
+        }
     }
 
     IEnumerator getPlayers()
     {
         yield return new WaitForSeconds(5);
-        playerCount = pm.player.Length;
+        playerCount = plrManager.player.Length;
         StopCoroutine(getPlayers());
     }
 
@@ -92,10 +95,10 @@ public class TurnManager : MonoBehaviour
         currentTurn++;
 
         // move camera
-        if(currentTurn < pm.player.Length)
+        if(currentTurn < plrManager.player.Length)
         {
             musicObj.SetActive(true);
-            StartCoroutine(cam.ModifyCamera(pm.player[currentTurn].transform, 25, 20, 30));
+            StartCoroutine(cam.ModifyCamera(plrManager.player[currentTurn].transform, 25, 20, 30));
         }
         // run ui update
         uiManager.UpdateRound(roundsElapsed);
@@ -115,8 +118,8 @@ public class TurnManager : MonoBehaviour
 
         if(roundsElapsed >= maxRounds){
             //End Game
-            if(eg != null){
-                eg.End();
+            if(endGame != null){
+                endGame.End();
             }
         }
 

@@ -24,8 +24,8 @@ public class PlayerManager : MonoBehaviour
     public TurnManager turn; // start up turns
     public MovementManager moveManage;
     public CameraControl cam;
-    [Header("Debug")]
-    public bool miniGameTesting = false;
+    [Header("Settings")]
+    public bool singlePlayer; // set game to single player
     private void Start()
     {
         manager = GetComponent<PlayerInputManager>();
@@ -33,7 +33,7 @@ public class PlayerManager : MonoBehaviour
         {
             turn = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>();
         }
-        if(!moveManage)
+        if(!moveManage && !singlePlayer)
         {
             moveManage = GameObject.FindGameObjectWithTag("Movement Manager").GetComponent<MovementManager>();
         }
@@ -68,10 +68,14 @@ public class PlayerManager : MonoBehaviour
         plrControl.cam = cam;
 
         // setting player's color
-        spawnPlayer.GetComponentInChildren<SpriteRenderer>().color = playerColor.ElementAt(player.Length - 1);
+        if(!singlePlayer)
+        {
+            spawnPlayer.GetComponentInChildren<SpriteRenderer>().color = playerColor.ElementAt(player.Length - 1);
+        }
     }
     public void SinglePlayer(PlayerInput input)
     {
+        singlePlayer = true; // set the game to singleplayer mode for scripts
         var stat = input.gameObject.GetComponent<PlayerStats>();
 
         stat.singlePlayer = true;
