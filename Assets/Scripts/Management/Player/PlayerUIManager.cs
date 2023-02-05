@@ -178,6 +178,7 @@ public class PlayerUIManager : MonoBehaviour
     bool isntActing; // to put down the UI
     public IEnumerator UIPopUp(GameObject target) // pops up UI to show player
     {
+        Debug.Log(target + " Setting active!");
         isntActing = true; // to put down the UI
 
         target.SetActive(true);
@@ -186,6 +187,7 @@ public class PlayerUIManager : MonoBehaviour
             var rb = manager.player[i].GetComponent<Rigidbody2D>();
             rb.bodyType = RigidbodyType2D.Static;
         }
+        yield return new WaitForSeconds(.5f);
         while(isntActing)
         {
             if(!target.activeInHierarchy)

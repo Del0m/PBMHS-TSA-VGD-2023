@@ -201,9 +201,12 @@ public class GameHandler : MonoBehaviour
                 plr[i].transform.position = tile.transform.position; // set position for player in board
                 plr[i].GetComponent<PlayerMovement>().GameSwitch(false ,false, false);
                 plr[i].GetComponent<PlayerControls>().hasRan = false;
-                if(turn != null){
+                if(turn != null)
+                {
                     turn.SetTurn(0);
-                }else{
+                }
+                else
+                {
                     Debug.LogError("The turn manager is missing");
                 }
             }
@@ -229,18 +232,16 @@ public class GameHandler : MonoBehaviour
         {
             //increase level
             spManage.IncreaseLevel();
+            uiManager.UIPopUpWrapper(uiManager.successUI);
         }
-        uiManager.ChangeUI(false, uiManager.healthBarUI); // reset the UI
-        uiManager.ChangeUI(false, uiManager.loseUI); // reset the losing scren
-        if(!singlePlayer)
+        else
         {
             uiManager.UIPopUpWrapper(uiManager.successUI, CheckWinner() + 1);
 
         }
-        else
-        {
-            uiManager.UIPopUpWrapper(uiManager.successUI);
-        }
+        uiManager.ChangeUI(false, uiManager.healthBarUI); // reset the UI
+        uiManager.ChangeUI(false, uiManager.loseUI); // reset the losing scren
+
 
         // set players back to their tiles
 
@@ -249,7 +250,7 @@ public class GameHandler : MonoBehaviour
         {
             if(singlePlayer)
             {
-                    plr[i].GetComponent<PlayerMovement>().GameSwitch(false, false, false); // set player to move in single player
+                plr[i].GetComponent<PlayerMovement>().GameSwitch(false, false, false); // set player to move in single player
             }
             else
             {

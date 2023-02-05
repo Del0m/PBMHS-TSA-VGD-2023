@@ -6583,7 +6583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66ccda27bc6ebbe429ad7d4b481bd05e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  puzzleScript: {fileID: 0}
+  puzzleScript: {fileID: 127172593}
   pieceCount: 9
   pieceID: 0
   slot:
@@ -8445,7 +8445,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &638915172
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16021,7 +16021,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!50 &1286141541
 Rigidbody2D:
   serializedVersion: 4
@@ -18687,7 +18687,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1481833892}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -20367,7 +20367,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1568222201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22113,7 +22113,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press the action button to continue.
+  m_text: Press the jump button to continue.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 98b47d88bd92d0a4c9e8bd52b8991e41, type: 2}
   m_sharedMaterial: {fileID: -241131914279302123, guid: 98b47d88bd92d0a4c9e8bd52b8991e41, type: 2}
@@ -29183,7 +29183,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasStarted: 0
   minigame:
-  - {fileID: 661104467}
   - {fileID: 127172592}
   lastMinigamePlayed: 
 --- !u!4 &8160318722094343414
