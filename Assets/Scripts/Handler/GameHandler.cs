@@ -243,18 +243,25 @@ public class GameHandler : MonoBehaviour
         }
 
         // set players back to their tiles
-        if (!singlePlayer)
+
+        var plr = GameObject.FindGameObjectsWithTag("Player");
+        for(int i = 0; i < plr.Length; i++) // teleport players back to their tiles
         {
-            var plr = GameObject.FindGameObjectsWithTag("Player");
-            for(int i = 0; i < plr.Length; i++) // teleport players back to their tiles
+            if(singlePlayer)
+            {
+                    plr[i].GetComponent<PlayerMovement>().GameSwitch(false, false, false); // set player to move in single player
+            }
+            else
             {
                 var plrStat = plr[i].GetComponent<PlayerStats>();
                 var pos = plrStat.position;
                 var moveManage = GameObject.FindGameObjectWithTag("Movement Manager").GetComponent<MovementManager>();
 
                 plr[i].gameObject.transform.position = moveManage.CallTile(pos).gameObject.GetComponent<Tile>().playerPositions[plrStat.turnOrder].position;
+
             }
         }
+
 
         if(!singlePlayer && pl != null){
             //Call camera tp
