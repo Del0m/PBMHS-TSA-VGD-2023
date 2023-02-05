@@ -110,7 +110,7 @@ public class PlayerUIManager : MonoBehaviour
     {
         timeLeftUI.text = "Time Left: ";
 
-        var healthBarRect = healthBarUI.GetComponent<RectTransform>();
+        var healthBarRect = healthBar.GetComponent<RectTransform>();
 
         healthBarRect.sizeDelta = new Vector2(100, 10);
 
@@ -119,7 +119,6 @@ public class PlayerUIManager : MonoBehaviour
             UpdateRound(manager.turn.roundsElapsed);
             ValueUpdate();
         }
-
     }
     public void ChangeUI(bool minigame) // changes the UI from minigame to board, vice versa
     {
@@ -199,6 +198,7 @@ public class PlayerUIManager : MonoBehaviour
             {
                 isntActing = false;
                 target.SetActive(false);
+                successUI.GetComponent<UIFade>().text[0].text = "Everyone lost!"; // resetting success ui
 
                 break;
             }

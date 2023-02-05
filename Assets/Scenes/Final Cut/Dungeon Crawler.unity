@@ -20367,7 +20367,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1568222201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29184,6 +29184,10 @@ MonoBehaviour:
   hasStarted: 0
   minigame:
   - {fileID: 127172592}
+  - {fileID: 475453603}
+  - {fileID: 1481661852}
+  - {fileID: 2019262471}
+  - {fileID: 661104467}
   lastMinigamePlayed: 
 --- !u!4 &8160318722094343414
 Transform:
