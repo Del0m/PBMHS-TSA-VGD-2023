@@ -7239,8 +7239,8 @@ MonoBehaviour:
   roundsElapsed: 0
   maxRounds: 6
   miniGameScript: {fileID: 0}
-  pm: {fileID: 0}
-  eg: {fileID: 346127563}
+  plrManager: {fileID: 0}
+  endGame: {fileID: 0}
   scoreScript: {fileID: 0}
   uiManager: {fileID: 793855428}
   cam: {fileID: 0}
@@ -24425,7 +24425,7 @@ MonoBehaviour:
   turn: {fileID: 0}
   moveManage: {fileID: 0}
   cam: {fileID: 0}
-  miniGameTesting: 0
+  singlePlayer: 0
 --- !u!114 &1584233326
 MonoBehaviour:
   m_ObjectHideFlags: 0
