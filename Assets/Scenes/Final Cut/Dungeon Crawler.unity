@@ -21397,7 +21397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelGUI: {fileID: 1189744446}
-  level: 8
+  level: 1
   multiplier: 1
 --- !u!4 &1658392753
 Transform:
@@ -21558,7 +21558,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1668315012}
-  - component: {fileID: 1668315013}
   m_Layer: 0
   m_Name: Objects
   m_TagString: Untagged
@@ -21590,42 +21589,6 @@ Transform:
   m_Father: {fileID: 475453605}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1668315013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1668315011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad80f7214bffade44837656c131980be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: []
-  plrManage: {fileID: 0}
-  teleport: []
-  gameScore: 
-  winner: 0
-  border: []
-  timeLimit: 0
-  uiManager: {fileID: 0}
-  tutorialScreen: {fileID: 0}
-  turn: {fileID: 0}
-  cam: {fileID: 0}
-  camPos: {fileID: 0}
-  fov: 0
-  level: {fileID: 0}
-  singlePlayer: 0
-  spSpawn: {fileID: 0}
-  spManage: {fileID: 0}
-  multi: 0
-  allowCameraFollow: 0
-  amount: 0
-  time: 0
-  crate: {fileID: 0}
-  hole: {fileID: 0}
-  holesLeft: 0
 --- !u!1 &1670140752
 GameObject:
   m_ObjectHideFlags: 0
@@ -21990,7 +21953,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press the jump button to continue.
+  m_text: Press the action button to continue.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 98b47d88bd92d0a4c9e8bd52b8991e41, type: 2}
   m_sharedMaterial: {fileID: -241131914279302123, guid: 98b47d88bd92d0a4c9e8bd52b8991e41, type: 2}
@@ -29023,10 +28986,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasStarted: 0
   minigame:
+  - {fileID: 475453603}
   - {fileID: 661104467}
   - {fileID: 2019262471}
   - {fileID: 1481661852}
-  - {fileID: 475453603}
   - {fileID: 127172592}
   lastMinigamePlayed: 
 --- !u!4 &8160318722094343414
