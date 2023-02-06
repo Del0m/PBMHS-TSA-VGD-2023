@@ -118,7 +118,11 @@ public class GameHandler : MonoBehaviour
     public virtual IEnumerator PreGameRoutine() // routine to run when before the minigame to see if anything needs to be added to the game.
     {
         yield return new WaitForEndOfFrame();
-        cam.forgetDestination();
+        if(!singlePlayer)
+        {
+            cam.forgetDestination();
+
+        }
         TeleportPlayers(); // teleport players into the game
 
         var scoreArray = new int[player.Length];

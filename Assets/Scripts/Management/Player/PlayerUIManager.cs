@@ -198,8 +198,11 @@ public class PlayerUIManager : MonoBehaviour
             {
                 isntActing = false;
                 target.SetActive(false);
-                successUI.GetComponent<UIFade>().text[0].text = "Everyone lost!"; // resetting success ui
+                if(!manager.singlePlayer)
+                {
+                    successUI.GetComponent<UIFade>().text[0].text = "Everyone lost!"; // resetting success ui
 
+                }
                 break;
             }
             yield return new WaitForEndOfFrame();
