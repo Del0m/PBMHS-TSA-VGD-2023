@@ -16,7 +16,7 @@ public class PlayerManager : MonoBehaviour
     [Header("Player")]
     public Transform[] spawn; // spawn player in correct spot
     public Transform waitSpawn; // spawn player in waiting room
-    public GameObject[] player; // player append variable
+    public List<GameObject> player; // player append variable
     public List<Color> playerColor; // colors for players to differentiate who they are
 
     [Header("Player Passdowns")] // pass down variables to players
@@ -52,11 +52,11 @@ public class PlayerManager : MonoBehaviour
         var spawnPlayer = input.gameObject; // grabbing object of player
 
         Debug.Log("Appending Player");
-        player = player.Append(spawnPlayer).ToArray();
+        player.Add(spawnPlayer); // add player into the count
 
         // add their correct turn order as well
-        Debug.Log("Player Length is:" + (player.Length - 1).ToString());
-        spawnPlayer.GetComponent<PlayerStats>().turnOrder = player.Length - 1;
+        Debug.Log("Player Length is:" + (player.Count).ToString());
+        spawnPlayer.GetComponent<PlayerStats>().turnOrder = player.Count;
 
         spawnPlayer.GetComponent<PlayerControls>().pauseMenu = pauseMenu; // pass to player
 
@@ -68,10 +68,11 @@ public class PlayerManager : MonoBehaviour
         plrControl.cam = cam;
 
         // setting player's color
-        if(!singlePlayer)
+       /* if(!singlePlayer) 
         {
             spawnPlayer.GetComponentInChildren<SpriteRenderer>().color = playerColor.ElementAt(player.Length - 1);
         }
+       */
     }
     public void SinglePlayer(PlayerInput input)
     {
@@ -91,7 +92,7 @@ public class PlayerManager : MonoBehaviour
     }
     public void StartMultiplayer() // Move player in select location
     {
-        for(int i = 0; i < player.Length; i++)
+        for(int i = 0; i < player.Count; i++)
         {
             var plr = player[i].gameObject;
             var playerSpawn = plr.GetComponent<PlayerStats>().turnOrder;

@@ -181,7 +181,7 @@ public class PlayerUIManager : MonoBehaviour
         isntActing = true; // to put down the UI
 
         target.SetActive(true);
-        for(int i = 0; i < manager.player.Length; i++)
+        for(int i = 0; i < manager.player.Count; i++)
         {
             var rb = manager.player[i].GetComponent<Rigidbody2D>();
             rb.bodyType = RigidbodyType2D.Static;
@@ -209,7 +209,7 @@ public class PlayerUIManager : MonoBehaviour
         }
         if(isSinglePlayer)
         {
-            for (int i = 0; i < manager.player.Length; i++)
+            for (int i = 0; i < manager.player.Count; i++)
             {
                 var rb = manager.player[i].GetComponent<Rigidbody2D>();
                 rb.bodyType = RigidbodyType2D.Dynamic;
@@ -225,5 +225,30 @@ public class PlayerUIManager : MonoBehaviour
         }
         StartCoroutine(UIPopUp(target));
         yield break;
+    }
+    public IEnumerator ShowUI(GameObject ui) // shows ui to the player, particularly for minigame instruction.
+    {
+        // this will slow down the game until the player turns on a button
+        ui.SetActive(true);
+        // slow down the game
+        Time.timeScale = 0.0001f;
+
+        var cont = false; // set the player to continue to game to false
+
+        while(!cont)
+        {
+            // check if player is acting
+            if (manager.player[0].GetComponent<PlayerMovement>().acting)
+            {
+                cont = true; // break the loop
+                Time.timeScale = 1; // reset time to norm
+                break;
+            }
+            yield return new WaitForEndOfFrame(); // prevent overflow
+        }
+        ui.SetActive(false); // remove the ui from the player's screen
+        yield return null; // end
+
+
     }
 }

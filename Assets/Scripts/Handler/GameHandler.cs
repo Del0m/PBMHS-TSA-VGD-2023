@@ -1,5 +1,6 @@
 //armin delmo, 11/13/22. Purpose of script is to handle minigame startup, grabbing players, starting game, etc.
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -7,14 +8,14 @@ public class GameHandler : MonoBehaviour
 {
     //player array to modify rigidbodies and teleport
     [Header("Player Important Variables")]
-    public GameObject[] player;
+    public List<GameObject> player;
     public PlayerManager plrManage; // to import player array
 
     //array of spawns
     public GameObject[] teleport;
 
     //score
-    public int[] gameScore;
+    public List<int> gameScore;
 
     public int winner; // if need be 
 
@@ -35,86 +36,42 @@ public class GameHandler : MonoBehaviour
     public Transform camPos;
     public int fov;
 
-    [Header("SinglePlayer Specific")] // only to be ticked in the single player mode, do not turn on otherwise
-    public TextMeshProUGUI level; // increase level on game
-    public bool singlePlayer;
-    public Transform spSpawn;
-
-    // multipliers to make game harder
-    public SinglePlayerManager spManage;
-    public double multi;
-
-    private bool ended; // changes, prevents end game from being ran several times
-    [HideInInspector]
-    public bool allowCameraFollow = false; //Used to tell the camera to follow the players, by default it's turned off (Set true only on minigame script if needea
     void Start()
     {
         turn = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>();
         uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
-        //mg = GameObject.FindGameObjectWithTag("Mini Game Manager").GetComponent<MiniGameManager>();
-        teleport = GameObject.FindGameObjectsWithTag("Teleport");
-
-        // function to increase difficulty for players
-        if(singlePlayer)
+        try
         {
-            IncreaseDifficulty();
+            if (plrManage) { }; // checking player manager if it isn't null
+            if(turn) { }; // checking if turn manager isn't null
+            if (uiManager) { } ; // checking to see if ui manager isn't null
+        }
+        catch (System.Exception)
+        {
+            Debug.LogError("Manager not found, check inspector and reset!");
         }
     }
+    /*
     public virtual void IncreaseDifficulty() // increase the difficulty of the game in single player
     {
         multi = spManage.multiplier;
         // put stuff in here in other programs idk
     }
+    */
     public void TeleportPlayers() // void to collect all players on the map, and place them in the according location in minigame
     {
-        plrManage = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>();
-        if (!allowCameraFollow)
-        {
-            cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControl>();
-            cam.TeleportCamera(camPos, fov); // change camera into minigame spot
-        }
-
+        
         player = plrManage.player;
-        teleport = GameObject.FindGameObjectsWithTag("Teleport"); // check if null, replace spawns
 
-        for(int i = 0; i < player.Length; i++) // for loop to set all players in correct position for game
+        for(int i = 0; i < player.Count; i++) // for loop to set all players in correct position for game
         {
-            Debug.Log("moving player to scene");
+            Debug.Log("moving player " + i+1 + " to scene");
             player[i].transform.position = teleport[i].transform.position; // set position for player in minigame
             player[i].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static; // prevent movement until necessary
         }
     }
     bool isntActing;
-    public IEnumerator MinigameUI(bool enter, GameObject screen)
-    {
-        uiManager.ChangeUI(enter); // enable the minigame ui
-        screen.SetActive(true);
-        isntActing = true;
-
-        // slow down time to allow game to not go on
-        Time.timeScale = 0.0001f; // go REALLY slow
-
-        while (isntActing)
-        {
-            if(!screen.activeInHierarchy) // enable UI when it is not on correctly
-            {
-                screen.SetActive(true);
-            }
-            Debug.Log("running loop");
-            // don't do anything besides check
-            if(player[0].GetComponent<PlayerMovement>().acting == true)
-            {
-                Debug.Log("Acting found!");
-                isntActing = false;
-                screen.SetActive(false); // bring down UI
-                Time.timeScale = 1f; // go back to speed
-
-                break;
-            }
-            yield return new WaitForEndOfFrame();
-        }
-
-    }
+    
     public virtual IEnumerator PreGameRoutine() // routine to run when before the minigame to see if anything needs to be added to the game.
     {
         yield return new WaitForEndOfFrame();
@@ -125,11 +82,9 @@ public class GameHandler : MonoBehaviour
         }
         TeleportPlayers(); // teleport players into the game
 
-        var scoreArray = new int[player.Length];
-        gameScore = scoreArray;
         uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
 
-        StartCoroutine(MinigameUI(true, tutorialScreen));
+        StartCoroutine(uiManager.ShowUI(tutorialScreen));
 
         StartCoroutine(uiManager.CountDown(3, uiManager.countdownUI));
         yield return new WaitForEndOfFrame();
