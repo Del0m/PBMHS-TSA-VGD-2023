@@ -104,21 +104,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, (yMovementInput * stat.speed)); // move y
             }
         }
-        else
-        {
-            if (staticMovementSet)
-            {
-                //Move statically in one direction
-                if (myDir)
-                {
-                    rb.velocity = new Vector2((staticSpeed * currentIncrement), rb.velocity.y);
-                }
-                else
-                {
-                    rb.velocity = new Vector2(rb.velocity.x, (staticSpeed * currentIncrement));
-                }
-            }
-        }
+
         // if statement to keep held object in hand
         if (holding != null)
         {
@@ -126,13 +112,7 @@ public class PlayerMovement : MonoBehaviour
         }
         StartCoroutine(Footstep());
     }
-    //Private vars for static movement
-    private bool myDir;
-    private float staticSpeed;
-    private float incrementAmount;
-    private float currentIncrement = 1;
-    private float defaultIncrement = 1;
-    private bool staticMovementSet = false;
+
 
     public void AnimationUpdate() // update animations for player
     {
@@ -163,11 +143,6 @@ public class PlayerMovement : MonoBehaviour
         stat.jumpPower = jumpP;
         //Unlock player
         GameSwitch(true, false, false);
-    }
-    //Another way to acccess a private variable and setting it to either true or false
-    public void setStaticMovement(bool enable)
-    {
-        staticMovementSet = enable;
     }
 
     public void setFreeMovement(bool enable){
@@ -509,12 +484,5 @@ public class PlayerMovement : MonoBehaviour
             //Call a couroutine to increment
             StartCoroutine(incrementMovement());
         }
-    }
-
-    IEnumerator incrementMovement()
-    {
-        currentIncrement += incrementAmount;
-        yield return new WaitForSeconds((float)_cooldown);
-        currentIncrement = defaultIncrement;
     }
 }

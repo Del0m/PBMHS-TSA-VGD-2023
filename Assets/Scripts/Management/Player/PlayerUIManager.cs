@@ -63,7 +63,7 @@ public class PlayerUIManager : MonoBehaviour
     public void ValueUpdate() // update all the values on the UI
     {
         var playerObject = manager.player;
-        for(int i = 0; i < playerObject.Length; i++)
+        for(int i = 0; i < playerObject.Count; i++)
         {
             var ui = playerUI[i].GetComponent<PlayerUI>();
             ui.wins.GetComponent<TextMeshProUGUI>().text = playerObject[i].GetComponent<PlayerStats>().wins.ToString();

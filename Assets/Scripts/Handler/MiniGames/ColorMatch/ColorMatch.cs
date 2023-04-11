@@ -34,23 +34,13 @@ public class ColorMatch : GameHandler
     public bool hasStopped = false;
     void Start()
     {
-        if(singlePlayer)
-        {
-            IncreaseDifficulty(); // make game harder for single player
-        }
+
         uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
         
-        StartCoroutine(StartGame(true)); // starting game and bringing players into the game
+        StartCoroutine(StartGame()); // starting game and bringing players into the game
         ModifyPlayerStats(true); // decrease player speed
 
         StartCoroutine(DropColors()); 
-    }
-    public override void IncreaseDifficulty()
-    {
-        multi = spManage.multiplier;
-
-        dropTime /= ((float)multi);
-        dropAmount = Mathf.CeilToInt(((float)multi)*dropAmount);
     }
     int ChooseColor()
     {
@@ -145,7 +135,7 @@ public class ColorMatch : GameHandler
             yield return new WaitForSeconds(5);
         }
         ModifyPlayerStats(false); // increase player speed oncemore!
-        StartCoroutine(EndGame());
+        StartCoroutine(EndGame(winner)); // fix at a later date, doesn't give all players a win
     }
     public IEnumerator LoseGame() // when all players have lost
     {
@@ -153,40 +143,15 @@ public class ColorMatch : GameHandler
         uiManager.ChangeUI(true, uiManager.loseUI);
         ModifyPlayerStats(false); // bring players stats back to normal
 
-        if (singlePlayer)
-        {
-            StartCoroutine(EndGame(false)); // game over for single player
-            yield break;
-        }
 
         yield return new WaitForSeconds(5);
-        for(int i = 0; i < player.Length; i++)
+        for(int i = 0; i < player.Count; i++)
         {
             player[i].GetComponent<PlayerStats>().wins -= 1;
         }
 
-        StartCoroutine(EndGame()); // game over for single player
+        StartCoroutine(EndGame(CheckWinner())); // game over for single player
 
 
-    }
-    public override IEnumerator EndGame() // award all winners with points
-    {
-        hasStopped = true;
-        // for loop to examine who lost, and award them points accordingly
-        for(int i = 0; i < player.Length; i++)
-        {
-            var playerStat = player[i].GetComponent<PlayerStats>();
-
-            if(!playerStat.lost) // check to see if player didn't fall
-            {
-                Debug.Log("Awarding a win!");
-                playerStat.wins++;
-            }
-            playerStat.lost = false;
-
-            ModifyPlayerStats(false); // bring players stats back to normal
-        }
-
-        return base.EndGame();
     }
 }

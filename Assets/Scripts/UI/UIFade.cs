@@ -14,7 +14,7 @@ public class UIFade : MonoBehaviour
 
     [Header("Pause Variables")]
     public PlayerManager plrManage;
-    private GameObject[] player;
+    private List<GameObject> player;
     public bool pauseGame; // to pause the game for the UI before fading
     private bool hasActed; // once player clicks, fade function starts
 
@@ -67,16 +67,12 @@ public class UIFade : MonoBehaviour
     {
         FadeUI();
 
-        if(pauseGame && player.Length != 0)
+        if(pauseGame && player.Count != 0)
         {
             if(player[0].GetComponent<PlayerMovement>().acting == true || player[0].GetComponent<PlayerMovement>().canJump == true)
             {
                 hasActed = true;
             }
-        }
-        else if(pauseGame && player.Length == 0)
-        {
-            player = plrManage.player; // grab players until one is gotten
         }
     }
 }

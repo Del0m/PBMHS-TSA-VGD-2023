@@ -30,26 +30,15 @@ public class JigsawPuzzle : GameHandler
         // calling manager for UI updates
         uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
         
-        if(singlePlayer)
-        {
-            IncreaseDifficulty();
-        }
 
-        StartCoroutine(StartGame(true,true,true)); // teleport players to game; topdown game
+        StartCoroutine(StartGame()); // teleport players to game; topdown game
         StartCoroutine(FormBoard());
     }
     private void Update()
     {
         if (uiManager.timesUp)
         {
-            if (singlePlayer)
-            {
-                StartCoroutine(EndGame(false));
-            }
-            else
-            {
-                StartCoroutine(EndGame(CheckWinner()));
-            }
+            StartCoroutine(EndGame(CheckWinner()));
         }
         // check to see if time has elapsed in single player
         
@@ -61,22 +50,7 @@ public class JigsawPuzzle : GameHandler
         yield return StartCoroutine(uiManager.UpdateClock(time)); // running the timer
 
     }
-    public override void IncreaseDifficulty() // less time for player to solve puzzle
-    {
-        multi = spManage.multiplier;
-        Debug.Log(multi);
-        time = ((int)(time / multi));
-    }
-    public override IEnumerator EndGame(int winner)
-    {
-        uiManager.ChangeUI(false); // bring UI back to normal
 
-        for (int i = 0; i < player.Length; i++) // for loop to bring players back to normal movement
-        {
-            player[i].GetComponent<PlayerMovement>().GameSwitch(false, false, false);
-        }
-        return base.EndGame(winner);
-    }
     public void CheckEnd(int correctPieceCount) // check to see if user has correctly solved the puzzle
     {
         if(correctPieceCount >= 9)

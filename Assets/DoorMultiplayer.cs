@@ -41,7 +41,7 @@ public class DoorMultiplayer : MonoBehaviour
             Debug.Log(isActing);
             if (isActing)
             {
-                if (manager.player.Length < 2)
+                if (manager.player.Count < 2)
                 {
                     text.text = "You must have more than one player to start!";
                     return;

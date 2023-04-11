@@ -33,14 +33,8 @@ public class MathDash : GameHandler
     {
         //uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
 
-        StartCoroutine(StartGame(true)); // teleport players to the minigame.
+        StartCoroutine(StartGame()); // teleport players to the minigame.
         StartCoroutine(NewProblem()); // makes new problem to have player solve.
-
-
-        if(singlePlayer)
-        {
-            IncreaseDifficulty(); // make game harder for single player
-        }
     }
 
 
@@ -48,13 +42,9 @@ public class MathDash : GameHandler
     {
         if(uiManager.timesUp == true)
         {
-            if(singlePlayer && gameScore[0] >= scoreRequired)
+            if(gameScore[0] >= scoreRequired)
             {
-                StartCoroutine(EndGame(true)); // win in single player
-            }
-            else if(singlePlayer)
-            {
-                StartCoroutine(EndGame(false)); // lose in single player
+                StartCoroutine(EndGame(CheckWinner())); // win in single player
             }
             else
             {
@@ -66,25 +56,12 @@ public class MathDash : GameHandler
         }
 
     }
-    public override IEnumerator EndGame()
-    {
-        uiManager.ChangeUI(false, uiManager.scoreLeftUI);
-        return base.EndGame();
-    }
     public override IEnumerator PreGameRoutine() // adding a timer to the minigame in singleplayer
     {
         yield return StartCoroutine(base.PreGameRoutine());
-        if (singlePlayer)
-        {
-            uiManager.ChangeUI(true, uiManager.scoreLeftUI);
-        }
+
         yield return new WaitForSeconds(3);
         yield return StartCoroutine(uiManager.UpdateClock(time)); // running the timer
-    }
-    public override void IncreaseDifficulty()
-    {
-        multi = spManage.multiplier;
-        scoreRequired = (int)(scoreRequired * multi);
     }
     void MakeProblem() // making the problem that the players have to solve
     {
@@ -232,18 +209,6 @@ public class MathDash : GameHandler
     }
     IEnumerator NewProblem() // procedure to put new problem on the board.
     {
-        if(singlePlayer)
-        {
-            if(questionsCorrect >= scoreRequired)
-            {
-                uiManager.scoreLeftUI.GetComponent<TextMeshProUGUI>().text = "You've passed the requirement!";
-
-            }
-            else
-            {
-                uiManager.scoreLeftUI.GetComponent<TextMeshProUGUI>().text = "Questions Left to Pass: " + (scoreRequired - gameScore[0]);
-            }
-        }
         //delete all current cards
         for (int i = 0; i < card.Length; i++)
         {

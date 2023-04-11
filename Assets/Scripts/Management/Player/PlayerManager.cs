@@ -12,7 +12,7 @@ public class PlayerManager : MonoBehaviour
 {
 
     private PlayerInputManager manager; // disable joining mechanics
-
+    public PlayerUIManager uiManager; // modify the UI
     [Header("Player")]
     public Transform[] spawn; // spawn player in correct spot
     public Transform waitSpawn; // spawn player in waiting room
@@ -29,20 +29,8 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         manager = GetComponent<PlayerInputManager>();
-        if(!turn)
-        {
-            turn = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>();
-        }
-        if(!moveManage && !singlePlayer)
-        {
-            moveManage = GameObject.FindGameObjectWithTag("Movement Manager").GetComponent<MovementManager>();
-        }
-        if(!cam)
-        {
-            cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControl>();
-        }
 
-        if (manager.playerPrefab == null)
+        if (!manager.playerPrefab)
         {
             manager.playerPrefab = Resources.Load("Experimental/Player") as GameObject;
         }
@@ -55,7 +43,7 @@ public class PlayerManager : MonoBehaviour
         player.Add(spawnPlayer); // add player into the count
 
         // add their correct turn order as well
-        Debug.Log("Player Length is:" + (player.Count).ToString());
+        Debug.Log("Player Length is: " + (player.Count).ToString());
         spawnPlayer.GetComponent<PlayerStats>().turnOrder = player.Count;
 
         spawnPlayer.GetComponent<PlayerControls>().pauseMenu = pauseMenu; // pass to player
@@ -131,6 +119,26 @@ public class PlayerManager : MonoBehaviour
     private void DisableJoin() // disable players joining the game.
     {
         manager.DisableJoining(); // disables joining from the players end
+    }
+    public void TransitionGame(int won) // move the game back to the board
+    {
+        if(singlePlayer) // check if the game is in singleplayer mode
+        {
+            if(won == -1) // if the player won
+            {
+                uiManager.UIPopUp(uiManager.gameOverUI);
+            }
+            else
+            {
+                {
+                    uiManager.UIPopUp(uiManager.successUI);
+                }
+            }
+        }
+        else
+        {
+            uiManager.UIPopUpWrapper(uiManager.successUI, won + 1);
+        }
     }
     public void GameOver() // for single player
     {

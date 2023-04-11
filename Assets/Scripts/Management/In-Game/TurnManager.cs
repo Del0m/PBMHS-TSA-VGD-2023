@@ -21,7 +21,7 @@ public class TurnManager : MonoBehaviour
     //Get player manager
     public PlayerManager plrManager;
 
-    public EndGame endGame;
+    //public EndGame endGame;
 
     //modify scores of players
     public ScoreManager scoreScript;
@@ -68,9 +68,6 @@ public class TurnManager : MonoBehaviour
             StartCoroutine(getPlayers());
         }
 
-        if(endGame == null && !plrManager.singlePlayer){
-            endGame = GameObject.FindGameObjectWithTag("EndGame").GetComponent<EndGame>();
-        }
 
         //call UI update
         if (!plrManager.singlePlayer)
@@ -83,7 +80,7 @@ public class TurnManager : MonoBehaviour
     IEnumerator getPlayers()
     {
         yield return new WaitForSeconds(5);
-        playerCount = plrManager.player.Length;
+        playerCount = plrManager.player.Count;
         StopCoroutine(getPlayers());
     }
 
@@ -95,7 +92,7 @@ public class TurnManager : MonoBehaviour
         currentTurn++;
 
         // move camera
-        if(currentTurn < plrManager.player.Length)
+        if(currentTurn < plrManager.player.Count)
         {
             musicObj.SetActive(true);
             StartCoroutine(cam.ModifyCamera(plrManager.player[currentTurn].transform, 25, 20, 30));
@@ -118,9 +115,7 @@ public class TurnManager : MonoBehaviour
 
         if(roundsElapsed >= maxRounds){
             //End Game
-            if(endGame != null){
-                endGame.End();
-            }
+            // havent wrote anything in here, make another EndGame() function
         }
 
         //currentTurn++;

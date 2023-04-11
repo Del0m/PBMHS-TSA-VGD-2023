@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class GameHandler : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class GameHandler : MonoBehaviour
     public List<GameObject> player;
     public PlayerManager plrManage; // to import player array
 
+    public MovementManager movementManager;
     //array of spawns
     public GameObject[] teleport;
 
@@ -66,250 +68,109 @@ public class GameHandler : MonoBehaviour
         for(int i = 0; i < player.Count; i++) // for loop to set all players in correct position for game
         {
             Debug.Log("moving player " + i+1 + " to scene");
+
             player[i].transform.position = teleport[i].transform.position; // set position for player in minigame
             player[i].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static; // prevent movement until necessary
         }
     }
-    bool isntActing;
     
     public virtual IEnumerator PreGameRoutine() // routine to run when before the minigame to see if anything needs to be added to the game.
     {
-        yield return new WaitForEndOfFrame();
-        if(!singlePlayer)
-        {
-            cam.forgetDestination();
-
-        }
         TeleportPlayers(); // teleport players into the game
 
         uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
+
+        // move the camera to the minigame
+        MoveCamera(camPos, fov);
 
         StartCoroutine(uiManager.ShowUI(tutorialScreen));
 
         StartCoroutine(uiManager.CountDown(3, uiManager.countdownUI));
         yield return new WaitForEndOfFrame();
     }
-    public IEnumerator StartGame(bool enable) // teleports players into minigame
+    public virtual IEnumerator StartGame() // teleports players into minigame
     {
         yield return new WaitForEndOfFrame();
         StartCoroutine(PreGameRoutine());
 
-        yield return new WaitForSeconds(3.1f);
-
-        //StartCoroutine(PreGameRoutine());
-
-        // for loop to allow all players controls
-        for (int i = 0; i < player.Length; i++)
+        // for loop to allow all players controls, add this in the override 
+        /*
+        for (int i = 0; i < player.Count; i++)
         {
             var playerMovement = player[i].GetComponent<PlayerMovement>();
 
-            playerMovement.GameSwitch(enable);
+            playerMovement.GameSwitch(true);
         }
+        */
         yield return null;
     }
-
-    public IEnumerator StartGame(bool enable, bool topDown) // teleports players into minigame; allow topdown
+    public void MoveCamera(Transform pos, int fov)
     {
-
-        StartCoroutine(PreGameRoutine());
-
-        yield return new WaitForSeconds(3.1f);
-
-        // for loop to allow all players controls
-        for (int i = 0; i < player.Length; i++)
+        if(!cam) // check if the cam is found already
         {
-            var playerMovement = player[i].GetComponent<PlayerMovement>();
-
-            playerMovement.GameSwitch(enable, topDown);
+            cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControl>();
         }
-        yield return null;
-    }
-    public IEnumerator StartGame(bool enable, bool topDown, bool pick) // teleports players into minigame; allow topdown
-    {
-
-        StartCoroutine(PreGameRoutine());
-
-        yield return new WaitForSeconds(3.1f);
-
-        // for loop to allow all players controls
-        for (int i = 0; i < player.Length; i++)
-        {
-            var playerMovement = player[i].GetComponent<PlayerMovement>();
-
-            playerMovement.GameSwitch(enable, topDown, pick);
-        }
-        yield return null;
+        cam.TeleportCamera(pos, fov);
     }
     public void TeleportBack() // bring players back to their spawn point
     {
-        cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControl>();
-        cam.TeleportCamera(camPos, fov); // change camera into minigame spot
+        movementManager = GameObject.FindGameObjectWithTag("Movement Manager").GetComponent<MovementManager>();
 
-        var plr = GameObject.FindGameObjectsWithTag("Player");
-        teleport = GameObject.FindGameObjectsWithTag("Teleport"); // check if null, replace spawns
-
-        for (int i = 0; i < plr.Length; i++) // for loop to set all players in correct position for game
+        for (int i = 0; i < player.Count; i++) // for loop to set all players in correct position for game
         {
-            if(!singlePlayer)
-            {
-                var playerStat = plr[i].GetComponent<PlayerStats>(); // calling player's position
-                var movementManager = GameObject.FindGameObjectWithTag("Movement Manager").GetComponent<MovementManager>();
+            var playerStat = player[i].GetComponent<PlayerStats>(); // calling player's home position
+            
+            var tile = movementManager.CallTile(playerStat.position);
+            player[i].transform.position = tile.transform.position; // set position for player in board
 
-                // moving player back to tile
-                var tile = movementManager.CallTile(playerStat.position);
-                plr[i].transform.position = tile.transform.position; // set position for player in board
-                plr[i].GetComponent<PlayerMovement>().GameSwitch(false ,false, false);
-                plr[i].GetComponent<PlayerControls>().hasRan = false;
-                if(turn != null)
-                {
-                    turn.SetTurn(0);
-                }
-                else
-                {
-                    Debug.LogError("The turn manager is missing");
-                }
+            player[i].GetComponent<PlayerMovement>().GameSwitch(false, false, false);
+            player[i].GetComponent<PlayerControls>().hasRan = false;
+
+            if (turn)
+            {
+                turn.SetTurn(0);
             }
             else
             {
-                plr[i].transform.position = new Vector2(spSpawn.position.x,spSpawn.position.y); // bring player back to map
-                plr[i].GetComponent<PlayerMovement>().GameSwitch(false);
-                cam.TeleportCamera(spSpawn, 20); // set position of camera 
-                
+                Debug.LogError("turn manager is not found!");
             }
         }
-
-        pl = plr[0];
+        // collect first player's position to return the camera to that location
+        MoveCamera(movementManager.CallTile(player[0].GetComponent<PlayerStats>().position), fov);
     }
 
-    private GameObject pl = null;
-
-    public virtual IEnumerator EndGame()
+    public IEnumerator EndGame(int winner)
     {
         TeleportBack();
+        plrManage.TransitionGame(winner);
 
-        if(singlePlayer)
-        {
-            //increase level
-            spManage.IncreaseLevel();
-            uiManager.UIPopUpWrapper(uiManager.successUI);
-        }
-        else
-        {
-            uiManager.UIPopUpWrapper(uiManager.successUI, CheckWinner() + 1);
-
-        }
         uiManager.ChangeUI(false, uiManager.healthBarUI); // reset the UI
         uiManager.ChangeUI(false, uiManager.loseUI); // reset the losing scren
 
 
         // set players back to their tiles
 
-        var plr = GameObject.FindGameObjectsWithTag("Player");
-        for(int i = 0; i < plr.Length; i++) // teleport players back to their tiles
+        for(int i = 0; i < player.Count; i++) // teleport players back to their tiles
         {
-            if(singlePlayer)
-            {
-                plr[i].GetComponent<PlayerMovement>().GameSwitch(false, false, false); // set player to move in single player
-            }
-            else
-            {
-                var plrStat = plr[i].GetComponent<PlayerStats>();
-                var pos = plrStat.position;
-                var moveManage = GameObject.FindGameObjectWithTag("Movement Manager").GetComponent<MovementManager>();
+            var plrStat = player[i].GetComponent<PlayerStats>();
+            var pos = plrStat.position;
+            var moveManage = GameObject.FindGameObjectWithTag("Movement Manager").GetComponent<MovementManager>();
 
-                plr[i].gameObject.transform.position = moveManage.CallTile(pos).gameObject.GetComponent<Tile>().playerPositions[plrStat.turnOrder].position;
+            player[i].GetComponent<PlayerMovement>().GameSwitch(false, false, false);
 
-            }
+            player[i].gameObject.transform.position = moveManage.CallTile(pos).gameObject.GetComponent<Tile>().playerPositions[plrStat.turnOrder].position;
         }
+        cam.TeleportCamera(player[0].transform.position, 20); // bring camera back to board frame.
 
-
-        if(!singlePlayer && pl != null){
-            //Call camera tp
-            Vector3 pos = new Vector3(pl.transform.position.x, pl.transform.position.y, -100f);
-
-            cam.TeleportCamera(pos, 20);
-        }
-
+        // ending game
         Destroy(gameObject, 1f);
-
-        yield return null;
-    }
-    public virtual IEnumerator EndGame(bool won) // single player endgame routine
-    {
-        if (ended) { yield break; }
-        ended = true;
-        if (won)
-        {
-            // increase level values; bring back player
-            StartCoroutine(EndGame());
-        }
-        else
-        {
-            var plrManage = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>();
-            plrManage.GameOver();
-        }
-        Debug.Log("Game has ended.");
-        // adding level update
-        if(singlePlayer)
-        {
-            uiManager.UpdateLevel(spManage.level); // updating the player's level in the game
-        }
-        Destroy(gameObject, 1f);
-        yield return null;
-    }
-    public virtual IEnumerator EndGame(int winner) // coroutine to end the game as a player has won.
-    {
-        if (ended) { yield break; }
-        ended = true;
-
-        var plr = GameObject.FindGameObjectsWithTag("Player");
-
-        for (int i = 0; i < player.Length; i++)
-        {
-            var playerStat = plr[i].GetComponent<PlayerStats>();
-            if(playerStat.turnOrder == winner)
-            {
-                Debug.Log(playerStat.turnOrder + " has won!");
-                playerStat.wins++;
-            }
-            else
-            {
-                // do nothing
-            }
-        }
-        Debug.Log("Game has ended.");
-        StartCoroutine(EndGame());
-        Destroy(gameObject, 1f);
-
-        yield return null;
-    }
-    public virtual IEnumerator EndGame(int loser, bool winnersWin)
-    {
-        if (ended) { yield break; }
-        ended = true;
-        for (int i = 0; i < player.Length; i++) // for loop, loser loses point, everyone wins!
-        {
-            var playerStat = player[i].GetComponent<PlayerStats>();
-            if(playerStat.turnOrder == loser)
-            {
-                playerStat.wins--;
-            }
-            else if(winnersWin)
-            {
-                playerStat.wins++;
-            }
-        }
-        Debug.Log("Game has ended");
-        StartCoroutine(EndGame());
-        Destroy(gameObject, 1f);
-
         yield return null;
     }
     public int CheckWinner() // returns the player who got the most points
     {
         var highestScore = -9;
         var winner = 9;
-        for(int i = 0; i < player.Length; i++)
+        for(int i = 0; i < player.Count; i++)
         {
             if(highestScore < gameScore[i])
             {

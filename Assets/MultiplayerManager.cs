@@ -15,43 +15,24 @@ public class MultiplayerManager : MonoBehaviour
 
     public float timeToStart = 5f;
 
-    public GameObject[] players;
-    public Transform[] spawns;
-
-    private List<PlayerStats> ps;
-
     // Start is called before the first frame update
     void Start()
     {
         //Player Manager MUST exist in scene
         pm = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>();
 
-        StartCoroutine(startTurns());        
+        StartCoroutine(StartTurns());        
     }
 
-    IEnumerator startTurns(){
+    IEnumerator StartTurns()
+    {
         yield return new WaitForSeconds (timeToStart);
-        //Copy player list
-        players = pm.player;
-        //Copy spawn list
-        spawns = pm.spawn;
+        var player = pm.player;
 
         //teleport players
-        if((players.Length != 0 && players.Length > 0) && (spawns.Length != 0 && spawns.Length > 0)){
-            for(int i = 0; i < players.Length; i++){
-                players[i].transform.position = spawns[i].position;
-            }
-        }else{
-            Debug.LogError("Player or Spawn list from player manager came empty!");
-            StopAllCoroutines();
+        for(int i = 0; i < player.Count; i++)
+        {
+            player[i].transform.position = pm.spawn[i].transform.position;
         }
-
-        yield return new WaitForSeconds(1); //debug
-        //Start turn order
-
-        //arrange players score script to local list
-        for(int i = 0; i < players.Length; i++){
-            ps.Add(players[i].GetComponent<PlayerStats>());
-        }   
     }
 }

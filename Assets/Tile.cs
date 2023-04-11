@@ -85,7 +85,7 @@ public class Tile : MonoBehaviour
 
             playerIndex = -1;
 
-            for(int i = 0; i < pm.player.Length; i++){
+            for(int i = 0; i < pm.player.Count; i++){
                 if(pm.player[i] == player){
                     Debug.Log("Found player in player manager!");
                     playerIndex = i;

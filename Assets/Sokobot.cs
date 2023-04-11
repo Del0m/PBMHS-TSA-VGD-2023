@@ -15,8 +15,20 @@ public class Sokobot : GameHandler
     public int holesLeft;
     private void Start()
     {
-        StartCoroutine(StartGame(true, true)); // enable basic movement and topdown movement
+        StartCoroutine(StartGame()); // enable basic movement and topdown movement
         GameRoutine();
+    }
+    public override IEnumerator StartGame()
+    {
+        // for loop to allow all players controls, add this in the override 
+        
+        for (int i = 0; i < player.Count; i++)
+        {
+            var playerMovement = player[i].GetComponent<PlayerMovement>();
+
+            playerMovement.GameSwitch(true,true);
+        }
+        return base.StartGame();
     }
     bool hasRan; // to prevent multiple runs
     private void Update()
@@ -24,22 +36,8 @@ public class Sokobot : GameHandler
         if(uiManager.timesUp && !hasRan)
         {
             hasRan = true;
-            if(singlePlayer)
-            {
-                if(holesLeft > 0)
-                {
-                    // lose game
-                    StartCoroutine(EndGame(false));
-                }
-                else
-                {
-                    StartCoroutine(EndGame(true));
-                }
-            }
-            else
-            {
-                StartCoroutine(EndGame(CheckWinner())); // check to see who pushed the most boxes
-            }
+            StartCoroutine(EndGame(CheckWinner()));
+
         }
     }
     public override IEnumerator PreGameRoutine()
@@ -48,22 +46,6 @@ public class Sokobot : GameHandler
 
         yield return new WaitForSeconds(3);
         yield return StartCoroutine(uiManager.UpdateClock(time)); // running the timer
-    }
-    public override void IncreaseDifficulty()
-    {
-        base.IncreaseDifficulty();
-        amount = ((int)(amount * multi)); // make more holes for the player to solve.
-    }
-    public override IEnumerator EndGame(bool won)
-    {
-        Debug.Log("Ending game, checking controls!");
-        uiManager.ChangeUI(false); // bring UI back to normal
-
-        for (int i = 0; i < player.Length; i++) // for loop to bring players back to normal movement
-        {
-            player[i].GetComponent<PlayerMovement>().GameSwitch(false, false, false);
-        }
-        return base.EndGame(won);
     }
 
     public void ScoreHole(GameObject pusher) // runs whenever player pushes box into hole
@@ -80,14 +62,7 @@ public class Sokobot : GameHandler
     {
         if(holesLeft <= 0)
         {
-            if(singlePlayer)
-            {
-                StartCoroutine(EndGame(true));
-            }
-            else
-            {
-                StartCoroutine(EndGame(CheckWinner()));
-            }
+            StartCoroutine(EndGame(CheckWinner()));
         }
     }
     Vector2 RandomizePosition() // this runs to randomize the position in the arena
@@ -106,10 +81,6 @@ public class Sokobot : GameHandler
     }
     void GameRoutine() // runs the routine of the game, spawns holes where they need to be.
     {
-        if(singlePlayer)
-        {
-            IncreaseDifficulty(); // make game harder for single player
-        }
 
         holesLeft = amount; // to track for single player and other factos
 
