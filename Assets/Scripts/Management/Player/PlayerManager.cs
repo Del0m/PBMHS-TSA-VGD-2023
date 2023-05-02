@@ -10,8 +10,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
-
-    private PlayerInputManager manager; // disable joining mechanics
+    [HideInInspector]
+    public PlayerInputManager manager; // disable joining mechanics
     public PlayerUIManager uiManager; // modify the UI
     [Header("Player")]
     public Transform[] spawn; // spawn player in correct spot
@@ -24,8 +24,10 @@ public class PlayerManager : MonoBehaviour
     public TurnManager turn; // start up turns
     public MovementManager moveManage;
     public CameraControl cam;
-    [Header("Settings")]
-    public bool singlePlayer; // set game to single player
+
+    public bool singlePlayer;
+    public double multiplier;
+
     private void Start()
     {
         manager = GetComponent<PlayerInputManager>();
@@ -35,17 +37,22 @@ public class PlayerManager : MonoBehaviour
             manager.playerPrefab = Resources.Load("Experimental/Player") as GameObject;
         }
     }
-    public void PlayerArray(PlayerInput input) // adds to player array for minigames
+    public virtual void SpawnPlayer(PlayerInput input) // adds to player array for minigames
     {
-        var spawnPlayer = input.gameObject; // grabbing object of player
 
-        Debug.Log("Appending Player");
+        var spawnPlayer = input.gameObject; // grabbing object of player
+        
+
         player.Add(spawnPlayer); // add player into the count
 
-        // add their correct turn order as well
-        Debug.Log("Player Length is: " + (player.Count).ToString());
-        spawnPlayer.GetComponent<PlayerStats>().turnOrder = player.Count;
+        // add their correct turn order as well, add this to multiplayer
+        /*
+        spawnPlayer.GetComponent<PlayerStats>().turnOrder = (player.Count - 1);
 
+        */
+    }
+    public virtual void SetPlayer(GameObject spawnPlayer)
+    {
         spawnPlayer.GetComponent<PlayerControls>().pauseMenu = pauseMenu; // pass to player
 
         // giving players the turn manager and movement manager to call certain variables in multiplayer
@@ -55,99 +62,18 @@ public class PlayerManager : MonoBehaviour
         plrControl.moveManage = moveManage;
         plrControl.cam = cam;
 
-        // setting player's color
-       /* if(!singlePlayer) 
-        {
-            spawnPlayer.GetComponentInChildren<SpriteRenderer>().color = playerColor.ElementAt(player.Length - 1);
-        }
-       */
+        spawnPlayer.GetComponent<PlayerStats>().singlePlayer = singlePlayer;
+        // setting player's color, put this in multiplayer manager
+        /* if(!singlePlayer) 
+         {
+             spawnPlayer.GetComponentInChildren<SpriteRenderer>().color = playerColor.ElementAt(player.Length - 1);
+         }
+        */
     }
-    public void SinglePlayer(PlayerInput input)
+    
+    public virtual void TransitionGame(int won) // move the game back to the board
     {
-        singlePlayer = true; // set the game to singleplayer mode for scripts
-        var stat = input.gameObject.GetComponent<PlayerStats>();
-
-        stat.singlePlayer = true;
-        
-        input.gameObject.transform.position = new Vector3(input.gameObject.transform.position.x, input.gameObject.transform.position.y, 5);
-
-        // gameswitch to make jumps exists
-
-        var movement = input.gameObject.GetComponent<PlayerMovement>();
-
-        movement.rb = input.gameObject.GetComponent<Rigidbody2D>();
-        movement.GameSwitch(false);
-    }
-    public void StartMultiplayer() // Move player in select location
-    {
-        for(int i = 0; i < player.Count; i++)
-        {
-            var plr = player[i].gameObject;
-            var playerSpawn = plr.GetComponent<PlayerStats>().turnOrder;
-
-            plr.transform.position = spawn[playerSpawn].position; // move players to map
-            plr.GetComponent<PlayerMovement>().GameSwitch(false); // prevent player moving
-        }
-        turn.SetTurn(0);
-        turn.uiManager.InitalizeUI();
-
-    }
-    public void MultiPlayer(PlayerInput input)
-    {
-        input.gameObject.transform.position = waitSpawn.transform.position;
-
-        // allowing player movement
-        var movement = input.gameObject.GetComponent<PlayerMovement>();
-
-        movement.rb = input.gameObject.GetComponent<Rigidbody2D>();
-        movement.GameSwitch(true);
-    }
-
-    public IEnumerator StartGame() // start the game, run DisableJoin
-    {
-        yield return new WaitForSeconds(2);
-        DisableJoin(); // turn off players from being able to join the game
-        yield return new WaitForSeconds(5); // wait 5 seconds before going on
-
-        turn.SetTurn(0); //allow players to begin doing their turns
-        // ^ to be changed to after cutscene overlooking map
-
-        // multiplayer procedure begins here
-        StartMultiplayer();
-
-    }
-    private void DisableJoin() // disable players joining the game.
-    {
-        manager.DisableJoining(); // disables joining from the players end
-    }
-    public void TransitionGame(int won) // move the game back to the board
-    {
-        if(singlePlayer) // check if the game is in singleplayer mode
-        {
-            if(won == -1) // if the player won
-            {
-                uiManager.UIPopUp(uiManager.gameOverUI);
-            }
-            else
-            {
-                {
-                    uiManager.UIPopUp(uiManager.successUI);
-                }
-            }
-        }
-        else
-        {
-            uiManager.UIPopUpWrapper(uiManager.successUI, won + 1);
-        }
-    }
-    public void GameOver() // for single player
-    {
-        //Reset turn order
-        turn.SetTurn(0);
-
-        // siginify in single player that player has lost
-        var uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
-
-        uiManager.gameOverUI.SetActive(true);
+        Debug.Log("Running basic transition game.");
+        uiManager.UIPopUpWrapper(uiManager.successUI, won + 1);
     }
 }

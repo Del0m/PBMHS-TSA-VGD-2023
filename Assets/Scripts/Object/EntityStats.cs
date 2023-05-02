@@ -18,6 +18,7 @@ public class EntityStats : MonoBehaviour
     private bool invulnerable;
 
     public bool isDead;
+    [HideInInspector]
     public GameObject killer;
 
     [Header("Sounds")]
@@ -27,13 +28,14 @@ public class EntityStats : MonoBehaviour
 
 
     public GameObject objectToKill; // for the purposes of some objects being children
-    private float totalHealth; // just for reading
+    [HideInInspector]
+    public float totalHealth; // just for reading
 
     [Header("Special Stuff")]
     public GameObject healthBar; // for the purposes of updating the health
     public bool bossBar;
     public PlayerUIManager uiManager;
-    private void Start()
+    public virtual void Start()
     {
         totalHealth = health; // initalizing max health
 
@@ -62,7 +64,7 @@ public class EntityStats : MonoBehaviour
         }
         objectColor.color = Color.white;
     }
-    public IEnumerator TakeDamage(int damage, GameObject obj) // damage coroutine to be ran everytime a player damages this object
+    public virtual IEnumerator TakeDamage(int damage, GameObject obj) // damage coroutine to be ran everytime a player damages this object
     {
         if(invulnerable == false)
         {
@@ -70,13 +72,6 @@ public class EntityStats : MonoBehaviour
             invulnerable = true;
             health -= damage;
 
-            //modding healthbar to match health
-            if(bossBar)
-            {
-                var healthBarRect = uiManager.healthBar.GetComponent<RectTransform>();
-
-                healthBarRect.sizeDelta = new Vector2((health / totalHealth) * 100, 10);
-            }
             // flash red to indicate damage has been dealt
             StartCoroutine(DamageFlash());
 
@@ -88,22 +83,18 @@ public class EntityStats : MonoBehaviour
 
 
     }
-    public void DeathCheck(GameObject kill) // check to see if entity is dead
+    public virtual void DeathCheck(GameObject kill) // check to see if entity is dead
     {
-        if(health <= 0)
+        if(health > 0) 
         {
-            isDead = true;
-            killer = kill;
+            Debug.Log("Returning...");
+            return; 
+        } // stop running if player is above 0 hp.
 
-            //modding healthbar to reset health
-            if (healthBar)
-            {
-                var healthBarRect = uiManager.healthBar.GetComponent<RectTransform>();
+        isDead = true;
+        killer = kill;
+        Destroy(objectToKill, 1f);
 
-                healthBarRect.sizeDelta = new Vector2(100, 10);
-            }
-            Destroy(objectToKill, 1f);
-        }
     }
     // triggers to find player
     private void OnTriggerStay2D(Collider2D collision)

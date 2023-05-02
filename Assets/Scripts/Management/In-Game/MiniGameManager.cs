@@ -7,11 +7,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Playables;
 
 public class MiniGameManager : MonoBehaviour
 {
     //players
-    private GameObject[] players; // player array to change controls, bring to map, etc.
+    private List<GameObject> players; // player array to change controls, bring to map, etc.
 
     //variables for minigame
     public bool hasStarted = false;
@@ -25,7 +26,7 @@ public class MiniGameManager : MonoBehaviour
     //defining the TurnManager
     //public TurnManager turnScript;
 
-    public string lastMinigamePlayed; // to prevent same games from playing one after another
+    public GameObject lastMinigame; // to prevent same games from playing one after another
 
     private void Awake() // to set tag so other manager can collect on Start()
     {
@@ -35,33 +36,44 @@ public class MiniGameManager : MonoBehaviour
     private void Start() // collect TurnManager
     {
     }
-
-    private void SpawnMinigame() // randomly selects a minigame from public gameobject list
+    private void SpawnMinigame()
     {
-        try // statement to check for invalid minigame length
+        // check if no minigames are found
+        if(minigame.Length < 1) // recursively call the game after finding all of them in the map.
         {
-            if(minigame.Length < 1 ) // 0 minigames
-            {
-                //custom exception for debugging purposes.
-                throw new System.Exception("Error found, no minigames located. Please add minigames through the public list.");
-            }
-            else
-            {
-                var rand = Random.Range(0, minigame.Length); // randomly selects a minigame using the length of minigame array
+            Debug.LogError("No minigames found, please initalize");
+            // finding minigames
+            minigame = GameObject.FindGameObjectsWithTag("Minigame");
 
-                var gameData = minigame[rand]; // used in name of minigame
-                var minigameInstance = Instantiate(gameData); // spawns minigame
-                minigameInstance.SetActive(true); // make minigame exist in-game
-                lastMinigamePlayed = minigameInstance.name; // set last game to this
-            }
+            // recursively calling and returning.
+            SpawnMinigame();
+            return;
         }
-        catch (System.Exception)
-        {
-            Debug.LogError("Warning, no minigames found!");
-        }
-        
-
+        FindMinigame();
     }
+    private void FindMinigame() // find minigame, check to see if it repeated
+    {
+        var rand = Random.Range(0, minigame.Length);
+
+        if (minigame[rand] == lastMinigame) // check to see if game was played already
+        {
+            // recursion to end the function and look for one again
+
+            Debug.LogWarning("Same minigame rolled, recursing.");
+
+            FindMinigame();
+            return;
+        }
+
+        var gameData = minigame[rand];
+        var minigameInstance = Instantiate(gameData); // spawns minigame
+        minigameInstance.SetActive(true); // make minigame exist in-game
+
+        // add this minigame to the last minigame played
+        lastMinigame = gameData;
+        return;
+    }
+
     public void MinigameStartup()
     {
         Debug.Log("running coroutine StartMiniGame");
@@ -69,7 +81,6 @@ public class MiniGameManager : MonoBehaviour
     }
     public IEnumerator StartMiniGame()
     {
-        Debug.Log("Starting new minigame!");
         /*
          * add ui updates here notifying players of upcoming minigame
          */

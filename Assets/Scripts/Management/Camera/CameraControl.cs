@@ -24,16 +24,10 @@ public class CameraControl : MonoBehaviour
     {
         cam = this.gameObject.GetComponent<Camera>();
     }
-    public void TeleportCamera(Transform dest, int camSize) // teleport camera into the game
-    {
-        cam.gameObject.transform.position = dest.position;
-        cam.orthographicSize = camSize;
-        Debug.Log("TELEPORTING CAM TO PLAYERS");
-    }
     public void TeleportCamera(Vector3 dest, int camSize){
-        cam.gameObject.transform.position = dest;
+        cam.gameObject.transform.position = new Vector3(dest.x, dest.y, -100);
         cam.orthographicSize = camSize;
-        Debug.Log("TELEPORTING CAM TO PLAYERS");
+
     }
     public IEnumerator ModifyCamera(Transform newDest, int m, int i, int o) // move camera to new location
     {

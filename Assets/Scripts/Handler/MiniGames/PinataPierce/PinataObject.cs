@@ -20,18 +20,13 @@ public class PinataObject : MonoBehaviour
             stat = GetComponent<EntityStats>();
         }
         rb.velocity = ChooseVectorDirection() * 3; // set random direction for pinata.
-
-        stat.healthBar = GameObject.FindGameObjectWithTag("Health Bar");
-
     }
-    private void Update()
+    public void FindKiller(GameObject killer)
     {
-        if(stat.killer != null)
-        {
-            stat.healthBar = GameObject.FindGameObjectWithTag("Health Bar");
-            minigame.killer = stat.killer;
-            stat.healthBar.SetActive(false); // disappear health bar?
-        }
+        minigame.killer = killer;
+        var killerNum = killer.GetComponent<PlayerStats>().turnOrder;
+
+        StartCoroutine(minigame.EndGame(killerNum));
     }
     Vector2 ChooseVectorDirection() // calculates random vector to shoot pinata at
     {

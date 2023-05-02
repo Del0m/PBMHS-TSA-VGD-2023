@@ -1,5 +1,4 @@
 //armin delmo; Mathdash.cs; this is the math dash minigame
-
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -15,18 +14,11 @@ public class MathDash : GameHandler
 
     public GameObject[] card;
 
-    private Vector2 randPos;
-
     //ui
     public TextMeshProUGUI text; // prompt for players to solve
 
     [Header("Math Dash Variables")]
     public int time;
-
-    // for single player
-    public int scoreRequired;
-    public int questionsCorrect;
-    public GameObject scoreLeft; // to track the score the player needs to get for the game
 
     // Start is called before the first frame update
     void Start()
@@ -35,33 +27,36 @@ public class MathDash : GameHandler
 
         StartCoroutine(StartGame()); // teleport players to the minigame.
         StartCoroutine(NewProblem()); // makes new problem to have player solve.
+        
     }
-
-
-    private void Update()
+    public override void IncreaseDifficulty() // set time limit 
     {
-        if(uiManager.timesUp == true)
-        {
-            if(gameScore[0] >= scoreRequired)
-            {
-                StartCoroutine(EndGame(CheckWinner())); // win in single player
-            }
-            else
-            {
-                Debug.Log("winner is " + CheckWinner());
-                StartCoroutine(EndGame(CheckWinner()));
-
-            }
-            uiManager.timesUp = false;
-        }
-
+        base.IncreaseDifficulty();
+        minimumToWin = ((int)(5 * multiplier)); // minimum cards to get right in order to pass
+        time = ((int)(time / multiplier));
     }
     public override IEnumerator PreGameRoutine() // adding a timer to the minigame in singleplayer
     {
+        IncreaseDifficulty();
         yield return StartCoroutine(base.PreGameRoutine());
 
         yield return new WaitForSeconds(3);
-        yield return StartCoroutine(uiManager.UpdateClock(time)); // running the timer
+        yield return StartCoroutine(gameUI.Timer(time)); // running the timer
+    }
+    public override IEnumerator StartGame()
+    {
+        StartCoroutine(base.StartGame());
+
+        yield return new WaitForEndOfFrame(); // wait for StartGame() to finish loading
+
+        // allow players to move in the game
+        for (int i = 0; i < player.Count; i++)
+        {
+            var playerMovement = player[i].GetComponent<PlayerMovement>();
+
+            playerMovement.GameSwitch(true);
+        }
+        yield return null;
     }
     void MakeProblem() // making the problem that the players have to solve
     {
@@ -114,23 +109,8 @@ public class MathDash : GameHandler
                 }
                 //defining answer
                 answer = number[0] / number[1];
-                print(answer);
                 break;
         }
-    }
-    void RandomizePosition() // this runs to randomize the position in the arena
-    {
-        //getting dimensions of arena
-        var xLow = border[0].transform.position.x+4;
-        var xHigh = border[2].transform.position.x-4;
-
-        var yLow = border[1].transform.position.y+4;
-        var yHigh = border[3].transform.position.y-2;
-
-        //returning random values to spawn target in.
-        randPos = new Vector2(Random.Range(xLow,xHigh),Random.Range(yLow,yHigh));
-        return;
-
     }
     IEnumerator SpawnCards(int answer) // problem cards the players can grab to solve the problem
     {
@@ -140,9 +120,7 @@ public class MathDash : GameHandler
         var cardDisplay = new int();
         yield return new WaitForSeconds(0.5f);
 
-        //instantiating card with correct answer
-        RandomizePosition();
-        var rightCard = Instantiate(cardPrefab, randPos, new Quaternion(), this.gameObject.transform); // spawning new card.
+        var rightCard = Instantiate(cardPrefab, RandPosition(), new Quaternion(), this.gameObject.transform); // spawning new card.
         rightCard.GetComponentInChildren<Card>().value = answer;
         rightCard.SetActive(true); // allow card to be seen in game
 
@@ -174,11 +152,9 @@ public class MathDash : GameHandler
                     break;
             }
             //spawn in object in random area in minigame arena.
-            RandomizePosition(); // randomizing position and spawning card
-            var newCard = Instantiate(cardPrefab, randPos, new Quaternion(), this.gameObject.transform); // spawning new card.
+            var newCard = Instantiate(cardPrefab, RandPosition(), new Quaternion(), this.gameObject.transform); // spawning new card.
             newCard.SetActive(true); // allow to be seen in the scene
             newCard.GetComponentInChildren<Card>().value = cardDisplay; // setting what is on the card
-            print("Instantiating card!");
             newCard.tag = "Minigame Element"; // the card prefab won't have the tag to not be deleted.
         }
         //add all cards to array
@@ -189,7 +165,6 @@ public class MathDash : GameHandler
     }
     public bool CheckAnswer(GameObject plr, int guess) // award player with points if correctly slammed right card
     {
-        print(plr);
         
         if(guess == answer)
         {
@@ -197,8 +172,9 @@ public class MathDash : GameHandler
             gameScore[plr.GetComponent<PlayerStats>().turnOrder]++; // player position in score array is awarded a point
             this.StartCoroutine(NewProblem()); // making new problem for player
 
-            questionsCorrect++; // for singleplayer
-
+            // change cards gotten correct
+            var totalScore = gameScore[0] + gameScore[1] + gameScore[2] + gameScore[3];
+            gameUI.ModifyText("Correct: " + totalScore);
             return true;
         }
         else

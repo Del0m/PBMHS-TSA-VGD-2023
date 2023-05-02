@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class ColorMatch : GameHandler
@@ -27,66 +28,64 @@ public class ColorMatch : GameHandler
     public float dropTime; // time till they drop
     public int dropAmount; // amount the platforms will drop
 
-    public float originalSpeed;
-    public float originalJumpPower;
-
     [HideInInspector]
     public bool hasStopped = false;
+    public float speedModifier; // usually two
     void Start()
     {
 
         uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
         
         StartCoroutine(StartGame()); // starting game and bringing players into the game
-        ModifyPlayerStats(true); // decrease player speed
+        ModifyPlayerStats((speedModifier / 4), (speedModifier / 1.25f)); // decrease player speed
 
         StartCoroutine(DropColors()); 
+    }
+    public override void IncreaseDifficulty() // decrease time to drop and increase amount of drops
+    {
+        base.IncreaseDifficulty();
+        dropAmount = ((int)(dropAmount * multiplier));
+        dropTime = ((int)(dropTime / multiplier));
+    }
+    public override IEnumerator StartGame()
+    {
+        // make the difficulty add more drops and less time
+        StartCoroutine(base.StartGame());
+        yield return new WaitForEndOfFrame(); // wait for StartGame() to finish loading
+
+        // allow players to move
+        for (int i = 0; i < player.Count; i++)
+        {
+            var playerMovement = player[i].GetComponent<PlayerMovement>();
+
+            playerMovement.GameSwitch(true);
+        }
+        yield return null;
     }
     int ChooseColor()
     {
         var randomColor = Random.Range(0, colorString.Length);
-        while(randomColor == previousColor) // prevent same color from showing up
+        if(randomColor == previousColor) // recursion to prevent same color
         {
-            Debug.Log("Choosing new color, accidentally repeated.");
-            if(randomColor != previousColor) // break statement to prevent infinite running of outer while loop
-            {
-                break;
-            }
-            randomColor = Random.Range(0, colorString.Length);
+            return ChooseColor();
         }
+
         // setting previous color to prevent same color from coming up again
         previousColor = randomColor;
         // randomly select color
         return randomColor;
-
     }
-    void ModifyPlayerStats(bool decrease)
+    void ModifyPlayerStats(float walkMulti, float jumpMulti)
     {
         var plr = GameObject.FindGameObjectsWithTag("Player");
         // coroutine to lower players speed
-        if(decrease)
+        for (int i = 0; i < plr.Length; i++)
         {
-            for (int i = 0; i < plr.Length; i++)
-            {
                 // grab stats from players
-                Debug.Log(i + " Player's stats are being changed!");
-
 
                 var playerStat = plr[i].GetComponent<PlayerStats>();
-
-                playerStat.speed /=  2;
-            }
-        }
-        else
-        {
-            for(int i = 0; i < plr.Length; i++)
-            {
-                Debug.Log("Restting stats!");
-                var playerStat = plr[i].GetComponent<PlayerStats>();
-
-                playerStat.speed = originalSpeed;
-                playerStat.jumpPower = originalJumpPower;
-            }
+                playerStat.speed *= walkMulti;
+                playerStat.jumpPower *= jumpMulti;
         }
     }
 
@@ -100,10 +99,20 @@ public class ColorMatch : GameHandler
 
         for (int i = 0; i < dropAmount; i++)
         {
-            dropleft.text = "Drops Left: " + (dropAmount - i).ToString();
+            // if statement to check if it is the final drop
+            if (i == dropAmount)
+            {
+                dropleft.text = "Final Drop!";
+
+            }
+            else
+            {
+                dropleft.text = "Drops Left: " + (dropAmount - i).ToString();
+
+            }
+
             var colorChosen = ChooseColor(); // color they will have to go onto
             // show color to player
-            Debug.Log(colorString[colorChosen]); // show in testing 
 
             // show color to players
             flagObject.color = flagColor[colorChosen];
@@ -134,14 +143,14 @@ public class ColorMatch : GameHandler
             dropTime -= (dropTime / 8); // reduce drop time to up the stakes
             yield return new WaitForSeconds(5);
         }
-        ModifyPlayerStats(false); // increase player speed oncemore!
+        ModifyPlayerStats(speedModifier*4, speedModifier * 1.25f); // increase player speed oncemore!
         StartCoroutine(EndGame(winner)); // fix at a later date, doesn't give all players a win
     }
     public IEnumerator LoseGame() // when all players have lost
     {
         hasStopped = true;
         uiManager.ChangeUI(true, uiManager.loseUI);
-        ModifyPlayerStats(false); // bring players stats back to normal
+        ModifyPlayerStats(speedModifier*4, speedModifier*1.25f); // bring players stats back to normal
 
 
         yield return new WaitForSeconds(5);

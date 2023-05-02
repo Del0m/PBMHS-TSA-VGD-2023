@@ -4849,6 +4849,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: []
   plrManage: {fileID: 0}
+  movementManager: {fileID: 0}
   teleport:
   - {fileID: 676154141}
   - {fileID: 481161914}
@@ -4862,18 +4863,13 @@ MonoBehaviour:
   - {fileID: 1458541784}
   - {fileID: 14343113}
   timeLimit: 0
+  multiplier: 0
   uiManager: {fileID: 793855428}
   tutorialScreen: {fileID: 591036514}
   turn: {fileID: 488599094}
   cam: {fileID: 513562143}
   camPos: {fileID: 34068438}
   fov: 20
-  level: {fileID: 0}
-  singlePlayer: 0
-  spSpawn: {fileID: 0}
-  spManage: {fileID: 0}
-  multi: 0
-  allowCameraFollow: 0
   number: 0000000000000000
   problemType: 0
   answer: 0
@@ -5085,6 +5081,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: []
   plrManage: {fileID: 0}
+  movementManager: {fileID: 0}
   teleport:
   - {fileID: 1756119484}
   - {fileID: 1985651437}
@@ -5098,18 +5095,13 @@ MonoBehaviour:
   - {fileID: 571065454}
   - {fileID: 151043903}
   timeLimit: 0
+  multiplier: 0
   uiManager: {fileID: 793855428}
   tutorialScreen: {fileID: 1071882729}
   turn: {fileID: 488599094}
   cam: {fileID: 513562143}
   camPos: {fileID: 296683893}
   fov: 20
-  level: {fileID: 0}
-  singlePlayer: 0
-  spSpawn: {fileID: 0}
-  spManage: {fileID: 0}
-  multi: 0
-  allowCameraFollow: 0
   puzzleLocation:
   - {fileID: 284726138}
   - {fileID: 1047328665}
@@ -5968,7 +5960,7 @@ MonoBehaviour:
   Destination: {fileID: 2060691575}
   cam: {fileID: 513562143}
   endButton: {fileID: 1640541787}
-  pm: {fileID: 1584233325}
+  pm: {fileID: 0}
 --- !u!1 &356187638
 GameObject:
   m_ObjectHideFlags: 0
@@ -7376,7 +7368,6 @@ MonoBehaviour:
   maxRounds: 6
   miniGameScript: {fileID: 0}
   plrManager: {fileID: 0}
-  endGame: {fileID: 0}
   scoreScript: {fileID: 0}
   uiManager: {fileID: 793855428}
   cam: {fileID: 0}
@@ -12293,7 +12284,7 @@ MonoBehaviour:
   - {fileID: 583389012}
   - {fileID: 527288707}
   hasText: 1
-  plrManage: {fileID: 1584233325}
+  plrManage: {fileID: 0}
   pauseGame: 1
   waitTime: 0
 --- !u!114 &746128218
@@ -12554,6 +12545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: []
   plrManage: {fileID: 0}
+  movementManager: {fileID: 0}
   teleport:
   - {fileID: 0}
   - {fileID: 0}
@@ -12563,18 +12555,13 @@ MonoBehaviour:
   winner: 0
   border: []
   timeLimit: 0
+  multiplier: 0
   uiManager: {fileID: 793855428}
   tutorialScreen: {fileID: 1901759395}
   turn: {fileID: 488599094}
   cam: {fileID: 513562143}
   camPos: {fileID: 797983677}
   fov: 20
-  level: {fileID: 0}
-  singlePlayer: 0
-  spSpawn: {fileID: 0}
-  spManage: {fileID: 0}
-  multi: 0
-  allowCameraFollow: 0
   colorString:
   - blue
   - red
@@ -13106,6 +13093,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: []
   plrManage: {fileID: 0}
+  movementManager: {fileID: 0}
   teleport: []
   gameScore: 00000000000000000000000000000000
   winner: 0
@@ -13115,18 +13103,13 @@ MonoBehaviour:
   - {fileID: 1629744452}
   - {fileID: 1675751444}
   timeLimit: 0
+  multiplier: 0
   uiManager: {fileID: 793855428}
   tutorialScreen: {fileID: 2055439265}
   turn: {fileID: 488599094}
   cam: {fileID: 513562143}
   camPos: {fileID: 748828930}
   fov: 20
-  level: {fileID: 0}
-  singlePlayer: 0
-  spSpawn: {fileID: 0}
-  spManage: {fileID: 0}
-  multi: 0
-  allowCameraFollow: 0
   pinata: {fileID: 3780490054035052878, guid: 29ef8fdd9e93dc44ca25441f1f3de1bf, type: 3}
   pinataPrefab: {fileID: 0}
   pinataSpawn: {fileID: 356840828}
@@ -14305,7 +14288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   starting: 0
-  manager: {fileID: 1584233325}
+  manager: {fileID: 0}
   text: {fileID: 2037420841}
   cam: {fileID: 0}
   blankScreen: {fileID: 313765225}
@@ -14888,11 +14871,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: -5
   m_TargetDisplay: 0
---- !u!4 &873044039 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1777612935, guid: 0688c799ce8f5ac25abd249802670ac8, type: 3}
-  m_PrefabInstance: {fileID: 1811142673}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &875455341
 GameObject:
   m_ObjectHideFlags: 0
@@ -21082,6 +21060,7 @@ MonoBehaviour:
   - {fileID: 71410114}
   - {fileID: 8639476}
   - {fileID: 1489907679}
+  playerPuzzle: 0
   piecesCorrect: 0
 --- !u!61 &1236011152
 BoxCollider2D:
@@ -24314,11 +24293,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &1535873935 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 806918331, guid: 0688c799ce8f5ac25abd249802670ac8, type: 3}
-  m_PrefabInstance: {fileID: 1811142673}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1554993687
 GameObject:
   m_ObjectHideFlags: 0
@@ -24798,7 +24772,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1584233327}
   - component: {fileID: 1584233326}
-  - component: {fileID: 1584233325}
+  - component: {fileID: 1584233328}
   m_Layer: 0
   m_Name: Player Manager
   m_TagString: Player Manager
@@ -24806,35 +24780,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1584233325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1584233324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92e87fe67ca9caa4fa6a21c62933998c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawn:
-  - {fileID: 1669675200}
-  - {fileID: 1535873935}
-  - {fileID: 1599991767}
-  - {fileID: 873044039}
-  waitSpawn: {fileID: 643650451}
-  player: []
-  playerColor:
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 0.5235849, b: 0.5235849, a: 1}
-  - {r: 0.5147516, g: 0.495283, b: 1, a: 1}
-  - {r: 0.5826477, g: 1, b: 0.514151, a: 1}
-  pauseMenu: {fileID: 88871610}
-  turn: {fileID: 0}
-  moveManage: {fileID: 0}
-  cam: {fileID: 0}
-  singlePlayer: 0
 --- !u!114 &1584233326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24854,9 +24799,9 @@ MonoBehaviour:
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1584233325}
+      - m_Target: {fileID: 1584233328}
         m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
-        m_MethodName: MultiPlayer
+        m_MethodName: SpawnPlayer
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -24866,9 +24811,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1584233325}
+      - m_Target: {fileID: 1584233328}
         m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
-        m_MethodName: PlayerArray
+        m_MethodName: MultiPlayer
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -24918,6 +24863,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1584233328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584233324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef09a23c5d638534e8c043143ded3d40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiManager: {fileID: 0}
+  spawn: []
+  waitSpawn: {fileID: 0}
+  player: []
+  playerColor: []
+  pauseMenu: {fileID: 0}
+  turn: {fileID: 0}
+  moveManage: {fileID: 0}
+  cam: {fileID: 0}
+  singlePlayer: 0
+  multiplier: 0
 --- !u!1 &1591632851
 GameObject:
   m_ObjectHideFlags: 0
@@ -25078,11 +25046,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &1599991767 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 821781806, guid: 0688c799ce8f5ac25abd249802670ac8, type: 3}
-  m_PrefabInstance: {fileID: 1811142673}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1603025254
 GameObject:
   m_ObjectHideFlags: 0
@@ -26459,11 +26422,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1668239521}
   m_CullTransparentMesh: 1
---- !u!4 &1669675200 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 880980804, guid: 0688c799ce8f5ac25abd249802670ac8, type: 3}
-  m_PrefabInstance: {fileID: 1811142673}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1675751443
 GameObject:
   m_ObjectHideFlags: 0
@@ -28091,7 +28049,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: []
-  plrManage: {fileID: 1584233325}
+  plrManage: {fileID: 0}
+  movementManager: {fileID: 0}
   teleport: []
   gameScore: 
   winner: 0
@@ -28101,18 +28060,13 @@ MonoBehaviour:
   - {fileID: 1224333868}
   - {fileID: 65030137}
   timeLimit: 0
+  multiplier: 0
   uiManager: {fileID: 793855428}
   tutorialScreen: {fileID: 1059380960}
   turn: {fileID: 488599094}
   cam: {fileID: 513562143}
   camPos: {fileID: 1661515678}
   fov: 20
-  level: {fileID: 0}
-  singlePlayer: 0
-  spSpawn: {fileID: 0}
-  spManage: {fileID: 0}
-  multi: 0
-  allowCameraFollow: 0
   amount: 10
   time: 30
   crate: {fileID: 3306213879390748850, guid: 4aac523a9ca9c50448adfbc42defb372, type: 3}

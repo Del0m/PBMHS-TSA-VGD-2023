@@ -14,8 +14,6 @@ public class JigsawPuzzle : GameHandler
     public GameObject piecePrefab;
     public GameObject boardPrefab;
 
-    // random vector to put piece in
-    private Vector2 randPos;
 
     // jigsaw image users must produce
     public GameObject imageCollection; // gameobject that will store all, will be instantiated and removed.
@@ -34,43 +32,47 @@ public class JigsawPuzzle : GameHandler
         StartCoroutine(StartGame()); // teleport players to game; topdown game
         StartCoroutine(FormBoard());
     }
-    private void Update()
+
+    public override void IncreaseDifficulty() // make time shorter to slot pieces
     {
-        if (uiManager.timesUp)
+        base.IncreaseDifficulty();
+        time = (int)(time / multiplier); 
+
+        // check if the game is single player to see if a minimum score should be added
+        if(plrManage.singlePlayer)
         {
-            StartCoroutine(EndGame(CheckWinner()));
+            minimumToWin = 9;
+            Debug.Log("minimumToWin = " + minimumToWin);
         }
-        // check to see if time has elapsed in single player
-        
     }
     public override IEnumerator PreGameRoutine() // adding a timer to the minigame in singleplayer
     {
+        IncreaseDifficulty();
         yield return StartCoroutine(base.PreGameRoutine());
-        yield return new WaitForSeconds(3);
-        yield return StartCoroutine(uiManager.UpdateClock(time)); // running the timer
+    }
+    public override IEnumerator StartGame()
+    {
+        StartCoroutine(base.StartGame());
 
+        yield return new WaitForSeconds(3); // countdown
+        yield return StartCoroutine(gameUI.Timer(time)); // running the timer
+
+        // run loop to bring players
+        for (int i = 0; i < player.Count; i++)
+        {
+            var playerMovement = player[i].GetComponent<PlayerMovement>();
+
+            playerMovement.GameSwitch(true, true, true);
+        }
+        yield return null; 
     }
 
     public void CheckEnd(int correctPieceCount) // check to see if user has correctly solved the puzzle
     {
         if(correctPieceCount >= 9)
         {
-            StartCoroutine(EndGame(boardPrefab.GetComponent<Jigsaw_Board>().pieceID)); // end the game from GameHandler
+            StartCoroutine(EndGame(boardPrefab.GetComponent<Jigsaw_Board>().playerPuzzle)); // end the game from GameHandler
         }
-    }
-    void RandomizePosition() // this runs to randomize the position in the arena
-    {
-        //getting dimensions of arena
-        var xLow = border[0].transform.position.x + 4;
-        var xHigh = border[2].transform.position.x - 4;
-
-        var yLow = border[1].transform.position.y + 4;
-        var yHigh = border[3].transform.position.y - 2;
-
-        //returning random values to spawn target in.
-        randPos = new Vector2(Random.Range(xLow, xHigh), Random.Range(yLow, yHigh));
-        return;
-
     }
     private void SelectImage() // purpose is to select random image collection from ones available.
     {
@@ -122,8 +124,7 @@ public class JigsawPuzzle : GameHandler
         // for loop to create pieces for puzzle
         for (int i = 1; i < 9; i++)
         {
-            RandomizePosition(); // randpos to put jigsaw puzzle around
-            jigsawPiece = Instantiate(piecePrefab, randPos, new Quaternion(0, 0, 0, 0), this.gameObject.transform); // make jigsaw piece spawn on map
+            jigsawPiece = Instantiate(piecePrefab, RandPosition(), new Quaternion(0, 0, 0, 0), this.gameObject.transform); // make jigsaw piece spawn on map
             jigsawPiece.SetActive(true); // show to game
             // mod jigsaw piece to have image
             jigsawPiece.GetComponent<SpriteRenderer>().sprite = jigsawImage[i];

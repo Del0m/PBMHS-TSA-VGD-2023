@@ -52,11 +52,11 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 3
-  m_Material: {fileID: 6200000, guid: e747b4fa4c4d15e2d969ade740744a6d, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
@@ -76,7 +76,7 @@ MonoBehaviour:
   canJump: 0
   canEverJump: 1
   fallThrough: 0
-  rb: {fileID: 0}
+  rb: {fileID: 2609490234402768868}
   acting: 0
   isAttacking: 0
   stat: {fileID: 4021387965015513840}
@@ -120,19 +120,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2609490234402768869}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: XMovement
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2609490234402768869}
-        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: YMovement
+        m_MethodName: ReadMovement
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -278,7 +266,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stat: {fileID: 4021387965015513840}
-  managerObject: {fileID: 0}
   turnScript: {fileID: 0}
   moveManage: {fileID: 0}
   gameplayInput: {fileID: 0}
@@ -306,7 +293,7 @@ MonoBehaviour:
   position: 0
   turnOrder: 0
   speed: 15
-  jumpPower: 25
+  jumpPower: 175
   damage: 5
   cooldown: 0.5
   wins: 0

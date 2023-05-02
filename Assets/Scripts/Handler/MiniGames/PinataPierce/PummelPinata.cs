@@ -17,7 +17,7 @@ public class PummelPinata : GameHandler
 
     [Header("Single Player Variables")]
     public int health;
-    public int time = 45; // always 45s
+    public int time; 
 
     private void Start()
     {
@@ -26,26 +26,31 @@ public class PummelPinata : GameHandler
 
         StartCoroutine(SpawnObject());
     }
-    bool runningEnd; // prevent end routine being ran multiple times
-    private void Update()
+    public override void IncreaseDifficulty() // make pinata harder to kill
     {
-        if(killer != null && !runningEnd) // end game when killer is found
+        base.IncreaseDifficulty();
+        health = (int)(health * multiplier);
+    }
+    public override IEnumerator StartGame()
+    {
+        StartCoroutine(base.StartGame());
+        yield return new WaitForSeconds(3f); // wait for StartGame() to finish loading
+
+        // run loop to move players
+        for (int i = 0; i < player.Count; i++)
         {
-            runningEnd = true;
-            var killerNum = killer.GetComponent<PlayerStats>().turnOrder;
-            StartCoroutine(EndGame(killerNum));
-            uiManager.ChangeUI(false, uiManager.timeLeftUI.gameObject);
+            var playerMovement = player[i].GetComponent<PlayerMovement>();
+
+            playerMovement.GameSwitch(true);
         }
-        if(uiManager.timesUp)
-        {
-            StartCoroutine(EndGame(CheckWinner())); // running end coroutine for singleplayer
-        }
+        yield return null;
     }
     public override IEnumerator PreGameRoutine() // adding a timer to the minigame in singleplayer
     {
         yield return StartCoroutine(base.PreGameRoutine());
-        // turning on the health bar
-        uiManager.ChangeUI(true, uiManager.healthBarUI);
+        
+        // starting the timer
+        StartCoroutine(gameUI.Timer(time));
 
     }
     IEnumerator SpawnObject() // spawn objects for the game to begin

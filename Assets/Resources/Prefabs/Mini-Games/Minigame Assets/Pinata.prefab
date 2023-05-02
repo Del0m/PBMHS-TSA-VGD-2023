@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3780490054035052872}
   - component: {fileID: 3780490054035052873}
-  - component: {fileID: 3780490054035052874}
   - component: {fileID: 3780490054035052875}
   - component: {fileID: 3780490054035052876}
   - component: {fileID: 3780490054035052877}
   - component: {fileID: 7224995517028514344}
+  - component: {fileID: 207289441253000368}
   m_Layer: 0
   m_Name: Pinata
   m_TagString: Untagged
@@ -90,30 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3780490054035052874
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3780490054035052878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bedc72b6a9da5c43ae971d7a25d3110, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 200
-  speed: 10
-  iFrame: 0
-  isDead: 0
-  killer: {fileID: 0}
-  hit: {fileID: 8300000, guid: ec05997e6bd8a904b9d59f84d05d3930, type: 3}
-  soundPlayer: {fileID: 7224995517028514344}
-  settings: {fileID: 0}
-  objectToKill: {fileID: 3780490054035052878}
-  healthBar: {fileID: 0}
-  bossBar: 1
-  uiManager: {fileID: 0}
 --- !u!114 &3780490054035052875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2976388918381e419e44567978eafdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stat: {fileID: 3780490054035052874}
+  stat: {fileID: 0}
   rb: {fileID: 3780490054035052876}
   minigame: {fileID: 0}
 --- !u!50 &3780490054035052876
@@ -272,6 +248,33 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &207289441253000368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3780490054035052878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a3cfb7f77f03eb4ea86f39908dad03e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 200
+  speed: 10
+  iFrame: 0
+  isDead: 0
+  killer: {fileID: 0}
+  hit: {fileID: 8300000, guid: ec05997e6bd8a904b9d59f84d05d3930, type: 3}
+  soundPlayer: {fileID: 7224995517028514344}
+  settings: {fileID: 0}
+  objectToKill: {fileID: 3780490054035052878}
+  totalHealth: 0
+  healthBar: {fileID: 0}
+  bossBar: 1
+  uiManager: {fileID: 0}
+  healthScript: {fileID: 3560943219786321660, guid: 389ee7ac5ef7764428dc146da936f5cd, type: 3}
+  pinata: {fileID: 0}
 --- !u!1 &3780490054332593698
 GameObject:
   m_ObjectHideFlags: 0

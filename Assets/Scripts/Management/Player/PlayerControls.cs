@@ -16,7 +16,6 @@ public class PlayerControls : MonoBehaviour
     public PlayerStats stat;
 
     //script to be called for player management
-    public GameObject managerObject;
     public TurnManager turnScript;
     public MovementManager moveManage;
 

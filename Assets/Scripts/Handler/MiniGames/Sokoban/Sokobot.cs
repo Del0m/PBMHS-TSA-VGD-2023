@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using System.Collections;
 using UnityEngine;
 
@@ -18,34 +17,33 @@ public class Sokobot : GameHandler
         StartCoroutine(StartGame()); // enable basic movement and topdown movement
         GameRoutine();
     }
+    public override void IncreaseDifficulty() // make more boxes to drop in
+    {
+        base.IncreaseDifficulty();
+        amount = (int)(amount * multiplier);
+
+    }
     public override IEnumerator StartGame()
     {
-        // for loop to allow all players controls, add this in the override 
-        
+        StartCoroutine(base.StartGame());
+
+        // for loop to allow all players controls
+        yield return new WaitForSeconds(3); // wait for the countdown to finish
+
         for (int i = 0; i < player.Count; i++)
         {
             var playerMovement = player[i].GetComponent<PlayerMovement>();
 
             playerMovement.GameSwitch(true,true);
         }
-        return base.StartGame();
-    }
-    bool hasRan; // to prevent multiple runs
-    private void Update()
-    {
-        if(uiManager.timesUp && !hasRan)
-        {
-            hasRan = true;
-            StartCoroutine(EndGame(CheckWinner()));
-
-        }
+        yield return null;
     }
     public override IEnumerator PreGameRoutine()
     {
         yield return base.PreGameRoutine();
 
         yield return new WaitForSeconds(3);
-        yield return StartCoroutine(uiManager.UpdateClock(time)); // running the timer
+        yield return StartCoroutine(gameUI.Timer(time)); // running the timer
     }
 
     public void ScoreHole(GameObject pusher) // runs whenever player pushes box into hole
@@ -53,8 +51,12 @@ public class Sokobot : GameHandler
         if(pusher == null || pusher.GetComponent<PlayerStats>() == null){
             return;
         }
-        var pusherOrder = pusher.GetComponent<PlayerStats>().turnOrder; // grabs their order, gives them score accordingly
-        gameScore[pusherOrder]++; // scores player
+        // locate the pusher in the list
+        var scoreAdd = player.IndexOf(pusher);
+        Debug.Log(scoreAdd);
+        Debug.Log(player[scoreAdd]);
+
+        gameScore[scoreAdd]++;
 
         UpdateHole(); // check to see if the game should be done
     }
@@ -65,20 +67,7 @@ public class Sokobot : GameHandler
             StartCoroutine(EndGame(CheckWinner()));
         }
     }
-    Vector2 RandomizePosition() // this runs to randomize the position in the arena
-    {
-        //getting dimensions of arena
-        var xLow = border[0].transform.position.x + 4;
-        var xHigh = border[2].transform.position.x - 4;
 
-        var yLow = border[1].transform.position.y + 4;
-        var yHigh = border[3].transform.position.y - 2;
-
-        //returning random values to spawn target in.
-        var randPos = new Vector2(Random.Range(xLow, xHigh), Random.Range(yLow, yHigh));
-        return randPos;
-
-    }
     void GameRoutine() // runs the routine of the game, spawns holes where they need to be.
     {
 
@@ -86,8 +75,8 @@ public class Sokobot : GameHandler
 
         for(int i = 0; i < amount; i++)
         {
-            var crateInstance = Instantiate(crate, RandomizePosition(), new Quaternion(), this.gameObject.transform); // spawning crate for sokobot
-            var holeInstance = Instantiate(hole, RandomizePosition(), new Quaternion(), this.gameObject.transform); // spanwing hole for sokobot
+            var crateInstance = Instantiate(crate, RandPosition(), new Quaternion(), this.gameObject.transform); // spawning crate for sokobot
+            var holeInstance = Instantiate(hole, RandPosition(), new Quaternion(), this.gameObject.transform); // spanwing hole for sokobot
 
             holeInstance.GetComponent<SokobotHole>().minigame = this; // grab mother script
             crateInstance.GetComponent<SokobotCrate>().minigame = this; // grab mother script

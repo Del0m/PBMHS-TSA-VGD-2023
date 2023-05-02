@@ -28,8 +28,6 @@ public class PlayerUIManager : MonoBehaviour
     public GameObject healthBar; // bar itself
     public GameObject loseUI; // to be enabled when all players lose the game
     public GameObject scoreLeftUI; // single player mathdash to show end-user how many more they need right.
-    public TextMeshProUGUI timeLeftUI; // to tick down
-    public bool timesUp;
 
     [Header("Single Player UI")]
     public GameObject gameOverUI;
@@ -108,7 +106,6 @@ public class PlayerUIManager : MonoBehaviour
 
     private void ResetUI() // reset ui to default values
     {
-        timeLeftUI.text = "Time Left: ";
 
         var healthBarRect = healthBar.GetComponent<RectTransform>();
 
@@ -133,23 +130,6 @@ public class PlayerUIManager : MonoBehaviour
 
         Debug.Log("object being changed is:" + obj);
 
-    }
-    public IEnumerator UpdateClock(int time) // runs the countdown in addition to the time that will be left in the minigame
-    {
-        ChangeUI(true, timeLeftUI.gameObject); // enable ui
-
-        timesUp = false;
-        for(int i = 0; i <= time; i++)
-        {
-            yield return new WaitForSeconds(1f);
-            timeLeftUI.text = "Time Left: " + (time - i); // do math to show time left.
-        }
-        timesUp = true;
-        yield return new WaitForSeconds(1);
-        timesUp = false;
-
-        ChangeUI(false, timeLeftUI.gameObject); // disable ui
-        timeLeftUI.text = "Time Left: ";
     }
     public IEnumerator CountDown(int time, TextMeshProUGUI obj)
     {
@@ -198,12 +178,9 @@ public class PlayerUIManager : MonoBehaviour
             {
                 isntActing = false;
                 target.SetActive(false);
-                if(!manager.singlePlayer)
-                {
-                    successUI.GetComponent<UIFade>().text[0].text = "Everyone lost!"; // resetting success ui
 
-                }
-                break;
+                //successUI.GetComponent<UIFade>().text[0].text = "Everyone lost!"; // resetting success ui
+
             }
             yield return new WaitForEndOfFrame();
         }

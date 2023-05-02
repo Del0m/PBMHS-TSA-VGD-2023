@@ -13,9 +13,12 @@ public class Jigsaw_Board : MonoBehaviour
     public int pieceID; // to find if piece is correct; transfers to puzzle piece
     public GameObject[] slot;
 
+    public int playerPuzzle; // meant to be what the player's puzzle is
+
     public int piecesCorrect; // amount of pieces correct for user
     public IEnumerator BoardStartup(int plrOrder) // runs functions to start up the player's board in the game
     {
+        playerPuzzle = plrOrder;
         PieceSpawn(plrOrder);
         yield return new WaitForSeconds(2);
 

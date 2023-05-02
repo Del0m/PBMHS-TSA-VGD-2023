@@ -6,7 +6,7 @@ using UnityEngine;
 public class DoorMultiplayer : MonoBehaviour
 {
     public bool starting; // boolean to play the start of the game
-    public PlayerManager manager;
+    public MPManager manager;
     public TextMeshProUGUI text; 
 
     public CameraControl cam;

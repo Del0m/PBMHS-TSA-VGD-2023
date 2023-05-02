@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using static UnityEditor.PlayerSettings;
 
@@ -11,33 +12,33 @@ public class GameHandler : MonoBehaviour
     [Header("Player Important Variables")]
     public List<GameObject> player;
     public PlayerManager plrManage; // to import player array
-
+    public GameUI gameUI; // manages time limit for games if needed.
     public MovementManager movementManager;
     //array of spawns
     public GameObject[] teleport;
 
     //score
-    public List<int> gameScore;
+    public List<int> gameScore = new List<int>(4);
 
     public int winner; // if need be 
 
-    //useless in every game that doesn't spawn something
-    public Transform[] border; // array holding the borders
+    public BoxCollider2D boundary; // holds the boundaries of where things can spawn.
 
-    [Header("Basic Settings")]
-    public bool timeLimit;
-    //[HideInInspector] // don't need to see it, clutter
+    [HideInInspector]
+    public double multiplier; // used for quick rounds / single player
+
     [Header("UI")]
     public PlayerUIManager uiManager;
     public GameObject tutorialScreen; // to be individually selected depending on what minigame
 
     public TurnManager turn;
 
-    [Header("Camera + Settings")] // to proeperly position the camera in a minigame
+    [Header("Camera + Settings")] // to properly position the camera in a minigame
     public CameraControl cam;
     public Transform camPos;
     public int fov;
 
+    public int minimumToWin;
     void Start()
     {
         turn = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>();
@@ -53,29 +54,32 @@ public class GameHandler : MonoBehaviour
             Debug.LogError("Manager not found, check inspector and reset!");
         }
     }
-    /*
-    public virtual void IncreaseDifficulty() // increase the difficulty of the game in single player
+
+    public virtual void IncreaseDifficulty()
     {
-        multi = spManage.multiplier;
-        // put stuff in here in other programs idk
+        // make an override that changes the competitive variables of the game
+
+        multiplier = plrManage.multiplier; // find current difficulty
     }
-    */
+
     public void TeleportPlayers() // void to collect all players on the map, and place them in the according location in minigame
     {
-        
+        if(teleport.Length == 0) // check if the teleports have been initalized
+        {
+            teleport = GameObject.FindGameObjectsWithTag("Teleport");
+        }
         player = plrManage.player;
 
         for(int i = 0; i < player.Count; i++) // for loop to set all players in correct position for game
         {
-            Debug.Log("moving player " + i+1 + " to scene");
-
             player[i].transform.position = teleport[i].transform.position; // set position for player in minigame
             player[i].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static; // prevent movement until necessary
         }
     }
-    
     public virtual IEnumerator PreGameRoutine() // routine to run when before the minigame to see if anything needs to be added to the game.
     {
+        // set the difficulty with IncreaseDifficulty() in the override
+
         TeleportPlayers(); // teleport players into the game
 
         uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
@@ -90,8 +94,10 @@ public class GameHandler : MonoBehaviour
     }
     public virtual IEnumerator StartGame() // teleports players into minigame
     {
-        yield return new WaitForEndOfFrame();
+        // this must be changed every game mode, and have the base.StartGame() run AFTER your code
+
         StartCoroutine(PreGameRoutine());
+        yield return new WaitForEndOfFrame();
 
         // for loop to allow all players controls, add this in the override 
         /*
@@ -110,7 +116,7 @@ public class GameHandler : MonoBehaviour
         {
             cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControl>();
         }
-        cam.TeleportCamera(pos, fov);
+        cam.TeleportCamera(pos.position, fov);
     }
     public void TeleportBack() // bring players back to their spawn point
     {
@@ -142,7 +148,6 @@ public class GameHandler : MonoBehaviour
     public IEnumerator EndGame(int winner)
     {
         TeleportBack();
-        plrManage.TransitionGame(winner);
 
         uiManager.ChangeUI(false, uiManager.healthBarUI); // reset the UI
         uiManager.ChangeUI(false, uiManager.loseUI); // reset the losing scren
@@ -158,13 +163,40 @@ public class GameHandler : MonoBehaviour
 
             player[i].GetComponent<PlayerMovement>().GameSwitch(false, false, false);
 
-            player[i].gameObject.transform.position = moveManage.CallTile(pos).gameObject.GetComponent<Tile>().playerPositions[plrStat.turnOrder].position;
+            player[i].gameObject.transform.position = moveManage.CallTile(pos).position;
         }
         cam.TeleportCamera(player[0].transform.position, 20); // bring camera back to board frame.
+
+
+        // transition the game to have the success ascreen, singleplayer updates the players level.
+        plrManage.TransitionGame(winner);
+
+        // try statement to prevent single player loss from reaching a negative array error
+        try
+        {
+            // award player a point if they "won"
+            player[winner].GetComponent<PlayerStats>().wins++;
+        }
+        catch (System.Exception)
+        {
+            // don't run anything here, this is to prevent a negative array exception from coming up when the single player loses.
+        }
 
         // ending game
         Destroy(gameObject, 1f);
         yield return null;
+    }
+    public Vector2 RandPosition() // randomize boundary spawns with players
+    {
+        // this will find something in bounds, and will return a value in such bounds.
+
+        // randomize
+        var randVect = new Vector2(
+            Random.Range(boundary.bounds.min.x, boundary.bounds.max.x),
+            Random.Range(boundary.bounds.min.y, boundary.bounds.max.y)
+            );
+
+        return randVect;
     }
     public int CheckWinner() // returns the player who got the most points
     {
@@ -178,6 +210,11 @@ public class GameHandler : MonoBehaviour
                 Debug.Log("Highest score is:" + highestScore);
                 winner = i;
             }
+        }
+        if(winner < minimumToWin)
+        {
+            Debug.Log("No winner, you lost");
+            return -1; // return no winner so the game ends.
         }
         return winner;
     }

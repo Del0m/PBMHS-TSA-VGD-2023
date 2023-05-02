@@ -1,6 +1,7 @@
 //armin delmo PlayerMovement.cs
 //the purpose of this program is to allow xy movement for the player during minigames.
 using System.Collections;
+using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,8 +12,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private Settings settings;
 
-    private float xMovementInput;
-    private float yMovementInput;
+    private Vector2 movement;
 
     public bool canJump = false;
     public bool canEverJump = false;
@@ -31,8 +31,7 @@ public class PlayerMovement : MonoBehaviour
     private bool canYMovement = false;
     public bool acting;
     private bool canMoveFreely = true;
-    //cool down for player actions
-    private double _cooldown = 0.5; // base cooldown for player
+
 
     //attacking variables
     public bool isAttacking;
@@ -95,15 +94,7 @@ public class PlayerMovement : MonoBehaviour
         // animationt stuff
         AnimationUpdate();
 
-        // for movement
-        if (canMoveFreely)
-        {
-            rb.velocity = new Vector2((xMovementInput * stat.speed), rb.velocity.y); // move x
-            if (canYMovement)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, (yMovementInput * stat.speed)); // move y
-            }
-        }
+        Movement();
 
         // if statement to keep held object in hand
         if (holding != null)
@@ -117,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
     public void AnimationUpdate() // update animations for player
     {
         animate.SetBool("isAttacking", isAttacking);
-        animate.SetInteger("Movement", (int)xMovementInput);
+        //animate.SetInteger("Movement", (int));
 
         if(rb.velocity.x < 0)
         {
@@ -130,19 +121,6 @@ public class PlayerMovement : MonoBehaviour
             spriteChild.transform.localPosition = new Vector2(0.25f, 0);
 
         }
-    }
-    //Note: dir: true is left or right and false is up or down
-    public void setStaticDir(bool dir, float baseSpeed,int jumpP, float increment, float timeToResetSpeed)
-    {
-        canMoveFreely = false;
-        staticMovementSet = true;
-        myDir = dir;
-        staticSpeed = baseSpeed;
-        incrementAmount = increment;
-        _cooldown = timeToResetSpeed;
-        stat.jumpPower = jumpP;
-        //Unlock player
-        GameSwitch(true, false, false);
     }
 
     public void setFreeMovement(bool enable){
@@ -170,16 +148,13 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Running!");
         if(canPick == false) // kill statement to prevent players in minigames grabbing things they shouldn't
         {
-            Debug.Log("Not running...");
             yield return null;
         }
         if(holdOngoing == false && newObject.GetComponent<HoldableItem>().canPickUp == true) // see if coroutine is already running / see if object can be picked
         {
-            Debug.Log("Attempting to Grab Item!");
             holdOngoing = true;
             if (isDrop == false)
             {
-                Debug.Log("Grabbing Item!");
                 holding = newObject; // change gameObject being held to the new one
                 newObject.GetComponent<HoldableItem>().beingHeld = true; // to register for minigames
                 canPick = false; // prevent pickup of new items
@@ -195,6 +170,7 @@ public class PlayerMovement : MonoBehaviour
         
         yield return null;
     }
+    int gScale = 3;
     public void GameSwitch(bool enable) // basic overload for games that don't need topdown or grabbing
     {
         canAct = enable;
@@ -214,7 +190,7 @@ public class PlayerMovement : MonoBehaviour
         if(stat.singlePlayer)
         {
             rb.bodyType = RigidbodyType2D.Dynamic;
-            rb.gravityScale = 3;
+            rb.gravityScale = gScale;
 
         }
     }
@@ -227,7 +203,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            rb.gravityScale = 3;
+            rb.gravityScale = gScale;
         }
         canEverJump = !topDown;
         canYMovement = topDown;
@@ -239,36 +215,51 @@ public class PlayerMovement : MonoBehaviour
         canPick = pick;
     
     }
-    public double ReadMoveValues(char ch) // to read move values of the player to use them for minigame purposes
+    public void ReadMovement(InputAction.CallbackContext ctx) // to read move values of the player to use them for minigame purposes
     {
-        if(ch == 'x')
+        if(ctx.performed)
         {
-            return xMovementInput;
+            if(canYMovement)
+            {
+                movement = new Vector2(
+                ctx.ReadValue<Vector2>().x,
+                ctx.ReadValue<Vector2>().y 
+                );
+            }
+            else
+            {
+                movement = new Vector2(
+                ctx.ReadValue<Vector2>().x,
+                rb.velocity.y
+                );
+            }
         }
-        if(ch == 'y')
+    }
+    private void Movement() // clamp the movement and allow gravity to work freely.
+    {
+        Vector2 currVelocity = rb.velocity; // get current velocity of player
+
+        // get movement direction
+        movement = transform.TransformDirection(movement);
+
+        Vector2 velocityChange = (movement * stat.speed - currVelocity);
+
+        Vector2.ClampMagnitude(velocityChange, 1);
+        if(!canYMovement)
         {
-            return yMovementInput;
+            velocityChange = new Vector2(velocityChange.x, 0);
         }
-        Debug.LogError("Error, please change ReadMoveValues to either 'x', or 'y' ");
-        return 0; // fail statement
-    }
-    public void XMovement(InputAction.CallbackContext ctx) // for the purposes of moving the player left and right
-    {
-        //running player movement in here.
+        else
+        {
+            velocityChange = new Vector2(velocityChange.x, velocityChange.y);
+        }
 
-        xMovementInput = ctx.ReadValue<Vector2>().x; // read x value of movement input
-
-    }
-    public void YMovement(InputAction.CallbackContext ctx) // player moves up and down
-    {
-        //running player movement in here.
-        yMovementInput = ctx.ReadValue<Vector2>().y; // read x value of movement input
+        rb.AddForce(velocityChange, ForceMode2D.Impulse);
     }
     public void Dash(InputAction.CallbackContext ctx)
     {
         if(ctx.performed && canDash == true)
         {
-            Debug.Log("Dashing!");
             StartCoroutine(DashRoutine());
             canDash = false;
         }
@@ -280,7 +271,7 @@ public class PlayerMovement : MonoBehaviour
         //Check if the sound obj exists
         playSound.PlayOneShot(playInstance, (settings.soundVolume * settings.masterVolume)); //fix this
 
-        if(canJump == true) { SetParticle(SetDirection(), false); } // if they're on the floor
+        //if(canJump == true) { SetParticle(SetDirection(), false); } // if they're on the floor
 
         var originalSpeed = stat.speed;
         stat.speed *= 3;
@@ -340,17 +331,17 @@ public class PlayerMovement : MonoBehaviour
 
             //turn on bool for acting to allow minigames to recognize boolean
             StartCoroutine(ActRoutine()); // run coroutine to have acting on for a bit.
-            Debug.Log("Acting!");
+
             canAct = false; // set cooldown
         }
     }
     public void Jump(InputAction.CallbackContext context) // input action to increase the players velocity up
     {
-        Debug.Log("Jumping!");
         if(context.performed && canJump == true && canEverJump == true) // ensures its only ran once
         {
+            var jumpVelocity = new Vector2(rb.velocity.x, rb.velocity.y + stat.jumpPower);
             StartCoroutine(JumpRoutine());
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + stat.jumpPower);
+            rb.AddForce(jumpVelocity, ForceMode2D.Impulse);
             // animating particles here
             SetParticle(new Quaternion(0, 0, -90, 0), false);
             particle.transform.rotation = Quaternion.Euler(new Vector3(0,0,-90));
@@ -397,9 +388,12 @@ public class PlayerMovement : MonoBehaviour
         playInstance = dropSound;
         playSound.PlayOneShot(playInstance, (settings.soundVolume * settings.masterVolume));
     }
-    public Quaternion SetDirection() // set direction for particle
+    // use trig for this.
+   /* public Quaternion SetDirection() // set direction for particle
     {
+        //Vector2.Angle(this.gameObject, );
         var direction = 0;
+
         switch(yMovementInput)
         {
             case 1:
@@ -454,6 +448,7 @@ public class PlayerMovement : MonoBehaviour
         }
         return new Quaternion(0, 0, direction, 0);
     }
+   */
     void SetParticle(Quaternion rot, bool hasParent)
     {
         var particleObject = Instantiate(particlePrefab, this.gameObject.transform.position, rot);
@@ -477,12 +472,5 @@ public class PlayerMovement : MonoBehaviour
         particle.gameObject.transform.rotation = rot;
 
     }
-    public void TapToIncrement(InputAction.CallbackContext context)
-    {
-        if (context.performed && canAct == true)
-        {
-            //Call a couroutine to increment
-            StartCoroutine(incrementMovement());
-        }
-    }
+
 }
