@@ -30,11 +30,12 @@ public class PummelPinata : GameHandler
     {
         base.IncreaseDifficulty();
         health = (int)(health * multiplier);
+        minimumToWin = 10; // ensures the player will always lose if they don't kill the pinata in time.
     }
     public override IEnumerator StartGame()
     {
         StartCoroutine(base.StartGame());
-        yield return new WaitForSeconds(3f); // wait for StartGame() to finish loading
+        yield return new WaitForSeconds(3); // wait for StartGame() to finish loading
 
         // run loop to move players
         for (int i = 0; i < player.Count; i++)
@@ -47,8 +48,9 @@ public class PummelPinata : GameHandler
     }
     public override IEnumerator PreGameRoutine() // adding a timer to the minigame in singleplayer
     {
+        IncreaseDifficulty();
         yield return StartCoroutine(base.PreGameRoutine());
-        
+        yield return new WaitForSeconds(3);
         // starting the timer
         StartCoroutine(gameUI.Timer(time));
 

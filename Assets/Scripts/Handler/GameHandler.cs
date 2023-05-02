@@ -38,6 +38,7 @@ public class GameHandler : MonoBehaviour
     public Transform camPos;
     public int fov;
 
+    [HideInInspector]
     public int minimumToWin;
     void Start()
     {
