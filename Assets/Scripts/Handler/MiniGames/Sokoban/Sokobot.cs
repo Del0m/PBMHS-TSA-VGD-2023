@@ -66,6 +66,7 @@ public class Sokobot : GameHandler
         {
             StartCoroutine(EndGame(CheckWinner()));
         }
+        gameUI.ModifyText("Holes Left: " + holesLeft);  // change the amount of holes left to inform player
     }
 
     void GameRoutine() // runs the routine of the game, spawns holes where they need to be.

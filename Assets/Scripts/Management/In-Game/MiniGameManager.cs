@@ -14,17 +14,11 @@ public class MiniGameManager : MonoBehaviour
     //players
     private List<GameObject> players; // player array to change controls, bring to map, etc.
 
-    //variables for minigame
-    public bool hasStarted = false;
-
     //array for all available minigames
     public GameObject[] minigame;
 
     //randomizer to randomly select minigames
     private Randomizer rand;
-
-    //defining the TurnManager
-    //public TurnManager turnScript;
 
     public GameObject lastMinigame; // to prevent same games from playing one after another
 
@@ -33,9 +27,6 @@ public class MiniGameManager : MonoBehaviour
         this.gameObject.tag = "Mini Game Manager";
     }
 
-    private void Start() // collect TurnManager
-    {
-    }
     private void SpawnMinigame()
     {
         // check if no minigames are found
@@ -118,11 +109,4 @@ public class MiniGameManager : MonoBehaviour
         turnScript.roundsElapsed++;
     }
     */
-    private void KillGamesFromFile() // remove minigame instance.
-    {
-        var gameOut = GameObject.FindGameObjectWithTag("Minigame"); // find object with "minigame" tag
-        Destroy(gameOut);
-    }
-
-
 }
