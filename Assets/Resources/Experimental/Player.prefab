@@ -89,8 +89,7 @@ MonoBehaviour:
   dropSound: {fileID: 8300000, guid: 94f890f15f2e34241b6b1786109369df, type: 3}
   dashSound: {fileID: 8300000, guid: 180b5f8f162d8b642931f15e11e47f4c, type: 3}
   particlePrefab: {fileID: 2045440048820027072, guid: 30897cfe76aa67144b09a26df0c9a172, type: 3}
-  animate: {fileID: 6149000848479871590}
-  spriteChild: {fileID: 7380605358503280752}
+  animate: {fileID: 4477975784502831907}
 --- !u!114 &2609490234402768879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,3 +609,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ab99118935e6440af24db24898cc6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 6149000848479871590}
+  player: {fileID: 2609490234402768869}
+  movement: 0
+  jumping: 0
+  attacking: 0
+  rb: {fileID: 2609490234402768868}

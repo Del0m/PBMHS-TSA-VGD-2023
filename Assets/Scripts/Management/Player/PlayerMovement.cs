@@ -30,8 +30,6 @@ public class PlayerMovement : MonoBehaviour
     private bool canAct = false;
     private bool canYMovement = false;
     public bool acting;
-    private bool canMoveFreely = true;
-
 
     //attacking variables
     public bool isAttacking;
@@ -52,8 +50,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject particlePrefab;
     ParticleSystem particle;
     [Header("Animation")]
-    public Animator animate;
-    public GameObject spriteChild; // child for sprite; animation
+    public PlayerAnimation animate; // send requests to script to move player animations
 
 
     private void Awake()
@@ -62,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Start()
     {
-        animate = this.GetComponentInChildren<Animator>(); // grab animator from player
+        animate = this.GetComponentInChildren<PlayerAnimation>(); // grab animator from player
         // finding settings object
         if(settings == null)
         {
@@ -91,9 +88,6 @@ public class PlayerMovement : MonoBehaviour
         ActCooldown(stat.cooldown);
         DashCooldown(stat.cooldown * 2);
 
-        // animationt stuff
-        AnimationUpdate();
-
         Movement();
 
         // if statement to keep held object in hand
@@ -102,29 +96,6 @@ public class PlayerMovement : MonoBehaviour
             holding.transform.position = this.gameObject.transform.position;
         }
         StartCoroutine(Footstep());
-    }
-
-
-    public void AnimationUpdate() // update animations for player
-    {
-        animate.SetBool("isAttacking", isAttacking);
-        //animate.SetInteger("Movement", (int));
-
-        if(rb.velocity.x < 0)
-        {
-            spriteChild.transform.localScale = new Vector3(-Mathf.Abs(spriteChild.transform.localScale.x), spriteChild.transform.localScale.y, 1);
-            spriteChild.transform.localPosition = new Vector2(-0.25f, 0);
-        }
-        else if (rb.velocity.x > 0)
-        {
-            spriteChild.transform.localScale = new Vector3(Mathf.Abs(spriteChild.transform.localScale.x), spriteChild.transform.localScale.y, 1);
-            spriteChild.transform.localPosition = new Vector2(0.25f, 0);
-
-        }
-    }
-
-    public void setFreeMovement(bool enable){
-        canMoveFreely = enable;
     }
 
     private void OnTriggerEnter2D(Collider2D collision) // for the purposes of holding new objects
@@ -253,6 +224,7 @@ public class PlayerMovement : MonoBehaviour
         {
             velocityChange = new Vector2(velocityChange.x, velocityChange.y);
         }
+        animate.CheckMovement(); // update the orientation of the player, and check if they are moving.
 
         rb.AddForce(velocityChange, ForceMode2D.Impulse);
     }
@@ -310,6 +282,9 @@ public class PlayerMovement : MonoBehaviour
     }
     IEnumerator ActRoutine() // coroutine to enable - disable temp vars
     {
+        // run the animation in here
+        StartCoroutine(animate.CheckAttack());
+
         acting = true;
         isAttacking = true;
         yield return new WaitForSeconds(0.2f);
@@ -340,7 +315,7 @@ public class PlayerMovement : MonoBehaviour
         if(context.performed && canJump == true && canEverJump == true) // ensures its only ran once
         {
             var jumpVelocity = new Vector2(rb.velocity.x, rb.velocity.y + stat.jumpPower);
-            StartCoroutine(JumpRoutine());
+
             rb.AddForce(jumpVelocity, ForceMode2D.Impulse);
             // animating particles here
             SetParticle(new Quaternion(0, 0, -90, 0), false);
@@ -349,12 +324,7 @@ public class PlayerMovement : MonoBehaviour
             canJump = false; // turn off jumping to prevent them from jumping again.
         }
     }
-    public IEnumerator JumpRoutine() // simple routine for the jump animnation
-    {
-        animate.SetBool("Jumping", true);
-        yield return new WaitForSeconds(.5f);
-        animate.SetBool("Jumping", false);
-    }
+
     [Header("Audio")]
     AudioClip playInstance;
     AudioSource playSound;
