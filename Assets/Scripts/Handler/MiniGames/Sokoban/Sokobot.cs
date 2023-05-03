@@ -21,7 +21,10 @@ public class Sokobot : GameHandler
     {
         base.IncreaseDifficulty();
         amount = (int)(amount * multiplier);
+        minimumToWin = amount;
 
+        // change ui to show how many holes need to be crated
+        gameUI.ModifyText("Holes Left: " + amount);
     }
     public override IEnumerator StartGame()
     {
@@ -40,8 +43,9 @@ public class Sokobot : GameHandler
     }
     public override IEnumerator PreGameRoutine()
     {
-        yield return base.PreGameRoutine();
+        IncreaseDifficulty(); // add more holes for the player to fill to make it difficult
 
+        yield return base.PreGameRoutine();
         yield return new WaitForSeconds(3);
         yield return StartCoroutine(gameUI.Timer(time)); // running the timer
     }

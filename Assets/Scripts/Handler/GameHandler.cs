@@ -154,9 +154,10 @@ public class GameHandler : MonoBehaviour
         uiManager.ChangeUI(false, uiManager.loseUI); // reset the losing scren
 
 
+
         // set players back to their tiles
 
-        for(int i = 0; i < player.Count; i++) // teleport players back to their tiles
+        for (int i = 0; i < player.Count; i++) // teleport players back to their tiles
         {
             var plrStat = player[i].GetComponent<PlayerStats>();
             var pos = plrStat.position;
@@ -169,12 +170,10 @@ public class GameHandler : MonoBehaviour
         cam.TeleportCamera(player[0].transform.position, 20); // bring camera back to board frame.
 
 
-        // transition the game to have the success ascreen, singleplayer updates the players level.
-        plrManage.TransitionGame(winner);
-
         // try statement to prevent single player loss from reaching a negative array error
         try
         {
+
             // award player a point if they "won"
             player[winner].GetComponent<PlayerStats>().wins++;
         }
@@ -182,6 +181,9 @@ public class GameHandler : MonoBehaviour
         {
             // don't run anything here, this is to prevent a negative array exception from coming up when the single player loses.
         }
+
+        // transition the game to have the success ascreen, singleplayer updates the players level.
+        plrManage.TransitionGame(winner);
 
         // ending game
         Destroy(gameObject, 1f);
@@ -212,7 +214,7 @@ public class GameHandler : MonoBehaviour
                 winner = i;
             }
         }
-        if(winner < minimumToWin)
+        if(winner < minimumToWin && player.Count == 1) // make players lose on single player
         {
             Debug.Log("No winner, you lost");
             return -1; // return no winner so the game ends.

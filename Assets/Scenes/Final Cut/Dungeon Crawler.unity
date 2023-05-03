@@ -903,7 +903,7 @@ Transform:
   m_GameObject: {fileID: 58994404}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 50, y: 5, z: 100.13915}
-  m_LocalScale: {x: 1, y: 32, z: 1}
+  m_LocalScale: {x: 1, y: 30.5, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1668315012}
@@ -6524,7 +6524,7 @@ MonoBehaviour:
   fov: 20
   minimumToWin: 0
   amount: 5
-  time: 30
+  time: 5
   crate: {fileID: 3306213879390748850, guid: 4aac523a9ca9c50448adfbc42defb372, type: 3}
   hole: {fileID: 4468849136316652867, guid: 26a71098b1c6ea6469b9278e71b00346, type: 3}
   holesLeft: 0
@@ -6561,7 +6561,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 24.412964, y: 4.63957}
+  m_Offset: {x: 24.413025, y: 4.518615}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6572,7 +6572,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 52.477295, y: 31.930462}
+  m_Size: {x: 49.57434, y: 23.46358}
   m_EdgeRadius: 0
 --- !u!1 &480959106
 GameObject:
@@ -7745,7 +7745,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565047758}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 24.40797, y: -11, z: 100.13915}
+  m_LocalPosition: {x: 24.40797, y: -8, z: 100.13915}
   m_LocalScale: {x: 50, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14019,7 +14019,7 @@ Transform:
   m_GameObject: {fileID: 1090606615}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1, y: 5, z: 100.13915}
-  m_LocalScale: {x: 1, y: 32, z: 1}
+  m_LocalScale: {x: 1, y: 30.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1668315012}
@@ -18230,7 +18230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2002b03677ab5744884ff11c335eca0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  game: {fileID: 2019262472}
+  game: {fileID: 475453604}
   timeLeft: {fileID: 1774168426}
   textElement: {fileID: 694721936}
 --- !u!224 &1340667087
@@ -24030,7 +24030,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1739250704}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 24, y: 20, z: 100.13915}
+  m_LocalPosition: {x: 24, y: 17, z: 100.13915}
   m_LocalScale: {x: 50, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30861,7 +30861,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c680167cd436c489761465b6473bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasStarted: 0
   minigame:
   - {fileID: 475453603}
   lastMinigame: {fileID: 0}
