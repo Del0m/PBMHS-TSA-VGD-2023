@@ -19,7 +19,7 @@ public class GameUI : MonoBehaviour
     {
         for(int i = 0; i < time; i++)
         {
-            timeLeft.text = "Time Left: " + (time - i);
+            timeLeft.text = "" + (time - i);
             yield return new WaitForSeconds(1f); // wait one second before incrementing the time again
         }
         Debug.Log("running the end game coroutine!");

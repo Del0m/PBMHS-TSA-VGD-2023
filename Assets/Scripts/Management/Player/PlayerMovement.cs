@@ -243,7 +243,7 @@ public class PlayerMovement : MonoBehaviour
         //Check if the sound obj exists
         playSound.PlayOneShot(playInstance, (settings.soundVolume * settings.masterVolume)); //fix this
 
-        //if(canJump == true) { SetParticle(SetDirection(), false); } // if they're on the floor
+        if(canJump == true) { SetParticle(animate.ParticleDirection(), false); } // if they're on the floor
 
         var originalSpeed = stat.speed;
         stat.speed *= 3;

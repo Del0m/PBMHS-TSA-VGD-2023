@@ -174,7 +174,7 @@ public class MathDash : GameHandler
 
             // change cards gotten correct
             var totalScore = gameScore[0] + gameScore[1] + gameScore[2] + gameScore[3];
-            gameUI.ModifyText("Correct: " + totalScore);
+            gameUI.ModifyText("" + totalScore);
             return true;
         }
         else
