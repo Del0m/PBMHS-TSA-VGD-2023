@@ -9,6 +9,7 @@ public class Door : MonoBehaviour // allowing the player to go play the next min
     public bool isLooking; // boolean to prevent multiple runs of minigame searching
     public TextMeshProUGUI loadingText;
 
+    public GameObject obj;
     private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.CompareTag("Player") && !isLooking)
@@ -41,9 +42,14 @@ public class Door : MonoBehaviour // allowing the player to go play the next min
 
     IEnumerator Wait() // run loading to show when the minigame is being initalized
     {
+        Disappear(obj);
         Loading();
         yield return new WaitForSeconds(5f);
         isLooking = false;
         Loading();
+    }
+    public void Disappear(GameObject obj) // makes text disappear
+    {
+        obj.SetActive(false);
     }
 }

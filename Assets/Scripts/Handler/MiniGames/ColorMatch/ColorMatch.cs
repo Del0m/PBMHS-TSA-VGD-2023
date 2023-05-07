@@ -19,7 +19,6 @@ public class ColorMatch : GameHandler
     public GameObject[] colorPlatform; // colored platforms that'll be dropped
     public GameObject flagPlatform;
     [Header("UI")]
-    public TextMeshProUGUI dropleft; // drops left to show to player
 
     private int previousColor; // previous color used in minigame randomization
 
@@ -37,7 +36,7 @@ public class ColorMatch : GameHandler
         uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
         
         StartCoroutine(StartGame()); // starting game and bringing players into the game
-        ModifyPlayerStats((speedModifier / 4), (speedModifier / 1.25f)); // decrease player speed
+        ModifyPlayerStats((speedModifier / 4), (speedModifier / 2)); // decrease player speed
 
         StartCoroutine(DropColors()); 
     }
@@ -46,6 +45,8 @@ public class ColorMatch : GameHandler
         base.IncreaseDifficulty();
         dropAmount = ((int)(dropAmount * multiplier));
         dropTime = ((int)(dropTime / multiplier));
+
+        minimumToWin = 1;
     }
     public override IEnumerator StartGame()
     {
@@ -99,17 +100,8 @@ public class ColorMatch : GameHandler
 
         for (int i = 0; i < dropAmount; i++)
         {
-            // if statement to check if it is the final drop
-            if (i == dropAmount)
-            {
-                dropleft.text = "Final Drop!";
-
-            }
-            else
-            {
-                dropleft.text = "Drops Left: " + (dropAmount - i).ToString();
-
-            }
+            // notifying how many drops the players have left
+            gameUI.ModifyText("" + (dropAmount - i));
 
             var colorChosen = ChooseColor(); // color they will have to go onto
             // show color to player
@@ -150,7 +142,7 @@ public class ColorMatch : GameHandler
     {
         hasStopped = true;
         uiManager.ChangeUI(true, uiManager.loseUI);
-        ModifyPlayerStats(speedModifier*4, speedModifier*1.25f); // bring players stats back to normal
+        ModifyPlayerStats(speedModifier*4, speedModifier*2f); // bring players stats back to normal
 
 
         yield return new WaitForSeconds(5);

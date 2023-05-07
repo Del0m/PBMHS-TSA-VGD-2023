@@ -2628,6 +2628,7 @@ MonoBehaviour:
   soundPlayer: {fileID: 120549239}
   settings: {fileID: 0}
   objectToKill: {fileID: 1130578514}
+  totalHealth: 0
   healthBar: {fileID: 0}
   bossBar: 0
   uiManager: {fileID: 0}
@@ -4849,6 +4850,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: []
   plrManage: {fileID: 0}
+  gameUI: {fileID: 0}
   movementManager: {fileID: 0}
   teleport:
   - {fileID: 676154141}
@@ -4857,12 +4859,7 @@ MonoBehaviour:
   - {fileID: 606211804}
   gameScore: 00000000000000000000000000000000
   winner: 0
-  border:
-  - {fileID: 1919979458}
-  - {fileID: 1316307110}
-  - {fileID: 1458541784}
-  - {fileID: 14343113}
-  timeLimit: 0
+  boundary: {fileID: 0}
   multiplier: 0
   uiManager: {fileID: 793855428}
   tutorialScreen: {fileID: 591036514}
@@ -4870,6 +4867,7 @@ MonoBehaviour:
   cam: {fileID: 513562143}
   camPos: {fileID: 34068438}
   fov: 20
+  minimumToWin: 0
   number: 0000000000000000
   problemType: 0
   answer: 0
@@ -4877,9 +4875,6 @@ MonoBehaviour:
   card: []
   text: {fileID: 1858096369}
   time: 45
-  scoreRequired: 3
-  questionsCorrect: 0
-  scoreLeft: {fileID: 0}
 --- !u!4 &276292170
 Transform:
   m_ObjectHideFlags: 0
@@ -5081,6 +5076,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: []
   plrManage: {fileID: 0}
+  gameUI: {fileID: 0}
   movementManager: {fileID: 0}
   teleport:
   - {fileID: 1756119484}
@@ -5089,12 +5085,7 @@ MonoBehaviour:
   - {fileID: 419491087}
   gameScore: 00000000000000000000000000000000
   winner: 0
-  border:
-  - {fileID: 368396737}
-  - {fileID: 2088246163}
-  - {fileID: 571065454}
-  - {fileID: 151043903}
-  timeLimit: 0
+  boundary: {fileID: 0}
   multiplier: 0
   uiManager: {fileID: 793855428}
   tutorialScreen: {fileID: 1071882729}
@@ -5102,6 +5093,7 @@ MonoBehaviour:
   cam: {fileID: 513562143}
   camPos: {fileID: 296683893}
   fov: 20
+  minimumToWin: 0
   puzzleLocation:
   - {fileID: 284726138}
   - {fileID: 1047328665}
@@ -12238,7 +12230,7 @@ GameObject:
   - component: {fileID: 746128218}
   - component: {fileID: 746128217}
   m_Layer: 5
-  m_Name: Single Player Disclaimer
+  m_Name: MP Disclaimer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12545,6 +12537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: []
   plrManage: {fileID: 0}
+  gameUI: {fileID: 0}
   movementManager: {fileID: 0}
   teleport:
   - {fileID: 0}
@@ -12553,8 +12546,7 @@ MonoBehaviour:
   - {fileID: 0}
   gameScore: 00000000000000000000000000000000
   winner: 0
-  border: []
-  timeLimit: 0
+  boundary: {fileID: 0}
   multiplier: 0
   uiManager: {fileID: 793855428}
   tutorialScreen: {fileID: 1901759395}
@@ -12562,6 +12554,7 @@ MonoBehaviour:
   cam: {fileID: 513562143}
   camPos: {fileID: 797983677}
   fov: 20
+  minimumToWin: 0
   colorString:
   - blue
   - red
@@ -12579,12 +12572,10 @@ MonoBehaviour:
   - {fileID: 1857998707}
   - {fileID: 585342171}
   flagPlatform: {fileID: 1825941150}
-  dropleft: {fileID: 1795388537}
   dropTime: 8
   dropAmount: 5
-  originalSpeed: 15
-  originalJumpPower: 20
   hasStopped: 0
+  speedModifier: 0
 --- !u!4 &762611154
 Transform:
   m_ObjectHideFlags: 0
@@ -13093,16 +13084,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: []
   plrManage: {fileID: 0}
+  gameUI: {fileID: 0}
   movementManager: {fileID: 0}
   teleport: []
   gameScore: 00000000000000000000000000000000
   winner: 0
-  border:
-  - {fileID: 2096817325}
-  - {fileID: 1714737580}
-  - {fileID: 1629744452}
-  - {fileID: 1675751444}
-  timeLimit: 0
+  boundary: {fileID: 0}
   multiplier: 0
   uiManager: {fileID: 793855428}
   tutorialScreen: {fileID: 2055439265}
@@ -13110,6 +13097,7 @@ MonoBehaviour:
   cam: {fileID: 513562143}
   camPos: {fileID: 748828930}
   fov: 20
+  minimumToWin: 0
   pinata: {fileID: 3780490054035052878, guid: 29ef8fdd9e93dc44ca25441f1f3de1bf, type: 3}
   pinataPrefab: {fileID: 0}
   pinataSpawn: {fileID: 356840828}
@@ -13225,8 +13213,6 @@ MonoBehaviour:
   healthBar: {fileID: 831022316}
   loseUI: {fileID: 550024376}
   scoreLeftUI: {fileID: 1805797426}
-  timeLeftUI: {fileID: 93487681}
-  timesUp: 0
   gameOverUI: {fileID: 0}
   level: {fileID: 0}
   isSinglePlayer: 0
@@ -24875,6 +24861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef09a23c5d638534e8c043143ded3d40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manager: {fileID: 0}
   uiManager: {fileID: 0}
   spawn: []
   waitSpawn: {fileID: 0}
@@ -28050,16 +28037,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: []
   plrManage: {fileID: 0}
+  gameUI: {fileID: 0}
   movementManager: {fileID: 0}
   teleport: []
   gameScore: 
   winner: 0
-  border:
-  - {fileID: 773579276}
-  - {fileID: 1771566570}
-  - {fileID: 1224333868}
-  - {fileID: 65030137}
-  timeLimit: 0
+  boundary: {fileID: 0}
   multiplier: 0
   uiManager: {fileID: 793855428}
   tutorialScreen: {fileID: 1059380960}
@@ -28067,6 +28050,7 @@ MonoBehaviour:
   cam: {fileID: 513562143}
   camPos: {fileID: 1661515678}
   fov: 20
+  minimumToWin: 0
   amount: 10
   time: 30
   crate: {fileID: 3306213879390748850, guid: 4aac523a9ca9c50448adfbc42defb372, type: 3}
@@ -30096,14 +30080,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c680167cd436c489761465b6473bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasStarted: 0
   minigame:
   - {fileID: 762611152}
   - {fileID: 762611152}
   - {fileID: 276292168}
   - {fileID: 787203407}
   - {fileID: 1815523035}
-  lastMinigamePlayed: 
+  lastMinigame: {fileID: 0}
 --- !u!1 &1966404308
 GameObject:
   m_ObjectHideFlags: 0
