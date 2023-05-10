@@ -23,8 +23,8 @@ public class TurnManager : MonoBehaviour
 
     //public EndGame endGame;
 
-    //modify scores of players
-    public ScoreManager scoreScript;
+    //check current players space
+    public MovementManager moveManager;
 
     public PlayerUIManager uiManager;
 
@@ -49,13 +49,13 @@ public class TurnManager : MonoBehaviour
     void Start()
     {
         //putting these in if statements because they should be publicly listed and added.
- /*
-        if(scoreScript == null)
+ 
+        if(moveManager == null)
         {
-            scoreScript = GameObject.FindGameObjectWithTag("Score Manager").GetComponent<ScoreManager>();
+            moveManager = GameObject.FindGameObjectWithTag("Movement Manager").GetComponent<MovementManager>();
 
         }
- */
+ 
         if(miniGameScript == null)
         {
             miniGameScript = GameObject.FindGameObjectWithTag("Mini Game Manager").GetComponent<MiniGameManager>(); // call manager to start / end / bring players to games.
@@ -64,8 +64,6 @@ public class TurnManager : MonoBehaviour
         if(plrManager == null)
         {
             plrManager = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>();
-            //Get player list length
-            StartCoroutine(getPlayers());
         }
 
 
@@ -77,29 +75,26 @@ public class TurnManager : MonoBehaviour
         }
     }
 
-    IEnumerator getPlayers()
-    {
-        yield return new WaitForSeconds(5);
-        playerCount = plrManager.player.Count;
-        StopCoroutine(getPlayers());
-    }
 
+    public bool CheckLocation() // see if the player is on their tile
+    {
+        // checking to see if the player moved to their spot
+        var plrPosition = plrManager.player[currentTurn].transform.position;
+
+        var plrTilePosition = plrManager.player[currentTurn].GetComponent<PlayerStats>().position;
+
+        if(Vector2.Distance(plrPosition, moveManager.CallTile(plrTilePosition).position) > 1)
+        {
+            return false;
+        }
+        return true;
+    }
     public void RoundCheck() // compares currentTurn with player count, exceeds, start minigame
     {
-        // [] add a highlight player during turn here...
 
-        Debug.Log("Checking new round! Advancing Turn!");
-        currentTurn++;
-
-        // move camera
-        if(currentTurn < plrManager.player.Count)
-        {
-            musicObj.SetActive(true);
-            StartCoroutine(cam.ModifyCamera(plrManager.player[currentTurn].transform, 25, 20, 30));
-        }
         // run ui update
         uiManager.UpdateRound(roundsElapsed);
-        if(playerCount <= currentTurn && roundsElapsed != maxRounds) // turn on el minigame
+        if(playerCount < currentTurn && roundsElapsed != maxRounds) // turn on el minigame
         {
             //debug
             musicObj.SetActive(false);
@@ -118,14 +113,19 @@ public class TurnManager : MonoBehaviour
             // havent wrote anything in here, make another EndGame() function
         }
 
-        //currentTurn++;
-        
+        currentTurn++;
+        // move camera
+        if (currentTurn < plrManager.player.Count)
+        {
+            musicObj.SetActive(true);
+            StartCoroutine(cam.ModifyCamera(plrManager.player[currentTurn].transform, 25, 20, 30));
+        }
     }
     public void SetTurn(int integer) { currentTurn = integer; } // sets turn back to normal
 
     public bool RunTurn(GameObject player, int playerTurn) // updates turn for players
     {
-        if(playerTurn == currentTurn) //check to see if its the players turn
+        if(playerTurn == currentTurn && cam.AllowMovement()) //check to see if its the players turn
         {
             //move player
             Debug.Log("Running turn");
@@ -133,5 +133,10 @@ public class TurnManager : MonoBehaviour
         }
         Debug.Log("Turn failed, " + currentTurn + " does not equal " + playerTurn);
         return false;
+    }
+    public IEnumerator Callback() // calls the roundcheck again to see if the player has gotten into their spot, to advance the turn
+    {
+        yield return new WaitForSeconds(1f);
+        RoundCheck();
     }
 }

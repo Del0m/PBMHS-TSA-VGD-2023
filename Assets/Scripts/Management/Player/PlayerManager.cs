@@ -76,4 +76,8 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("Running basic transition game.");
         uiManager.UIPopUpWrapper(uiManager.successUI, won + 1);
     }
+    public virtual void SetObjects(bool boolean)
+    {
+        // to be filled in multiplayer
+    }
 }

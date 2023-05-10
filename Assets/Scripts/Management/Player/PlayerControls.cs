@@ -38,6 +38,7 @@ public class PlayerControls : MonoBehaviour
 
     public int cameraSpeed = 10;
 
+
     private void Start() // run methods on start
     {
         gameplayInput = this.gameObject.GetComponent<PlayerInput>(); // grabbing player controls to turn on/off and change inputmaps
@@ -47,7 +48,15 @@ public class PlayerControls : MonoBehaviour
         controls = new Controls();
 
         // grabbing player controls to differentiate when its time to move or not
+        try
+        {
+            turnScript = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>();
+        }
+        catch (System.Exception)
+        {
 
+            throw;
+        }
     }
     public Transform newTile; // for the purpose of updating the player to a new position!
 
@@ -100,12 +109,7 @@ public class PlayerControls : MonoBehaviour
                     
                     movesRemaining--; // decrease movement till they are out of moves left.
                     while(Vector2.Distance(this.transform.position, newTile.transform.position) > 0.5)
-                    {
-                        if(Vector2.Distance(this.transform.position, newTile.transform.position) < 0.5)
-                        {
-                            break;
-                        }
-                        //Burger with no honey mustard
+                    {            
                         transform.position = Vector2.MoveTowards(this.transform.position, newTile.position, stat.speed * Time.deltaTime); // move to new position using DeltaTime
                         yield return new WaitForEndOfFrame();
                     }
@@ -113,9 +117,6 @@ public class PlayerControls : MonoBehaviour
                     //yield return new WaitForSeconds(wait); // give time to move to position.
                 }
             }
-            //Forget the player and turn off the camera from following the player
-            //cam.setCamUpdate(false);
-            //cam.forgetDestination();
 
             turnScript.uiManager.UpdateDiceUI(movesRemaining);
             yield return new WaitForSeconds(2);

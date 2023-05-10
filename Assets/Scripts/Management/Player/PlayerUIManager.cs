@@ -106,11 +106,11 @@ public class PlayerUIManager : MonoBehaviour
 
     private void ResetUI() // reset ui to default values
     {
-
+        /*
         var healthBarRect = healthBar.GetComponent<RectTransform>();
 
         healthBarRect.sizeDelta = new Vector2(100, 10);
-
+        */
         if(!manager.singlePlayer)
         {
             UpdateRound(manager.turn.roundsElapsed);
@@ -120,7 +120,7 @@ public class PlayerUIManager : MonoBehaviour
     public void ChangeUI(bool minigame) // changes the UI from minigame to board, vice versa
     {
         boardUI.SetActive(!minigame);
-        minigameUI.SetActive(minigame);
+        //minigameUI.SetActive(minigame);
         ResetUI();
     }
     public void ChangeUI(bool minigame, GameObject obj) // same as ChangeUI, just overload to add extraUI if needed

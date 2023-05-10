@@ -40,6 +40,7 @@ public class GameHandler : MonoBehaviour
 
     [HideInInspector]
     public int minimumToWin;
+    public bool noWinner; // provide no winner if the game needs it
     void Start()
     {
         turn = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>();
@@ -91,6 +92,9 @@ public class GameHandler : MonoBehaviour
         StartCoroutine(uiManager.ShowUI(tutorialScreen));
 
         StartCoroutine(uiManager.CountDown(3, uiManager.countdownUI));
+
+        // disabling non-minigame UI
+        plrManage.SetObjects(false);
         yield return new WaitForEndOfFrame();
     }
     public virtual IEnumerator StartGame() // teleports players into minigame
@@ -145,6 +149,10 @@ public class GameHandler : MonoBehaviour
         // collect first player's position to return the camera to that location
         MoveCamera(movementManager.CallTile(player[0].GetComponent<PlayerStats>().position), fov);
     }
+    public void UpdateWin(int winner) // for the player to have their wins updated
+    {
+        uiManager.playerUI[winner].GetComponent<PlayerUI>().UpdateWins(player[winner].GetComponent<PlayerStats>().wins);
+    }
 
     public IEnumerator EndGame(int winner)
     {
@@ -173,14 +181,20 @@ public class GameHandler : MonoBehaviour
         // try statement to prevent single player loss from reaching a negative array error
         try
         {
-
-            // award player a point if they "won"
-            player[winner].GetComponent<PlayerStats>().wins++;
+            if(!noWinner) // check if the game needs to manually award player
+            {
+                // award player a point if they "won"
+                player[winner].GetComponent<PlayerStats>().wins++;
+            }
         }
         catch (System.Exception)
         {
             // don't run anything here, this is to prevent a negative array exception from coming up when the single player loses.
         }
+        UpdateWin(winner); // update the UI for multiplayer
+
+        // enabling non-minigame UI
+        plrManage.SetObjects(true);
 
         // transition the game to have the success ascreen, singleplayer updates the players level.
         plrManage.TransitionGame(winner);
@@ -219,6 +233,7 @@ public class GameHandler : MonoBehaviour
             Debug.Log("No winner, you lost");
             return -1; // return no winner so the game ends.
         }
+
         return winner;
     }
 }

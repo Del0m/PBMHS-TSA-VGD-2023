@@ -7,7 +7,8 @@ public class CameraControl : MonoBehaviour
 {
     private Camera cam; // camera that will move
 
-    private Transform destination; // destination to move camera
+    [HideInInspector]
+    public Transform destination; // destination to move camera
 
     // variables to zoom camera
 
@@ -18,6 +19,8 @@ public class CameraControl : MonoBehaviour
     private int innerFov; // what to zoom the camera in to.
     private int fov; // what the fov should currently be at
 
+    public Vector2 target; // used for MP camera control
+
     [Header("Game Mode")]
     public bool singlePlayer; // disables translate camera update.
     private void Awake() // set camera to itself
@@ -27,6 +30,8 @@ public class CameraControl : MonoBehaviour
     public void TeleportCamera(Vector3 dest, int camSize){
         cam.gameObject.transform.position = new Vector3(dest.x, dest.y, -100);
         cam.orthographicSize = camSize;
+
+        target = new Vector2(dest.x, dest.y);
 
     }
     public IEnumerator ModifyCamera(Transform newDest, int m, int i, int o) // move camera to new location
@@ -44,10 +49,8 @@ public class CameraControl : MonoBehaviour
 
             while(Vector2.Distance(this.gameObject.transform.position, destination.position) > 10) // hold until at destination
             {
-                Debug.Log("Waiting until end destination...");
                 yield return new WaitForSeconds(1);
             }
-            Debug.Log("Huzzah!!");
             toZoom = false; // zoom back in once destination has been reached
             fov = innerFov; // set fov to zoom in.
         }
@@ -55,12 +58,10 @@ public class CameraControl : MonoBehaviour
 
     public void setCamUpdate(bool enable){
         camMovement = enable;
-        Debug.Log("Setting cam update to " + camMovement);
     }
 
     public void forgetDestination(){
         destination = null;
-        Debug.Log("Forgetting last destination");
     }
 
     private bool camMovement = false;
@@ -74,11 +75,14 @@ public class CameraControl : MonoBehaviour
             ZoomCamera(toZoom, fov, multiplier); // zoom camera.
         }
     }
+    public void SetDestination(Transform tran)
+    {
+        destination = tran;
+    }
     
     private void TranslateCamera(int factor) // move camera through x-y axis.
     {
-        Debug.Log("Moving!");
-        Vector2 target = Vector2.MoveTowards(this.transform.position, destination.position, Time.deltaTime * factor);
+        target = Vector2.MoveTowards(this.transform.position, destination.position, Time.deltaTime * factor);
         this.transform.position = new Vector3(target.x, target.y, -100f);
     }
     private void ZoomCamera(bool zoom, int view, int factor) // changes field of view on the camera.
@@ -87,12 +91,14 @@ public class CameraControl : MonoBehaviour
         if(zoom == true && cam.orthographicSize < view) // for zooming out
         {
             cam.orthographicSize += Time.deltaTime * factor;
-            Debug.Log("Zooming out!");
         }
         else if(zoom == false && cam.orthographicSize > view) // zooming back in
         {
             cam.orthographicSize -= Time.deltaTime * factor;
-            Debug.Log("Zooming in!");
         }
+    }
+    public virtual bool AllowMovement() // this is meant for multiplayer, to allow the player to move on their turn
+    {
+        return true;
     }
 }

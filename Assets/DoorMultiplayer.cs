@@ -66,7 +66,7 @@ public class DoorMultiplayer : MonoBehaviour
 
         //Call camera to go to a specified position
         cam.setCamUpdate(true);
-
+        cam.SetDestination(manager.player[0].transform);
         
         yield return new WaitForSeconds(timer); // debug the time before release
 

@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 
 public class MPManager : PlayerManager
 {
+    [Header("Multiplayer Variables")]
+    public List<GameObject> objToEnable; // hide UI until it is time to show
     public void StartMultiplayer() // Move player in select location
     {
         for (int i = 0; i < player.Count; i++)
@@ -17,8 +19,11 @@ public class MPManager : PlayerManager
             plr.transform.position = spawn[playerSpawn].position; // move players to map
             plr.GetComponent<PlayerMovement>().GameSwitch(false); // prevent player moving
         }
-        turn.SetTurn(0);
-        turn.uiManager.InitalizeUI();
+        FindObjects(); // find all the player's ui to enable
+        SetObjects(true); // enable the UI
+
+        turn.SetTurn(0); // set the turn to the first player
+        turn.uiManager.InitalizeUI(); // turn on the player turn UI
 
     }
     public void Multiplayer(PlayerInput input)
@@ -51,16 +56,42 @@ public class MPManager : PlayerManager
     }
     public override void SpawnPlayer(PlayerInput input) // adds to player array for minigames
     {
-
+        
         var spawnPlayer = input.gameObject; // grabbing object of player
 
+        spawnPlayer.transform.position = waitSpawn.position; // set player to spawn in the waiting lobby
 
         player.Add(spawnPlayer); // add player into the count
 
         spawnPlayer.GetComponent<PlayerStats>().turnOrder = (player.Count - 1); // give the player their turn
+
+
+        // game switch onto the player
+        spawnPlayer.GetComponent<PlayerMovement>().GameSwitch(true); // make the player move
+
+        SetPlayer(spawnPlayer); // set the player's color
     }
     public override void SetPlayer(GameObject spawnPlayer) // change the players color
     {
-        spawnPlayer.GetComponentInChildren<SpriteRenderer>().color = playerColor.ElementAt(player.Count - 1);
+        spawnPlayer.GetComponentInChildren<SpriteRenderer>().color = playerColor.ElementAt(player.Count - 1); // select 0,1,2,3
+        base.SetPlayer(spawnPlayer);
+    }
+    public void FindObjects() // finding all the players UI and only enable them
+    {
+        Debug.Log("Attempting to locate objects");
+
+        for(int i = 0; i < player.Count; i++)
+        {
+            Debug.Log("Object Found: " + uiManager.playerUI[i]);
+            objToEnable.Add(uiManager.playerUI[i]);
+        }
+    }
+
+    public override void SetObjects(bool boolean)
+    {
+        for(int i = 0; i < objToEnable.Count; i++)
+        {
+            objToEnable[i].SetActive(boolean);
+        }
     }
 }

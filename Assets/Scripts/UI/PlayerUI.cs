@@ -1,6 +1,7 @@
 //armin delmo; 1/15/22; purpose of this program is to store all player UI elements to be edited by the game
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,7 @@ public class PlayerUI : MonoBehaviour
     // buff objects / number object
     public GameObject buffA;
     public GameObject buffB;
-    public GameObject wins;
+    public TextMeshProUGUI wins;
     public GameObject currentTurn;
 
     // booleans to detect which buff icons are enabled
@@ -31,5 +32,9 @@ public class PlayerUI : MonoBehaviour
         {
             Debug.LogError("Both buff slots are currently taken.");
         }
+    }
+    public void UpdateWins(int win) // updates the win counter on the player
+    {
+        wins.text = win.ToString();
     }
 }

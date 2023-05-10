@@ -13118,7 +13118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &875658969
 RectTransform:
   m_ObjectHideFlags: 0
@@ -27744,6 +27744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7fde91a1caea634f977f0882ef5b787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {x: 0, y: 0}
   singlePlayer: 1
 --- !u!1 &1781924426
 GameObject:
@@ -34298,7 +34299,7 @@ MonoBehaviour:
   maxRounds: 6
   miniGameScript: {fileID: 0}
   plrManager: {fileID: 0}
-  scoreScript: {fileID: 0}
+  moveManager: {fileID: 0}
   uiManager: {fileID: 0}
   cam: {fileID: 0}
   musicObj: {fileID: 0}
