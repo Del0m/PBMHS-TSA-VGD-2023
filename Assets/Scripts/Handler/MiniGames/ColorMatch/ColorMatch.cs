@@ -52,7 +52,8 @@ public class ColorMatch : GameHandler
     {
         // make the difficulty add more drops and less time
         StartCoroutine(base.StartGame());
-        yield return new WaitForEndOfFrame(); // wait for StartGame() to finish loading
+
+        yield return new WaitForSeconds(3); // countdown
 
         // allow players to move
         for (int i = 0; i < player.Count; i++)

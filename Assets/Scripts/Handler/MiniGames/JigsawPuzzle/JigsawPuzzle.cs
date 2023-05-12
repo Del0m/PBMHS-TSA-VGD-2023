@@ -90,7 +90,6 @@ public class JigsawPuzzle : GameHandler
         // for loop to spawn players' boards in their respective location.
         for(int i = 0; i < playerCount; i++)
         {
-            Debug.Log("spawning board");
             var plrBoard = Instantiate(boardPrefab, puzzleLocation[i].position, new Quaternion(0, 0, 0, 0), this.gameObject.transform);
             plrBoard.SetActive(true); // initalize the board onto the game
             plrBoard.transform.position = new Vector3(plrBoard.transform.position.x, plrBoard.transform.position.y, 0f);

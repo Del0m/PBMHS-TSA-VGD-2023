@@ -88,7 +88,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 674fd4ea99b036644916e497874ea436, type: 3}
   dropSound: {fileID: 8300000, guid: 94f890f15f2e34241b6b1786109369df, type: 3}
   dashSound: {fileID: 8300000, guid: 180b5f8f162d8b642931f15e11e47f4c, type: 3}
-  particlePrefab: {fileID: 2045440048820027072, guid: 30897cfe76aa67144b09a26df0c9a172, type: 3}
+  movementParticle: {fileID: 2045440048820027072, guid: 30897cfe76aa67144b09a26df0c9a172, type: 3}
+  buffParticle: {fileID: 1532191602576233216, guid: 6f4aa91e9b958f44b867f88ac6ad485d, type: 3}
   animate: {fileID: 4477975784502831907}
 --- !u!114 &2609490234402768879
 MonoBehaviour:
@@ -247,6 +248,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: eecb444e-871e-4709-beb9-16ecd03c0d67
     m_ActionName: Gameplay/Pause[/DualShock4GamepadHID/start,/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4021387965015513840}
+        m_TargetAssemblyTypeName: PlayerStats, Assembly-CSharp
+        m_MethodName: BuffButton
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7bfa6d0b-ec65-46df-88a1-ed974c072f9d
+    m_ActionName: Gameplay/Buff[/Keyboard/1,/Keyboard/2]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -294,10 +311,13 @@ MonoBehaviour:
   speed: 15
   jumpPower: 175
   damage: 5
+  speedMulti: 1
+  jumpMulti: 1
   cooldown: 0.5
   wins: 0
   lost: 0
   singlePlayer: 0
+  buff: []
 --- !u!82 &5025792139998733991
 AudioSource:
   m_ObjectHideFlags: 0

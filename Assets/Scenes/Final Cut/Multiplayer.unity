@@ -1532,7 +1532,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &100397594
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1566,7 +1566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4237,7 +4237,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &238501803
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4271,7 +4271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6209,7 +6209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &378780295
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6243,7 +6243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7701,6 +7701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dc1eb7ece306ba4d95f84faa976ac0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destination: {fileID: 0}
   target: {x: 0, y: 0}
   singlePlayer: 0
   turnScript: {fileID: 0}
@@ -13328,7 +13329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d11a5ebb3fbcb1848a5ab6cd89c41ed9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 0}
+  manager: {fileID: 1584233328}
   playerUI:
   - {fileID: 1897478892}
   - {fileID: 1668239521}
@@ -15224,7 +15225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &930755373
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15258,7 +15259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -16729,7 +16730,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &998146941
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16763,7 +16764,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -17201,7 +17202,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1009868198
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17235,7 +17236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -20144,8 +20145,8 @@ MonoBehaviour:
   fov: 20
   minimumToWin: 0
   noWinner: 0
-  amount: 5
-  time: 5
+  amount: 10
+  time: 50
   crate: {fileID: 3306213879390748850, guid: 4aac523a9ca9c50448adfbc42defb372, type: 3}
   hole: {fileID: 4468849136316652867, guid: 26a71098b1c6ea6469b9278e71b00346, type: 3}
   holesLeft: 0
@@ -20844,8 +20845,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe1ae76532934e4cb9e0870fc7c449d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffA: {fileID: 998146940}
-  buffB: {fileID: 378780294}
+  playerID: 2
+  buffUI:
+  - {fileID: 998146940}
+  - {fileID: 378780294}
   wins: {fileID: 1097408979}
   currentTurn: {fileID: 1289674987}
 --- !u!114 &1154423230
@@ -22353,7 +22356,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1265050543
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27355,7 +27358,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1591632852
 RectTransform:
   m_ObjectHideFlags: 0
@@ -27389,7 +27392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -28699,8 +28702,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe1ae76532934e4cb9e0870fc7c449d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffA: {fileID: 238501802}
-  buffB: {fileID: 100397593}
+  playerID: 1
+  buffUI:
+  - {fileID: 238501802}
+  - {fileID: 100397593}
   wins: {fileID: 219426245}
   currentTurn: {fileID: 181268788}
 --- !u!114 &1668239524
@@ -31330,13 +31335,89 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 12701019, guid: 0688c799ce8f5ac25abd249802670ac8, type: 3}
+      propertyPath: buffToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: b330a48b7d1816046a1d618154038354, type: 2}
+    - target: {fileID: 12701020, guid: 0688c799ce8f5ac25abd249802670ac8, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7861271
+      objectReference: {fileID: 0}
+    - target: {fileID: 12701020, guid: 0688c799ce8f5ac25abd249802670ac8, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 12701020, guid: 0688c799ce8f5ac25abd249802670ac8, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 64179949, guid: 0688c799ce8f5ac25abd249802670ac8, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 111808085, guid: 0688c799ce8f5ac25abd249802670ac8, type: 3}
+      propertyPath: buffToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: b330a48b7d1816046a1d618154038354, type: 2}
+    - target: {fileID: 183387590, guid: 0688c799ce8f5ac25abd249802670ac8, type: 3}
+      propertyPath: buffToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: ae51bd6f813665c4fb2c69443e5463d4, type: 2}
+    - target: {fileID: 277330971, guid: 0688c799ce8f5ac25abd249802670ac8, type: 3}
+      propertyPath: buffToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: 2a1df2530cfac01448a9c92d3731ca43, type: 2}
+    - target: {fileID: 353164696, guid: 0688c799ce8f5ac25abd249802670ac8, type: 3}
+      propertyPath: buffToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: ae51bd6f813665c4fb2c69443e5463d4, type: 2}
+    - target: {fileID: 372455731, guid: 0688c799ce8f5ac25abd249802670ac8, type: 3}
+      propertyPath: buffToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: b330a48b7d1816046a1d618154038354, type: 2}
+    - target: {fileID: 376442645, guid: 0688c799ce8f5ac25abd249802670ac8, type: 3}
+      propertyPath: buffToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: ae51bd6f813665c4fb2c69443e5463d4, type: 2}
+    - target: {fileID: 376442646, guid: 0688c799ce8f5ac25abd249802670ac8, type: 3}
+      propertyPath: m_Color.b
+      value: 0.24313727
+      objectReference: {fileID: 0}
+    - target: {fileID: 376442646, guid: 0688c799ce8f5ac25abd249802670ac8, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 376442646, guid: 0688c799ce8f5ac25abd249802670ac8, type: 3}
+      propertyPath: m_Color.r
+      value: 0.69411767
+      objectReference: {fileID: 0}
     - target: {fileID: 460791933, guid: 0688c799ce8f5ac25abd249802670ac8, type: 3}
       propertyPath: m_Camera
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 746295196, guid: 0688c799ce8f5ac25abd249802670ac8, type: 3}
+      propertyPath: buffToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: ae51bd6f813665c4fb2c69443e5463d4, type: 2}
+    - target: {fileID: 746295197, guid: 0688c799ce8f5ac25abd249802670ac8, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 746295197, guid: 0688c799ce8f5ac25abd249802670ac8, type: 3}
+      propertyPath: m_Color.g
+      value: 0.95065093
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818568144, guid: 0688c799ce8f5ac25abd249802670ac8, type: 3}
+      propertyPath: buffToGive
+      value: 
+      objectReference: {fileID: 11400000, guid: ae51bd6f813665c4fb2c69443e5463d4, type: 2}
+    - target: {fileID: 1818568145, guid: 0688c799ce8f5ac25abd249802670ac8, type: 3}
+      propertyPath: m_Color.b
+      value: 0.945595
+      objectReference: {fileID: 0}
+    - target: {fileID: 1818568145, guid: 0688c799ce8f5ac25abd249802670ac8, type: 3}
+      propertyPath: m_Color.g
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 562271984227020213, guid: 0688c799ce8f5ac25abd249802670ac8, type: 3}
       propertyPath: m_RootOrder
@@ -31481,7 +31562,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1842048951
 RectTransform:
   m_ObjectHideFlags: 0
@@ -31515,7 +31596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -32073,7 +32154,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1897478893
 RectTransform:
   m_ObjectHideFlags: 0
@@ -32110,8 +32191,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe1ae76532934e4cb9e0870fc7c449d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffA: {fileID: 930755372}
-  buffB: {fileID: 1842048950}
+  playerID: 0
+  buffUI:
+  - {fileID: 930755372}
+  - {fileID: 1842048950}
   wins: {fileID: 1100818549}
   currentTurn: {fileID: 978477662}
 --- !u!114 &1897478895
@@ -34728,8 +34811,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebe1ae76532934e4cb9e0870fc7c449d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffA: {fileID: 1009868197}
-  buffB: {fileID: 1591632851}
+  playerID: 3
+  buffUI:
+  - {fileID: 1009868197}
+  - {fileID: 1591632851}
   wins: {fileID: 257625814}
   currentTurn: {fileID: 585948346}
 --- !u!114 &2029265174

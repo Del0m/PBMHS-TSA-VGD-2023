@@ -40,7 +40,7 @@ public class MathDash : GameHandler
         IncreaseDifficulty();
         yield return StartCoroutine(base.PreGameRoutine());
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(3); // countdown
         yield return StartCoroutine(gameUI.Timer(time)); // running the timer
     }
     public override IEnumerator StartGame()

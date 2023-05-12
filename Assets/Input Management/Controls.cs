@@ -98,6 +98,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Buff"",
+                    ""type"": ""Value"",
+                    ""id"": ""7bfa6d0b-ec65-46df-88a1-ed974c072f9d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -408,6 +417,61 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""e8590675-417a-45ed-bd6f-7844888de137"",
+                    ""path"": ""1DAxis(minValue=0)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Buff"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""0f1b7810-388e-478b-bc8c-0df0428a52a6"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Buff"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""7809fbd3-d1d5-4b97-b3a2-9702e646a65e"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller;Linux Controller"",
+                    ""action"": ""Buff"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""a0e19280-20ae-418c-b890-cfd698751169"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""Buff"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""b6b8cd56-1898-4277-8624-02521f9ab529"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller;Linux Controller"",
+                    ""action"": ""Buff"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -491,6 +555,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Gameplay_Increment = m_Gameplay.FindAction("Increment", throwIfNotFound: true);
         m_Gameplay_Join = m_Gameplay.FindAction("Join", throwIfNotFound: true);
         m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
+        m_Gameplay_Buff = m_Gameplay.FindAction("Buff", throwIfNotFound: true);
         // Pre-Game
         m_PreGame = asset.FindActionMap("Pre-Game", throwIfNotFound: true);
         m_PreGame_Newaction = m_PreGame.FindAction("New action", throwIfNotFound: true);
@@ -561,6 +626,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Increment;
     private readonly InputAction m_Gameplay_Join;
     private readonly InputAction m_Gameplay_Pause;
+    private readonly InputAction m_Gameplay_Buff;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
@@ -573,6 +639,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Increment => m_Wrapper.m_Gameplay_Increment;
         public InputAction @Join => m_Wrapper.m_Gameplay_Join;
         public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
+        public InputAction @Buff => m_Wrapper.m_Gameplay_Buff;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -606,6 +673,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Pause.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
+                @Buff.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBuff;
+                @Buff.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBuff;
+                @Buff.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnBuff;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -634,6 +704,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Buff.started += instance.OnBuff;
+                @Buff.performed += instance.OnBuff;
+                @Buff.canceled += instance.OnBuff;
             }
         }
     }
@@ -708,6 +781,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnIncrement(InputAction.CallbackContext context);
         void OnJoin(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnBuff(InputAction.CallbackContext context);
     }
     public interface IPreGameActions
     {

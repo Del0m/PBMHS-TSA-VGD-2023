@@ -53,4 +53,9 @@ public class MovementManager : MonoBehaviour
     {
         return tile[position];
     }
+    public BuffObject CollectBuff(int position) // collects items from the tile to give to the player
+    {
+        var buff = tile[position].gameObject.GetComponent<Tile>().buffToGive;
+        return buff;
+    }
 }

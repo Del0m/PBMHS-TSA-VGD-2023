@@ -47,8 +47,8 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip dashSound;
 
     [Header("Particles")]
-    public GameObject particlePrefab;
-    ParticleSystem particle;
+    public GameObject movementParticle;
+    public GameObject buffParticle;
     [Header("Animation")]
     public PlayerAnimation animate; // send requests to script to move player animations
 
@@ -213,7 +213,7 @@ public class PlayerMovement : MonoBehaviour
         // get movement direction
         movement = transform.TransformDirection(movement);
 
-        Vector2 velocityChange = (movement * stat.speed - currVelocity);
+        Vector2 velocityChange = (movement * stat.speed * stat.speedMulti - currVelocity);
 
         Vector2.ClampMagnitude(velocityChange, 1);
         if(!canYMovement)
@@ -243,7 +243,7 @@ public class PlayerMovement : MonoBehaviour
         //Check if the sound obj exists
         playSound.PlayOneShot(playInstance, (settings.soundVolume * settings.masterVolume)); //fix this
 
-        if(canJump == true) { SetParticle(animate.ParticleDirection(), false); } // if they're on the floor
+        if(canJump == true) { SetParticle(movementParticle, animate.ParticleDirection(), false); } // if they're on the floor
 
         var originalSpeed = stat.speed;
         stat.speed *= 3;
@@ -314,12 +314,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if(context.performed && canJump == true && canEverJump == true) // ensures its only ran once
         {
-            var jumpVelocity = new Vector2(rb.velocity.x, rb.velocity.y + stat.jumpPower);
+            var jumpVelocity = new Vector2(rb.velocity.x, rb.velocity.y + stat.jumpPower * stat.jumpMulti);
 
             rb.AddForce(jumpVelocity, ForceMode2D.Impulse);
             // animating particles here
-            SetParticle(new Quaternion(0, 0, -90, 0), false);
-            particle.transform.rotation = Quaternion.Euler(new Vector3(0,0,-90));
+            SetParticle(movementParticle, new Quaternion(0, 0, -90, 0), false);
 
             canJump = false; // turn off jumping to prevent them from jumping again.
         }
@@ -358,89 +357,34 @@ public class PlayerMovement : MonoBehaviour
         playInstance = dropSound;
         playSound.PlayOneShot(playInstance, (settings.soundVolume * settings.masterVolume));
     }
-    // use trig for this.
-   /* public Quaternion SetDirection() // set direction for particle
-    {
-        //Vector2.Angle(this.gameObject, );
-        var direction = 0;
 
-        switch(yMovementInput)
-        {
-            case 1:
-                direction = -90;
-                break;
-            case -1:
-                direction = 90;
-                break;
-            default:
-                break;
-        }
-        switch(xMovementInput)
-        {
-            case 1:
-                if(direction != 0)
-                {
-                    switch (direction)
-                    {
-                        case 90:
-                            direction = -45;
-                            break;
-                        case -90:
-                            direction = 45;
-                            break;
-                    }
-                }
-                else
-                {
-                    direction = -180;
-                }
-                break;
-            case -1:
-                if (direction != 0)
-                {
-                    switch (direction)
-                    {
-                        case 90:
-                            direction = 45;
-                            break;
-                        case -90:
-                            direction = -45;
-                            break;
-                    }
-                }
-                else
-                {
-                    direction = 0;
-                }
-                break;
-            default:
-                break;
-        }
-        return new Quaternion(0, 0, direction, 0);
-    }
-   */
-    void SetParticle(Quaternion rot, bool hasParent)
+    void SetParticle(GameObject particle, Quaternion rot, bool hasParent)
     {
-        var particleObject = Instantiate(particlePrefab, this.gameObject.transform.position, rot);
+        var particleObject = Instantiate(particle, this.gameObject.transform.position, rot);
 
         if (hasParent) { particleObject.transform.SetParent(this.transform); } // give parent, usually only neededd for jump
 
         particleObject.transform.rotation = rot;
-        particle = particleObject.GetComponent<ParticleSystem>();
+        var particleRot = particleObject.GetComponent<ParticleSystem>();
 
-        particle.gameObject.transform.rotation = rot;
+        particleRot.gameObject.transform.rotation = rot;
 
     }
-    void SetParticle(Quaternion rot, Vector2 pos, bool hasParent) // play particle in specific position
+    public void SetParticle(GameObject particle, int time, Quaternion rot, Color color, bool hasParent)
     {
-        var particleObject = Instantiate(particlePrefab, this.gameObject.transform.position, this.transform.rotation);
+        var particleObject = Instantiate(particle, this.gameObject.transform.position, rot);
 
-        if(hasParent) { particleObject.transform.SetParent(this.transform); } // give parent, usually only neededd for jump
-        particle = particleObject.GetComponent<ParticleSystem>();
+        if (hasParent) { particleObject.transform.SetParent(this.transform); } // give parent, usually only neededd for jump
 
-        particle.gameObject.transform.position = pos;
-        particle.gameObject.transform.rotation = rot;
+        particleObject.transform.rotation = rot;
+        var particleSys = particleObject.GetComponent<ParticleSystem>();
+
+        // set color and rotation of object
+        var partsysMain = particleSys.main;
+        partsysMain.startColor = color;
+        partsysMain.startLifetime = time;
+
+        particleSys.gameObject.transform.rotation = rot;
 
     }
-
 }

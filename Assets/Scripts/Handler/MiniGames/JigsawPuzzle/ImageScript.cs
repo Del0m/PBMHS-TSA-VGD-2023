@@ -50,7 +50,6 @@ public class ImageScript : MonoBehaviour
             }
             repeat = false;
         }
-        Debug.Log(increment);
         pictureChosen[increment] = randNum;
         increment++;
         return randNum;

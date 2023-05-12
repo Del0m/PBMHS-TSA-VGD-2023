@@ -11,14 +11,10 @@ using UnityEngine.Playables;
 
 public class MiniGameManager : MonoBehaviour
 {
-    //players
-    private List<GameObject> players; // player array to change controls, bring to map, etc.
-
+    // UI to show player minigame is starting
+    public GameObject ui;
     //array for all available minigames
     public GameObject[] minigame;
-
-    //randomizer to randomly select minigames
-    private Randomizer rand;
 
     public GameObject lastMinigame; // to prevent same games from playing one after another
 
@@ -67,46 +63,13 @@ public class MiniGameManager : MonoBehaviour
 
     public void MinigameStartup()
     {
-        Debug.Log("running coroutine StartMiniGame");
         StartCoroutine(StartMiniGame());
     }
-    public IEnumerator StartMiniGame()
+    public IEnumerator StartMiniGame() // turn on minigame, let players know
     {
-        /*
-         * add ui updates here notifying players of upcoming minigame
-         */
-
-
+        ui.SetActive(true);
         yield return new WaitForSeconds(5); // wait 5 seconds before putting player into game.
+        ui.SetActive(false);
         SpawnMinigame();
     }
-    /*public IEnumerator UIEndGame() // ui to show users the minigame is ending
-    {
-        //show UI
-        yield return new WaitForSeconds(5); // wait 5 seconds before deleting board.
-        EndMiniGame();
-    }
-    public void EndMiniGame() //kills all minigames, brings back controls to players
-    {
-        hasStarted = false;
-        Debug.Log("Ending minigame");
-        players = GameObject.FindGameObjectsWithTag("Player");
-        for (int i = 0; i < players.Length; i++) // brings plrs back to board.
-        {
-            if (players.Length == 0)
-            {
-                break;
-            }
-            Debug.Log("Returning player back to position.");
-            //find corresponding tile, return them back to the position.
-            players[i].transform.position = GameObject.Find(players[i].GetComponent<PlayerStats>().position.ToString()).transform.position;
-        }
-        KillGamesFromFile(); // deletes minigame
-
-        turnScript.SetTurn(1);
-
-        //elapse the turns; once reaches end amount, game will end.
-        turnScript.roundsElapsed++;
-    }
-    */
 }

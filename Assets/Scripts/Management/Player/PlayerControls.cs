@@ -70,15 +70,14 @@ public class PlayerControls : MonoBehaviour
         {
             if (turnScript.RunTurn(this.gameObject, stat.turnOrder) == true) //check to see if conditions are met on TurnManager
             {
-                //Forget cam
-                //cam.forgetDestination();
-
                 //Set cam to follow player
                 StartCoroutine(cam.ModifyCamera(this.transform, cameraSpeed, inZoom, outZoom));
 
                 //Start update system
                 cam.setCamUpdate(true);
                 StartCoroutine(Moving()); // begin moving player
+
+                
             }
         }
     }
@@ -102,7 +101,6 @@ public class PlayerControls : MonoBehaviour
                     turnScript.uiManager.UpdateDiceUI(movesRemaining); // update ui for end-user
 
                     yield return new WaitForSeconds(movementCooldown);
-                    Debug.Log("Moving.");
                     newTile = moveManage.CallTile(stat.position, 1); // moving one tile at a time
 
                     stat.position++; // moving position ahead
@@ -123,7 +121,13 @@ public class PlayerControls : MonoBehaviour
             turnScript.RoundCheck(); // advance turn, see if new turn is in order.
                                      //newTile = null; // to prevent the player from moving towards the tile in the middle of the game
             hasRan = true;
-            turnScript.uiManager.ValueUpdate();
+
+        // add the buff to the players
+        stat.AddBuff(moveManage.CollectBuff(stat.position));
+
+        // show it in the UI
+        turnScript.uiManager.ValueUpdate();
+
     }
 
     public void PauseGame(InputAction.CallbackContext ctx)

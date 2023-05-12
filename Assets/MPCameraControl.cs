@@ -17,7 +17,6 @@ public class MPCameraControl : CameraControl // purpose of script is to not play
         Vector2 destVector = new Vector2(destination.position.x, destination.position.y);
         if(Vector2.Distance(currentPosition,destVector) < 10) // can't do entire vector, considers z axis
         {
-            Debug.Log(target);
             return true;
         }
         this.gameObject.transform.position = new Vector3(target.x, target.y, -100f); // speed up the transition

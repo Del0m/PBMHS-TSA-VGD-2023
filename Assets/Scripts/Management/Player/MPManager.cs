@@ -11,6 +11,7 @@ public class MPManager : PlayerManager
     public List<GameObject> objToEnable; // hide UI until it is time to show
     public void StartMultiplayer() // Move player in select location
     {
+        cam.destination = player[0].transform;
         for (int i = 0; i < player.Count; i++)
         {
             var plr = player[i].gameObject;
@@ -82,7 +83,6 @@ public class MPManager : PlayerManager
 
         for(int i = 0; i < player.Count; i++)
         {
-            Debug.Log("Object Found: " + uiManager.playerUI[i]);
             objToEnable.Add(uiManager.playerUI[i]);
         }
     }

@@ -87,7 +87,6 @@ public class CameraControl : MonoBehaviour
     }
     private void ZoomCamera(bool zoom, int view, int factor) // changes field of view on the camera.
     {
-        print(zoom);
         if(zoom == true && cam.orthographicSize < view) // for zooming out
         {
             cam.orthographicSize += Time.deltaTime * factor;

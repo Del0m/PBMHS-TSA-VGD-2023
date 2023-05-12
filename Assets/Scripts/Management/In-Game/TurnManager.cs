@@ -96,10 +96,10 @@ public class TurnManager : MonoBehaviour
         uiManager.UpdateRound(roundsElapsed);
         if(playerCount < currentTurn && roundsElapsed != maxRounds) // turn on el minigame
         {
+            // resetting the camera
+            cam.destination = null;
             //debug
             musicObj.SetActive(false);
-
-            Debug.Log("starting the minigame");
 
             miniGameScript.MinigameStartup(); // running minigame coroutine to advise players, and spawn game.
 
@@ -108,7 +108,8 @@ public class TurnManager : MonoBehaviour
             roundsElapsed++;
         }
 
-        if(roundsElapsed >= maxRounds){
+        if(roundsElapsed >= maxRounds)
+        {
             //End Game
             // havent wrote anything in here, make another EndGame() function
         }
@@ -128,10 +129,8 @@ public class TurnManager : MonoBehaviour
         if(playerTurn == currentTurn && cam.AllowMovement()) //check to see if its the players turn
         {
             //move player
-            Debug.Log("Running turn");
             return true;
         }
-        Debug.Log("Turn failed, " + currentTurn + " does not equal " + playerTurn);
         return false;
     }
     public IEnumerator Callback() // calls the roundcheck again to see if the player has gotten into their spot, to advance the turn

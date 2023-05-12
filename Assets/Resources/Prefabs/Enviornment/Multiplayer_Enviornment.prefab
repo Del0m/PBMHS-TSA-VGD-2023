@@ -134,17 +134,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 329955664}
   - {fileID: 1239801470}
   - {fileID: 1411984945}
   - {fileID: 1421402407}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &576464
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -389,17 +385,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 1
-  bType: 1
-  buffAmount: 0.5
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 35477026}
   - {fileID: 845089404}
   - {fileID: 107056295}
   - {fileID: 678778209}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &12701018
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -674,17 +666,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1474931571}
   - {fileID: 2032407782}
   - {fileID: 822044527}
   - {fileID: 1638326468}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &27257271
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1083,17 +1071,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1887489854}
   - {fileID: 1422857837}
   - {fileID: 1633047478}
   - {fileID: 127836404}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &48984297
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1244,17 +1228,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 880980804}
   - {fileID: 806918331}
   - {fileID: 821781806}
   - {fileID: 1777612935}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &54586335
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1731,17 +1711,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 616020596}
   - {fileID: 1704432568}
   - {fileID: 1598781328}
   - {fileID: 273359}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &88915827
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1954,17 +1930,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1456528359}
   - {fileID: 1615023718}
   - {fileID: 398688602}
   - {fileID: 485066329}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &106650661
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2112,7 +2084,7 @@ Transform:
   - {fileID: 1038791073}
   - {fileID: 343956819}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 56
+  m_RootOrder: 57
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &111808086
 SpriteRenderer:
@@ -2178,17 +2150,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 1
-  bType: 2
-  buffAmount: 1
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1847973253}
   - {fileID: 756281867}
   - {fileID: 982742061}
   - {fileID: 1038791073}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &111808084
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2339,17 +2307,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 743534274}
   - {fileID: 764112072}
   - {fileID: 649864516}
   - {fileID: 1284293997}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &115108229
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2717,17 +2681,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1279927156}
   - {fileID: 1006070982}
   - {fileID: 1229108640}
   - {fileID: 1072659811}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &134894584
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2812,7 +2772,7 @@ Transform:
   - {fileID: 601354715}
   - {fileID: 1512105308}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 58
+  m_RootOrder: 59
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &138346275
 SpriteRenderer:
@@ -2878,17 +2838,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1432994518}
   - {fileID: 228591794}
   - {fileID: 601354715}
   - {fileID: 1512105308}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &138346273
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3101,17 +3057,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 690515972}
   - {fileID: 1700883517}
   - {fileID: 738547165}
   - {fileID: 744603628}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &144116781
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3321,7 +3273,7 @@ Transform:
   - {fileID: 923229118}
   - {fileID: 976166447}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 59
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &183387591
 SpriteRenderer:
@@ -3387,17 +3339,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 1
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 129575996}
   - {fileID: 2136803814}
   - {fileID: 1860514047}
   - {fileID: 923229118}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &183387589
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3742,17 +3690,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1314575176}
   - {fileID: 5155909}
   - {fileID: 1988898651}
   - {fileID: 2110258926}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &212368634
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4212,6 +4156,7 @@ Transform:
   - {fileID: 576462}
   - {fileID: 134894582}
   - {fileID: 1886374946}
+  - {fileID: 183387587}
   - {fileID: 1088637439}
   - {fileID: 1695293433}
   - {fileID: 526671274}
@@ -4242,7 +4187,6 @@ Transform:
   - {fileID: 111808082}
   - {fileID: 2034463552}
   - {fileID: 138346271}
-  - {fileID: 183387587}
   - {fileID: 792810695}
   - {fileID: 680301774}
   - {fileID: 106650659}
@@ -4448,17 +4392,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 2142872555}
   - {fileID: 1509480452}
   - {fileID: 1421959904}
   - {fileID: 1741870060}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &235235968
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4671,17 +4611,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 2055881365}
   - {fileID: 1008377978}
   - {fileID: 2059144865}
   - {fileID: 499985747}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &240736045
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5032,17 +4968,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 237658689}
   - {fileID: 1849750614}
   - {fileID: 196522633}
   - {fileID: 1860034629}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &267680772
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5127,7 +5059,7 @@ Transform:
   - {fileID: 215862599}
   - {fileID: 1338545381}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 42
+  m_RootOrder: 43
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &275484153
 SpriteRenderer:
@@ -5193,17 +5125,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 453989830}
   - {fileID: 1243739262}
   - {fileID: 215862599}
   - {fileID: 1338545381}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &275484151
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5289,7 +5217,7 @@ Transform:
   - {fileID: 218883153}
   - {fileID: 1438431710}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 32
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &277330972
 SpriteRenderer:
@@ -5355,17 +5283,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 1
-  bType: 2
-  buffAmount: 1
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1123871101}
   - {fileID: 1477432576}
   - {fileID: 811186036}
   - {fileID: 218883153}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &277330970
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5516,17 +5440,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1958760838}
   - {fileID: 582506667}
   - {fileID: 454293493}
   - {fileID: 2082671418}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &283047658
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5673,7 +5593,7 @@ Transform:
   - {fileID: 1755528873}
   - {fileID: 563964941}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 40
+  m_RootOrder: 41
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &296887241
 SpriteRenderer:
@@ -5739,17 +5659,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1527105957}
   - {fileID: 1884736072}
   - {fileID: 1755528873}
   - {fileID: 563964941}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &296887239
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5993,17 +5909,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 111436193}
   - {fileID: 1552797279}
   - {fileID: 1868199839}
   - {fileID: 596047944}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &309650934
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6566,17 +6478,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 1
-  bType: 0
-  buffAmount: 1
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1286190190}
   - {fileID: 2147248789}
   - {fileID: 1799469831}
   - {fileID: 18554097}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &353164695
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6790,17 +6698,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 1
-  bType: 2
-  buffAmount: 1
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 772191335}
   - {fileID: 569631698}
   - {fileID: 1689935092}
   - {fileID: 1147844747}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &372455730
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6917,7 +6821,7 @@ Transform:
   - {fileID: 752536795}
   - {fileID: 65471859}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 44
+  m_RootOrder: 45
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &376442646
 SpriteRenderer:
@@ -6983,17 +6887,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 1
-  bType: 1
-  buffAmount: 0.5
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1815519826}
   - {fileID: 366536753}
   - {fileID: 1562071598}
   - {fileID: 752536795}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &376442644
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7206,17 +7106,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 220652037}
   - {fileID: 989200438}
   - {fileID: 1339696725}
   - {fileID: 963924896}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &383103127
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7863,17 +7759,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1012009829}
   - {fileID: 482353515}
   - {fileID: 240988962}
   - {fileID: 2122011967}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &413432696
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8117,17 +8009,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1517108718}
   - {fileID: 264609114}
   - {fileID: 1954638921}
   - {fileID: 1814401139}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &436961493
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8464,17 +8352,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 965347075}
   - {fileID: 131068505}
   - {fileID: 722329171}
   - {fileID: 1151128739}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &454159704
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -8722,7 +8606,7 @@ Transform:
   - {fileID: 1212189856}
   - {fileID: 1669730752}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 47
+  m_RootOrder: 48
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &463328519
 SpriteRenderer:
@@ -8788,17 +8672,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1212493405}
   - {fileID: 1824181310}
   - {fileID: 1212189856}
   - {fileID: 1669730752}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &463328517
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9397,17 +9277,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1814763140}
   - {fileID: 1222288264}
   - {fileID: 1950960328}
   - {fileID: 1547031938}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &507531101
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9558,17 +9434,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 745337342}
   - {fileID: 1804597202}
   - {fileID: 1950599350}
   - {fileID: 2131632896}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &509296628
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9750,17 +9622,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 2030470872}
   - {fileID: 1366092223}
   - {fileID: 1287889280}
   - {fileID: 1335167536}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &514142125
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9911,17 +9779,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1106050344}
   - {fileID: 451707369}
   - {fileID: 345729145}
   - {fileID: 34320807}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &515236416
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10037,7 +9901,7 @@ Transform:
   - {fileID: 1028197338}
   - {fileID: 1376433405}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 31
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &526671278
 SpriteRenderer:
@@ -10103,17 +9967,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 407811849}
   - {fileID: 1907608854}
   - {fileID: 1028197338}
   - {fileID: 1376433405}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &526671276
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10450,17 +10310,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1248996535}
   - {fileID: 1388198047}
   - {fileID: 1824059955}
   - {fileID: 489603717}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &564391329
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10767,17 +10623,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 1
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 198848808}
   - {fileID: 1350523722}
   - {fileID: 1851705928}
   - {fileID: 486994390}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &569962963
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10928,17 +10780,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1371360442}
   - {fileID: 2123778439}
   - {fileID: 437278369}
   - {fileID: 519939107}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &571616795
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11089,17 +10937,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1461195269}
   - {fileID: 1593570546}
   - {fileID: 91291735}
   - {fileID: 467519819}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &578426423
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11855,17 +11699,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 454431524}
   - {fileID: 1080455691}
   - {fileID: 1364435236}
   - {fileID: 311814488}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &645176906
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12344,7 +12184,7 @@ Transform:
   - {fileID: 1048079846}
   - {fileID: 729988408}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 35
+  m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &677507822
 SpriteRenderer:
@@ -12410,17 +12250,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 372547102}
   - {fileID: 193975599}
   - {fileID: 1048079846}
   - {fileID: 729988408}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &677507820
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12602,17 +12438,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 607009363}
   - {fileID: 1243030099}
   - {fileID: 396304946}
   - {fileID: 1602909343}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &680301776
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12857,17 +12689,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 1
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 347235502}
   - {fileID: 318128927}
   - {fileID: 1291349585}
   - {fileID: 2050526297}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &710303794
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13018,17 +12846,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1277171000}
   - {fileID: 331817375}
   - {fileID: 1612099606}
   - {fileID: 30206669}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &710679800
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13179,17 +13003,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 652793399}
   - {fileID: 1603587588}
   - {fileID: 1573153635}
   - {fileID: 888605395}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &717617574
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13340,17 +13160,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 722424767}
   - {fileID: 1080984313}
   - {fileID: 348383371}
   - {fileID: 1927176909}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &717659156
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13625,17 +13441,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 2138485825}
   - {fileID: 763918948}
   - {fileID: 1921585277}
   - {fileID: 1166163698}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &727152876
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13782,7 +13594,7 @@ Transform:
   - {fileID: 440025402}
   - {fileID: 1453512946}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 33
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &735651916
 SpriteRenderer:
@@ -13848,17 +13660,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1811681434}
   - {fileID: 1245501033}
   - {fileID: 440025402}
   - {fileID: 1453512946}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &735651914
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14009,17 +13817,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1135539342}
   - {fileID: 1980433983}
   - {fileID: 1319740803}
   - {fileID: 997882345}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &737374252
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14170,17 +13974,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 671486033}
   - {fileID: 287526256}
   - {fileID: 1966065309}
   - {fileID: 13657486}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &737801427
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14362,17 +14162,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 789216294}
   - {fileID: 134323004}
   - {fileID: 1118154492}
   - {fileID: 2128588277}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &741983296
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14617,17 +14413,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 1
-  bType: 1
-  buffAmount: 0.5
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 993430755}
   - {fileID: 166992908}
   - {fileID: 389945536}
   - {fileID: 1428704835}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &746295195
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14991,7 +14783,7 @@ Transform:
   - {fileID: 868839492}
   - {fileID: 1054408219}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 34
+  m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &781319693
 SpriteRenderer:
@@ -15057,17 +14849,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1472262853}
   - {fileID: 480911324}
   - {fileID: 868839492}
   - {fileID: 1054408219}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &781319691
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15404,17 +15192,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 948238398}
   - {fileID: 1327880973}
   - {fileID: 2077945294}
   - {fileID: 1621027219}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &792810697
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15499,7 +15283,7 @@ Transform:
   - {fileID: 1979766430}
   - {fileID: 160497864}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 51
+  m_RootOrder: 52
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &793837417
 SpriteRenderer:
@@ -15565,17 +15349,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 776357204}
   - {fileID: 2069702684}
   - {fileID: 1979766430}
   - {fileID: 160497864}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &793837415
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15726,17 +15506,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 615622758}
   - {fileID: 1042291120}
   - {fileID: 1074907371}
   - {fileID: 2005043939}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &799454629
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16118,17 +15894,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1043826159}
   - {fileID: 1977271813}
   - {fileID: 1619830751}
   - {fileID: 530714796}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &824180174
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16213,7 +15985,7 @@ Transform:
   - {fileID: 1500721459}
   - {fileID: 868722122}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 36
+  m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &826743653
 SpriteRenderer:
@@ -16279,17 +16051,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1059063969}
   - {fileID: 561107555}
   - {fileID: 1500721459}
   - {fileID: 868722122}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &826743651
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16440,17 +16208,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 31039207}
   - {fileID: 342418515}
   - {fileID: 1982015080}
   - {fileID: 10884150}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &829302103
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16566,7 +16330,7 @@ Transform:
   - {fileID: 258778780}
   - {fileID: 1979531395}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 48
+  m_RootOrder: 49
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &846043526
 SpriteRenderer:
@@ -16632,17 +16396,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 764098019}
   - {fileID: 1268579189}
   - {fileID: 258778780}
   - {fileID: 1979531395}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &846043524
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17103,17 +16863,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1737812651}
   - {fileID: 442154659}
   - {fileID: 232322684}
   - {fileID: 1722198226}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &883373740
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17198,7 +16954,7 @@ Transform:
   - {fileID: 753994668}
   - {fileID: 1224894946}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 41
+  m_RootOrder: 42
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &887672483
 SpriteRenderer:
@@ -17264,17 +17020,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1853882322}
   - {fileID: 1722088348}
   - {fileID: 753994668}
   - {fileID: 1224894946}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &887672481
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17456,17 +17208,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1895547715}
   - {fileID: 990245784}
   - {fileID: 1252287030}
   - {fileID: 1125174888}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &895310031
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17724,17 +17472,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1041214413}
   - {fileID: 1797673683}
   - {fileID: 977406383}
   - {fileID: 655747758}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &910650917
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18616,7 +18360,7 @@ Transform:
   - {fileID: 1319494707}
   - {fileID: 2024800650}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 54
+  m_RootOrder: 55
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1001726229
 SpriteRenderer:
@@ -18682,17 +18426,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1131531455}
   - {fileID: 1988706294}
   - {fileID: 1319494707}
   - {fileID: 2024800650}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1001726227
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18843,17 +18583,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1539851374}
   - {fileID: 26771057}
   - {fileID: 2114568934}
   - {fileID: 33305305}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1002620737
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19438,17 +19174,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 302612318}
   - {fileID: 1893095867}
   - {fileID: 1449107837}
   - {fileID: 1580092603}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1055828541
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19661,17 +19393,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 301815890}
   - {fileID: 43206116}
   - {fileID: 581839010}
   - {fileID: 1435465767}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1067273219
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19942,7 +19670,7 @@ Transform:
   - {fileID: 217396954}
   - {fileID: 1211754567}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 29
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1088637443
 SpriteRenderer:
@@ -20008,17 +19736,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1193276036}
   - {fileID: 623448724}
   - {fileID: 217396954}
   - {fileID: 1211754567}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1088637441
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20270,17 +19994,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1291984562}
   - {fileID: 410798652}
   - {fileID: 1596463880}
   - {fileID: 1507224366}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 1
 --- !u!61 &1091632728
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20555,17 +20275,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1266622888}
   - {fileID: 969296670}
   - {fileID: 786035953}
   - {fileID: 788840862}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1123948927
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20743,7 +20459,7 @@ Transform:
   - {fileID: 1562921623}
   - {fileID: 645184992}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 50
+  m_RootOrder: 51
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1132187035
 SpriteRenderer:
@@ -20809,17 +20525,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1080166913}
   - {fileID: 702148298}
   - {fileID: 1562921623}
   - {fileID: 645184992}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1132187033
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21280,17 +20992,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1342523198}
   - {fileID: 1595703257}
   - {fileID: 1055005332}
   - {fileID: 1483319249}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1170681293
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21517,17 +21225,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1849668061}
   - {fileID: 1332980576}
   - {fileID: 969869395}
   - {fileID: 1135440425}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1177264644
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21709,17 +21413,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1733222924}
   - {fileID: 2038553516}
   - {fileID: 1776232129}
   - {fileID: 1107040571}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1180303892
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21932,17 +21632,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1727299355}
   - {fileID: 513264889}
   - {fileID: 936163557}
   - {fileID: 161424666}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1191699341
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22124,17 +21820,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1398802946}
   - {fileID: 1822638903}
   - {fileID: 1748022622}
   - {fileID: 1950091364}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1200324385
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22502,17 +22194,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 90079944}
   - {fileID: 1887735304}
   - {fileID: 869774366}
   - {fileID: 2054606912}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1231375742
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22694,17 +22382,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 809963995}
   - {fileID: 851654500}
   - {fileID: 434610296}
   - {fileID: 1784834324}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1234488371
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23072,17 +22756,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 406949136}
   - {fileID: 504272851}
   - {fileID: 1293995512}
   - {fileID: 1361077660}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1251946276
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23326,17 +23006,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1736052108}
   - {fileID: 441483270}
   - {fileID: 1683810027}
   - {fileID: 226755202}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1254595570
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24307,17 +23983,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1741429260}
   - {fileID: 1078355821}
   - {fileID: 423347940}
   - {fileID: 1768437545}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1337303216
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24499,17 +24171,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1930369070}
   - {fileID: 567581863}
   - {fileID: 984485485}
   - {fileID: 1494007063}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1339551578
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24970,17 +24638,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 142233545}
   - {fileID: 60316352}
   - {fileID: 2110313571}
   - {fileID: 1396792960}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1368480289
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25317,17 +24981,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1316931738}
   - {fileID: 1180147399}
   - {fileID: 923918688}
   - {fileID: 1880981597}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1392361069
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25540,17 +25200,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1185404274}
   - {fileID: 1237790205}
   - {fileID: 920126603}
   - {fileID: 1879876221}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1403879582
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -25732,17 +25388,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 138796369}
   - {fileID: 58814221}
   - {fileID: 1744681442}
   - {fileID: 221918903}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1410782571
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26504,17 +26156,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 683082040}
   - {fileID: 726478090}
   - {fileID: 1919778110}
   - {fileID: 1653849688}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1462334323
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26665,17 +26313,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 382333781}
   - {fileID: 1373244759}
   - {fileID: 1130950153}
   - {fileID: 1857417720}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1471316534
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26888,17 +26532,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1672137267}
   - {fileID: 902263013}
   - {fileID: 569915686}
   - {fileID: 1495023907}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1476690487
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27205,17 +26845,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 1
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 993522706}
   - {fileID: 2064446363}
   - {fileID: 379015017}
   - {fileID: 1932657480}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1484582926
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27521,17 +27157,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 504622022}
   - {fileID: 1987119175}
   - {fileID: 134711961}
   - {fileID: 2132214142}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1497898390
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27616,7 +27248,7 @@ Transform:
   - {fileID: 1688922274}
   - {fileID: 1133507735}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 55
+  m_RootOrder: 56
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1499114009
 SpriteRenderer:
@@ -27682,17 +27314,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1699600752}
   - {fileID: 1641930494}
   - {fileID: 1688922274}
   - {fileID: 1133507735}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1499114007
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -27870,7 +27498,7 @@ Transform:
   - {fileID: 855520412}
   - {fileID: 542785061}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 39
+  m_RootOrder: 40
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1510190886
 SpriteRenderer:
@@ -27936,17 +27564,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 727256945}
   - {fileID: 551951307}
   - {fileID: 855520412}
   - {fileID: 542785061}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1510190884
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28159,17 +27783,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 2015000577}
   - {fileID: 2081290527}
   - {fileID: 1418711483}
   - {fileID: 1437524635}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1518530478
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28286,7 +27906,7 @@ Transform:
   - {fileID: 1252450244}
   - {fileID: 208600598}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 49
+  m_RootOrder: 50
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1523206148
 SpriteRenderer:
@@ -28352,17 +27972,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 1
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 644799543}
   - {fileID: 994329076}
   - {fileID: 1166722189}
   - {fileID: 1252450244}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1523206146
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28633,7 +28249,7 @@ Transform:
   - {fileID: 588099473}
   - {fileID: 1354109864}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 52
+  m_RootOrder: 53
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1560303505
 SpriteRenderer:
@@ -28699,17 +28315,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1028341930}
   - {fileID: 5535612}
   - {fileID: 588099473}
   - {fileID: 1354109864}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1560303503
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29291,17 +28903,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 237389236}
   - {fileID: 1017874494}
   - {fileID: 1671167137}
   - {fileID: 466180767}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1600844614
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29638,17 +29246,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 327468295}
   - {fileID: 1254464873}
   - {fileID: 2029241443}
   - {fileID: 1855162792}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1630054499
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -29861,17 +29465,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 410207286}
   - {fileID: 1492526484}
   - {fileID: 35318133}
   - {fileID: 117436635}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1634930372
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -30115,17 +29715,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 293566774}
   - {fileID: 1142963301}
   - {fileID: 1159688321}
   - {fileID: 1316465122}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1647637085
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -30590,7 +30186,7 @@ Transform:
   - {fileID: 1780711449}
   - {fileID: 501043541}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 30
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1695293437
 SpriteRenderer:
@@ -30656,17 +30252,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 313309961}
   - {fileID: 131369870}
   - {fileID: 1780711449}
   - {fileID: 501043541}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1695293435
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31104,17 +30696,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1857786365}
   - {fileID: 1234321244}
   - {fileID: 1782036511}
   - {fileID: 869753030}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1726092713
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31465,17 +31053,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1479297369}
   - {fileID: 2117350558}
   - {fileID: 1828803777}
   - {fileID: 1784328639}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1740948645
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31719,17 +31303,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 649222881}
   - {fileID: 1577306326}
   - {fileID: 1419111128}
   - {fileID: 383452443}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1745840380
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31907,7 +31487,7 @@ Transform:
   - {fileID: 1333188601}
   - {fileID: 2029165058}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 53
+  m_RootOrder: 54
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1760811549
 SpriteRenderer:
@@ -31973,17 +31553,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 71137805}
   - {fileID: 617547699}
   - {fileID: 1333188601}
   - {fileID: 2029165058}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1760811547
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32068,7 +31644,7 @@ Transform:
   - {fileID: 366820629}
   - {fileID: 1359766991}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 43
+  m_RootOrder: 44
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1765549468
 SpriteRenderer:
@@ -32134,17 +31710,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1538005306}
   - {fileID: 724049561}
   - {fileID: 366820629}
   - {fileID: 1359766991}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1765549466
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32388,17 +31960,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1376254459}
   - {fileID: 2041670585}
   - {fileID: 1373877453}
   - {fileID: 1935241157}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1779993396
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32673,17 +32241,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 62227985}
   - {fileID: 1407377632}
   - {fileID: 956063930}
   - {fileID: 402637321}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1790176239
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -32923,7 +32487,7 @@ Transform:
   - {fileID: 789028167}
   - {fileID: 409411236}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 46
+  m_RootOrder: 47
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1811783275
 SpriteRenderer:
@@ -32989,17 +32553,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1263473579}
   - {fileID: 1705108929}
   - {fileID: 789028167}
   - {fileID: 409411236}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1811783273
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -33244,17 +32804,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 1
-  bType: 1
-  buffAmount: 0.5
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 2054266614}
   - {fileID: 1345629329}
   - {fileID: 865767213}
   - {fileID: 393231938}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1818568143
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -33529,17 +33085,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 568116197}
   - {fileID: 1313239889}
   - {fileID: 1183282076}
   - {fileID: 1842620782}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1838094838
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -34093,17 +33645,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 591889055}
   - {fileID: 1490707337}
   - {fileID: 1533500029}
   - {fileID: 308668557}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1866630275
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -34409,17 +33957,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1647361856}
   - {fileID: 218907096}
   - {fileID: 1042112870}
   - {fileID: 1633575531}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1886374948
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -34632,17 +34176,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 501213922}
   - {fileID: 1850505922}
   - {fileID: 1866965401}
   - {fileID: 1945357753}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1890351858
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -34855,17 +34395,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1940219467}
   - {fileID: 1802940992}
   - {fileID: 1350984086}
   - {fileID: 1757233239}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1897408411
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -35168,7 +34704,7 @@ Transform:
   - {fileID: 1484234258}
   - {fileID: 607263744}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 37
+  m_RootOrder: 38
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1930392931
 SpriteRenderer:
@@ -35234,17 +34770,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 1
-  bType: 0
-  buffAmount: 1
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 393012917}
   - {fileID: 2115168879}
   - {fileID: 2010626220}
   - {fileID: 1484234258}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1930392929
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -35488,17 +35020,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 2039505914}
   - {fileID: 2033231908}
   - {fileID: 388022714}
   - {fileID: 675566496}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1942097922
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -35800,7 +35328,7 @@ Transform:
   - {fileID: 384893250}
   - {fileID: 1656698603}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 38
+  m_RootOrder: 39
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1971244343
 SpriteRenderer:
@@ -35866,17 +35394,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1852681844}
   - {fileID: 2073635633}
   - {fileID: 384893250}
   - {fileID: 1656698603}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1971244341
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -36089,17 +35613,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 435400532}
   - {fileID: 859425171}
   - {fileID: 563691999}
   - {fileID: 156017839}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1979056410
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -36432,7 +35952,7 @@ Transform:
   - {fileID: 1065491100}
   - {fileID: 748381903}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 45
+  m_RootOrder: 46
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1998626761
 SpriteRenderer:
@@ -36498,17 +36018,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 16397316}
   - {fileID: 1921564549}
   - {fileID: 1065491100}
   - {fileID: 748381903}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &1998626759
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -37070,17 +36586,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 789731403}
   - {fileID: 640059261}
   - {fileID: 1477819605}
   - {fileID: 1246991398}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &2033586996
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -37165,7 +36677,7 @@ Transform:
   - {fileID: 224165553}
   - {fileID: 785654198}
   m_Father: {fileID: 229558538}
-  m_RootOrder: 57
+  m_RootOrder: 58
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2034463556
 SpriteRenderer:
@@ -37231,17 +36743,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1981099458}
   - {fileID: 1663634244}
   - {fileID: 224165553}
   - {fileID: 785654198}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &2034463554
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -37516,17 +37024,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1518791153}
   - {fileID: 1303099332}
   - {fileID: 1203717539}
   - {fileID: 401013986}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &2049382328
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -37832,17 +37336,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 2041220936}
   - {fileID: 260418644}
   - {fileID: 1493178327}
   - {fileID: 2006879207}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &2062084658
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -37993,17 +37493,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1912422336}
   - {fileID: 1279984587}
   - {fileID: 38150176}
   - {fileID: 2101269641}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &2062299039
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -38447,17 +37943,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 394203243}
   - {fileID: 1287466318}
   - {fileID: 964735315}
   - {fileID: 2086856126}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &2094743608
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -38639,17 +38131,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 050ffac050e2f50f2976fab6954a1b43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tType: 0
-  bType: 0
-  buffAmount: 0
+  buffToGive: {fileID: 0}
+  winsToGive: 0
   playerPositions:
   - {fileID: 1169074449}
   - {fileID: 566072567}
   - {fileID: 853671344}
   - {fileID: 1978023499}
-  mgm: {fileID: 0}
-  pm: {fileID: 0}
-  timeToloadSettings: 3
 --- !u!61 &2101552788
 BoxCollider2D:
   m_ObjectHideFlags: 0

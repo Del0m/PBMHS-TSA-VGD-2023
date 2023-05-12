@@ -43,13 +43,7 @@ public class PlayerUIManager : MonoBehaviour
 
     public void InitalizeUI() // this is to hide UI that won't be used in the game due to a lack of plrs
     {
-        var playerCount = GameObject.FindGameObjectsWithTag("Player").Length; // grabbing the amount of players in the game
-
-        //hide all ui for loop
-        for(int i = 0; i < playerUI.Length; i++)
-        {
-            playerUI[i].SetActive(false);
-        }
+        var playerCount = manager.player.Count; // grabbing the amount of players in the game
 
         // unhide used UI for loop
         for(int i = 0; i < playerCount; i++)
@@ -64,7 +58,7 @@ public class PlayerUIManager : MonoBehaviour
         for(int i = 0; i < playerObject.Count; i++)
         {
             var ui = playerUI[i].GetComponent<PlayerUI>();
-            ui.wins.GetComponent<TextMeshProUGUI>().text = playerObject[i].GetComponent<PlayerStats>().wins.ToString();
+
             if (playerObject[i].GetComponent<PlayerStats>().turnOrder == manager.turn.currentTurn)
             {
                 ui.currentTurn.SetActive(true);
@@ -78,6 +72,7 @@ public class PlayerUIManager : MonoBehaviour
         {
             UpdateRound(manager.turn.roundsElapsed);
         }
+        UpdatePlayerUI(); // update the buffs and wins on each player
     }
     public void UpdateLevel(int lvl)
     {
@@ -101,6 +96,17 @@ public class PlayerUIManager : MonoBehaviour
         if(num == 0)
         {
             diceSprite.GetComponent<Animation>().Rewind(); // reset dice back to middle
+        }
+    }
+    public void UpdatePlayerUI() // update the player's ui to show buffs
+    {
+
+        for(int i = 0; i < manager.player.Count; i++)
+        {
+            var ui = playerUI[i].GetComponent<PlayerUI>();
+
+            ui.wins.GetComponent<TextMeshProUGUI>().text = manager.player[i].GetComponent<PlayerStats>().wins.ToString();
+            ui.CheckBuff();
         }
     }
 

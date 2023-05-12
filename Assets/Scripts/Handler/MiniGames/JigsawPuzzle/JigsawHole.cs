@@ -38,13 +38,11 @@ public class JigsawHole : MonoBehaviour
     {
         if(taking == true && collision.tag == "Minigame Element") // beginning statement to prevent error
         {
-            Debug.Log("detected.");
             if (collision.GetComponent<HoldableItem>().beingHeld == false && taking == true)
             {
                 StartCoroutine(Wait(0.5f));
                 if(collision.GetComponent<HoldableItem>().slotted == false && collision.GetComponent<JigsawPiece>().imageID == imageID)
                 {
-                    Debug.Log("Slotting..");
                     collision.GetComponent<HoldableItem>().slotted = true;
                     taking = false;
                     collision.transform.position = this.gameObject.transform.position;

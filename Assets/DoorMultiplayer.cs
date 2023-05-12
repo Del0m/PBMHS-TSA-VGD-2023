@@ -72,8 +72,5 @@ public class DoorMultiplayer : MonoBehaviour
 
         //The camera should be on the players
         cam.setCamUpdate(false);
-
-        Debug.Log("Stoppped the Cam");
-
     }
 }

@@ -7,30 +7,41 @@ using UnityEngine.UI;
 
 public class PlayerUI : MonoBehaviour
 {
+    public int playerID; // tells them what player they control
+    private PlayerUIManager uiManager; // to find the players
     // buff objects / number object
-    public GameObject buffA;
-    public GameObject buffB;
+    public GameObject[] buffUI;
     public TextMeshProUGUI wins;
     public GameObject currentTurn;
 
-    // booleans to detect which buff icons are enabled
-    bool[] buffIconUsed;
-
-    public void AddBuff(string buff, Color buffColor) // show the buff to the player
+    public void Start()
     {
-        if (buffIconUsed[0] == true) // check if first icon being used
+        uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
+    }
+
+    public void CheckBuff() // check the buffs of the player they are representing, show it via UI
+    {
+        var buff = GameObject.FindGameObjectWithTag("Player Manager").GetComponent<PlayerManager>().player[playerID].GetComponent<PlayerStats>().buff;
+
+        for(int i = 0; i < buff.Count; i++)
         {
-            buffB.GetComponent<Image>().color = buffColor; // change to according color
-            buffIconUsed[1] = true;
-        }
-        else if (buffIconUsed[0] == false)
-        {
-            buffA.GetComponent<Image>().color = buffColor;
-            buffIconUsed[0] = true;
-        }
-        else
-        {
-            Debug.LogError("Both buff slots are currently taken.");
+            try
+            {
+                if (buff[i])
+                {
+                    buffUI[i].GetComponent<Image>().color = buff[i].color;
+                }
+                else
+                {
+                    buffUI[i].GetComponent<Image>().color = new Color(0, 0, 0, 0);
+                }
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+
         }
     }
     public void UpdateWins(int win) // updates the win counter on the player

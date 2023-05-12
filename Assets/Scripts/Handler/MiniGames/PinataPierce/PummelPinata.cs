@@ -35,7 +35,7 @@ public class PummelPinata : GameHandler
     public override IEnumerator StartGame()
     {
         StartCoroutine(base.StartGame());
-        yield return new WaitForSeconds(3); // wait for StartGame() to finish loading
+        yield return new WaitForSeconds(3); // countdown for the game
 
         // run loop to move players
         for (int i = 0; i < player.Count; i++)
