@@ -10,8 +10,7 @@ public class ParticleScript : MonoBehaviour
 
         particle = GetComponent<ParticleSystem>();
         particle.Play();
-
-        Destroy(particle.gameObject, 2f);
+        Destroy(particle.gameObject, particle.time+4f);
 
     }
 }
