@@ -49,24 +49,24 @@ public class JigsawPuzzle : GameHandler
     {
         IncreaseDifficulty();
         yield return StartCoroutine(base.PreGameRoutine());
+
+        yield return new WaitForSeconds(3);
+        yield return StartCoroutine(gameUI.Timer(time)); // running the timer
     }
     public override IEnumerator StartGame()
     {
         StartCoroutine(base.StartGame());
 
-        yield return new WaitForSeconds(3); // countdown
-        yield return StartCoroutine(gameUI.Timer(time)); // running the timer
+        yield return new WaitForEndOfFrame(); // wait for everything to load
 
         // run loop to bring players
         for (int i = 0; i < player.Count; i++)
         {
             var playerMovement = player[i].GetComponent<PlayerMovement>();
-
             playerMovement.GameSwitch(true, true, true);
         }
         yield return null; 
     }
-
     public void CheckEnd(int correctPieceCount) // check to see if user has correctly solved the puzzle
     {
         if(correctPieceCount >= 9)

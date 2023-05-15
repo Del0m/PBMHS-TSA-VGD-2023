@@ -11,7 +11,7 @@ using UnityEngine.Playables;
 
 public class MiniGameManager : MonoBehaviour
 {
-    // UI to show player minigame is starting
+    // GameTime! UI 
     public GameObject ui;
     //array for all available minigames
     public GameObject[] minigame;

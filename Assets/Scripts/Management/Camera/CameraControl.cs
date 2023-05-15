@@ -27,7 +27,8 @@ public class CameraControl : MonoBehaviour
     {
         cam = this.gameObject.GetComponent<Camera>();
     }
-    public void TeleportCamera(Vector3 dest, int camSize){
+    public void TeleportCamera(Vector3 dest, int camSize)
+    {
         cam.gameObject.transform.position = new Vector3(dest.x, dest.y, -100);
         cam.orthographicSize = camSize;
 

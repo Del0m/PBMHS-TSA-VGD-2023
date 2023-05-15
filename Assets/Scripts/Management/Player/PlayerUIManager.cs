@@ -134,8 +134,6 @@ public class PlayerUIManager : MonoBehaviour
         ChangeUI(minigame); // default settings from previous
         obj.SetActive(minigame); // setting object active
 
-        Debug.Log("object being changed is:" + obj);
-
     }
     public IEnumerator CountDown(int time, TextMeshProUGUI obj)
     {
@@ -163,7 +161,6 @@ public class PlayerUIManager : MonoBehaviour
     bool isntActing; // to put down the UI
     public IEnumerator UIPopUp(GameObject target) // pops up UI to show player
     {
-        Debug.Log(target + " Setting active!");
         isntActing = true; // to put down the UI
 
         target.SetActive(true);
@@ -175,6 +172,7 @@ public class PlayerUIManager : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         while(isntActing)
         {
+            yield return new WaitForSeconds(2f); // wait for players to read.
             if(!target.activeInHierarchy)
             {
                 target.SetActive(true);
@@ -205,6 +203,11 @@ public class PlayerUIManager : MonoBehaviour
         if(!isSinglePlayer)
         {
             successUI.GetComponent<UIFade>().text[0].text = "Player " + winner + " has won!";
+        }
+        if(winner < 1)
+        {
+            successUI.GetComponent<UIFade>().text[0].text = "Nobody has won.";
+
         }
         StartCoroutine(UIPopUp(target));
         yield break;

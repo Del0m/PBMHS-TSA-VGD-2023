@@ -13,13 +13,22 @@ public class MPCameraControl : CameraControl // purpose of script is to not play
     }
     public override bool AllowMovement()
     {
-        Vector2 currentPosition = new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y);
-        Vector2 destVector = new Vector2(destination.position.x, destination.position.y);
-        if(Vector2.Distance(currentPosition,destVector) < 10) // can't do entire vector, considers z axis
+        try
         {
-            return true;
+            Vector2 currentPosition = new Vector2(this.gameObject.transform.position.x, this.gameObject.transform.position.y);
+            Vector2 destVector = new Vector2(destination.position.x, destination.position.y);
+            if (Vector2.Distance(currentPosition, destVector) < 10) // can't do entire vector, considers z axis
+            {
+                return true;
+            }
+            this.gameObject.transform.position = new Vector3(target.x, target.y, -100f); // speed up the transition
+            return false;
         }
-        this.gameObject.transform.position = new Vector3(target.x, target.y, -100f); // speed up the transition
-        return false;
+        catch (System.Exception)
+        {
+            AllowMovement(); // run again, set the destination to a player that is found
+            throw;
+        }
+
     }
 }

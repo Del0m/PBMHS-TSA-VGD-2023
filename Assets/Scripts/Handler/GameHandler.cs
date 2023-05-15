@@ -121,6 +121,7 @@ public class GameHandler : MonoBehaviour
         {
             cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControl>();
         }
+        cam.destination = pos; // to prevent error drop
         cam.TeleportCamera(pos.position, fov);
     }
     public void TeleportBack() // bring players back to their spawn point
@@ -156,6 +157,7 @@ public class GameHandler : MonoBehaviour
 
     public IEnumerator EndGame(int winner)
     {
+        
         TeleportBack();
 
         uiManager.ChangeUI(false, uiManager.healthBarUI); // reset the UI
@@ -230,7 +232,6 @@ public class GameHandler : MonoBehaviour
         }
         if(winner < minimumToWin && player.Count == 1) // make players lose on single player
         {
-            Debug.Log("No winner, you lost");
             return -1; // return no winner so the game ends.
         }
 

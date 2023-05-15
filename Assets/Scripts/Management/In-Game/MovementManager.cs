@@ -41,13 +41,13 @@ public class MovementManager : MonoBehaviour
         //Debug.LogError(localTile[1]);
         return localTile;
     }
-    public Transform CallTile(int position, int increase)
+    public Transform CallTile(int position, int increase, int playerID)
     {
         var newPosition = position + increase; // adding their current position and rolled die
 
         //giving them the specific tile
 
-        return tile[newPosition];
+        return tile[newPosition].GetComponent<Tile>().playerPositions[playerID]; // return the player's position of the tile
     }
     public Transform CallTile(int position) // to be called when leaving a game
     {

@@ -31,12 +31,9 @@ public class ColorMatch : GameHandler
     public bool hasStopped = false;
     public float speedModifier; // usually two
     void Start()
-    {
-
-        uiManager = GameObject.FindGameObjectWithTag("PlayerUIManager").GetComponent<PlayerUIManager>();
-        
+    {        
         StartCoroutine(StartGame()); // starting game and bringing players into the game
-        ModifyPlayerStats((speedModifier / 4), (speedModifier / 2)); // decrease player speed
+        ModifyPlayerStats(speedModifier / 4, speedModifier / 2); // decrease player speed
 
         StartCoroutine(DropColors()); 
     }
@@ -143,16 +140,14 @@ public class ColorMatch : GameHandler
     {
         hasStopped = true;
         uiManager.ChangeUI(true, uiManager.loseUI);
-        ModifyPlayerStats(speedModifier*4, speedModifier*2f); // bring players stats back to normal
-
 
         yield return new WaitForSeconds(5);
         for(int i = 0; i < player.Count; i++)
         {
             player[i].GetComponent<PlayerStats>().wins -= 1;
         }
-
-        StartCoroutine(EndGame(CheckWinner())); // game over for single player
+        noWinner = true; // make it to where nobody is awarded points
+        StartCoroutine(EndGame(0)); // game over for single player
 
 
     }
