@@ -38,7 +38,6 @@ public class DoorMultiplayer : MonoBehaviour
 
             // checking for player input
             var isActing = collision.GetComponent<PlayerMovement>().acting;
-            Debug.Log(isActing);
             if (isActing)
             {
                 if (manager.player.Count < 2)

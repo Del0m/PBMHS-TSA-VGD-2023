@@ -169,10 +169,9 @@ public class PlayerUIManager : MonoBehaviour
             var rb = manager.player[i].GetComponent<Rigidbody2D>();
             rb.bodyType = RigidbodyType2D.Static;
         }
-        yield return new WaitForSeconds(.5f);
+        yield return new WaitForSeconds(1.5f); // wait for player to read
         while(isntActing)
         {
-            yield return new WaitForSeconds(2f); // wait for players to read.
             if(!target.activeInHierarchy)
             {
                 target.SetActive(true);
@@ -180,6 +179,7 @@ public class PlayerUIManager : MonoBehaviour
 
             if (manager.player[0].GetComponent<PlayerMovement>().acting == true)
             {
+                yield return new WaitForSeconds(1f);
                 isntActing = false;
                 target.SetActive(false);
 
@@ -204,7 +204,7 @@ public class PlayerUIManager : MonoBehaviour
         {
             successUI.GetComponent<UIFade>().text[0].text = "Player " + winner + " has won!";
         }
-        if(winner < 1)
+        if(winner < 1) // variable that is sent when no player has won
         {
             successUI.GetComponent<UIFade>().text[0].text = "Nobody has won.";
 
