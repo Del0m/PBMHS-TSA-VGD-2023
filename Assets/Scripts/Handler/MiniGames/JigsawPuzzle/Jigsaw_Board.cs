@@ -37,7 +37,7 @@ public class Jigsaw_Board : MonoBehaviour
         // run the function to check to see if it is time to end the game
         if(piecesCorrect == pieceCount)
         {
-            puzzleScript.CheckEnd(piecesCorrect); // procedure to end game
+            puzzleScript.CheckEnd(piecesCorrect, playerPuzzle); // procedure to end game
         }
 
     }

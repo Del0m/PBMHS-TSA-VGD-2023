@@ -313,7 +313,7 @@ MonoBehaviour:
   damage: 5
   speedMulti: 1
   jumpMulti: 1
-  cooldown: 0.5
+  cooldown: 0.1
   wins: 0
   lost: 0
   singlePlayer: 0

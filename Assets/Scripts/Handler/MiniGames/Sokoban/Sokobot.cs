@@ -52,7 +52,9 @@ public class Sokobot : GameHandler
 
     public void ScoreHole(GameObject pusher) // runs whenever player pushes box into hole
     {
-        if(pusher == null || pusher.GetComponent<PlayerStats>() == null){
+        UpdateHole(); // check to see if the game should be done
+
+        if (pusher == null || pusher.GetComponent<PlayerStats>() == null){
             return;
         }
         // locate the pusher in the list
@@ -62,12 +64,15 @@ public class Sokobot : GameHandler
 
         gameScore[scoreAdd]++;
 
-        UpdateHole(); // check to see if the game should be done
     }
     public void UpdateHole() // runs, checks to see if there are no holes left.
     {
         if(holesLeft <= 0)
         {
+            if(player.Count == 1)
+            {
+                StartCoroutine(EndGame(0));
+            }
             StartCoroutine(EndGame(CheckWinner()));
         }
         gameUI.ModifyText("" + holesLeft);  // change the amount of holes left to inform player

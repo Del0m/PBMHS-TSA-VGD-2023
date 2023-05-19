@@ -79,8 +79,6 @@ public class MPManager : PlayerManager
     }
     public void FindObjects() // finding all the players UI and only enable them
     {
-        Debug.Log("Attempting to locate objects");
-
         for(int i = 0; i < player.Count; i++)
         {
             objToEnable.Add(uiManager.playerUI[i]);

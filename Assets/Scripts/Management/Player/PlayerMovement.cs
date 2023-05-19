@@ -116,7 +116,6 @@ public class PlayerMovement : MonoBehaviour
     bool holdOngoing = false;
     public IEnumerator HoldRoutine(bool isDrop,GameObject newObject) // routine to change the new gameObject that player is holding
     {
-        Debug.Log("Running!");
         if(canPick == false) // kill statement to prevent players in minigames grabbing things they shouldn't
         {
             yield return null;
@@ -287,7 +286,7 @@ public class PlayerMovement : MonoBehaviour
 
         acting = true;
         isAttacking = true;
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(.35f);
         acting = false;
         isAttacking = false;
     }
@@ -328,9 +327,11 @@ public class PlayerMovement : MonoBehaviour
     AudioClip playInstance;
     AudioSource playSound;
     bool isPlaying;
+    [HideInInspector]
+    public bool walking; // to turn on footstep sounds
     IEnumerator Footstep() // play footstep sound effects while moving
     {
-        if(rb.velocity.x != 0 && isPlaying == false && canJump == true) // to check if x movement
+        if(walking && isPlaying == false && canJump == true) // to check if x movement
         {
             isPlaying = true; // prevent multiple sounds from playing
 
@@ -341,7 +342,7 @@ public class PlayerMovement : MonoBehaviour
             isPlaying = false; // allow sounds to play again
 
         }
-        if(rb.velocity.y != 0 && isPlaying == false && canYMovement == true)
+        if(walking && isPlaying == false && canYMovement == true)
         {
             isPlaying = true; // prevent multiple sounds from playing
 

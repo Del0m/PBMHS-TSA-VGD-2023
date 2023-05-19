@@ -38,7 +38,6 @@ public class GameHandler : MonoBehaviour
     public Transform camPos;
     public int fov;
 
-    [HideInInspector]
     public int minimumToWin;
     public bool noWinner; // provide no winner if the game needs it
     void Start()
@@ -188,12 +187,13 @@ public class GameHandler : MonoBehaviour
                 // award player a point if they "won"
                 player[winner].GetComponent<PlayerStats>().wins++;
             }
+            UpdateWin(winner); // update the UI for multiplayer
+
         }
         catch (System.Exception)
         {
             // don't run anything here, this is to prevent a negative array exception from coming up when the single player loses.
         }
-        UpdateWin(winner); // update the UI for multiplayer
 
         // enabling non-minigame UI
         plrManage.SetObjects(true);
@@ -202,6 +202,13 @@ public class GameHandler : MonoBehaviour
         plrManage.TransitionGame(winner);
 
         // ending game
+        var finalGame = turn.CheckEnd(); // check to see if the rounds have elapsed, end game?
+        if(finalGame)
+        {
+            turn.SetTurn(-1); // prevent players from moving
+            plrManage.SetObjects(false); // turn off all UI
+        }
+
         Destroy(gameObject, 1f);
         yield return null;
     }
@@ -230,7 +237,7 @@ public class GameHandler : MonoBehaviour
                 winner = i;
             }
         }
-        if(winner < minimumToWin && player.Count == 1) // make players lose on single player
+        if (gameScore[winner] < minimumToWin && player.Count == 1) // make players lose on single player
         {
             return -1; // return no winner so the game ends.
         }
