@@ -33,7 +33,14 @@ public class EndGame : MonoBehaviour
     public void EndMove(GameObject obj)
     {
         obj.transform.position = camPosition.position;
+        if(obj.CompareTag("MainCamera"))
+        {
+            var camControl = obj.GetComponent<CameraControl>();
+            camControl.TeleportCamera(camPosition.position, 20); // move the camera to the winning spot
+            camControl.forgetDestination(); // prevent camera from moving after the game
+        }
     }
+
     public void EndMove(List<GameObject> plr) // move all players to 
     {
         for (int i = 0; i < plr.Count; i++)
@@ -57,7 +64,7 @@ public class EndGame : MonoBehaviour
             winDictionary.Add(plr[i], plr[i].GetComponent<PlayerStats>().wins); // adding player object, and their wins
         }
         // sorting the dictionary
-        foreach (KeyValuePair<GameObject, int> player in winDictionary.OrderBy(key => key.Value))
+        foreach (KeyValuePair<GameObject, int> player in winDictionary.OrderByDescending(key => key.Value))
         {
             // adding players into a list that will be returned
             winOrdered.Add(player.Key);

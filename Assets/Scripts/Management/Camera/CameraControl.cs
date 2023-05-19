@@ -12,7 +12,7 @@ public class CameraControl : MonoBehaviour
 
     // variables to zoom camera
 
-    private int multiplier; // for zooming; faster / slower
+    public int multiplier; // for zooming; faster / slower
     private bool toZoom; // ask if need to zoom
 
     private int outerFov; //what to zoom the camera out to.
@@ -41,7 +41,6 @@ public class CameraControl : MonoBehaviour
             destination = newDest; // only reason why this exists is b/c i want to keep this var private.
 
             //following are abbrivieated varaiables to modify the camera moving.
-            multiplier = m;
             outerFov = o;
             innerFov = i;
 

@@ -2,6 +2,7 @@
 //the purpose of this program is to find controllers connected, then print output when found.
 
 
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -18,6 +19,8 @@ public class PlayerControls : MonoBehaviour
     //script to be called for player management
     public TurnManager turnScript;
     public MovementManager moveManage;
+    [HideInInspector]
+    public PlayerMovement movement;
 
     [Header("Controls")]
     public PlayerInput gameplayInput;
@@ -30,7 +33,6 @@ public class PlayerControls : MonoBehaviour
     public CameraControl cam;
 
     [Header("Debug")]
-    public float movementCooldown = 2.5f;
 
     public int inZoom = 20;
 
@@ -38,9 +40,13 @@ public class PlayerControls : MonoBehaviour
 
     public int cameraSpeed = 10;
 
+    public float movementCooldown = 0.5f;
+
 
     private void Start() // run methods on start
     {
+        movement = this.GetComponent<PlayerMovement>();
+
         gameplayInput = this.gameObject.GetComponent<PlayerInput>(); // grabbing player controls to turn on/off and change inputmaps
         this.gameObject.tag = "Player"; //set player tag to "Player"
 
@@ -85,42 +91,46 @@ public class PlayerControls : MonoBehaviour
     IEnumerator Moving() // coroutine to move around the board.
     {
         if(hasRan) { yield break; }
-            hasRan = true; // prevent player from running coroutine again
-            var diceRoll = Random.Range(1, 7); // pick a number from one to six
+        hasRan = true; // prevent player from running coroutine again
+        var diceRoll = Random.Range(1, 7); // pick a number from one to six
 
-            var movesRemaining = diceRoll;
+        var movesRemaining = diceRoll;
 
-            //UI update
-            turnScript.uiManager.diceSprite.gameObject.GetComponent<Animation>().Play();
-            turnScript.uiManager.UpdateDiceUI(movesRemaining);
+        //UI update
+        turnScript.uiManager.diceSprite.gameObject.GetComponent<Animation>().Play();
+        turnScript.uiManager.UpdateDiceUI(movesRemaining);
 
-            while (movesRemaining > 0) // keep moving player to next tile until no more moves
+        // turning on footstep sounds
+        movement.walking = true;
+        while (movesRemaining > 0) // keep moving player to next tile until no more moves
+        {
+            if (movesRemaining > 0) // check statement so program doesn't die.
             {
-                if (movesRemaining > 0) // check statement so program doesn't die.
+
+                turnScript.uiManager.UpdateDiceUI(movesRemaining); // update ui for end-user
+
+                newTile = moveManage.CallTile(stat.position, 1, stat.turnOrder); // moving one tile at a time
+
+                stat.position++; // moving position ahead
+
+                movesRemaining--; // decrease movement till they are out of moves left.
+                while (Vector2.Distance(this.transform.position, newTile.transform.position) > 0.5)
                 {
-                    turnScript.uiManager.UpdateDiceUI(movesRemaining); // update ui for end-user
-
-                    yield return new WaitForSeconds(movementCooldown);
-                    newTile = moveManage.CallTile(stat.position, 1, stat.turnOrder); // moving one tile at a time
-
-                    stat.position++; // moving position ahead
-                    
-                    movesRemaining--; // decrease movement till they are out of moves left.
-                    while(Vector2.Distance(this.transform.position, newTile.transform.position) > 0.5)
-                    {            
-                        transform.position = Vector2.MoveTowards(this.transform.position, newTile.position, stat.speed * Time.deltaTime); // move to new position using DeltaTime
-                        yield return new WaitForEndOfFrame();
-                    }
-                    newTile = null;
-                    //yield return new WaitForSeconds(wait); // give time to move to position.
+                    transform.position = Vector2.MoveTowards(this.transform.position, newTile.position, stat.speed * Time.deltaTime); // move to new position using DeltaTime
+                    yield return new WaitForEndOfFrame();
                 }
+                newTile = null;
+                //yield return new WaitForSeconds(wait); // give time to move to position.
             }
+        }
+        // turning off footstep sounds
+        movement.walking = false;
 
-            turnScript.uiManager.UpdateDiceUI(movesRemaining);
-            yield return new WaitForSeconds(2);
-            turnScript.RoundCheck(); // advance turn, see if new turn is in order.
+        turnScript.uiManager.UpdateDiceUI(movesRemaining);
+        yield return new WaitForSeconds(2);
+        turnScript.RoundCheck(); // advance turn, see if new turn is in order.
                                      //newTile = null; // to prevent the player from moving towards the tile in the middle of the game
-            hasRan = true;
+        hasRan = true;
 
         // add the buff to the players
         stat.AddBuff(moveManage.CollectBuff(stat.position));

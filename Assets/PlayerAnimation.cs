@@ -52,6 +52,16 @@ public class PlayerAnimation : MonoBehaviour
         OrientationUpdate();
         // formula for setting the speed number to one
         anim.SetInteger("Movement", movement);
+
+        // check if the player is moving
+        if(movement != 0)
+        {
+            player.walking = true;
+        }
+        else
+        {
+            player.walking = false;
+        }
     }
     public IEnumerator CheckAttack() // simple routine for the attack animation
     {
@@ -69,22 +79,4 @@ public class PlayerAnimation : MonoBehaviour
 
         return new Quaternion(0,0,angle,0);
     }
-    /*rivate Vector2 ConvertMovementInput(Transform playerTrans, Vector2 movementInput)
-    {
-        Vector2 playerDir = new Vector2(playerTrans.forward.x, playerTrans.forward.z);
-        float angleDiff = Vector2.SignedAngle(Vector2.up, playerDir);
-        return Rotate(movementInput, -angleDiff);
-    }
-
-    private Vector2 Rotate(Vector2 v, float degrees)
-    {
-        float radians = degrees * Mathf.Deg2Rad;
-        float sin = Mathf.Sin(radians);
-        float cos = Mathf.Cos(radians);
-
-        float tx = v.x;
-        float ty = v.y;
-
-        return new Vector2(cos * tx - sin * ty, sin * tx + cos * ty)
-        */
 }

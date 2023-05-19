@@ -42,7 +42,6 @@ public class JigsawPuzzle : GameHandler
         if(plrManage.singlePlayer)
         {
             minimumToWin = 9;
-            Debug.Log("minimumToWin = " + minimumToWin);
         }
     }
     public override IEnumerator PreGameRoutine() // adding a timer to the minigame in singleplayer
@@ -57,7 +56,7 @@ public class JigsawPuzzle : GameHandler
     {
         StartCoroutine(base.StartGame());
 
-        yield return new WaitForEndOfFrame(); // wait for everything to load
+        yield return new WaitForSeconds(3f); // wait for everything to load, prevent players from moving
 
         // run loop to bring players
         for (int i = 0; i < player.Count; i++)
@@ -67,11 +66,11 @@ public class JigsawPuzzle : GameHandler
         }
         yield return null; 
     }
-    public void CheckEnd(int correctPieceCount) // check to see if user has correctly solved the puzzle
+    public void CheckEnd(int correctPieceCount, int player) // check to see if user has correctly solved the puzzle
     {
         if(correctPieceCount >= 9)
         {
-            StartCoroutine(EndGame(boardPrefab.GetComponent<Jigsaw_Board>().playerPuzzle)); // end the game from GameHandler
+            StartCoroutine(EndGame(player)); // end the game from GameHandler
         }
     }
     private void SelectImage() // purpose is to select random image collection from ones available.

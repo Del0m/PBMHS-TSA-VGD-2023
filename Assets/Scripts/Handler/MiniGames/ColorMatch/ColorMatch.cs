@@ -147,7 +147,7 @@ public class ColorMatch : GameHandler
             player[i].GetComponent<PlayerStats>().wins -= 1;
         }
         noWinner = true; // make it to where nobody is awarded points
-        StartCoroutine(EndGame(0)); // game over for single player
+        StartCoroutine(EndGame(-1)); // game over for single player
 
 
     }

@@ -173,7 +173,15 @@ public class MathDash : GameHandler
             this.StartCoroutine(NewProblem()); // making new problem for player
 
             // change cards gotten correct
-            var totalScore = gameScore[0] + gameScore[1] + gameScore[2] + gameScore[3];
+            var totalScore = new int(); // variable for modifying the text
+            if(player.Count == 1)
+            {
+                totalScore = minimumToWin - gameScore[0];
+            }
+            else
+            {
+                totalScore = gameScore[0] + gameScore[1] + gameScore[2] + gameScore[3];
+            }
             gameUI.ModifyText("" + totalScore);
             return true;
         }

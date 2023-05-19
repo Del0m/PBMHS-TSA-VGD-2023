@@ -90,7 +90,7 @@ public class TurnManager : MonoBehaviour
     }
     public void RoundCheck() // compares currentTurn with player count, exceeds, start minigame
     {
-        if(playerCount < currentTurn && roundsElapsed != maxRounds) // all players went, game not done? minigame time!
+        if(playerCount < currentTurn) // all players went, game not done? minigame time!
         {
             // resetting the camera
             cam.destination = null;
@@ -100,11 +100,6 @@ public class TurnManager : MonoBehaviour
             miniGameScript.MinigameStartup(); // running minigame coroutine to advise players, and spawn game.
             
             roundsElapsed++;
-        }
-
-        if(roundsElapsed >= maxRounds) // end the game
-        {
-            StartCoroutine(end.EndRoutine());
         }
 
         currentTurn++;
@@ -117,6 +112,15 @@ public class TurnManager : MonoBehaviour
 
         // run ui update
         uiManager.UpdateRound(roundsElapsed);
+    }
+    public bool CheckEnd() // checking if the game is up
+    {
+        if (roundsElapsed >= maxRounds) // end the game
+        {
+            StartCoroutine(end.EndRoutine());
+            return true;
+        }
+        return false;
     }
     public void SetTurn(int integer) { currentTurn = integer; } // sets turn back to normal
 
