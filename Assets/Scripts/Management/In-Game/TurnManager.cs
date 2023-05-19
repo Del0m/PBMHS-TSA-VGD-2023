@@ -90,7 +90,7 @@ public class TurnManager : MonoBehaviour
     }
     public void RoundCheck() // compares currentTurn with player count, exceeds, start minigame
     {
-        if(playerCount < currentTurn) // all players went, game not done? minigame time!
+        if(plrManager.player.Count - 1 <= currentTurn) // all players went, game not done? minigame time!
         {
             // resetting the camera
             cam.destination = null;

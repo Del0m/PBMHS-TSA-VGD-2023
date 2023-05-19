@@ -123,11 +123,13 @@ public class PlayerControls : MonoBehaviour
                 //yield return new WaitForSeconds(wait); // give time to move to position.
             }
         }
-        // turning off footstep sounds
-        movement.walking = false;
+
 
         turnScript.uiManager.UpdateDiceUI(movesRemaining);
         yield return new WaitForSeconds(2);
+        // turning off footstep sounds
+        movement.walking = false;
+
         turnScript.RoundCheck(); // advance turn, see if new turn is in order.
                                      //newTile = null; // to prevent the player from moving towards the tile in the middle of the game
         hasRan = true;

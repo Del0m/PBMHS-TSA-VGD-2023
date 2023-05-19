@@ -91,6 +91,7 @@ MonoBehaviour:
   movementParticle: {fileID: 2045440048820027072, guid: 30897cfe76aa67144b09a26df0c9a172, type: 3}
   buffParticle: {fileID: 1532191602576233216, guid: 6f4aa91e9b958f44b867f88ac6ad485d, type: 3}
   animate: {fileID: 4477975784502831907}
+  walking: 0
 --- !u!114 &2609490234402768879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,13 +285,14 @@ MonoBehaviour:
   stat: {fileID: 4021387965015513840}
   turnScript: {fileID: 0}
   moveManage: {fileID: 0}
+  movement: {fileID: 0}
   gameplayInput: {fileID: 0}
   pauseMenu: {fileID: 0}
   cam: {fileID: 0}
-  movementCooldown: 0.1
   inZoom: 20
   outZoom: 30
   cameraSpeed: 25
+  movementCooldown: 0.35
   newTile: {fileID: 0}
   hasRan: 0
   hasReachedDestination: 0
@@ -313,7 +315,7 @@ MonoBehaviour:
   damage: 5
   speedMulti: 1
   jumpMulti: 1
-  cooldown: 0.1
+  cooldown: 0.35
   wins: 0
   lost: 0
   singlePlayer: 0

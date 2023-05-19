@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.DualShock;
 
 public class MPManager : PlayerManager
 {
@@ -71,6 +72,14 @@ public class MPManager : PlayerManager
         spawnPlayer.GetComponent<PlayerMovement>().GameSwitch(true); // make the player move
 
         SetPlayer(spawnPlayer); // set the player's color
+
+        var inputDevice = input.GetDevice<Gamepad>();
+        if (inputDevice == UnityEngine.InputSystem.DualShock.DualShock4GamepadHID.current)
+        {
+            DualShockGamepad ds4 = (DualShockGamepad)inputDevice;
+            ds4.SetLightBarColor(playerColor[player.Count - 1]);
+        }
+
     }
     public override void SetPlayer(GameObject spawnPlayer) // change the players color
     {
