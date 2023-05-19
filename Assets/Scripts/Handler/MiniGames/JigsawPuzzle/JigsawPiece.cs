@@ -21,7 +21,6 @@ public class JigsawPiece : HoldableItem
             }
             if(collision.GetComponent<PlayerMovement>().holding == null && collision.GetComponent<PlayerMovement>().acting == true)
             {
-                Debug.Log("Attempting to run coroutine!");
                 StartCoroutine(collision.GetComponent<PlayerMovement>().HoldRoutine(false, this.gameObject));
             }
             else if(collision.GetComponent<PlayerMovement>().holding == gameObject && collision.GetComponent<PlayerMovement>().acting == true)

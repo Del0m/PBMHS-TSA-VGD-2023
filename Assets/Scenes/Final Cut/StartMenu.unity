@@ -317,7 +317,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: King's Challenge
+  m_text: Feudal Contest
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 98b47d88bd92d0a4c9e8bd52b8991e41, type: 2}
   m_sharedMaterial: {fileID: -241131914279302123, guid: 98b47d88bd92d0a4c9e8bd52b8991e41, type: 2}
@@ -446,7 +446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f4e8aadf221476449be40f759388ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 256036522}
+  canvas: {fileID: 0}
   fadeTime: 5
   text:
   - {fileID: 1289707047}
@@ -2422,7 +2422,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: By Team #2589
+  m_text: By Team #1334
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 98b47d88bd92d0a4c9e8bd52b8991e41, type: 2}
   m_sharedMaterial: {fileID: -241131914279302123, guid: 98b47d88bd92d0a4c9e8bd52b8991e41, type: 2}

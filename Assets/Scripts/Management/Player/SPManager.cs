@@ -63,8 +63,6 @@ public class SPManager : PlayerManager
     }
     public void IncreaseLevel() // make single player game progressively more difficult
     {
-        Debug.Log("Updating the level!");
-
         level = (player[0].GetComponent<PlayerStats>().wins + 1);
 
         levelGUI.text = "Level: " + level.ToString();

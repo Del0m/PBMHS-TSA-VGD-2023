@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class GameHandler : MonoBehaviour
 {
@@ -40,6 +39,7 @@ public class GameHandler : MonoBehaviour
 
     public int minimumToWin;
     public bool noWinner; // provide no winner if the game needs it
+    public bool allWinner; // give wins to all players that haven't lost the game (ColorMatch)
     void Start()
     {
         turn = GameObject.FindGameObjectWithTag("Turn Manager").GetComponent<TurnManager>();
@@ -151,7 +151,8 @@ public class GameHandler : MonoBehaviour
     }
     public void UpdateWin(int winner) // for the player to have their wins updated
     {
-        uiManager.playerUI[winner].GetComponent<PlayerUI>().UpdateWins(player[winner].GetComponent<PlayerStats>().wins);
+        if(!plrManage.singlePlayer)
+            uiManager.playerUI[winner].GetComponent<PlayerUI>().UpdateWins(player[winner].GetComponent<PlayerStats>().wins);
     }
 
     public IEnumerator EndGame(int winner)
@@ -178,10 +179,24 @@ public class GameHandler : MonoBehaviour
         }
         cam.TeleportCamera(player[0].transform.position, 20); // bring camera back to board frame.
 
+        // enabling non-minigame UI
+        plrManage.SetObjects(true);
+
+        // transition the game to have the success ascreen, singleplayer updates the players level.
+        plrManage.TransitionGame(winner);
 
         // try statement to prevent single player loss from reaching a negative array error
         try
         {
+            if(allWinner) // if the game is supposed to have everyone as a winner
+                for(int i = 0; i < player.Count; i++)
+                {
+                    if (gameScore[i] > 0)
+                    {
+                        player[winner].GetComponent<PlayerStats>().wins++;
+                    }
+                }
+            
             if(!noWinner) // check if the game needs to manually award player
             {
                 // award player a point if they "won"
@@ -194,12 +209,6 @@ public class GameHandler : MonoBehaviour
         {
             // don't run anything here, this is to prevent a negative array exception from coming up when the single player loses.
         }
-
-        // enabling non-minigame UI
-        plrManage.SetObjects(true);
-
-        // transition the game to have the success ascreen, singleplayer updates the players level.
-        plrManage.TransitionGame(winner);
 
         // ending game
         var finalGame = turn.CheckEnd(); // check to see if the rounds have elapsed, end game?

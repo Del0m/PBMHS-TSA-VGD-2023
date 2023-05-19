@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class ColorMatch : GameHandler
@@ -33,7 +32,7 @@ public class ColorMatch : GameHandler
     void Start()
     {        
         StartCoroutine(StartGame()); // starting game and bringing players into the game
-        ModifyPlayerStats(speedModifier / 4, speedModifier / 2); // decrease player speed
+        ModifyPlayerStats(.5f, .75f); // decrease player speed
 
         StartCoroutine(DropColors()); 
     }
@@ -76,15 +75,24 @@ public class ColorMatch : GameHandler
     }
     void ModifyPlayerStats(float walkMulti, float jumpMulti)
     {
-        var plr = GameObject.FindGameObjectsWithTag("Player");
         // coroutine to lower players speed
-        for (int i = 0; i < plr.Length; i++)
+        for (int i = 0; i < player.Count; i++)
         {
                 // grab stats from players
 
-                var playerStat = plr[i].GetComponent<PlayerStats>();
-                playerStat.speed *= walkMulti;
-                playerStat.jumpPower *= jumpMulti;
+                var playerStat = player[i].GetComponent<PlayerStats>();
+                playerStat.speedMulti = walkMulti;
+                playerStat.jumpMulti = jumpMulti;
+        }
+    }
+     void Wins() // give points to all players before ending the game, used for only giving wins to players that have won
+    {
+        for(int i = 0; i < player.Count; i++)
+        {
+            if (!player[i].GetComponent<PlayerStats>().lost)
+                gameScore[i]++; // add a point to each player
+            else
+                player[i].GetComponent<PlayerStats>().lost = false;
         }
     }
 
@@ -93,8 +101,6 @@ public class ColorMatch : GameHandler
         yield return new WaitForSeconds(5);
 
         var platScript = flagPlatform.GetComponent<MovingPlatform>(); // platform script to move platform above color
-
-
 
         for (int i = 0; i < dropAmount; i++)
         {
@@ -133,7 +139,10 @@ public class ColorMatch : GameHandler
             dropTime -= (dropTime / 8); // reduce drop time to up the stakes
             yield return new WaitForSeconds(5);
         }
-        ModifyPlayerStats(speedModifier*4, speedModifier * 1.25f); // increase player speed oncemore!
+
+        Wins(); // award all players a win
+
+        ModifyPlayerStats(1, 1); // increase player speed oncemore!
         StartCoroutine(EndGame(winner)); // fix at a later date, doesn't give all players a win
     }
     public IEnumerator LoseGame() // when all players have lost
@@ -148,7 +157,6 @@ public class ColorMatch : GameHandler
         }
         noWinner = true; // make it to where nobody is awarded points
         StartCoroutine(EndGame(-1)); // game over for single player
-
-
+        ModifyPlayerStats(1, 1); // increase player speed oncemore!
     }
 }
