@@ -26,6 +26,7 @@ public class PinataObject : MonoBehaviour
         minigame.killer = killer;
         var killerNum = killer.GetComponent<PlayerStats>().turnOrder;
 
+        minigame.noWinner = false;
         StartCoroutine(minigame.EndGame(killerNum));
     }
     Vector2 ChooseVectorDirection() // calculates random vector to shoot pinata at

@@ -55,7 +55,6 @@ public class PauseMenu : MonoBehaviour
         {
             pause.gameObject.SetActive(true);
             Time.timeScale = 0.0000001f;
-            print("pausing!");
 
             // put eventsystem onto master volume
             var _event = EventSystem.current;

@@ -74,7 +74,7 @@ public class MPManager : PlayerManager
         SetPlayer(spawnPlayer); // set the player's color
 
         var inputDevice = input.GetDevice<Gamepad>();
-        if (inputDevice == UnityEngine.InputSystem.DualShock.DualShock4GamepadHID.current)
+        if (inputDevice == DualShockGamepad.current)
         {
             DualShockGamepad ds4 = (DualShockGamepad)inputDevice;
             ds4.SetLightBarColor(playerColor[player.Count - 1]);

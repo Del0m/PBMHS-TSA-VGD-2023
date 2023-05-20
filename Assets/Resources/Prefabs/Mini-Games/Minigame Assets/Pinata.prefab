@@ -262,7 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 200
   speed: 10
-  iFrame: 0.35
+  iFrame: 0
   isDead: 0
   killer: {fileID: 0}
   hit: {fileID: 8300000, guid: ec05997e6bd8a904b9d59f84d05d3930, type: 3}
